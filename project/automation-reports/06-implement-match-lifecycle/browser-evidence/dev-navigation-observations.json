@@ -1,0 +1,3148 @@
+{
+  "observations": [
+    {
+      "waypoint": [
+        350,
+        270
+      ],
+      "snapshot": {
+        "step": 125,
+        "activeTimeMs": 2083.3333333333335,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 355,
+            "yUnits": 270
+          },
+          "headingRadians": 3.141592653589793,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        350,
+        60
+      ],
+      "snapshot": {
+        "step": 276,
+        "activeTimeMs": 4600,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 350.120423079597,
+            "yUnits": 65.05808205962899
+          },
+          "headingRadians": -1.5946013892898243,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        85,
+        60
+      ],
+      "snapshot": {
+        "step": 449,
+        "activeTimeMs": 7483.333333333334,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 90.16772842237029,
+            "yUnits": 60.09859212149377
+          },
+          "headingRadians": -3.122516535349199,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        85,
+        260
+      ],
+      "snapshot": {
+        "step": 595,
+        "activeTimeMs": 9916.666666666668,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 85.06378659242888,
+            "yUnits": 257.5326311770649
+          },
+          "headingRadians": 1.596641947603917,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        350,
+        260
+      ],
+      "snapshot": {
+        "step": 768,
+        "activeTimeMs": 12800,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 345.0525120756354,
+            "yUnits": 259.9539162941033
+          },
+          "headingRadians": 0.00931276967742889,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        600,
+        280
+      ],
+      "snapshot": {
+        "step": 936,
+        "activeTimeMs": 15600.000000000002,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 594.283275560577,
+            "yUnits": 279.550511220607
+          },
+          "headingRadians": 0.07846687567484523,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        870,
+        280
+      ],
+      "snapshot": {
+        "step": 1113,
+        "activeTimeMs": 18550,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 864.2829167550359,
+            "yUnits": 279.9906871632799
+          },
+          "headingRadians": 0.0016302819913249778,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        870,
+        495
+      ],
+      "snapshot": {
+        "step": 1265,
+        "activeTimeMs": 21083.333333333336,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 869.931281126234,
+            "yUnits": 492.4156056166731
+          },
+          "headingRadians": 1.5442126576127695,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        600,
+        495
+      ],
+      "snapshot": {
+        "step": 1440,
+        "activeTimeMs": 24000,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 602.4435406917659,
+            "yUnits": 494.97660488694436
+          },
+          "headingRadians": 3.1320186782826855,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        600,
+        280
+      ],
+      "snapshot": {
+        "step": 1592,
+        "activeTimeMs": 26533.333333333336,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 600.0851354087082,
+            "yUnits": 287.49000791133125
+          },
+          "headingRadians": -1.5821623801110647,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "reservations": [],
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    }
+  ],
+  "frontal": {
+    "setup": {
+      "configuration": {
+        "mapVersion": "arena-v2",
+        "balanceVersion": "balance-v1",
+        "options": {
+          "sessionDurationMs": 120000,
+          "enemySpawnIntervalMs": 3000
+        },
+        "world": {
+          "widthUnits": 960,
+          "heightUnits": 540,
+          "playerStart": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966
+          },
+          "islands": [
+            {
+              "id": "northwest",
+              "origin": {
+                "xUnits": 135,
+                "yUnits": 95
+              },
+              "widthUnits": 160,
+              "heightUnits": 120,
+              "solidOutline": [
+                {
+                  "xUnits": 0,
+                  "yUnits": 64.375
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 28.125
+                },
+                {
+                  "xUnits": 1.25,
+                  "yUnits": 23.75
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 21.25
+                },
+                {
+                  "xUnits": 2.5,
+                  "yUnits": 19.375
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 15.625
+                },
+                {
+                  "xUnits": 5.625,
+                  "yUnits": 13.75
+                },
+                {
+                  "xUnits": 7.5,
+                  "yUnits": 11.875
+                },
+                {
+                  "xUnits": 9.375,
+                  "yUnits": 10.625
+                },
+                {
+                  "xUnits": 14.375,
+                  "yUnits": 8.125
+                },
+                {
+                  "xUnits": 17.5,
+                  "yUnits": 6.875
+                },
+                {
+                  "xUnits": 22.5,
+                  "yUnits": 5
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 28.75,
+                  "yUnits": 3.125
+                },
+                {
+                  "xUnits": 33.75,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 40,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 44.375,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 95,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 135.625,
+                  "yUnits": 1.25
+                },
+                {
+                  "xUnits": 138.125,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 140,
+                  "yUnits": 2.5
+                },
+                {
+                  "xUnits": 143.75,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 6.25
+                },
+                {
+                  "xUnits": 147.5,
+                  "yUnits": 7.5
+                },
+                {
+                  "xUnits": 148.75,
+                  "yUnits": 9.375
+                },
+                {
+                  "xUnits": 150.625,
+                  "yUnits": 13.125
+                },
+                {
+                  "xUnits": 152.5,
+                  "yUnits": 17.5
+                },
+                {
+                  "xUnits": 155.625,
+                  "yUnits": 26.875
+                },
+                {
+                  "xUnits": 156.875,
+                  "yUnits": 31.25
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 33.75
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 40
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 44.375
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 55
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 158.125,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 97.5
+                },
+                {
+                  "xUnits": 156.25,
+                  "yUnits": 101.25
+                },
+                {
+                  "xUnits": 155,
+                  "yUnits": 103.75
+                },
+                {
+                  "xUnits": 153.75,
+                  "yUnits": 105.625
+                },
+                {
+                  "xUnits": 151.875,
+                  "yUnits": 107.5
+                },
+                {
+                  "xUnits": 150,
+                  "yUnits": 108.75
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 110.625
+                },
+                {
+                  "xUnits": 141.875,
+                  "yUnits": 112.5
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 125.625,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 119.375,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 115.625,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 63.75,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 28.125,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 118.125
+                },
+                {
+                  "xUnits": 21.875,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 18.125,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 15.625,
+                  "yUnits": 115
+                },
+                {
+                  "xUnits": 13.75,
+                  "yUnits": 113.75
+                },
+                {
+                  "xUnits": 11.875,
+                  "yUnits": 111.875
+                },
+                {
+                  "xUnits": 10.625,
+                  "yUnits": 110
+                },
+                {
+                  "xUnits": 8.125,
+                  "yUnits": 105
+                },
+                {
+                  "xUnits": 6.875,
+                  "yUnits": 101.875
+                },
+                {
+                  "xUnits": 5,
+                  "yUnits": 96.875
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 3.125,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 85.625
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 79.375
+                },
+                {
+                  "xUnits": 0,
+                  "yUnits": 75
+                }
+              ]
+            },
+            {
+              "id": "southeast",
+              "origin": {
+                "xUnits": 665,
+                "yUnits": 325
+              },
+              "widthUnits": 160,
+              "heightUnits": 120,
+              "solidOutline": [
+                {
+                  "xUnits": 0,
+                  "yUnits": 64.375
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 28.125
+                },
+                {
+                  "xUnits": 1.25,
+                  "yUnits": 23.75
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 21.25
+                },
+                {
+                  "xUnits": 2.5,
+                  "yUnits": 19.375
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 15.625
+                },
+                {
+                  "xUnits": 5.625,
+                  "yUnits": 13.75
+                },
+                {
+                  "xUnits": 7.5,
+                  "yUnits": 11.875
+                },
+                {
+                  "xUnits": 9.375,
+                  "yUnits": 10.625
+                },
+                {
+                  "xUnits": 14.375,
+                  "yUnits": 8.125
+                },
+                {
+                  "xUnits": 17.5,
+                  "yUnits": 6.875
+                },
+                {
+                  "xUnits": 22.5,
+                  "yUnits": 5
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 28.75,
+                  "yUnits": 3.125
+                },
+                {
+                  "xUnits": 33.75,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 40,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 44.375,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 95,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 135.625,
+                  "yUnits": 1.25
+                },
+                {
+                  "xUnits": 138.125,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 140,
+                  "yUnits": 2.5
+                },
+                {
+                  "xUnits": 143.75,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 6.25
+                },
+                {
+                  "xUnits": 147.5,
+                  "yUnits": 7.5
+                },
+                {
+                  "xUnits": 148.75,
+                  "yUnits": 9.375
+                },
+                {
+                  "xUnits": 150.625,
+                  "yUnits": 13.125
+                },
+                {
+                  "xUnits": 152.5,
+                  "yUnits": 17.5
+                },
+                {
+                  "xUnits": 155.625,
+                  "yUnits": 26.875
+                },
+                {
+                  "xUnits": 156.875,
+                  "yUnits": 31.25
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 33.75
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 40
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 44.375
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 55
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 158.125,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 97.5
+                },
+                {
+                  "xUnits": 156.25,
+                  "yUnits": 101.25
+                },
+                {
+                  "xUnits": 155,
+                  "yUnits": 103.75
+                },
+                {
+                  "xUnits": 153.75,
+                  "yUnits": 105.625
+                },
+                {
+                  "xUnits": 151.875,
+                  "yUnits": 107.5
+                },
+                {
+                  "xUnits": 150,
+                  "yUnits": 108.75
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 110.625
+                },
+                {
+                  "xUnits": 141.875,
+                  "yUnits": 112.5
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 125.625,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 119.375,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 115.625,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 63.75,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 28.125,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 118.125
+                },
+                {
+                  "xUnits": 21.875,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 18.125,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 15.625,
+                  "yUnits": 115
+                },
+                {
+                  "xUnits": 13.75,
+                  "yUnits": 113.75
+                },
+                {
+                  "xUnits": 11.875,
+                  "yUnits": 111.875
+                },
+                {
+                  "xUnits": 10.625,
+                  "yUnits": 110
+                },
+                {
+                  "xUnits": 8.125,
+                  "yUnits": 105
+                },
+                {
+                  "xUnits": 6.875,
+                  "yUnits": 101.875
+                },
+                {
+                  "xUnits": 5,
+                  "yUnits": 96.875
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 3.125,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 85.625
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 79.375
+                },
+                {
+                  "xUnits": 0,
+                  "yUnits": 75
+                }
+              ]
+            }
+          ]
+        },
+        "ships": {
+          "player": {
+            "maxHealth": 100,
+            "forwardSpeedUnitsPerSecond": 150,
+            "turnSpeedRadiansPerSecond": 3.141592653589793,
+            "hullRadiusUnits": 18,
+            "contactDamage": 0
+          },
+          "chaser": {
+            "maxHealth": 40,
+            "forwardSpeedUnitsPerSecond": 115,
+            "turnSpeedRadiansPerSecond": 2.443460952792061,
+            "hullRadiusUnits": 16,
+            "contactDamage": 25
+          },
+          "shooter": {
+            "maxHealth": 60,
+            "forwardSpeedUnitsPerSecond": 90,
+            "turnSpeedRadiansPerSecond": 1.9198621771937625,
+            "hullRadiusUnits": 18,
+            "contactDamage": 0
+          }
+        },
+        "weapons": {
+          "front": {
+            "damage": 20,
+            "projectileCount": 1,
+            "cooldownMs": 350,
+            "projectileSpeedUnitsPerSecond": 420,
+            "projectileLifetimeMs": 1200
+          },
+          "port": {
+            "damage": 20,
+            "projectileCount": 3,
+            "cooldownMs": 1200,
+            "projectileSpeedUnitsPerSecond": 360,
+            "projectileLifetimeMs": 1000,
+            "longitudinalSpacingUnits": 14
+          },
+          "starboard": {
+            "damage": 20,
+            "projectileCount": 3,
+            "cooldownMs": 1200,
+            "projectileSpeedUnitsPerSecond": 360,
+            "projectileLifetimeMs": 1000,
+            "longitudinalSpacingUnits": 14
+          },
+          "shooter": {
+            "damage": 10,
+            "projectileCount": 1,
+            "cooldownMs": 1500,
+            "projectileSpeedUnitsPerSecond": 260,
+            "projectileLifetimeMs": 1500
+          },
+          "playerInitiallyReady": true
+        },
+        "projectiles": {
+          "radiusUnits": 5,
+          "muzzleClearanceUnits": 0.5
+        },
+        "shooter": {
+          "attackRangeUnits": 300,
+          "preferredDistanceUnits": 240,
+          "hysteresisUnits": 30,
+          "aimToleranceRadians": 0.17453292519943295,
+          "firstShotWaitsFullCooldown": true
+        },
+        "spawn": {
+          "minimumPlayerDistanceUnits": 240,
+          "telegraphMs": 600,
+          "archetypeSequence": [
+            "chaser",
+            "shooter"
+          ],
+          "liveEnemyCap": null,
+          "firstSpawnWaitsFullInterval": true,
+          "accumulateBacklog": false
+        },
+        "controls": {
+          "mouseDeadZoneUnits": 12,
+          "joypadDeadZoneNormalized": 0.15,
+          "initialAutoSail": false
+        },
+        "rules": {
+          "damageProtectionMs": 0,
+          "pointsPerPlayerEnemyDestruction": 1,
+          "pointsPerChaserContactDestruction": 0,
+          "friendlyFire": false,
+          "piercing": false,
+          "splashDamage": false,
+          "shorelineDamage": false,
+          "projectileCollisions": false
+        },
+        "navigation": {
+          "waypointSpacingUnits": 20,
+          "clearanceUnits": 0.05,
+          "replanMs": 250,
+          "endpointConnections": 12,
+          "separationMarginUnits": 0.05,
+          "separationIterations": 24
+        },
+        "director": {
+          "candidateAttempts": 64
+        },
+        "timing": {
+          "fixedStepMs": 16.666666666666668,
+          "maxCatchUpStepsPerFrame": 5
+        }
+      },
+      "seed": 2761189587
+    },
+    "snapshot": {
+      "step": 1946,
+      "activeTimeMs": 32433.333333333336,
+      "state": "playing",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 312.34619337685336,
+          "yUnits": 151.79986580946027
+        },
+        "headingRadians": -3.124007354943233,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "reservations": [],
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": true
+    },
+    "target": {
+      "xUnits": 210,
+      "yUnits": 150
+    },
+    "dynamicSprites": 0,
+    "telegraphGraphics": 0
+  },
+  "oblique": {
+    "setup": {
+      "configuration": {
+        "mapVersion": "arena-v2",
+        "balanceVersion": "balance-v1",
+        "options": {
+          "sessionDurationMs": 120000,
+          "enemySpawnIntervalMs": 3000
+        },
+        "world": {
+          "widthUnits": 960,
+          "heightUnits": 540,
+          "playerStart": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966
+          },
+          "islands": [
+            {
+              "id": "northwest",
+              "origin": {
+                "xUnits": 135,
+                "yUnits": 95
+              },
+              "widthUnits": 160,
+              "heightUnits": 120,
+              "solidOutline": [
+                {
+                  "xUnits": 0,
+                  "yUnits": 64.375
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 28.125
+                },
+                {
+                  "xUnits": 1.25,
+                  "yUnits": 23.75
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 21.25
+                },
+                {
+                  "xUnits": 2.5,
+                  "yUnits": 19.375
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 15.625
+                },
+                {
+                  "xUnits": 5.625,
+                  "yUnits": 13.75
+                },
+                {
+                  "xUnits": 7.5,
+                  "yUnits": 11.875
+                },
+                {
+                  "xUnits": 9.375,
+                  "yUnits": 10.625
+                },
+                {
+                  "xUnits": 14.375,
+                  "yUnits": 8.125
+                },
+                {
+                  "xUnits": 17.5,
+                  "yUnits": 6.875
+                },
+                {
+                  "xUnits": 22.5,
+                  "yUnits": 5
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 28.75,
+                  "yUnits": 3.125
+                },
+                {
+                  "xUnits": 33.75,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 40,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 44.375,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 95,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 135.625,
+                  "yUnits": 1.25
+                },
+                {
+                  "xUnits": 138.125,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 140,
+                  "yUnits": 2.5
+                },
+                {
+                  "xUnits": 143.75,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 6.25
+                },
+                {
+                  "xUnits": 147.5,
+                  "yUnits": 7.5
+                },
+                {
+                  "xUnits": 148.75,
+                  "yUnits": 9.375
+                },
+                {
+                  "xUnits": 150.625,
+                  "yUnits": 13.125
+                },
+                {
+                  "xUnits": 152.5,
+                  "yUnits": 17.5
+                },
+                {
+                  "xUnits": 155.625,
+                  "yUnits": 26.875
+                },
+                {
+                  "xUnits": 156.875,
+                  "yUnits": 31.25
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 33.75
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 40
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 44.375
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 55
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 158.125,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 97.5
+                },
+                {
+                  "xUnits": 156.25,
+                  "yUnits": 101.25
+                },
+                {
+                  "xUnits": 155,
+                  "yUnits": 103.75
+                },
+                {
+                  "xUnits": 153.75,
+                  "yUnits": 105.625
+                },
+                {
+                  "xUnits": 151.875,
+                  "yUnits": 107.5
+                },
+                {
+                  "xUnits": 150,
+                  "yUnits": 108.75
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 110.625
+                },
+                {
+                  "xUnits": 141.875,
+                  "yUnits": 112.5
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 125.625,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 119.375,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 115.625,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 63.75,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 28.125,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 118.125
+                },
+                {
+                  "xUnits": 21.875,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 18.125,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 15.625,
+                  "yUnits": 115
+                },
+                {
+                  "xUnits": 13.75,
+                  "yUnits": 113.75
+                },
+                {
+                  "xUnits": 11.875,
+                  "yUnits": 111.875
+                },
+                {
+                  "xUnits": 10.625,
+                  "yUnits": 110
+                },
+                {
+                  "xUnits": 8.125,
+                  "yUnits": 105
+                },
+                {
+                  "xUnits": 6.875,
+                  "yUnits": 101.875
+                },
+                {
+                  "xUnits": 5,
+                  "yUnits": 96.875
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 3.125,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 85.625
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 79.375
+                },
+                {
+                  "xUnits": 0,
+                  "yUnits": 75
+                }
+              ]
+            },
+            {
+              "id": "southeast",
+              "origin": {
+                "xUnits": 665,
+                "yUnits": 325
+              },
+              "widthUnits": 160,
+              "heightUnits": 120,
+              "solidOutline": [
+                {
+                  "xUnits": 0,
+                  "yUnits": 64.375
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 28.125
+                },
+                {
+                  "xUnits": 1.25,
+                  "yUnits": 23.75
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 21.25
+                },
+                {
+                  "xUnits": 2.5,
+                  "yUnits": 19.375
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 15.625
+                },
+                {
+                  "xUnits": 5.625,
+                  "yUnits": 13.75
+                },
+                {
+                  "xUnits": 7.5,
+                  "yUnits": 11.875
+                },
+                {
+                  "xUnits": 9.375,
+                  "yUnits": 10.625
+                },
+                {
+                  "xUnits": 14.375,
+                  "yUnits": 8.125
+                },
+                {
+                  "xUnits": 17.5,
+                  "yUnits": 6.875
+                },
+                {
+                  "xUnits": 22.5,
+                  "yUnits": 5
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 28.75,
+                  "yUnits": 3.125
+                },
+                {
+                  "xUnits": 33.75,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 40,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 44.375,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 95,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 135.625,
+                  "yUnits": 1.25
+                },
+                {
+                  "xUnits": 138.125,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 140,
+                  "yUnits": 2.5
+                },
+                {
+                  "xUnits": 143.75,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 6.25
+                },
+                {
+                  "xUnits": 147.5,
+                  "yUnits": 7.5
+                },
+                {
+                  "xUnits": 148.75,
+                  "yUnits": 9.375
+                },
+                {
+                  "xUnits": 150.625,
+                  "yUnits": 13.125
+                },
+                {
+                  "xUnits": 152.5,
+                  "yUnits": 17.5
+                },
+                {
+                  "xUnits": 155.625,
+                  "yUnits": 26.875
+                },
+                {
+                  "xUnits": 156.875,
+                  "yUnits": 31.25
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 33.75
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 40
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 44.375
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 55
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 158.125,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 97.5
+                },
+                {
+                  "xUnits": 156.25,
+                  "yUnits": 101.25
+                },
+                {
+                  "xUnits": 155,
+                  "yUnits": 103.75
+                },
+                {
+                  "xUnits": 153.75,
+                  "yUnits": 105.625
+                },
+                {
+                  "xUnits": 151.875,
+                  "yUnits": 107.5
+                },
+                {
+                  "xUnits": 150,
+                  "yUnits": 108.75
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 110.625
+                },
+                {
+                  "xUnits": 141.875,
+                  "yUnits": 112.5
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 125.625,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 119.375,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 115.625,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 63.75,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 28.125,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 118.125
+                },
+                {
+                  "xUnits": 21.875,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 18.125,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 15.625,
+                  "yUnits": 115
+                },
+                {
+                  "xUnits": 13.75,
+                  "yUnits": 113.75
+                },
+                {
+                  "xUnits": 11.875,
+                  "yUnits": 111.875
+                },
+                {
+                  "xUnits": 10.625,
+                  "yUnits": 110
+                },
+                {
+                  "xUnits": 8.125,
+                  "yUnits": 105
+                },
+                {
+                  "xUnits": 6.875,
+                  "yUnits": 101.875
+                },
+                {
+                  "xUnits": 5,
+                  "yUnits": 96.875
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 3.125,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 85.625
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 79.375
+                },
+                {
+                  "xUnits": 0,
+                  "yUnits": 75
+                }
+              ]
+            }
+          ]
+        },
+        "ships": {
+          "player": {
+            "maxHealth": 100,
+            "forwardSpeedUnitsPerSecond": 150,
+            "turnSpeedRadiansPerSecond": 3.141592653589793,
+            "hullRadiusUnits": 18,
+            "contactDamage": 0
+          },
+          "chaser": {
+            "maxHealth": 40,
+            "forwardSpeedUnitsPerSecond": 115,
+            "turnSpeedRadiansPerSecond": 2.443460952792061,
+            "hullRadiusUnits": 16,
+            "contactDamage": 25
+          },
+          "shooter": {
+            "maxHealth": 60,
+            "forwardSpeedUnitsPerSecond": 90,
+            "turnSpeedRadiansPerSecond": 1.9198621771937625,
+            "hullRadiusUnits": 18,
+            "contactDamage": 0
+          }
+        },
+        "weapons": {
+          "front": {
+            "damage": 20,
+            "projectileCount": 1,
+            "cooldownMs": 350,
+            "projectileSpeedUnitsPerSecond": 420,
+            "projectileLifetimeMs": 1200
+          },
+          "port": {
+            "damage": 20,
+            "projectileCount": 3,
+            "cooldownMs": 1200,
+            "projectileSpeedUnitsPerSecond": 360,
+            "projectileLifetimeMs": 1000,
+            "longitudinalSpacingUnits": 14
+          },
+          "starboard": {
+            "damage": 20,
+            "projectileCount": 3,
+            "cooldownMs": 1200,
+            "projectileSpeedUnitsPerSecond": 360,
+            "projectileLifetimeMs": 1000,
+            "longitudinalSpacingUnits": 14
+          },
+          "shooter": {
+            "damage": 10,
+            "projectileCount": 1,
+            "cooldownMs": 1500,
+            "projectileSpeedUnitsPerSecond": 260,
+            "projectileLifetimeMs": 1500
+          },
+          "playerInitiallyReady": true
+        },
+        "projectiles": {
+          "radiusUnits": 5,
+          "muzzleClearanceUnits": 0.5
+        },
+        "shooter": {
+          "attackRangeUnits": 300,
+          "preferredDistanceUnits": 240,
+          "hysteresisUnits": 30,
+          "aimToleranceRadians": 0.17453292519943295,
+          "firstShotWaitsFullCooldown": true
+        },
+        "spawn": {
+          "minimumPlayerDistanceUnits": 240,
+          "telegraphMs": 600,
+          "archetypeSequence": [
+            "chaser",
+            "shooter"
+          ],
+          "liveEnemyCap": null,
+          "firstSpawnWaitsFullInterval": true,
+          "accumulateBacklog": false
+        },
+        "controls": {
+          "mouseDeadZoneUnits": 12,
+          "joypadDeadZoneNormalized": 0.15,
+          "initialAutoSail": false
+        },
+        "rules": {
+          "damageProtectionMs": 0,
+          "pointsPerPlayerEnemyDestruction": 1,
+          "pointsPerChaserContactDestruction": 0,
+          "friendlyFire": false,
+          "piercing": false,
+          "splashDamage": false,
+          "shorelineDamage": false,
+          "projectileCollisions": false
+        },
+        "navigation": {
+          "waypointSpacingUnits": 20,
+          "clearanceUnits": 0.05,
+          "replanMs": 250,
+          "endpointConnections": 12,
+          "separationMarginUnits": 0.05,
+          "separationIterations": 24
+        },
+        "director": {
+          "candidateAttempts": 64
+        },
+        "timing": {
+          "fixedStepMs": 16.666666666666668,
+          "maxCatchUpStepsPerFrame": 5
+        }
+      },
+      "seed": 2761189587
+    },
+    "snapshot": {
+      "step": 2048,
+      "activeTimeMs": 34133.333333333336,
+      "state": "playing",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 229.14568558720669,
+          "yUnits": 58.84455722263871
+        },
+        "headingRadians": -2.746384437678744,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "reservations": [],
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": true
+    },
+    "target": {
+      "xUnits": 159.99999618530273,
+      "yUnits": 30
+    },
+    "dynamicSprites": 0,
+    "telegraphGraphics": 0
+  },
+  "southeast": {
+    "setup": {
+      "configuration": {
+        "mapVersion": "arena-v2",
+        "balanceVersion": "balance-v1",
+        "options": {
+          "sessionDurationMs": 120000,
+          "enemySpawnIntervalMs": 3000
+        },
+        "world": {
+          "widthUnits": 960,
+          "heightUnits": 540,
+          "playerStart": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966
+          },
+          "islands": [
+            {
+              "id": "northwest",
+              "origin": {
+                "xUnits": 135,
+                "yUnits": 95
+              },
+              "widthUnits": 160,
+              "heightUnits": 120,
+              "solidOutline": [
+                {
+                  "xUnits": 0,
+                  "yUnits": 64.375
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 28.125
+                },
+                {
+                  "xUnits": 1.25,
+                  "yUnits": 23.75
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 21.25
+                },
+                {
+                  "xUnits": 2.5,
+                  "yUnits": 19.375
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 15.625
+                },
+                {
+                  "xUnits": 5.625,
+                  "yUnits": 13.75
+                },
+                {
+                  "xUnits": 7.5,
+                  "yUnits": 11.875
+                },
+                {
+                  "xUnits": 9.375,
+                  "yUnits": 10.625
+                },
+                {
+                  "xUnits": 14.375,
+                  "yUnits": 8.125
+                },
+                {
+                  "xUnits": 17.5,
+                  "yUnits": 6.875
+                },
+                {
+                  "xUnits": 22.5,
+                  "yUnits": 5
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 28.75,
+                  "yUnits": 3.125
+                },
+                {
+                  "xUnits": 33.75,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 40,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 44.375,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 95,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 135.625,
+                  "yUnits": 1.25
+                },
+                {
+                  "xUnits": 138.125,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 140,
+                  "yUnits": 2.5
+                },
+                {
+                  "xUnits": 143.75,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 6.25
+                },
+                {
+                  "xUnits": 147.5,
+                  "yUnits": 7.5
+                },
+                {
+                  "xUnits": 148.75,
+                  "yUnits": 9.375
+                },
+                {
+                  "xUnits": 150.625,
+                  "yUnits": 13.125
+                },
+                {
+                  "xUnits": 152.5,
+                  "yUnits": 17.5
+                },
+                {
+                  "xUnits": 155.625,
+                  "yUnits": 26.875
+                },
+                {
+                  "xUnits": 156.875,
+                  "yUnits": 31.25
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 33.75
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 40
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 44.375
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 55
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 158.125,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 97.5
+                },
+                {
+                  "xUnits": 156.25,
+                  "yUnits": 101.25
+                },
+                {
+                  "xUnits": 155,
+                  "yUnits": 103.75
+                },
+                {
+                  "xUnits": 153.75,
+                  "yUnits": 105.625
+                },
+                {
+                  "xUnits": 151.875,
+                  "yUnits": 107.5
+                },
+                {
+                  "xUnits": 150,
+                  "yUnits": 108.75
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 110.625
+                },
+                {
+                  "xUnits": 141.875,
+                  "yUnits": 112.5
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 125.625,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 119.375,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 115.625,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 63.75,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 28.125,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 118.125
+                },
+                {
+                  "xUnits": 21.875,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 18.125,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 15.625,
+                  "yUnits": 115
+                },
+                {
+                  "xUnits": 13.75,
+                  "yUnits": 113.75
+                },
+                {
+                  "xUnits": 11.875,
+                  "yUnits": 111.875
+                },
+                {
+                  "xUnits": 10.625,
+                  "yUnits": 110
+                },
+                {
+                  "xUnits": 8.125,
+                  "yUnits": 105
+                },
+                {
+                  "xUnits": 6.875,
+                  "yUnits": 101.875
+                },
+                {
+                  "xUnits": 5,
+                  "yUnits": 96.875
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 3.125,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 85.625
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 79.375
+                },
+                {
+                  "xUnits": 0,
+                  "yUnits": 75
+                }
+              ]
+            },
+            {
+              "id": "southeast",
+              "origin": {
+                "xUnits": 665,
+                "yUnits": 325
+              },
+              "widthUnits": 160,
+              "heightUnits": 120,
+              "solidOutline": [
+                {
+                  "xUnits": 0,
+                  "yUnits": 64.375
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 28.125
+                },
+                {
+                  "xUnits": 1.25,
+                  "yUnits": 23.75
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 21.25
+                },
+                {
+                  "xUnits": 2.5,
+                  "yUnits": 19.375
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 15.625
+                },
+                {
+                  "xUnits": 5.625,
+                  "yUnits": 13.75
+                },
+                {
+                  "xUnits": 7.5,
+                  "yUnits": 11.875
+                },
+                {
+                  "xUnits": 9.375,
+                  "yUnits": 10.625
+                },
+                {
+                  "xUnits": 14.375,
+                  "yUnits": 8.125
+                },
+                {
+                  "xUnits": 17.5,
+                  "yUnits": 6.875
+                },
+                {
+                  "xUnits": 22.5,
+                  "yUnits": 5
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 28.75,
+                  "yUnits": 3.125
+                },
+                {
+                  "xUnits": 33.75,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 40,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 44.375,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 95,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 135.625,
+                  "yUnits": 1.25
+                },
+                {
+                  "xUnits": 138.125,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 140,
+                  "yUnits": 2.5
+                },
+                {
+                  "xUnits": 143.75,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 6.25
+                },
+                {
+                  "xUnits": 147.5,
+                  "yUnits": 7.5
+                },
+                {
+                  "xUnits": 148.75,
+                  "yUnits": 9.375
+                },
+                {
+                  "xUnits": 150.625,
+                  "yUnits": 13.125
+                },
+                {
+                  "xUnits": 152.5,
+                  "yUnits": 17.5
+                },
+                {
+                  "xUnits": 155.625,
+                  "yUnits": 26.875
+                },
+                {
+                  "xUnits": 156.875,
+                  "yUnits": 31.25
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 33.75
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 40
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 44.375
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 55
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 158.125,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 97.5
+                },
+                {
+                  "xUnits": 156.25,
+                  "yUnits": 101.25
+                },
+                {
+                  "xUnits": 155,
+                  "yUnits": 103.75
+                },
+                {
+                  "xUnits": 153.75,
+                  "yUnits": 105.625
+                },
+                {
+                  "xUnits": 151.875,
+                  "yUnits": 107.5
+                },
+                {
+                  "xUnits": 150,
+                  "yUnits": 108.75
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 110.625
+                },
+                {
+                  "xUnits": 141.875,
+                  "yUnits": 112.5
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 125.625,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 119.375,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 115.625,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 63.75,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 28.125,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 118.125
+                },
+                {
+                  "xUnits": 21.875,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 18.125,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 15.625,
+                  "yUnits": 115
+                },
+                {
+                  "xUnits": 13.75,
+                  "yUnits": 113.75
+                },
+                {
+                  "xUnits": 11.875,
+                  "yUnits": 111.875
+                },
+                {
+                  "xUnits": 10.625,
+                  "yUnits": 110
+                },
+                {
+                  "xUnits": 8.125,
+                  "yUnits": 105
+                },
+                {
+                  "xUnits": 6.875,
+                  "yUnits": 101.875
+                },
+                {
+                  "xUnits": 5,
+                  "yUnits": 96.875
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 3.125,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 85.625
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 79.375
+                },
+                {
+                  "xUnits": 0,
+                  "yUnits": 75
+                }
+              ]
+            }
+          ]
+        },
+        "ships": {
+          "player": {
+            "maxHealth": 100,
+            "forwardSpeedUnitsPerSecond": 150,
+            "turnSpeedRadiansPerSecond": 3.141592653589793,
+            "hullRadiusUnits": 18,
+            "contactDamage": 0
+          },
+          "chaser": {
+            "maxHealth": 40,
+            "forwardSpeedUnitsPerSecond": 115,
+            "turnSpeedRadiansPerSecond": 2.443460952792061,
+            "hullRadiusUnits": 16,
+            "contactDamage": 25
+          },
+          "shooter": {
+            "maxHealth": 60,
+            "forwardSpeedUnitsPerSecond": 90,
+            "turnSpeedRadiansPerSecond": 1.9198621771937625,
+            "hullRadiusUnits": 18,
+            "contactDamage": 0
+          }
+        },
+        "weapons": {
+          "front": {
+            "damage": 20,
+            "projectileCount": 1,
+            "cooldownMs": 350,
+            "projectileSpeedUnitsPerSecond": 420,
+            "projectileLifetimeMs": 1200
+          },
+          "port": {
+            "damage": 20,
+            "projectileCount": 3,
+            "cooldownMs": 1200,
+            "projectileSpeedUnitsPerSecond": 360,
+            "projectileLifetimeMs": 1000,
+            "longitudinalSpacingUnits": 14
+          },
+          "starboard": {
+            "damage": 20,
+            "projectileCount": 3,
+            "cooldownMs": 1200,
+            "projectileSpeedUnitsPerSecond": 360,
+            "projectileLifetimeMs": 1000,
+            "longitudinalSpacingUnits": 14
+          },
+          "shooter": {
+            "damage": 10,
+            "projectileCount": 1,
+            "cooldownMs": 1500,
+            "projectileSpeedUnitsPerSecond": 260,
+            "projectileLifetimeMs": 1500
+          },
+          "playerInitiallyReady": true
+        },
+        "projectiles": {
+          "radiusUnits": 5,
+          "muzzleClearanceUnits": 0.5
+        },
+        "shooter": {
+          "attackRangeUnits": 300,
+          "preferredDistanceUnits": 240,
+          "hysteresisUnits": 30,
+          "aimToleranceRadians": 0.17453292519943295,
+          "firstShotWaitsFullCooldown": true
+        },
+        "spawn": {
+          "minimumPlayerDistanceUnits": 240,
+          "telegraphMs": 600,
+          "archetypeSequence": [
+            "chaser",
+            "shooter"
+          ],
+          "liveEnemyCap": null,
+          "firstSpawnWaitsFullInterval": true,
+          "accumulateBacklog": false
+        },
+        "controls": {
+          "mouseDeadZoneUnits": 12,
+          "joypadDeadZoneNormalized": 0.15,
+          "initialAutoSail": false
+        },
+        "rules": {
+          "damageProtectionMs": 0,
+          "pointsPerPlayerEnemyDestruction": 1,
+          "pointsPerChaserContactDestruction": 0,
+          "friendlyFire": false,
+          "piercing": false,
+          "splashDamage": false,
+          "shorelineDamage": false,
+          "projectileCollisions": false
+        },
+        "navigation": {
+          "waypointSpacingUnits": 20,
+          "clearanceUnits": 0.05,
+          "replanMs": 250,
+          "endpointConnections": 12,
+          "separationMarginUnits": 0.05,
+          "separationIterations": 24
+        },
+        "director": {
+          "candidateAttempts": 64
+        },
+        "timing": {
+          "fixedStepMs": 16.666666666666668,
+          "maxCatchUpStepsPerFrame": 5
+        }
+      },
+      "seed": 2761189587
+    },
+    "snapshot": {
+      "step": 2563,
+      "activeTimeMs": 42716.66666666667,
+      "state": "playing",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 647.1034953320354,
+          "yUnits": 383.2171040581527
+        },
+        "headingRadians": 0.019243680158625764,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "reservations": [],
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": true
+    },
+    "target": {
+      "xUnits": 740.0000152587891,
+      "yUnits": 384.99998474121094
+    },
+    "dynamicSprites": 0,
+    "telegraphGraphics": 0
+  },
+  "final": {
+    "setup": {
+      "configuration": {
+        "mapVersion": "arena-v2",
+        "balanceVersion": "balance-v1",
+        "options": {
+          "sessionDurationMs": 120000,
+          "enemySpawnIntervalMs": 3000
+        },
+        "world": {
+          "widthUnits": 960,
+          "heightUnits": 540,
+          "playerStart": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966
+          },
+          "islands": [
+            {
+              "id": "northwest",
+              "origin": {
+                "xUnits": 135,
+                "yUnits": 95
+              },
+              "widthUnits": 160,
+              "heightUnits": 120,
+              "solidOutline": [
+                {
+                  "xUnits": 0,
+                  "yUnits": 64.375
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 28.125
+                },
+                {
+                  "xUnits": 1.25,
+                  "yUnits": 23.75
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 21.25
+                },
+                {
+                  "xUnits": 2.5,
+                  "yUnits": 19.375
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 15.625
+                },
+                {
+                  "xUnits": 5.625,
+                  "yUnits": 13.75
+                },
+                {
+                  "xUnits": 7.5,
+                  "yUnits": 11.875
+                },
+                {
+                  "xUnits": 9.375,
+                  "yUnits": 10.625
+                },
+                {
+                  "xUnits": 14.375,
+                  "yUnits": 8.125
+                },
+                {
+                  "xUnits": 17.5,
+                  "yUnits": 6.875
+                },
+                {
+                  "xUnits": 22.5,
+                  "yUnits": 5
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 28.75,
+                  "yUnits": 3.125
+                },
+                {
+                  "xUnits": 33.75,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 40,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 44.375,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 95,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 135.625,
+                  "yUnits": 1.25
+                },
+                {
+                  "xUnits": 138.125,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 140,
+                  "yUnits": 2.5
+                },
+                {
+                  "xUnits": 143.75,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 6.25
+                },
+                {
+                  "xUnits": 147.5,
+                  "yUnits": 7.5
+                },
+                {
+                  "xUnits": 148.75,
+                  "yUnits": 9.375
+                },
+                {
+                  "xUnits": 150.625,
+                  "yUnits": 13.125
+                },
+                {
+                  "xUnits": 152.5,
+                  "yUnits": 17.5
+                },
+                {
+                  "xUnits": 155.625,
+                  "yUnits": 26.875
+                },
+                {
+                  "xUnits": 156.875,
+                  "yUnits": 31.25
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 33.75
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 40
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 44.375
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 55
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 158.125,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 97.5
+                },
+                {
+                  "xUnits": 156.25,
+                  "yUnits": 101.25
+                },
+                {
+                  "xUnits": 155,
+                  "yUnits": 103.75
+                },
+                {
+                  "xUnits": 153.75,
+                  "yUnits": 105.625
+                },
+                {
+                  "xUnits": 151.875,
+                  "yUnits": 107.5
+                },
+                {
+                  "xUnits": 150,
+                  "yUnits": 108.75
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 110.625
+                },
+                {
+                  "xUnits": 141.875,
+                  "yUnits": 112.5
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 125.625,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 119.375,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 115.625,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 63.75,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 28.125,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 118.125
+                },
+                {
+                  "xUnits": 21.875,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 18.125,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 15.625,
+                  "yUnits": 115
+                },
+                {
+                  "xUnits": 13.75,
+                  "yUnits": 113.75
+                },
+                {
+                  "xUnits": 11.875,
+                  "yUnits": 111.875
+                },
+                {
+                  "xUnits": 10.625,
+                  "yUnits": 110
+                },
+                {
+                  "xUnits": 8.125,
+                  "yUnits": 105
+                },
+                {
+                  "xUnits": 6.875,
+                  "yUnits": 101.875
+                },
+                {
+                  "xUnits": 5,
+                  "yUnits": 96.875
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 3.125,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 85.625
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 79.375
+                },
+                {
+                  "xUnits": 0,
+                  "yUnits": 75
+                }
+              ]
+            },
+            {
+              "id": "southeast",
+              "origin": {
+                "xUnits": 665,
+                "yUnits": 325
+              },
+              "widthUnits": 160,
+              "heightUnits": 120,
+              "solidOutline": [
+                {
+                  "xUnits": 0,
+                  "yUnits": 64.375
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 28.125
+                },
+                {
+                  "xUnits": 1.25,
+                  "yUnits": 23.75
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 21.25
+                },
+                {
+                  "xUnits": 2.5,
+                  "yUnits": 19.375
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 15.625
+                },
+                {
+                  "xUnits": 5.625,
+                  "yUnits": 13.75
+                },
+                {
+                  "xUnits": 7.5,
+                  "yUnits": 11.875
+                },
+                {
+                  "xUnits": 9.375,
+                  "yUnits": 10.625
+                },
+                {
+                  "xUnits": 14.375,
+                  "yUnits": 8.125
+                },
+                {
+                  "xUnits": 17.5,
+                  "yUnits": 6.875
+                },
+                {
+                  "xUnits": 22.5,
+                  "yUnits": 5
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 28.75,
+                  "yUnits": 3.125
+                },
+                {
+                  "xUnits": 33.75,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 40,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 44.375,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 95,
+                  "yUnits": 0
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 0.625
+                },
+                {
+                  "xUnits": 135.625,
+                  "yUnits": 1.25
+                },
+                {
+                  "xUnits": 138.125,
+                  "yUnits": 1.875
+                },
+                {
+                  "xUnits": 140,
+                  "yUnits": 2.5
+                },
+                {
+                  "xUnits": 143.75,
+                  "yUnits": 4.375
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 6.25
+                },
+                {
+                  "xUnits": 147.5,
+                  "yUnits": 7.5
+                },
+                {
+                  "xUnits": 148.75,
+                  "yUnits": 9.375
+                },
+                {
+                  "xUnits": 150.625,
+                  "yUnits": 13.125
+                },
+                {
+                  "xUnits": 152.5,
+                  "yUnits": 17.5
+                },
+                {
+                  "xUnits": 155.625,
+                  "yUnits": 26.875
+                },
+                {
+                  "xUnits": 156.875,
+                  "yUnits": 31.25
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 33.75
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 40
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 44.375
+                },
+                {
+                  "xUnits": 159.375,
+                  "yUnits": 55
+                },
+                {
+                  "xUnits": 158.75,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 158.125,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 157.5,
+                  "yUnits": 97.5
+                },
+                {
+                  "xUnits": 156.25,
+                  "yUnits": 101.25
+                },
+                {
+                  "xUnits": 155,
+                  "yUnits": 103.75
+                },
+                {
+                  "xUnits": 153.75,
+                  "yUnits": 105.625
+                },
+                {
+                  "xUnits": 151.875,
+                  "yUnits": 107.5
+                },
+                {
+                  "xUnits": 150,
+                  "yUnits": 108.75
+                },
+                {
+                  "xUnits": 146.25,
+                  "yUnits": 110.625
+                },
+                {
+                  "xUnits": 141.875,
+                  "yUnits": 112.5
+                },
+                {
+                  "xUnits": 130.625,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 125.625,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 119.375,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 115.625,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 63.75,
+                  "yUnits": 119.375
+                },
+                {
+                  "xUnits": 28.125,
+                  "yUnits": 118.75
+                },
+                {
+                  "xUnits": 24.375,
+                  "yUnits": 118.125
+                },
+                {
+                  "xUnits": 21.875,
+                  "yUnits": 117.5
+                },
+                {
+                  "xUnits": 18.125,
+                  "yUnits": 116.25
+                },
+                {
+                  "xUnits": 15.625,
+                  "yUnits": 115
+                },
+                {
+                  "xUnits": 13.75,
+                  "yUnits": 113.75
+                },
+                {
+                  "xUnits": 11.875,
+                  "yUnits": 111.875
+                },
+                {
+                  "xUnits": 10.625,
+                  "yUnits": 110
+                },
+                {
+                  "xUnits": 8.125,
+                  "yUnits": 105
+                },
+                {
+                  "xUnits": 6.875,
+                  "yUnits": 101.875
+                },
+                {
+                  "xUnits": 5,
+                  "yUnits": 96.875
+                },
+                {
+                  "xUnits": 4.375,
+                  "yUnits": 95
+                },
+                {
+                  "xUnits": 3.125,
+                  "yUnits": 90.625
+                },
+                {
+                  "xUnits": 1.875,
+                  "yUnits": 85.625
+                },
+                {
+                  "xUnits": 0.625,
+                  "yUnits": 79.375
+                },
+                {
+                  "xUnits": 0,
+                  "yUnits": 75
+                }
+              ]
+            }
+          ]
+        },
+        "ships": {
+          "player": {
+            "maxHealth": 100,
+            "forwardSpeedUnitsPerSecond": 150,
+            "turnSpeedRadiansPerSecond": 3.141592653589793,
+            "hullRadiusUnits": 18,
+            "contactDamage": 0
+          },
+          "chaser": {
+            "maxHealth": 40,
+            "forwardSpeedUnitsPerSecond": 115,
+            "turnSpeedRadiansPerSecond": 2.443460952792061,
+            "hullRadiusUnits": 16,
+            "contactDamage": 25
+          },
+          "shooter": {
+            "maxHealth": 60,
+            "forwardSpeedUnitsPerSecond": 90,
+            "turnSpeedRadiansPerSecond": 1.9198621771937625,
+            "hullRadiusUnits": 18,
+            "contactDamage": 0
+          }
+        },
+        "weapons": {
+          "front": {
+            "damage": 20,
+            "projectileCount": 1,
+            "cooldownMs": 350,
+            "projectileSpeedUnitsPerSecond": 420,
+            "projectileLifetimeMs": 1200
+          },
+          "port": {
+            "damage": 20,
+            "projectileCount": 3,
+            "cooldownMs": 1200,
+            "projectileSpeedUnitsPerSecond": 360,
+            "projectileLifetimeMs": 1000,
+            "longitudinalSpacingUnits": 14
+          },
+          "starboard": {
+            "damage": 20,
+            "projectileCount": 3,
+            "cooldownMs": 1200,
+            "projectileSpeedUnitsPerSecond": 360,
+            "projectileLifetimeMs": 1000,
+            "longitudinalSpacingUnits": 14
+          },
+          "shooter": {
+            "damage": 10,
+            "projectileCount": 1,
+            "cooldownMs": 1500,
+            "projectileSpeedUnitsPerSecond": 260,
+            "projectileLifetimeMs": 1500
+          },
+          "playerInitiallyReady": true
+        },
+        "projectiles": {
+          "radiusUnits": 5,
+          "muzzleClearanceUnits": 0.5
+        },
+        "shooter": {
+          "attackRangeUnits": 300,
+          "preferredDistanceUnits": 240,
+          "hysteresisUnits": 30,
+          "aimToleranceRadians": 0.17453292519943295,
+          "firstShotWaitsFullCooldown": true
+        },
+        "spawn": {
+          "minimumPlayerDistanceUnits": 240,
+          "telegraphMs": 600,
+          "archetypeSequence": [
+            "chaser",
+            "shooter"
+          ],
+          "liveEnemyCap": null,
+          "firstSpawnWaitsFullInterval": true,
+          "accumulateBacklog": false
+        },
+        "controls": {
+          "mouseDeadZoneUnits": 12,
+          "joypadDeadZoneNormalized": 0.15,
+          "initialAutoSail": false
+        },
+        "rules": {
+          "damageProtectionMs": 0,
+          "pointsPerPlayerEnemyDestruction": 1,
+          "pointsPerChaserContactDestruction": 0,
+          "friendlyFire": false,
+          "piercing": false,
+          "splashDamage": false,
+          "shorelineDamage": false,
+          "projectileCollisions": false
+        },
+        "navigation": {
+          "waypointSpacingUnits": 20,
+          "clearanceUnits": 0.05,
+          "replanMs": 250,
+          "endpointConnections": 12,
+          "separationMarginUnits": 0.05,
+          "separationIterations": 24
+        },
+        "director": {
+          "candidateAttempts": 64
+        },
+        "timing": {
+          "fixedStepMs": 16.666666666666668,
+          "maxCatchUpStepsPerFrame": 5
+        }
+      },
+      "seed": 2761189587
+    },
+    "snapshot": {
+      "step": 2646,
+      "activeTimeMs": 44100,
+      "state": "playing",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 737.4755859365529,
+          "yUnits": 295.36534539194474
+        },
+        "headingRadians": -0.30451515030583387,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "reservations": [],
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": true
+    },
+    "target": {
+      "xUnits": 850.0000305175781,
+      "yUnits": 259.99999237060547
+    },
+    "dynamicSprites": 0,
+    "telegraphGraphics": 0
+  }
+}

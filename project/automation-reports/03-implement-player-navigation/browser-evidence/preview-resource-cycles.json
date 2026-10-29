@@ -1,0 +1,363 @@
+{
+  "initial": {
+    "applications": 0,
+    "resources": 0,
+    "subscriptions": 0,
+    "inputListeners": 0,
+    "cache": {
+      "leases": 0,
+      "textures": 0,
+      "pending": false,
+      "closed": false
+    },
+    "navigation": null,
+    "canvases": 0,
+    "observers": 0,
+    "resize": 0,
+    "density": 0,
+    "frames": 0,
+    "nativeInput": 8
+  },
+  "cycles": [
+    {
+      "cycle": 1,
+      "mounted": {
+        "applications": 1,
+        "resources": 1,
+        "subscriptions": 1,
+        "inputListeners": 7,
+        "cache": {
+          "leases": 1,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": {
+          "snapshot": {
+            "step": 5,
+            "activeTimeMs": 83.33333333333334,
+            "state": "playing",
+            "score": 0,
+            "player": {
+              "id": "player",
+              "archetype": "player",
+              "position": {
+                "xUnits": 480,
+                "yUnits": 270
+              },
+              "headingRadians": -1.5707963267948966,
+              "health": 100,
+              "maxHealth": 100
+            },
+            "enemies": [],
+            "projectiles": [],
+            "cooldownsMs": {
+              "front": 0,
+              "port": 0,
+              "starboard": 0
+            },
+            "autoSailEnabled": false
+          },
+          "target": null
+        },
+        "canvases": 1,
+        "observers": 2,
+        "resize": 1,
+        "density": 1,
+        "frames": 1,
+        "nativeInput": 16
+      },
+      "unmounted": {
+        "applications": 0,
+        "resources": 0,
+        "subscriptions": 0,
+        "inputListeners": 0,
+        "cache": {
+          "leases": 0,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": null,
+        "canvases": 0,
+        "observers": 0,
+        "resize": 0,
+        "density": 0,
+        "frames": 0,
+        "nativeInput": 8
+      }
+    },
+    {
+      "cycle": 2,
+      "mounted": {
+        "applications": 1,
+        "resources": 1,
+        "subscriptions": 1,
+        "inputListeners": 7,
+        "cache": {
+          "leases": 1,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": {
+          "snapshot": {
+            "step": 3,
+            "activeTimeMs": 50,
+            "state": "playing",
+            "score": 0,
+            "player": {
+              "id": "player",
+              "archetype": "player",
+              "position": {
+                "xUnits": 480,
+                "yUnits": 270
+              },
+              "headingRadians": -1.5707963267948966,
+              "health": 100,
+              "maxHealth": 100
+            },
+            "enemies": [],
+            "projectiles": [],
+            "cooldownsMs": {
+              "front": 0,
+              "port": 0,
+              "starboard": 0
+            },
+            "autoSailEnabled": false
+          },
+          "target": null
+        },
+        "canvases": 1,
+        "observers": 2,
+        "resize": 1,
+        "density": 1,
+        "frames": 1,
+        "nativeInput": 16
+      },
+      "unmounted": {
+        "applications": 0,
+        "resources": 0,
+        "subscriptions": 0,
+        "inputListeners": 0,
+        "cache": {
+          "leases": 0,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": null,
+        "canvases": 0,
+        "observers": 0,
+        "resize": 0,
+        "density": 0,
+        "frames": 0,
+        "nativeInput": 8
+      }
+    },
+    {
+      "cycle": 3,
+      "mounted": {
+        "applications": 1,
+        "resources": 1,
+        "subscriptions": 1,
+        "inputListeners": 7,
+        "cache": {
+          "leases": 1,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": {
+          "snapshot": {
+            "step": 3,
+            "activeTimeMs": 50,
+            "state": "playing",
+            "score": 0,
+            "player": {
+              "id": "player",
+              "archetype": "player",
+              "position": {
+                "xUnits": 480,
+                "yUnits": 270
+              },
+              "headingRadians": -1.5707963267948966,
+              "health": 100,
+              "maxHealth": 100
+            },
+            "enemies": [],
+            "projectiles": [],
+            "cooldownsMs": {
+              "front": 0,
+              "port": 0,
+              "starboard": 0
+            },
+            "autoSailEnabled": false
+          },
+          "target": null
+        },
+        "canvases": 1,
+        "observers": 2,
+        "resize": 1,
+        "density": 1,
+        "frames": 1,
+        "nativeInput": 16
+      },
+      "unmounted": {
+        "applications": 0,
+        "resources": 0,
+        "subscriptions": 0,
+        "inputListeners": 0,
+        "cache": {
+          "leases": 0,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": null,
+        "canvases": 0,
+        "observers": 0,
+        "resize": 0,
+        "density": 0,
+        "frames": 0,
+        "nativeInput": 8
+      }
+    },
+    {
+      "cycle": 4,
+      "mounted": {
+        "applications": 1,
+        "resources": 1,
+        "subscriptions": 1,
+        "inputListeners": 7,
+        "cache": {
+          "leases": 1,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": {
+          "snapshot": {
+            "step": 4,
+            "activeTimeMs": 66.66666666666667,
+            "state": "playing",
+            "score": 0,
+            "player": {
+              "id": "player",
+              "archetype": "player",
+              "position": {
+                "xUnits": 480,
+                "yUnits": 270
+              },
+              "headingRadians": -1.5707963267948966,
+              "health": 100,
+              "maxHealth": 100
+            },
+            "enemies": [],
+            "projectiles": [],
+            "cooldownsMs": {
+              "front": 0,
+              "port": 0,
+              "starboard": 0
+            },
+            "autoSailEnabled": false
+          },
+          "target": null
+        },
+        "canvases": 1,
+        "observers": 2,
+        "resize": 1,
+        "density": 1,
+        "frames": 1,
+        "nativeInput": 16
+      },
+      "unmounted": {
+        "applications": 0,
+        "resources": 0,
+        "subscriptions": 0,
+        "inputListeners": 0,
+        "cache": {
+          "leases": 0,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": null,
+        "canvases": 0,
+        "observers": 0,
+        "resize": 0,
+        "density": 0,
+        "frames": 0,
+        "nativeInput": 8
+      }
+    },
+    {
+      "cycle": 5,
+      "mounted": {
+        "applications": 1,
+        "resources": 1,
+        "subscriptions": 1,
+        "inputListeners": 7,
+        "cache": {
+          "leases": 1,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": {
+          "snapshot": {
+            "step": 3,
+            "activeTimeMs": 50,
+            "state": "playing",
+            "score": 0,
+            "player": {
+              "id": "player",
+              "archetype": "player",
+              "position": {
+                "xUnits": 480,
+                "yUnits": 270
+              },
+              "headingRadians": -1.5707963267948966,
+              "health": 100,
+              "maxHealth": 100
+            },
+            "enemies": [],
+            "projectiles": [],
+            "cooldownsMs": {
+              "front": 0,
+              "port": 0,
+              "starboard": 0
+            },
+            "autoSailEnabled": false
+          },
+          "target": null
+        },
+        "canvases": 1,
+        "observers": 2,
+        "resize": 1,
+        "density": 1,
+        "frames": 1,
+        "nativeInput": 16
+      },
+      "unmounted": {
+        "applications": 0,
+        "resources": 0,
+        "subscriptions": 0,
+        "inputListeners": 0,
+        "cache": {
+          "leases": 0,
+          "textures": 30,
+          "pending": false,
+          "closed": false
+        },
+        "navigation": null,
+        "canvases": 0,
+        "observers": 0,
+        "resize": 0,
+        "density": 0,
+        "frames": 0,
+        "nativeInput": 8
+      }
+    }
+  ]
+}

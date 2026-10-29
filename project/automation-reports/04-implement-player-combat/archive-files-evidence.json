@@ -1,0 +1,46 @@
+[
+  {
+    "path": ".openspec.yaml",
+    "sha256": "89901217D56BDFB49C20B541962DC5DB50E8161BEB30E5C2CAE1D189E5D53EB5"
+  },
+  {
+    "path": "design.md",
+    "sha256": "3F82D8A7ECA8A66F3229F341E93A7A0CD9CEA7F9777F4D28E4E58DE84BB2B214"
+  },
+  {
+    "path": "proposal.md",
+    "sha256": "72741A815971D9B33F73424364793ABD979F6B7DB529C4FFA5ACADD4342D381F"
+  },
+  {
+    "path": "tasks.md",
+    "sha256": "86AA78D3EEDB563853210BE9A46B33794257DDFD5EBB23F8DCBEAC4E8614A9F2"
+  },
+  {
+    "path": "specs\\application-shell\\spec.md",
+    "sha256": "3656083EA85BFF77E29F21E4D4593AB623BEBAFA82CD75FBA5A4157E165867A6"
+  },
+  {
+    "path": "specs\\arena-rendering\\spec.md",
+    "sha256": "E664B5DD21BB4EC24177052ED061DD57464A82755383689C9EE9F4D89E8765D9"
+  },
+  {
+    "path": "specs\\asset-loading\\spec.md",
+    "sha256": "8C4C05318F1D9C99B48557364ED254FFDE03854A9196037094B2E50033742C20"
+  },
+  {
+    "path": "specs\\game-configuration\\spec.md",
+    "sha256": "95A18C742B4BAFA29B30BE67A3DA1979B08CB906F7CF72F58B1BA90E4425C99F"
+  },
+  {
+    "path": "specs\\player-combat\\spec.md",
+    "sha256": "F30BDF3FA5D666C9A007C47E9240F5328D1719FA1558C330BC2902F117CF2DCF"
+  },
+  {
+    "path": "specs\\simulation-contracts\\spec.md",
+    "sha256": "526212FFA641782E4F210847934CABCD7942BE519F3091F82C7B629618DB6E7E"
+  },
+  {
+    "path": "specs\\simulation-runtime\\spec.md",
+    "sha256": "8CD9069DBF0BD985F5E76641AB2A5A3B7EFB86884E719D8AC79858140D6BA9A4"
+  }
+]

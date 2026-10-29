@@ -1,0 +1,37 @@
+
+> pirate-battle@0.1.0 e2e
+> playwright test --max-failures=1
+
+[WebServer] (node:15528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 20 tests using 1 worker
+
+(node:18204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [dev] › tests\e2e\arena.spec.ts:68:1 › keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures (4.2s)
+  ok  2 [dev] › tests\e2e\arena.spec.ts:125:1 › real mouse and R traverse four sides of both islands and slide at frontal/oblique contact (15.8s)
+  ok  3 [dev] › tests\e2e\arena.spec.ts:151:1 › retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R (2.2s)
+  ok  4 [dev] › tests\e2e\arena.spec.ts:192:1 › fail-once before cold/warm cache and Retry without refresh (4.9s)
+  ok  5 [dev] › tests\e2e\arena.spec.ts:205:1 › Main Menu cancels a pending load and old callbacks cannot replace a new attempt (1.5s)
+  ok  6 [dev] › tests\e2e\arena.spec.ts:215:1 › real asset failure retries and graphics init failure stays semantic (2.5s)
+  ok  7 [dev] › tests\e2e\arena.spec.ts:226:1 › fits desktop/portrait/landscape and isolated DPR changes without rebuilding (2.7s)
+  ok  8 [dev] › tests\e2e\arena.spec.ts:262:1 › real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing (2.2s)
+  ok  9 [dev] › tests\e2e\arena.spec.ts:298:1 › held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral (2.5s)
+  ok 10 [dev] › tests\e2e\arena.spec.ts:331:1 › default empty and five active projectile teardown cycles reuse textures and release all native resources (4.2s)
+(node:14132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [preview] › tests\e2e\arena.spec.ts:68:1 › keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures (3.9s)
+  ok 12 [preview] › tests\e2e\arena.spec.ts:125:1 › real mouse and R traverse four sides of both islands and slide at frontal/oblique contact (15.8s)
+  ok 13 [preview] › tests\e2e\arena.spec.ts:151:1 › retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R (2.0s)
+  ok 14 [preview] › tests\e2e\arena.spec.ts:192:1 › fail-once before cold/warm cache and Retry without refresh (3.7s)
+  ok 15 [preview] › tests\e2e\arena.spec.ts:205:1 › Main Menu cancels a pending load and old callbacks cannot replace a new attempt (1.3s)
+  ok 16 [preview] › tests\e2e\arena.spec.ts:215:1 › real asset failure retries and graphics init failure stays semantic (2.6s)
+  ok 17 [preview] › tests\e2e\arena.spec.ts:226:1 › fits desktop/portrait/landscape and isolated DPR changes without rebuilding (2.1s)
+  ok 18 [preview] › tests\e2e\arena.spec.ts:262:1 › real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing (1.8s)
+  ok 19 [preview] › tests\e2e\arena.spec.ts:298:1 › held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral (2.0s)
+  ok 20 [preview] › tests\e2e\arena.spec.ts:331:1 › default empty and five active projectile teardown cycles reuse textures and release all native resources (5.5s)
+
+  20 passed (1.6m)

@@ -1,0 +1,106 @@
+{
+  "changeName": "implement-menu-and-options",
+  "schemaName": "spec-driven",
+  "planningHome": {
+    "kind": "repo",
+    "root": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev",
+    "changesDir": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes",
+    "defaultSchema": "spec-driven"
+  },
+  "changeRoot": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options",
+  "artifactPaths": {
+    "proposal": {
+      "outputPath": "proposal.md",
+      "resolvedOutputPath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\proposal.md",
+      "existingOutputPaths": [
+        "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\proposal.md"
+      ]
+    },
+    "specs": {
+      "outputPath": "specs/**/*.md",
+      "resolvedOutputPath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\specs\\**\\*.md",
+      "existingOutputPaths": [
+        "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\specs\\application-shell\\spec.md",
+        "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\specs\\asset-loading\\spec.md",
+        "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\specs\\menu-options\\spec.md"
+      ]
+    },
+    "design": {
+      "outputPath": "design.md",
+      "resolvedOutputPath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\design.md",
+      "existingOutputPaths": [
+        "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\design.md"
+      ]
+    },
+    "tasks": {
+      "outputPath": "tasks.md",
+      "resolvedOutputPath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\tasks.md",
+      "existingOutputPaths": [
+        "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options\\tasks.md"
+      ]
+    }
+  },
+  "isPlanningComplete": true,
+  "isComplete": true,
+  "applyRequires": [
+    "tasks"
+  ],
+  "nextSteps": [
+    "All planning artifacts are complete. Run openspec instructions apply --change \"implement-menu-and-options\" --json to inspect implementation progress."
+  ],
+  "actionContext": {
+    "mode": "repo-local",
+    "sourceOfTruth": "repo",
+    "planningArtifacts": [
+      "proposal",
+      "specs",
+      "design",
+      "tasks"
+    ],
+    "linkedContext": [],
+    "allowedEditRoots": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev"
+    ],
+    "requiresAffectedAreaSelection": false,
+    "constraints": [
+      "Repo-local change artifacts and implementation edits are scoped to this project."
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "proposal",
+      "outputPath": "proposal.md",
+      "status": "done",
+      "requires": []
+    },
+    {
+      "id": "specs",
+      "outputPath": "specs/**/*.md",
+      "status": "done",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "design",
+      "outputPath": "design.md",
+      "status": "done",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "tasks",
+      "outputPath": "tasks.md",
+      "status": "done",
+      "requires": [
+        "specs",
+        "design"
+      ]
+    }
+  ],
+  "root": {
+    "path": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev",
+    "source": "nearest"
+  }
+}

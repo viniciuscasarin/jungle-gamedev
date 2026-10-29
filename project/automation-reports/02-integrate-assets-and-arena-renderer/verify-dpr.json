@@ -1,0 +1,66 @@
+{
+  "browser": "156.0.8078.4",
+  "steps": [
+    {
+      "dpr": 2,
+      "afterMetrics": {
+        "dpr": 2,
+        "events": [],
+        "resizes": []
+      },
+      "afterMedia": {
+        "dpr": 2,
+        "width": 844,
+        "height": 390,
+        "matches": false,
+        "events": [
+          {
+            "matches": false,
+            "dpr": 2,
+            "width": 844,
+            "height": 390
+          }
+        ],
+        "resizes": []
+      }
+    },
+    {
+      "dpr": 1,
+      "afterMetrics": {
+        "dpr": 1,
+        "events": [
+          {
+            "matches": false,
+            "dpr": 2,
+            "width": 844,
+            "height": 390
+          }
+        ],
+        "resizes": []
+      },
+      "afterMedia": {
+        "dpr": 1,
+        "width": 844,
+        "height": 390,
+        "matches": true,
+        "events": [
+          {
+            "matches": false,
+            "dpr": 2,
+            "width": 844,
+            "height": 390
+          },
+          {
+            "matches": true,
+            "dpr": 1,
+            "width": 844,
+            "height": 390
+          }
+        ],
+        "resizes": []
+      }
+    }
+  ],
+  "applicationLoaded": false,
+  "syntheticResizeDispatched": false
+}

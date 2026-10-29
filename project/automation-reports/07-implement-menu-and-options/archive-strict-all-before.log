@@ -1,0 +1,15 @@
+- Validating...
+✓ spec/application-shell
+✓ spec/arena-rendering
+✓ spec/asset-loading
+✓ spec/enemy-behavior
+✓ spec/game-configuration
+✓ change/implement-menu-and-options
+✓ spec/match-lifecycle
+✓ spec/menu-options
+✓ spec/player-combat
+✓ spec/player-navigation
+✓ spec/simulation-contracts
+✓ spec/simulation-runtime
+✓ spec/spawn-director
+Totals: 13 passed, 0 failed (13 items)

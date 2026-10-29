@@ -1,0 +1,27 @@
+
+> pirate-battle@0.1.0 e2e
+> playwright test
+
+[WebServer] (node:3800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 1 worker
+
+(node:13288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [dev] › tests\e2e\arena.spec.ts:59:1 › keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures (11.4s)
+  ok  2 [dev] › tests\e2e\arena.spec.ts:82:1 › fail-once before cold/warm cache and Retry without refresh (7.2s)
+  ok  3 [dev] › tests\e2e\arena.spec.ts:95:1 › Main Menu cancels a pending load and old callbacks cannot replace a new attempt (4.7s)
+  ok  4 [dev] › tests\e2e\arena.spec.ts:105:1 › real asset failure retries and graphics init failure stays semantic (5.5s)
+  ok  5 [dev] › tests\e2e\arena.spec.ts:116:1 › fits desktop/portrait/landscape and isolated DPR changes without rebuilding (5.3s)
+(node:2448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [preview] › tests\e2e\arena.spec.ts:59:1 › keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures (13.4s)
+  ok  7 [preview] › tests\e2e\arena.spec.ts:82:1 › fail-once before cold/warm cache and Retry without refresh (6.6s)
+  ok  8 [preview] › tests\e2e\arena.spec.ts:95:1 › Main Menu cancels a pending load and old callbacks cannot replace a new attempt (4.2s)
+  ok  9 [preview] › tests\e2e\arena.spec.ts:105:1 › real asset failure retries and graphics init failure stays semantic (4.8s)
+  ok 10 [preview] › tests\e2e\arena.spec.ts:116:1 › fits desktop/portrait/landscape and isolated DPR changes without rebuilding (4.4s)
+
+  10 passed (1.4m)

@@ -1,0 +1,48 @@
+[1027/145044.729:ERROR:ui\gl\angle_platform_impl.cc:34] vulkan_icd.cpp:157 (angle::vk::ScopedVkLoaderEnvironment::ScopedVkLoaderEnvironment): Error setting CWD for Vulkan layers init.
+[1027/145047.481:WARNING:ui\gl\angle_platform_impl.cc:39] vulkan_icd.cpp:391 (angle::vk::ChoosePhysicalDevice): Preferred device ICD not found. Using default physicalDevice instead.
+[1027/145048.644:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x787c04765000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145049.362:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x787c016ac800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145050.014:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x787c00425000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145050.665:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x787c04ecfc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[1027/145138.306:ERROR:ui\gl\angle_platform_impl.cc:34] vulkan_icd.cpp:157 (angle::vk::ScopedVkLoaderEnvironment::ScopedVkLoaderEnvironment): Error setting CWD for Vulkan layers init.
+[1027/145140.561:WARNING:ui\gl\angle_platform_impl.cc:39] vulkan_icd.cpp:391 (angle::vk::ChoosePhysicalDevice): Preferred device ICD not found. Using default physicalDevice instead.
+[1027/145141.527:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x57e4032f7200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145142.232:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x57e4032f4200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145142.926:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x57e400422600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145143.611:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x57e4032f0600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[1027/145154.959:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:401] SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+[1027/145154.960:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:401] SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+[1027/145154.961:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:401] SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+[1027/145154.961:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:401] SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+[1027/145240.247:ERROR:ui\gl\angle_platform_impl.cc:34] vulkan_icd.cpp:157 (angle::vk::ScopedVkLoaderEnvironment::ScopedVkLoaderEnvironment): Error setting CWD for Vulkan layers init.
+[1027/145242.634:WARNING:ui\gl\angle_platform_impl.cc:39] vulkan_icd.cpp:391 (angle::vk::ChoosePhysicalDevice): Preferred device ICD not found. Using default physicalDevice instead.
+[1027/145243.437:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x13bc04f54000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145325.144:ERROR:ui\gl\angle_platform_impl.cc:34] vulkan_icd.cpp:157 (angle::vk::ScopedVkLoaderEnvironment::ScopedVkLoaderEnvironment): Error setting CWD for Vulkan layers init.
+[1027/145327.521:WARNING:ui\gl\angle_platform_impl.cc:39] vulkan_icd.cpp:391 (angle::vk::ChoosePhysicalDevice): Preferred device ICD not found. Using default physicalDevice instead.
+[1027/145328.291:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x440c00425c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145329.119:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x440c00425c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145330.195:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x440c00425c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145418.128:ERROR:ui\gl\angle_platform_impl.cc:34] vulkan_icd.cpp:157 (angle::vk::ScopedVkLoaderEnvironment::ScopedVkLoaderEnvironment): Error setting CWD for Vulkan layers init.
+[1027/145420.469:WARNING:ui\gl\angle_platform_impl.cc:39] vulkan_icd.cpp:391 (angle::vk::ChoosePhysicalDevice): Preferred device ICD not found. Using default physicalDevice instead.
+[1027/145421.541:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x15400425600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145421.969:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x15400425600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145422.073:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x15400425600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145422.191:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x15400425600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[1027/145446.128:ERROR:ui\gl\angle_platform_impl.cc:34] vulkan_icd.cpp:157 (angle::vk::ScopedVkLoaderEnvironment::ScopedVkLoaderEnvironment): Error setting CWD for Vulkan layers init.
+[1027/145448.511:WARNING:ui\gl\angle_platform_impl.cc:39] vulkan_icd.cpp:391 (angle::vk::ChoosePhysicalDevice): Preferred device ICD not found. Using default physicalDevice instead.
+[1027/145449.201:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x420c00d61000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145449.577:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x420c00d61000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145449.691:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x420c00d61000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145449.889:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x420c00d61000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[1027/145825.527:ERROR:ui\gl\angle_platform_impl.cc:34] vulkan_icd.cpp:157 (angle::vk::ScopedVkLoaderEnvironment::ScopedVkLoaderEnvironment): Error setting CWD for Vulkan layers init.
+[1027/145827.932:WARNING:ui\gl\angle_platform_impl.cc:39] vulkan_icd.cpp:391 (angle::vk::ChoosePhysicalDevice): Preferred device ICD not found. Using default physicalDevice instead.
+[1027/145829.004:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0xbe405253800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145829.418:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0xbe405253800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145829.534:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0xbe405253800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145829.666:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0xbe405253800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[1027/145839.249:ERROR:ui\gl\angle_platform_impl.cc:34] vulkan_icd.cpp:157 (angle::vk::ScopedVkLoaderEnvironment::ScopedVkLoaderEnvironment): Error setting CWD for Vulkan layers init.
+[1027/145841.664:WARNING:ui\gl\angle_platform_impl.cc:39] vulkan_icd.cpp:391 (angle::vk::ChoosePhysicalDevice): Preferred device ICD not found. Using default physicalDevice instead.
+[1027/145842.352:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x76dc030f4200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145842.741:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x76dc030f4200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145842.849:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x76dc030f4200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1027/145842.964:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x76dc030f4200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)

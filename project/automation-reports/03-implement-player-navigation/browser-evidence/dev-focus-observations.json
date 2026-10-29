@@ -1,0 +1,63 @@
+{
+  "paused": {
+    "snapshot": {
+      "step": 47,
+      "activeTimeMs": 783.3333333333334,
+      "state": "paused",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 510,
+          "yUnits": 270
+        },
+        "headingRadians": 0,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": false
+    },
+    "target": null
+  },
+  "afterResume": {
+    "xUnits": 510,
+    "yUnits": 270
+  },
+  "hidden": {
+    "snapshot": {
+      "step": 131,
+      "activeTimeMs": 2183.3333333333335,
+      "state": "paused",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 540,
+          "yUnits": 270
+        },
+        "headingRadians": 0,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": false
+    },
+    "target": null
+  },
+  "visibilitySignal": "document.hidden getter + visibilitychange; native CDP blur, no gameplay setters"
+}

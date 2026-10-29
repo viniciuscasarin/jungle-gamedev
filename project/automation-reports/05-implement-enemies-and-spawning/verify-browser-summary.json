@@ -1,0 +1,210 @@
+[
+  {
+    "Report": "project/automation-reports/05-implement-enemies-and-spawning/playwright-report/index.html",
+    "StartTime": 1793156823501,
+    "DurationMs": 129420.637,
+    "Projects": [
+      "dev",
+      "preview"
+    ],
+    "Stats": {
+      "total": 24,
+      "expected": 24,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "ok": true
+    },
+    "Errors": [],
+    "Tests": [
+      {
+        "title": "keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "real mouse and R traverse four sides of both islands and slide at frontal/oblique contact",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "fail-once before cold/warm cache and Retry without refresh",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "Main Menu cancels a pending load and old callbacks cannot replace a new attempt",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "real asset failure retries and graphics init failure stays semantic",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "fits desktop/portrait/landscape and isolated DPR changes without rebuilding",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "default empty and five active projectile teardown cycles reuse textures and release all native resources",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "normal director telegraphs freeze with active time, materializes both archetypes and real Q earns score",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "normal island preparation blocks Shooter fire until it navigates to actual line of sight",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "real mouse and R traverse four sides of both islands and slide at frontal/oblique contact",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "fail-once before cold/warm cache and Retry without refresh",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "Main Menu cancels a pending load and old callbacks cannot replace a new attempt",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "real asset failure retries and graphics init failure stays semantic",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "fits desktop/portrait/landscape and isolated DPR changes without rebuilding",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "default empty and five active projectile teardown cycles reuse textures and release all native resources",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "normal director telegraphs freeze with active time, materializes both archetypes and real Q earns score",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "normal island preparation blocks Shooter fire until it navigates to actual line of sight",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      }
+    ]
+  },
+  {
+    "Report": "project/automation-reports/05-implement-enemies-and-spawning/verify-playwright-report/index.html",
+    "StartTime": 1793157688241,
+    "DurationMs": 22835.443,
+    "Projects": [
+      "dev",
+      "preview"
+    ],
+    "Stats": {
+      "total": 4,
+      "expected": 4,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "ok": true
+    },
+    "Errors": [],
+    "Tests": [
+      {
+        "title": "normal director telegraphs freeze with active time, materializes both archetypes and real Q earns score",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "normal island preparation blocks Shooter fire until it navigates to actual line of sight",
+        "projectName": "dev",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "normal director telegraphs freeze with active time, materializes both archetypes and real Q earns score",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      },
+      {
+        "title": "normal island preparation blocks Shooter fire until it navigates to actual line of sight",
+        "projectName": "preview",
+        "outcome": "expected",
+        "ok": true
+      }
+    ]
+  }
+]

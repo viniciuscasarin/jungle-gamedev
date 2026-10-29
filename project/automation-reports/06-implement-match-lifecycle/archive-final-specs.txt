@@ -1,0 +1,12 @@
+Specs:
+  application-shell        requirements 3
+  arena-rendering          requirements 4
+  asset-loading            requirements 5
+  enemy-behavior           requirements 5
+  game-configuration       requirements 7
+  match-lifecycle          requirements 8
+  player-combat            requirements 9
+  player-navigation        requirements 7
+  simulation-contracts     requirements 6
+  simulation-runtime       requirements 5
+  spawn-director           requirements 5

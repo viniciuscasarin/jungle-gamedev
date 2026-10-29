@@ -1,0 +1,10 @@
+{
+  "localDate": "2026-10-28",
+  "workspaceContainmentVerified": true,
+  "exitCode": 0,
+  "command": "Move-Item -LiteralPath <resolved-changeRoot> -Destination <resolved-archive-target> -ErrorAction Stop",
+  "source": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle",
+  "timezone": "America/Sao_Paulo",
+  "destination": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\archive\\2026-10-28-implement-match-lifecycle",
+  "destinationAbsentBeforeMove": true
+}

@@ -1,0 +1,42 @@
+{
+  "localDate": "2026-10-28",
+  "timezone": "America/Sao_Paulo",
+  "source": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-menu-and-options",
+  "destination": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\archive\\2026-10-28-implement-menu-and-options",
+  "destinationAbsentBefore": true,
+  "allPathsWithinWorkspace": true,
+  "sourceAbsentAfter": true,
+  "fileCount": 7,
+  "allFileHashesPreserved": true,
+  "files": [
+    {
+      "relative": ".openspec.yaml",
+      "sha256": "9E0A467E3934B14A2D9C9175305310E9359D34E2484A458AF3D182C2956B9E2D"
+    },
+    {
+      "relative": "design.md",
+      "sha256": "5E22AA6AE8ACD5E8D56C26C3157723941C4B92D2B85D1292BC1027D8487A323C"
+    },
+    {
+      "relative": "proposal.md",
+      "sha256": "0644AD5AA3B46C41F975EDA51FF6585E2FEAF005B191F508A95A770707FDD565"
+    },
+    {
+      "relative": "tasks.md",
+      "sha256": "05D66E8EC559C91917FD7C513B4A7B69D3786DAB1CA3A7732B5011A9C5FB085B"
+    },
+    {
+      "relative": "specs\\application-shell\\spec.md",
+      "sha256": "0BB5D7E097EACA21BD4DDE254FE4F79C8AAB95111C180868672661E6560C3A0B"
+    },
+    {
+      "relative": "specs\\asset-loading\\spec.md",
+      "sha256": "F7CDA748673A726C3543F92B2B35127449FFD62B94618A0BF2839F1B1F8D39C1"
+    },
+    {
+      "relative": "specs\\menu-options\\spec.md",
+      "sha256": "E78D9EB50C6452A7768888713FBEE9C716541A0FF72EC4B4DBD3B6607CDF2E07"
+    }
+  ],
+  "exitCode": 0
+}

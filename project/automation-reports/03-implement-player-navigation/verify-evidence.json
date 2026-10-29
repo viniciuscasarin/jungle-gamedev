@@ -1,0 +1,73 @@
+{
+  "audit": "passed",
+  "executedAtUtc": "2026-10-27T21:30:17.275Z",
+  "retainedE2E": {
+    "total": 14,
+    "expected": 14,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "retainedE2EStartedAtUtc": "2026-10-27T21:21:35.408Z",
+  "imageAttachments": 54,
+  "jsonAttachments": 22,
+  "projects": [
+    {
+      "project": "dev",
+      "cases": 7,
+      "resourceCycles": 5,
+      "validNavigationSnapshots": 14,
+      "routeWaypoints": 10,
+      "blur": "native second-tab focus transition with CDP focus emulation disabled",
+      "hidden": "emulated platform getter and visibilitychange; no gameplay setters",
+      "nativeInputBaseline": 8,
+      "nativeInputMounted": 16,
+      "contact": {
+        "xUnits": 312.344670008527,
+        "yUnits": 151.8866978038747
+      },
+      "slide": {
+        "xUnits": 229.20143364827788,
+        "yUnits": 58.870393807890906
+      }
+    },
+    {
+      "project": "preview",
+      "cases": 7,
+      "resourceCycles": 5,
+      "validNavigationSnapshots": 14,
+      "routeWaypoints": 10,
+      "blur": "native second-tab focus transition with CDP focus emulation disabled",
+      "hidden": "emulated platform getter and visibilitychange; no gameplay setters",
+      "nativeInputBaseline": 8,
+      "nativeInputMounted": 16,
+      "contact": {
+        "xUnits": 312.34467000899906,
+        "yUnits": 151.88669777695864
+      },
+      "slide": {
+        "xUnits": 229.20143363099038,
+        "yUnits": 58.870393799878585
+      }
+    }
+  ],
+  "sourceHashes": {
+    "src/simulation/engine.ts": "c3eb308839597caba7409073b5d609c43df25d512179ee95063b66c6cb1a2b6a",
+    "src/simulation/accumulator.ts": "d3285c31ed5b5e262365451fce1563ea560ed0b9f75f7b17dc7bb792d0ed68c5",
+    "src/simulation/collision.ts": "4f03855a9ff088dec2e2db6b8b9a2fad03ca336ead367fb66742f849c07b309a",
+    "src/input/desktop.ts": "1a822a4c91658f5510565f462dbf702d9b0b898d5a1dbd5ccb8bcef6b43cb4c8",
+    "src/render/navigationLoop.ts": "367188809433c144ef53bbb063da7c8a54cd21ef545fce9440032fe955178621",
+    "src/render/pixiPreview.ts": "70c35d6222527605b71378453339aae8efbfc48ed17a51457f7c1fc0f5dfaa9d",
+    "src/render/previewOwner.ts": "dfa1132023e51e6efa9f6d61f122c90249c3d3251673a59c1631176b2117df91",
+    "src/render/loadingAttempt.ts": "1bc8d10b991d2b22f11f2cf6dd2770aba93c35a084059e2535fe0ccaf6d9d54c",
+    "src/ui/App.tsx": "bbef1e439d804003365edce6537f57a1372c5a716a948cd858e4db0c02a7eb39",
+    "tests/navigation.test.ts": "6e0ffd81c7dc96a3005d6d4ab7aca991cab56f1f962a05209a2472285d2ab679",
+    "tests/e2e/arena.spec.ts": "8f7282c2f656166b9185f2cec84b24b47082c71e0f3571d136a6b6c2fc9b23b6"
+  },
+  "limitations": [
+    "Historical APPLY browser execution was audited, not rerun in VERIFY; current product source unchanged.",
+    "Native OS document-hidden behavior is not claimed; visibility signal path is emulated.",
+    "Final stencil adjustment has separate 4-case smoke evidence and passed marker; full retained report predates that graphics-only flag."
+  ]
+}

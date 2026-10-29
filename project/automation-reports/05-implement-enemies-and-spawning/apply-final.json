@@ -1,0 +1,158 @@
+{
+  "changeName": "implement-enemies-and-spawning",
+  "changeDir": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning",
+  "schemaName": "spec-driven",
+  "contextFiles": {
+    "proposal": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\proposal.md"
+    ],
+    "specs": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\specs\\arena-rendering\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\specs\\enemy-behavior\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\specs\\player-combat\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\specs\\simulation-contracts\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\specs\\simulation-runtime\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\specs\\spawn-director\\spec.md"
+    ],
+    "design": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\design.md"
+    ],
+    "tasks": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md"
+    ]
+  },
+  "progress": {
+    "total": 17,
+    "complete": 17,
+    "remaining": 0
+  },
+  "tasks": [
+    {
+      "id": "1",
+      "description": "1.1 Acrescentar seleção explícita de modo normal/alvos estacionários e reservas readonly; verificar captura imutável, IDs únicos, snapshot histórico e que InitialCombatData sem modo continua com IA/diretor em testes de contratos/core.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 5
+    },
+    {
+      "id": "2",
+      "description": "1.2 Generalizar movimento circular por raio e implementar grafo por raio, conexões seguras de endpoints, busca determinística e suavização varrida; verificar caminhos de Chaser/Shooter nos dois lados das duas ilhas, canto sem corte, rota inexistente e regressões de deslizamento do player.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 6
+    },
+    {
+      "id": "3",
+      "description": "1.3 Centralizar somente parâmetros técnicos novos necessários e documentar grafo, tolerâncias/cache e seleção de diagnóstico em ARCHITECTURE.md em inglês; verificar configuração capturada e ausência de valores de balanceamento duplicados com typecheck/testes.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 7
+    },
+    {
+      "id": "4",
+      "description": "2.1 Implementar perseguição Chaser e integração de movimento com giro/avanço configurados; verificar mudança de alvo, progresso por ambas ilhas, contato 25 uma vez/zero score e Chaser morto por bala existente sem ação posterior em testes core.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 11
+    },
+    {
+      "id": "5",
+      "description": "2.2 Implementar estados táticos Shooter com banda 210/270 e destino 240, reposicionamento por LOS bloqueada e mira atual; verificar aproximação, afastamento, hold, limites de giro/velocidade e saída de trás de ambas ilhas em testes core.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 12
+    },
+    {
+      "id": "6",
+      "description": "2.3 Reutilizar emissão para bala do Shooter e integrar alcance 300, LOS circular, erro <=10° e deadlines; verificar cooldown inicial cheio, instante anterior/exato, reentrada, bloqueio de LOS/mira sem reiniciar recarga, autoria/facção/lifetime e emissão junto à costa em testes core.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 13
+    },
+    {
+      "id": "7",
+      "description": "2.4 Integrar separação local e colisão varrida entre cascos sem empurrar player para cenário; verificar encontros frontal/oblíquo, costa, bordas, grupos e centros coincidentes com player parado/andando, sem NaN, sobreposição persistente ou perda do contato Chaser.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 14
+    },
+    {
+      "id": "8",
+      "description": "2.5 Documentar estados, ordem de fases, política de recarga e separação em ARCHITECTURE.md em inglês; verificar correspondência com testes e preservar regressões de Q/W/E, morte atômica e score.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 15
+    },
+    {
+      "id": "9",
+      "description": "3.1 Implementar RNG uint32 privado e busca finita no perímetro com validação por raio/rota/distância/cascos/reservas; verificar seed zero, replays iguais, seeds distintas, consumo em rejeições e candidatos sempre seguros em testes core.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 19
+    },
+    {
+      "id": "10",
+      "description": "3.2 Integrar agenda absoluta após intervalo completo, reserva de 600ms, revalidação e alternância só por materialização; verificar 3/3,6/6/6,6s, cancelamento por player/outro casco, falta de candidato, próximo arquétipo após falha, ausência de backlog/cap/rampa e unicidade de IDs.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 20
+    },
+    {
+      "id": "11",
+      "description": "3.3 Subordinar IA, deadlines e diretor ao freeze e à vida do player; verificar pausa durante reserva/recarga, Resume sem catch-up de parede, tempo descartado sem spawn extra e morte impedindo agendamento/materialização/ações posteriores.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 21
+    },
+    {
+      "id": "12",
+      "description": "3.4 Documentar RNG, agenda, cancelamentos, parâmetros técnicos e reconciliação GDD 6s versus aparições 3,6/6,6s em ARCHITECTURE.md em inglês; conferir valores contra GameConfig e testes do diretor.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 22
+    },
+    {
+      "id": "13",
+      "description": "4.1 Integrar modo normal no loop/Pixi e preservar combatScenario=targets explicitamente estacionário; renderizar telegraph por reserva e remover anéis/entidades com descarte seguro; verificar progressos de tempo ativo, resize e ciclos Play/Main Menu sem recursos extras.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 26
+    },
+    {
+      "id": "14",
+      "description": "4.2 Atualizar README em inglês para reproduzir ambos arquétipos, aviso, freeze e diagnóstico somente leitura; se necessário adicionar preparação opt-in de IA anterior à criação sem setters; verificar manualmente os passos documentados e registrar captura visual sob evidências 05.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 27
+    },
+    {
+      "id": "15",
+      "description": "4.3 Ampliar Playwright dev/preview com clock controlado e mouse/R/Q/W/E reais: verificar fluxo normal com ambos inimigos, anel antes de materializar, tiro bloqueado por ilha, morte/score por colisões, pause/Resume durante reserva e teardown; migrar somente expectativas anteriores afetadas e preservar evidências 01–04.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 28
+    },
+    {
+      "id": "16",
+      "description": "5.1 Executar npm.cmd run lint, npm.cmd run typecheck, npm.cmd test, npm.cmd run build e npm.cmd run e2e nos projetos dev/preview; corrigir divergências no escopo e registrar comandos, exit codes, evidências visuais e limitações reais em apply.md do incremento 05.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 32
+    },
+    {
+      "id": "17",
+      "description": "5.2 Conferir implementação contra todas as deltas e critérios 05, executar openspec.cmd validate implement-enemies-and-spawning --strict e confirmar que tasks só marcam trabalho verificado, sem alterações em automation-state.json ou evidências anteriores.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning\\tasks.md",
+      "line": 33
+    }
+  ],
+  "taskTrackingConfigured": true,
+  "state": "all_done",
+  "instruction": "All tracked tasks are complete.\nReview or verify the change as appropriate before archiving.",
+  "context": "Language: pt-BR\nAll artifacts must be written in pt-BR.\nKeep OpenSpec structural headings and SHALL/MUST keywords in English.\n",
+  "root": {
+    "path": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev",
+    "source": "nearest"
+  }
+}

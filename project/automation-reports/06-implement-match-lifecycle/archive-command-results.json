@@ -1,0 +1,37 @@
+[
+  {
+    "command": "openspec.cmd list --json",
+    "exitCode": 0,
+    "output": "archive-pre-list.json"
+  },
+  {
+    "command": "openspec.cmd status --change implement-match-lifecycle --json",
+    "exitCode": 0,
+    "output": "archive-pre-status.json"
+  },
+  {
+    "command": "openspec.cmd validate implement-match-lifecycle --strict --json",
+    "exitCode": 0,
+    "output": "archive-pre-validation.json"
+  },
+  {
+    "command": "openspec.cmd list --json",
+    "output": "archive-final-list.json",
+    "exitCode": 0
+  },
+  {
+    "command": "openspec.cmd list --specs",
+    "output": "archive-final-specs.txt",
+    "exitCode": 0
+  },
+  {
+    "command": "openspec.cmd validate --specs --strict --json",
+    "output": "archive-final-main-specs-validation.json",
+    "exitCode": 0
+  },
+  {
+    "command": "openspec.cmd validate --all --strict --json",
+    "output": "archive-final-all-validation.json",
+    "exitCode": 0
+  }
+]

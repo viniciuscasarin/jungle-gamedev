@@ -1,0 +1,48 @@
+{
+  "specs": [
+    {
+      "id": "application-shell",
+      "requirementCount": 3
+    },
+    {
+      "id": "arena-rendering",
+      "requirementCount": 4
+    },
+    {
+      "id": "asset-loading",
+      "requirementCount": 5
+    },
+    {
+      "id": "enemy-behavior",
+      "requirementCount": 5
+    },
+    {
+      "id": "game-configuration",
+      "requirementCount": 6
+    },
+    {
+      "id": "player-combat",
+      "requirementCount": 9
+    },
+    {
+      "id": "player-navigation",
+      "requirementCount": 7
+    },
+    {
+      "id": "simulation-contracts",
+      "requirementCount": 6
+    },
+    {
+      "id": "simulation-runtime",
+      "requirementCount": 4
+    },
+    {
+      "id": "spawn-director",
+      "requirementCount": 5
+    }
+  ],
+  "root": {
+    "path": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev",
+    "source": "nearest"
+  }
+}

@@ -1,0 +1,438 @@
+{
+  "observations": [
+    {
+      "waypoint": [
+        350,
+        270
+      ],
+      "snapshot": {
+        "step": 122,
+        "activeTimeMs": 2033.3333333333335,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 357.5,
+            "yUnits": 270
+          },
+          "headingRadians": 3.141592653589793,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        350,
+        60
+      ],
+      "snapshot": {
+        "step": 273,
+        "activeTimeMs": 4550,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 350.27245772837364,
+            "yUnits": 67.629022256866
+          },
+          "headingRadians": -1.6064954757583827,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        85,
+        60
+      ],
+      "snapshot": {
+        "step": 446,
+        "activeTimeMs": 7433.333333333334,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 90.37991294433164,
+            "yUnits": 60.15472191002294
+          },
+          "headingRadians": -3.112841383590318,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        85,
+        260
+      ],
+      "snapshot": {
+        "step": 592,
+        "activeTimeMs": 9866.666666666668,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 85.06506298983294,
+            "yUnits": 257.58319597078594
+          },
+          "headingRadians": 1.597710208568147,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        350,
+        260
+      ],
+      "snapshot": {
+        "step": 765,
+        "activeTimeMs": 12750,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 345.054245713129,
+            "yUnits": 259.95487615001434
+          },
+          "headingRadians": 0.009121973349840218,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        600,
+        280
+      ],
+      "snapshot": {
+        "step": 934,
+        "activeTimeMs": 15566.666666666668,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 594.2850721100851,
+            "yUnits": 279.55067094101173
+          },
+          "headingRadians": 0.07846366525493664,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        870,
+        280
+      ],
+      "snapshot": {
+        "step": 1110,
+        "activeTimeMs": 18500,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 864.2847135548225,
+            "yUnits": 279.99069334269967
+          },
+          "headingRadians": 0.0016297133202574088,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        870,
+        495
+      ],
+      "snapshot": {
+        "step": 1262,
+        "activeTimeMs": 21033.333333333336,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 869.8648736619588,
+            "yUnits": 489.91654171106717
+          },
+          "headingRadians": 1.5442210077932188,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        600,
+        495
+      ],
+      "snapshot": {
+        "step": 1437,
+        "activeTimeMs": 23950,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 602.4123201468318,
+            "yUnits": 494.95455900325373
+          },
+          "headingRadians": 3.1227578304953614,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    },
+    {
+      "waypoint": [
+        600,
+        280
+      ],
+      "snapshot": {
+        "step": 1589,
+        "activeTimeMs": 26483.333333333336,
+        "state": "playing",
+        "score": 0,
+        "player": {
+          "id": "player",
+          "archetype": "player",
+          "position": {
+            "xUnits": 600.0838050757604,
+            "yUnits": 287.4676244325089
+          },
+          "headingRadians": -1.5820183217089596,
+          "health": 100,
+          "maxHealth": 100
+        },
+        "enemies": [],
+        "projectiles": [],
+        "cooldownsMs": {
+          "front": 0,
+          "port": 0,
+          "starboard": 0
+        },
+        "autoSailEnabled": false
+      }
+    }
+  ],
+  "frontal": {
+    "snapshot": {
+      "step": 1944,
+      "activeTimeMs": 32400.000000000004,
+      "state": "playing",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 312.344670008527,
+          "yUnits": 151.8866978038747
+        },
+        "headingRadians": -3.1231377016820883,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": true
+    },
+    "target": {
+      "xUnits": 210,
+      "yUnits": 150
+    }
+  },
+  "oblique": {
+    "snapshot": {
+      "step": 2045,
+      "activeTimeMs": 34083.333333333336,
+      "state": "playing",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 229.20143364827788,
+          "yUnits": 58.870393807890906
+        },
+        "headingRadians": -2.7463526703620467,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": true
+    },
+    "target": {
+      "xUnits": 159.99999618530273,
+      "yUnits": 30
+    }
+  },
+  "southeast": {
+    "snapshot": {
+      "step": 2560,
+      "activeTimeMs": 42666.66666666667,
+      "state": "playing",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 647.1034472436845,
+          "yUnits": 383.21989318248035
+        },
+        "headingRadians": 0.019212827145604905,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": true
+    },
+    "target": {
+      "xUnits": 740.0000152587891,
+      "yUnits": 384.99998474121094
+    }
+  },
+  "final": {
+    "snapshot": {
+      "step": 2643,
+      "activeTimeMs": 44050,
+      "state": "playing",
+      "score": 0,
+      "player": {
+        "id": "player",
+        "archetype": "player",
+        "position": {
+          "xUnits": 737.4721011564793,
+          "yUnits": 295.3665820473889
+        },
+        "headingRadians": -0.3045162941001234,
+        "health": 100,
+        "maxHealth": 100
+      },
+      "enemies": [],
+      "projectiles": [],
+      "cooldownsMs": {
+        "front": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "autoSailEnabled": true
+    },
+    "target": {
+      "xUnits": 850.0000305175781,
+      "yUnits": 259.99999237060547
+    }
+  }
+}

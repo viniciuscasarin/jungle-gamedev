@@ -1,0 +1,101 @@
+{
+  "htmlTests": 10,
+  "outcomes": [
+    "expected",
+    "expected",
+    "expected",
+    "expected",
+    "expected",
+    "expected",
+    "expected",
+    "expected",
+    "expected",
+    "expected"
+  ],
+  "existingAttachmentsChecked": 20,
+  "jsonBodiesMatchedToHTML": 14,
+  "consoleIssues": 0,
+  "sourceOlderThanFinalE2E": true,
+  "imageSizes": {
+    "dev-320x568.png": [
+      320,
+      568
+    ],
+    "dev-390x844.png": [
+      390,
+      844
+    ],
+    "dev-844x390-dpr2.png": [
+      1688,
+      780
+    ],
+    "dev-844x390.png": [
+      844,
+      390
+    ],
+    "dev-desktop.png": [
+      1280,
+      900
+    ],
+    "dev-fail-once.png": [
+      1280,
+      900
+    ],
+    "dev-graphics-failure.png": [
+      1280,
+      900
+    ],
+    "dev-loading.png": [
+      1280,
+      900
+    ],
+    "dev-menu-320x568.png": [
+      320,
+      568
+    ],
+    "dev-menu-desktop.png": [
+      1280,
+      900
+    ],
+    "preview-320x568.png": [
+      320,
+      568
+    ],
+    "preview-390x844.png": [
+      390,
+      844
+    ],
+    "preview-844x390-dpr2.png": [
+      1688,
+      780
+    ],
+    "preview-844x390.png": [
+      844,
+      390
+    ],
+    "preview-desktop.png": [
+      1280,
+      900
+    ],
+    "preview-fail-once.png": [
+      1280,
+      900
+    ],
+    "preview-graphics-failure.png": [
+      1280,
+      900
+    ],
+    "preview-loading.png": [
+      1280,
+      900
+    ],
+    "preview-menu-320x568.png": [
+      320,
+      568
+    ],
+    "preview-menu-desktop.png": [
+      1280,
+      900
+    ]
+  }
+}

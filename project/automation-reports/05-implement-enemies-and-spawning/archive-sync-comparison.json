@@ -1,0 +1,68 @@
+{
+  "exitCode": 0,
+  "allSixAlreadySynced": true,
+  "remainingOperations": 0,
+  "protectedFilesUnchanged": 1026,
+  "results": [
+    {
+      "capability": "arena-rendering",
+      "state": "already-synced",
+      "remainingOperations": 0,
+      "requirementsMatched": 1,
+      "scenariosMatched": 6,
+      "untouchedRequirementBlocksPreserved": 3,
+      "titlePreserved": true,
+      "purposePreserved": true
+    },
+    {
+      "capability": "enemy-behavior",
+      "state": "already-synced",
+      "remainingOperations": 0,
+      "requirementsMatched": 5,
+      "scenariosMatched": 11,
+      "untouchedRequirementBlocksPreserved": 0,
+      "titlePreserved": true,
+      "purposePreserved": true
+    },
+    {
+      "capability": "player-combat",
+      "state": "already-synced",
+      "remainingOperations": 0,
+      "requirementsMatched": 2,
+      "scenariosMatched": 4,
+      "untouchedRequirementBlocksPreserved": 7,
+      "titlePreserved": true,
+      "purposePreserved": true
+    },
+    {
+      "capability": "simulation-contracts",
+      "state": "already-synced",
+      "remainingOperations": 0,
+      "requirementsMatched": 2,
+      "scenariosMatched": 3,
+      "untouchedRequirementBlocksPreserved": 4,
+      "titlePreserved": true,
+      "purposePreserved": true
+    },
+    {
+      "capability": "simulation-runtime",
+      "state": "already-synced",
+      "remainingOperations": 0,
+      "requirementsMatched": 2,
+      "scenariosMatched": 4,
+      "untouchedRequirementBlocksPreserved": 2,
+      "titlePreserved": true,
+      "purposePreserved": true
+    },
+    {
+      "capability": "spawn-director",
+      "state": "already-synced",
+      "remainingOperations": 0,
+      "requirementsMatched": 5,
+      "scenariosMatched": 9,
+      "untouchedRequirementBlocksPreserved": 0,
+      "titlePreserved": true,
+      "purposePreserved": true
+    }
+  ]
+}

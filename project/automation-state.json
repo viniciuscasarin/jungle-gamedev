@@ -1,0 +1,747 @@
+﻿{
+    "version":  1,
+    "status":  "running",
+    "source":  "project/prompts.md",
+    "workflow":  [
+                     "explore",
+                     "propose",
+                     "apply",
+                     "verify",
+                     "archive"
+                 ],
+    "currentIncrement":  17,
+    "currentPhase":  "apply",
+    "activeAgent":  "/root/i17_apply",
+    "attempt":  1,
+    "lastUpdatedAt":  "2026-10-29T00:01:00.0000000-03:00",
+    "lastError":  null,
+    "automationId":  "pirate-battle-openspec-sequencial",
+    "increments":  [
+                       {
+                           "number":  1,
+                           "change":  "setup-game-foundation",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T13:47:58.859584-03:00",
+                                                          "agent":  "/root/i01_explore",
+                                                          "report":  "project/automation-reports/01-setup-game-foundation/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T13:51:38.1907136-03:00",
+                                                          "agent":  "/root/i01_propose",
+                                                          "report":  "project/automation-reports/01-setup-game-foundation/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  2,
+                                                        "startedAt":  "2026-10-27T13:58:07.9131749-03:00",
+                                                        "agent":  "/root/i01_apply_recovery",
+                                                        "recovery":  "Heartbeat retomou apÃ³s interrupÃ§Ã£o: executor anterior ausente da Ã¡rvore e nenhum processo node ativo. 14/18 tarefas marcadas, evidÃªncias browser/build em disco, relatÃ³rio apply final ausente. Retomar quatro tarefas finais e reconciliar evidÃªncias.",
+                                                        "report":  "project/automation-reports/01-setup-game-foundation/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-27T14:22:05.0352061-03:00",
+                                                         "agent":  "/root/i01_verify",
+                                                         "report":  "project/automation-reports/01-setup-game-foundation/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T14:26:15.7708361-03:00",
+                                                          "agent":  "/root/i01_archive",
+                                                          "report":  "project/automation-reports/01-setup-game-foundation/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-27-setup-game-foundation"
+                       },
+                       {
+                           "number":  2,
+                           "change":  "integrate-assets-and-arena-renderer",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T14:29:54.9895945-03:00",
+                                                          "agent":  "/root/i02_explore",
+                                                          "report":  "project/automation-reports/02-integrate-assets-and-arena-renderer/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T14:34:48.5041269-03:00",
+                                                          "agent":  "/root/i02_propose",
+                                                          "report":  "project/automation-reports/02-integrate-assets-and-arena-renderer/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-27T14:41:51.1266886-03:00",
+                                                        "agent":  "/root/i02_apply",
+                                                        "report":  "project/automation-reports/02-integrate-assets-and-arena-renderer/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-27T15:07:39.5239303-03:00",
+                                                         "agent":  "/root/i02_verify",
+                                                         "report":  "project/automation-reports/02-integrate-assets-and-arena-renderer/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T15:14:50.2121347-03:00",
+                                                          "agent":  "/root/i02_archive",
+                                                          "report":  "project/automation-reports/02-integrate-assets-and-arena-renderer/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-27-integrate-assets-and-arena-renderer"
+                       },
+                       {
+                           "number":  3,
+                           "change":  "implement-player-navigation",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  2,
+                                                          "startedAt":  "2026-10-27T15:19:24.1059321-03:00",
+                                                          "recovery":  "Primeiro executor errored por quota antes de produzir handoff. get_usage_limits agora ordinaryUsageAllowed=true; retomada autorizada apÃ³s mudanÃ§a externa, sem artefatos ou mutaÃ§Ãµes concorrentes.",
+                                                          "agent":  "/root/i03_explore_recovery",
+                                                          "report":  "project/automation-reports/03-implement-player-navigation/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T18:00:38.0826132-03:00",
+                                                          "agent":  "/root/i03_propose",
+                                                          "report":  "project/automation-reports/03-implement-player-navigation/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-27T18:07:16.2906007-03:00",
+                                                        "agent":  "/root/i03_apply",
+                                                        "report":  "project/automation-reports/03-implement-player-navigation/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-27T18:26:38.9748576-03:00",
+                                                         "agent":  "/root/i03_verify",
+                                                         "report":  "project/automation-reports/03-implement-player-navigation/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T18:34:09.9044026-03:00",
+                                                          "agent":  "/root/i03_archive",
+                                                          "report":  "project/automation-reports/03-implement-player-navigation/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-27-implement-player-navigation"
+                       },
+                       {
+                           "number":  4,
+                           "change":  "implement-player-combat",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T18:37:44.2213288-03:00",
+                                                          "agent":  "/root/i04_explore",
+                                                          "report":  "project/automation-reports/04-implement-player-combat/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T18:41:13.2800672-03:00",
+                                                          "agent":  "/root/i04_propose",
+                                                          "report":  "project/automation-reports/04-implement-player-combat/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-27T18:48:55.9507576-03:00",
+                                                        "agent":  "/root/i04_apply",
+                                                        "report":  "project/automation-reports/04-implement-player-combat/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-27T19:08:55.3351355-03:00",
+                                                         "agent":  "/root/i04_verify",
+                                                         "report":  "project/automation-reports/04-implement-player-combat/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  2,
+                                                          "startedAt":  "2026-10-27T19:13:58.7650597-03:00",
+                                                          "agent":  "/root/i04_archive_recovery",
+                                                          "recovery":  "Primeiro executor interrompido por quota e errored; quota agora ordinaryUsageAllowed=true. Change ainda ativa; novo executor deve comparar sync em disco e concluir sem duplicar ou pular verificaÃ§Ã£o.",
+                                                          "report":  "project/automation-reports/04-implement-player-combat/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-27-implement-player-combat"
+                       },
+                       {
+                           "number":  5,
+                           "change":  "implement-enemies-and-spawning",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T23:34:08.5664591-03:00",
+                                                          "agent":  "/root/i05_explore",
+                                                          "report":  "project/automation-reports/05-implement-enemies-and-spawning/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-27T23:39:37.3355182-03:00",
+                                                          "agent":  "/root/i05_propose",
+                                                          "report":  "project/automation-reports/05-implement-enemies-and-spawning/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-27T23:49:09.6670931-03:00",
+                                                        "agent":  "/root/i05_apply",
+                                                        "report":  "project/automation-reports/05-implement-enemies-and-spawning/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T00:14:04.2337347-03:00",
+                                                         "agent":  "/root/i05_verify",
+                                                         "report":  "project/automation-reports/05-implement-enemies-and-spawning/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T00:25:04.9377618-03:00",
+                                                          "agent":  "/root/i05_archive",
+                                                          "report":  "project/automation-reports/05-implement-enemies-and-spawning/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-implement-enemies-and-spawning"
+                       },
+                       {
+                           "number":  6,
+                           "change":  "implement-match-lifecycle",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T00:29:43.3895929-03:00",
+                                                          "agent":  "/root/i06_explore",
+                                                          "report":  "project/automation-reports/06-implement-match-lifecycle/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T00:34:43.6719326-03:00",
+                                                          "agent":  "/root/i06_propose",
+                                                          "report":  "project/automation-reports/06-implement-match-lifecycle/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  2,
+                                                        "startedAt":  "2026-10-28T00:45:26.2456638-03:00",
+                                                        "agent":  "/root/i06_apply_recovery",
+                                                        "recovery":  "Primeiro executor errored por quota; quota agora ordinaryUsageAllowed=true. NÃºcleo/sessÃ£o/UI e testes parciais presentes, nenhum node ativo. Retomar validaÃ§Ã£o e evidÃªncias pendentes sem refazer implementaÃ§Ã£o existente.",
+                                                        "report":  "project/automation-reports/06-implement-match-lifecycle/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  2,
+                                                         "startedAt":  "2026-10-28T04:04:13.1074389-03:00",
+                                                         "agent":  "/root/i06_verify_recovery",
+                                                         "recovery":  "Executor verify inicial errored por capacidade temporÃ¡ria do modelo, antes de relatÃ³rio ou mutaÃ§Ãµes. Nova tentativa no modelo padrÃ£o, sem trocar configuraÃ§Ã£o do usuÃ¡rio.",
+                                                         "report":  "project/automation-reports/06-implement-match-lifecycle/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T04:24:06.5361535-03:00",
+                                                          "agent":  "/root/i06_archive",
+                                                          "report":  "project/automation-reports/06-implement-match-lifecycle/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-implement-match-lifecycle"
+                       },
+                       {
+                           "number":  7,
+                           "change":  "implement-menu-and-options",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T04:30:27.3234707-03:00",
+                                                          "agent":  "/root/i07_explore",
+                                                          "report":  "project/automation-reports/07-implement-menu-and-options/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T04:34:44.9605764-03:00",
+                                                          "agent":  "/root/i07_propose",
+                                                          "recovery":  "Capacidade temporÃ¡ria interrompeu handoff apÃ³s todos os artefatos. Orquestrador reconciliou status4/4, leu tasks/design e repetiu strict validate exit0; nenhum novo executor de propose necessÃ¡rio.",
+                                                          "report":  "project/automation-reports/07-implement-menu-and-options/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  3,
+                                                        "startedAt":  "2026-10-28T04:44:57.2670758-03:00",
+                                                        "agent":  "/root/i07_apply_finish",
+                                                        "recovery":  "Nova indisponibilidade por quota interrompeu recuperaÃ§Ã£o. Quota agora liberada, nenhum node ativo;44 E2E finalizaram com log/HTML/last-run passed. Fechar evidÃªncias visuais/docs/strict e cinco tarefas restantes, sem repetir suÃ­te sem razÃ£o.",
+                                                        "report":  "project/automation-reports/07-implement-menu-and-options/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T08:50:44.5752792-03:00",
+                                                         "agent":  "/root/i07_verify",
+                                                         "report":  "project/automation-reports/07-implement-menu-and-options/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T08:56:29.5705049-03:00",
+                                                          "agent":  "/root/i07_archive",
+                                                          "report":  "project/automation-reports/07-implement-menu-and-options/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-implement-menu-and-options"
+                       },
+                       {
+                           "number":  8,
+                           "change":  "implement-responsive-hud-and-touch",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T09:01:22.485507-03:00",
+                                                          "agent":  "/root/i08_explore",
+                                                          "report":  "project/automation-reports/08-implement-responsive-hud-and-touch/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T09:06:19.9022566-03:00",
+                                                          "agent":  "/root/i08_propose",
+                                                          "report":  "project/automation-reports/08-implement-responsive-hud-and-touch/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-28T09:15:48.7355771-03:00",
+                                                        "agent":  "/root/i08_apply",
+                                                        "recovery":  "Handoff para Antigravity reconciliou 24/25 tarefas marcadas, testes unitários (238/238), lint, typecheck, build, E2E e retestes touch (10/10) aprovados em disco. Coordenador reexecutou gates de validação com sucesso e fechou tarefa 5.7.",
+                                                        "report":  "project/automation-reports/08-implement-responsive-hud-and-touch/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T12:41:00.0000000-03:00",
+                                                         "agent":  "/root/i08_verify",
+                                                         "report":  "project/automation-reports/08-implement-responsive-hud-and-touch/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T12:56:00.0000000-03:00",
+                                                          "agent":  "/root/i08_archive",
+                                                          "report":  "project/automation-reports/08-implement-responsive-hud-and-touch/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-implement-responsive-hud-and-touch"
+                       },
+                       {
+                           "number":  9,
+                           "change":  "implement-battle-feedback",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T13:01:00.0000000-03:00",
+                                                          "agent":  "/root/i09_explore",
+                                                          "report":  "project/automation-reports/09-implement-battle-feedback/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T13:10:30.0000000-03:00",
+                                                          "agent":  "/root/i09_propose",
+                                                          "report":  "project/automation-reports/09-implement-battle-feedback/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-28T13:17:00.0000000-03:00",
+                                                        "agent":  "/root/i09_apply",
+                                                        "report":  "project/automation-reports/09-implement-battle-feedback/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T14:26:00.0000000-03:00",
+                                                         "agent":  "/root/i09_verify",
+                                                         "report":  "project/automation-reports/09-implement-battle-feedback/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T14:33:30.0000000-03:00",
+                                                          "agent":  "/root/i09_archive",
+                                                          "report":  "project/automation-reports/09-implement-battle-feedback/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-implement-battle-feedback"
+                       },
+                       {
+                           "number":  10,
+                           "change":  "implement-mock-rest-api",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T14:37:30.0000000-03:00",
+                                                          "agent":  "/root/i10_explore",
+                                                          "report":  "project/automation-reports/10-implement-mock-rest-api/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T14:44:00.0000000-03:00",
+                                                          "agent":  "/root/i10_propose",
+                                                          "report":  "project/automation-reports/10-implement-mock-rest-api/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-28T14:49:30.0000000-03:00",
+                                                        "agent":  "/root/i10_apply",
+                                                        "report":  "project/automation-reports/10-implement-mock-rest-api/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T15:01:00.0000000-03:00",
+                                                         "agent":  "/root/i10_verify",
+                                                         "report":  "project/automation-reports/10-implement-mock-rest-api/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T15:07:30.0000000-03:00",
+                                                          "agent":  "/root/i10_archive",
+                                                          "report":  "project/automation-reports/10-implement-mock-rest-api/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-implement-mock-rest-api"
+                       },
+                       {
+                           "number":  11,
+                           "change":  "implement-result-outbox",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T15:11:00.0000000-03:00",
+                                                          "agent":  "/root/i11_explore",
+                                                          "report":  "project/automation-reports/11-implement-result-outbox/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T15:17:00.0000000-03:00",
+                                                          "agent":  "/root/i11_propose",
+                                                          "report":  "project/automation-reports/11-implement-result-outbox/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-28T15:24:00.0000000-03:00",
+                                                        "agent":  "/root/i11_apply",
+                                                        "report":  "project/automation-reports/11-implement-result-outbox/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  2,
+                                                         "startedAt":  "2026-10-28T15:39:30.0000000-03:00",
+                                                         "agent":  "/root/i11_verify_retry",
+                                                         "recovery":  "Primeiro executor de verify encontrou erro temporário no spawn (INVALID_ARGUMENT). Nova tentativa 2 em subagente limpo.",
+                                                         "report":  "project/automation-reports/11-implement-result-outbox/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T16:07:30.0000000-03:00",
+                                                          "agent":  "/root/i11_archive",
+                                                          "report":  "project/automation-reports/11-implement-result-outbox/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-implement-result-outbox"
+                       },
+                       {
+                           "number":  12,
+                           "change":  "implement-ranking-and-history",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T16:10:30.0000000-03:00",
+                                                          "agent":  "/root/i12_explore",
+                                                          "report":  "project/automation-reports/12-implement-ranking-and-history/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T16:17:00.0000000-03:00",
+                                                          "agent":  "/root/i12_propose",
+                                                          "report":  "project/automation-reports/12-implement-ranking-and-history/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-28T16:23:00.0000000-03:00",
+                                                        "agent":  "/root/i12_apply",
+                                                        "report":  "project/automation-reports/12-implement-ranking-and-history/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T16:59:00.0000000-03:00",
+                                                         "agent":  "/root/i12_verify",
+                                                         "report":  "project/automation-reports/12-implement-ranking-and-history/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T17:04:30.0000000-03:00",
+                                                          "agent":  "/root/i12_archive",
+                                                          "report":  "project/automation-reports/12-implement-ranking-and-history/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-implement-ranking-and-history"
+                       },
+                       {
+                           "number":  13,
+                           "change":  "add-network-scenario-controls",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T17:07:30.0000000-03:00",
+                                                          "agent":  "/root/i13_explore",
+                                                          "report":  "project/automation-reports/13-add-network-scenario-controls/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T17:14:00.0000000-03:00",
+                                                          "agent":  "/root/i13_propose",
+                                                          "report":  "project/automation-reports/13-add-network-scenario-controls/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-28T17:18:00.0000000-03:00",
+                                                        "agent":  "/root/i13_apply",
+                                                        "report":  "project/automation-reports/13-add-network-scenario-controls/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T17:39:00.0000000-03:00",
+                                                         "agent":  "/root/i13_verify",
+                                                         "report":  "project/automation-reports/13-add-network-scenario-controls/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T17:43:30.0000000-03:00",
+                                                          "agent":  "/root/i13_archive",
+                                                          "report":  "project/automation-reports/13-add-network-scenario-controls/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-add-network-scenario-controls"
+                       },
+                       {
+                           "number":  14,
+                           "change":  "validate-game-end-to-end",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T17:48:30.0000000-03:00",
+                                                          "agent":  "/root/i14_explore",
+                                                          "report":  "project/automation-reports/14-validate-game-end-to-end/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T17:55:30.0000000-03:00",
+                                                          "agent":  "/root/i14_propose",
+                                                          "report":  "project/automation-reports/14-validate-game-end-to-end/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-28T18:00:00.0000000-03:00",
+                                                        "agent":  "/root/i14_apply",
+                                                        "report":  "project/automation-reports/14-validate-game-end-to-end/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T18:52:00.0000000-03:00",
+                                                         "agent":  "/root/i14_verify",
+                                                         "report":  "project/automation-reports/14-validate-game-end-to-end/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T18:58:00.0000000-03:00",
+                                                          "agent":  "/root/i14_archive",
+                                                          "report":  "project/automation-reports/14-validate-game-end-to-end/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-validate-game-end-to-end"
+                       },
+                       {
+                           "number":  15,
+                           "change":  "profile-and-tune-gameplay",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T19:01:00.0000000-03:00",
+                                                          "agent":  "/root/i15_explore",
+                                                          "report":  "project/automation-reports/15-profile-and-tune-gameplay/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T19:07:30.0000000-03:00",
+                                                          "agent":  "/root/i15_propose",
+                                                          "report":  "project/automation-reports/15-profile-and-tune-gameplay/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-28T19:12:00.0000000-03:00",
+                                                        "agent":  "/root/i15_apply",
+                                                        "report":  "project/automation-reports/15-profile-and-tune-gameplay/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T20:42:00.0000000-03:00",
+                                                         "agent":  "/root/i15_verify",
+                                                         "report":  "project/automation-reports/15-profile-and-tune-gameplay/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T20:45:00.0000000-03:00",
+                                                          "agent":  "/root/i15_archive",
+                                                          "report":  "project/automation-reports/15-profile-and-tune-gameplay/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-profile-and-tune-gameplay"
+                       },
+                       {
+                           "number":  16,
+                           "change":  "prepare-game-release",
+                           "status":  "completed",
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  2,
+                                                          "startedAt":  "2026-10-28T20:52:00.0000000-03:00",
+                                                          "agent":  "/root/i16_explore_retry",
+                                                          "recovery":  "Tentativa 1 falhou por erro de spawn INVALID_ARGUMENT (code 400). Retentando com prompt direto e conciso.",
+                                                          "report":  "project/automation-reports/16-prepare-game-release/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T21:02:00.0000000-03:00",
+                                                          "agent":  "/root/i16_propose",
+                                                          "report":  "project/automation-reports/16-prepare-game-release/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "completed",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-28T21:09:30.0000000-03:00",
+                                                        "agent":  "/root/i16_apply",
+                                                        "report":  "project/automation-reports/16-prepare-game-release/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-28T21:20:00.0000000-03:00",
+                                                         "agent":  "/root/i16_verify",
+                                                         "report":  "project/automation-reports/16-prepare-game-release/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T21:24:00.0000000-03:00",
+                                                          "agent":  "/root/i16_archive",
+                                                          "report":  "project/automation-reports/16-prepare-game-release/archive.md"
+                                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-prepare-game-release"
+                       },
+                       {
+                           "number":  17,
+                           "change":  "publish-game-release",
+                           "status":  "running",
+                           "requiresPublicationAuthorization":  true,
+                           "phases":  {
+                                          "explore":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T23:50:00.0000000-03:00",
+                                                          "agent":  "/root/i17_explore",
+                                                          "report":  "project/automation-reports/17-publish-game-release/explore.md"
+                                                      },
+                                          "propose":  {
+                                                          "status":  "completed",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-28T23:56:00.0000000-03:00",
+                                                          "agent":  "/root/i17_propose",
+                                                          "report":  "project/automation-reports/17-publish-game-release/propose.md"
+                                                      },
+                                          "apply":  {
+                                                        "status":  "running",
+                                                        "attempt":  1,
+                                                        "startedAt":  "2026-10-29T00:01:00.0000000-03:00",
+                                                        "agent":  "/root/i17_apply"
+                                                    }
+                                      }
+                       }
+                   ]
+}

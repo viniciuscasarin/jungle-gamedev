@@ -1,0 +1,184 @@
+{
+  "changeName": "integrate-assets-and-arena-renderer",
+  "changeDir": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer",
+  "schemaName": "spec-driven",
+  "contextFiles": {
+    "proposal": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\proposal.md"
+    ],
+    "specs": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\specs\\application-shell\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\specs\\arena-rendering\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\specs\\asset-loading\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\specs\\game-configuration\\spec.md"
+    ],
+    "design": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\design.md"
+    ],
+    "tasks": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md"
+    ]
+  },
+  "progress": {
+    "total": 21,
+    "complete": 21,
+    "remaining": 0
+  },
+  "tasks": [
+    {
+      "id": "1",
+      "description": "1.1 Criar manifesto tipado dos PNGs verificados para player/Chaser/Shooter, água, litoral, decoração e UI, distinguindo dimensões físicas/lógicas e orientação; verificar paths pelo build Vite e correspondência com a tabela do design.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 5
+    },
+    {
+      "id": "2",
+      "description": "1.2 Implementar carregamento compartilhado por promise e leases idempotentes, limpar rejeições recuperáveis e definir unload final seguro; verificar com Vitest concorrência, falha parcial, retry, consumidor sobrevivente e conclusão tardia após descarte.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 6
+    },
+    {
+      "id": "3",
+      "description": "1.3 Criar ASSET_CREDITS.md em inglês e registrar mapeamento, metadados retina/UI, fonte repo/challenge, ausência de autoria/licença documentadas e transformações realizadas; conferir contra arquivos/metadados fornecidos sem atribuição inferida.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 7
+    },
+    {
+      "id": "4",
+      "description": "1.4 Documentar em ARCHITECTURE o dono de texturas e o ciclo de cache quente/descarte final, incluindo encerramento de sessão/HMR; verificar que a documentação descreve a API efetivamente implementada e os testes de 1.2.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 8
+    },
+    {
+      "id": "5",
+      "description": "2.1 Compor a proposta de ilhas160×120 com tiles40×40 nas origens (135,95)/(665,325), medir areia sólida e substituir proposedIslandEnvelopes por dados puros de ilhas/contorno ou peças convexas, com mapVersion arena-v2; verificar geometria finita, não autointersectante, dentro do mundo, centro livre e snapshot profundamente imutável em Vitest.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 12
+    },
+    {
+      "id": "6",
+      "description": "2.2 Registrar em ARCHITECTURE coordenadas efetivas, convenção de vértices, peças e tolerância máxima4 unidades ao litoral, sem converter envelope ou decoração em obstáculo; verificar alinhamento com overlay da composição e salvar imagem de evidência do incremento.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 13
+    },
+    {
+      "id": "7",
+      "description": "2.3 Expor cálculo puro de área útil/escala/offsets e funções mundo↔tela, com estado não renderizável para área zero; verificar cantos/centro, roundtrip≤1e−8, letterbox, insets e resize por Vitest.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 14
+    },
+    {
+      "id": "8",
+      "description": "2.4 Documentar origem local CSS, fórmulas, separação DPR/buffer e política de safe areas/faixas48px superiores e88px inferiores; conferir valores e testes do módulo contra ARCHITECTURE.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 15
+    },
+    {
+      "id": "9",
+      "description": "3.1 Substituir Graphics decorativo por água em tiles, duas ilhas e sprite player proporcional ao centro com heading para cima, consumindo configuração e texturas do cache; verificar cena estática no navegador, sem sample achatado, inimigos ativos ou loop de simulação.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 19
+    },
+    {
+      "id": "10",
+      "description": "3.2 Adaptar owner para recurso destacado, init parcial/tardio e geração por tentativa, liberando app/stage/sprites/canvas sem destruir texturas emprestadas; verificar testes existentes e novos de mount/resize/observe/init falhos, descarte idempotente e sequência Strict Mode.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 20
+    },
+    {
+      "id": "11",
+      "description": "3.3 Integrar ResizeObserver, resize da janela e detecção de mudança isolada de DPR, com ticker estático parado e cleanup dos listeners/observadores; verificar testes do adaptador e browser mantendo uma instância/canvas, CSS e coordenadas após resize/DPR.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 21
+    },
+    {
+      "id": "12",
+      "description": "3.4 Atualizar a seção de lifecycle em ARCHITECTURE e instruções de inspeção em README em inglês; conferir ownership real e registrar como observar canvas, ticker e recursos vivos sem introduzir API de gameplay.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 22
+    },
+    {
+      "id": "13",
+      "description": "4.1 Implementar menu mínimo com Pirate Battle/Play e fluxo Loading→Static Arena, status semântico e Main Menu, usando UI fornecida com controles HTML; verificar teclado/toque, foco, Loading perceptível por300ms e aviso inglês de preview estático no navegador.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 26
+    },
+    {
+      "id": "14",
+      "description": "4.2 Implementar falha real/simulada, Retry e saída durante carregamento, com `?assetScenario=fail-once` anterior ao cache e callbacks obsoletos ignorados; verificar Vitest das transições/gerações e recuperação após falha, menu durante promessa pendente e nova tentativa.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 27
+    },
+    {
+      "id": "15",
+      "description": "4.3 Ajustar layout portrait/landscape/320px com safe areas e faixas reservadas, sem HUD ou ataques funcionais; verificar ausência de scroll horizontal obrigatório, mundo completo, tiles quadrados e navio proporcional nos tamanhos do design.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 28
+    },
+    {
+      "id": "16",
+      "description": "4.4 Atualizar README em inglês com fluxo entregue, URL de reprodução da falha única, Retry, limites reais e retorno ao menu; reproduzir os passos escritos com cache frio e quente, sem refresh obrigatório na recuperação.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 29
+    },
+    {
+      "id": "17",
+      "description": "5.1 Adicionar suporte Playwright restrito ao fluxo deste incremento, scripts/config e lockfile consistente; verificar instalação normal e documentar em README o comando E2E e pré-requisito do navegador.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 33
+    },
+    {
+      "id": "18",
+      "description": "5.2 Criar e executar E2E Chromium para menu/loading/arena/menu, fail-once→Retry, cache quente e retorno durante carregamento atrasado; verificar status/acessibilidade, ausência de erros inesperados e inexistência de canvas órfão, guardando relatório e traces em falha.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 34
+    },
+    {
+      "id": "19",
+      "description": "5.3 Exercitar cinco ciclos reais de Play/Main Menu sob Strict Mode e comprovar ausência de duplicação/crescimento de canvas, ticker e inscrições do adaptador; registrar contagens inicial/final e verificar que o cache compartilhado permanece utilizável entre ciclos.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 35
+    },
+    {
+      "id": "20",
+      "description": "5.4 Inspecionar dev e build servido por preview em desktop,320×568,390×844,844×390 e DPR2, incluindo mudança de DPR com CSS constante; guardar screenshots e observações de proporção, heading, mapa/litoral, faixas e resize preservando coordenadas.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 36
+    },
+    {
+      "id": "21",
+      "description": "5.5 Executar `npm.cmd run lint`, `npm.cmd run typecheck`, `npm.cmd test`, `npm.cmd run build` e E2E do incremento; corrigir falhas de escopo, registrar comandos/exit codes/evidências e limitações reais no relatório apply, sem afirmar verificações indisponíveis.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer\\tasks.md",
+      "line": 37
+    }
+  ],
+  "taskTrackingConfigured": true,
+  "state": "all_done",
+  "instruction": "All tracked tasks are complete.\nReview or verify the change as appropriate before archiving.",
+  "context": "Language: pt-BR\nAll artifacts must be written in pt-BR.\nKeep OpenSpec structural headings and SHALL/MUST keywords in English.\n",
+  "root": {
+    "path": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev",
+    "source": "nearest"
+  }
+}

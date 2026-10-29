@@ -1,0 +1,16 @@
+
+> pirate-battle@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 C:/Users/Vinicius/Dev/repos/challenges/jungle-gamedev
+
+
+ Test Files  13 passed (13)
+      Tests  230 passed (230)
+   Start at  08:52:40
+   Duration  13.76s (transform 69%, tests 21%, import 10%, worker 1%)
+
+    Isolate  13 workers spawned · ~4.96s startup each (spawn + environment, per file)
+             at least ~902ms faster with isolate: false — reuses workers across files instead of one per file
+

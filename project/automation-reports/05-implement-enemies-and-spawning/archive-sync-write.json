@@ -1,0 +1,41 @@
+{
+  "exitCode": 0,
+  "results": [
+    {
+      "capability": "arena-rendering",
+      "written": true,
+      "newSpec": false,
+      "purposePreserved": true
+    },
+    {
+      "capability": "enemy-behavior",
+      "written": true,
+      "newSpec": true,
+      "purposePreserved": true
+    },
+    {
+      "capability": "player-combat",
+      "written": true,
+      "newSpec": false,
+      "purposePreserved": true
+    },
+    {
+      "capability": "simulation-contracts",
+      "written": true,
+      "newSpec": false,
+      "purposePreserved": true
+    },
+    {
+      "capability": "simulation-runtime",
+      "written": true,
+      "newSpec": false,
+      "purposePreserved": true
+    },
+    {
+      "capability": "spawn-director",
+      "written": true,
+      "newSpec": true,
+      "purposePreserved": true
+    }
+  ]
+}

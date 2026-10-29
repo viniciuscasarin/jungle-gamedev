@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "capability": "application-shell",
+      "requirements": 3,
+      "scenarios": 12,
+      "deltaRequirements": 1,
+      "deltaScenarios": 7,
+      "titlePurposeAndUntouchedContentPreserved": true,
+      "alreadySynced": true
+    },
+    {
+      "capability": "arena-rendering",
+      "requirements": 4,
+      "scenarios": 11,
+      "deltaRequirements": 1,
+      "deltaScenarios": 7,
+      "titlePurposeAndUntouchedContentPreserved": true,
+      "alreadySynced": true
+    },
+    {
+      "capability": "game-configuration",
+      "requirements": 7,
+      "scenarios": 15,
+      "deltaRequirements": 2,
+      "deltaScenarios": 5,
+      "titlePurposeAndUntouchedContentPreserved": true,
+      "alreadySynced": true
+    },
+    {
+      "capability": "match-lifecycle",
+      "requirements": 8,
+      "scenarios": 15,
+      "deltaRequirements": 8,
+      "deltaScenarios": 15,
+      "titlePurposeAndUntouchedContentPreserved": true,
+      "alreadySynced": true
+    },
+    {
+      "capability": "player-combat",
+      "requirements": 9,
+      "scenarios": 18,
+      "deltaRequirements": 2,
+      "deltaScenarios": 5,
+      "titlePurposeAndUntouchedContentPreserved": true,
+      "alreadySynced": true
+    },
+    {
+      "capability": "simulation-contracts",
+      "requirements": 6,
+      "scenarios": 12,
+      "deltaRequirements": 2,
+      "deltaScenarios": 4,
+      "titlePurposeAndUntouchedContentPreserved": true,
+      "alreadySynced": true
+    },
+    {
+      "capability": "simulation-runtime",
+      "requirements": 5,
+      "scenarios": 10,
+      "deltaRequirements": 3,
+      "deltaScenarios": 6,
+      "titlePurposeAndUntouchedContentPreserved": true,
+      "alreadySynced": true
+    }
+  ],
+  "protectedFileCount": 1350,
+  "archivePath": null,
+  "archivedFilesUnchanged": null
+}

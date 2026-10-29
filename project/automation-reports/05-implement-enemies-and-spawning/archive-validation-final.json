@@ -1,0 +1,98 @@
+{
+  "items": [
+    {
+      "id": "application-shell",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 9
+    },
+    {
+      "id": "arena-rendering",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 4
+    },
+    {
+      "id": "asset-loading",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 2
+    },
+    {
+      "id": "enemy-behavior",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 1
+    },
+    {
+      "id": "game-configuration",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 1
+    },
+    {
+      "id": "player-combat",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 0
+    },
+    {
+      "id": "player-navigation",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 2
+    },
+    {
+      "id": "simulation-contracts",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 1
+    },
+    {
+      "id": "simulation-runtime",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 1
+    },
+    {
+      "id": "spawn-director",
+      "type": "spec",
+      "valid": true,
+      "issues": [],
+      "durationMs": 0
+    }
+  ],
+  "summary": {
+    "totals": {
+      "items": 10,
+      "passed": 10,
+      "failed": 0
+    },
+    "byType": {
+      "change": {
+        "items": 0,
+        "passed": 0,
+        "failed": 0
+      },
+      "spec": {
+        "items": 10,
+        "passed": 10,
+        "failed": 0
+      }
+    }
+  },
+  "version": "1.0",
+  "root": {
+    "path": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev",
+    "source": "nearest"
+  }
+}

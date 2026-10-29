@@ -1,0 +1,669 @@
+{
+  "toolchain": "Playwright 1.64.1; Windows; Google Chrome for Testing 156.0.8078.4; headless shell revision1248",
+  "stats": {
+    "total": 10,
+    "expected": 10,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "tests": [
+    {
+      "project": "dev",
+      "title": "keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures",
+      "outcome": "expected",
+      "durationMs": 11444,
+      "resource-cycles": {
+        "initial": {
+          "applications": 0,
+          "resources": 0,
+          "subscriptions": 0,
+          "cache": {
+            "leases": 0,
+            "textures": 0,
+            "pending": false,
+            "closed": false
+          },
+          "canvases": 0,
+          "observers": 0,
+          "resize": 0,
+          "density": 0,
+          "frames": 0
+        },
+        "cycles": [
+          {
+            "cycle": 1,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          },
+          {
+            "cycle": 2,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          },
+          {
+            "cycle": 3,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          },
+          {
+            "cycle": 4,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          },
+          {
+            "cycle": 5,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          }
+        ]
+      },
+      "console-issues": []
+    },
+    {
+      "project": "dev",
+      "title": "fail-once before cold/warm cache and Retry without refresh",
+      "outcome": "expected",
+      "durationMs": 7237,
+      "console-issues": []
+    },
+    {
+      "project": "dev",
+      "title": "Main Menu cancels a pending load and old callbacks cannot replace a new attempt",
+      "outcome": "expected",
+      "durationMs": 4733,
+      "console-issues": []
+    },
+    {
+      "project": "dev",
+      "title": "real asset failure retries and graphics init failure stays semantic",
+      "outcome": "expected",
+      "durationMs": 5464,
+      "console-issues": []
+    },
+    {
+      "project": "dev",
+      "title": "fits desktop/portrait/landscape and isolated DPR changes without rebuilding",
+      "outcome": "expected",
+      "durationMs": 5259,
+      "viewport-observations": [
+        {
+          "label": "desktop",
+          "viewport": {
+            "renderable": true,
+            "scale": 1.3333333333333333,
+            "availableWidth": 1280,
+            "availableHeight": 764,
+            "offsetX": 0,
+            "offsetY": 70
+          },
+          "player": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966,
+            "width": 33,
+            "height": 56.5,
+            "rotation": -3.141592653589793
+          },
+          "width": 1280,
+          "height": 900,
+          "scrollWidth": 1280
+        },
+        {
+          "label": "320x568",
+          "viewport": {
+            "renderable": true,
+            "scale": 0.3333333333333333,
+            "availableWidth": 320,
+            "availableHeight": 432,
+            "offsetX": 0,
+            "offsetY": 174
+          },
+          "player": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966,
+            "width": 33,
+            "height": 56.5,
+            "rotation": -3.141592653589793
+          },
+          "width": 320,
+          "height": 568,
+          "scrollWidth": 320
+        },
+        {
+          "label": "390x844",
+          "viewport": {
+            "renderable": true,
+            "scale": 0.40625,
+            "availableWidth": 390,
+            "availableHeight": 708,
+            "offsetX": 0,
+            "offsetY": 292.3125
+          },
+          "player": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966,
+            "width": 33,
+            "height": 56.5,
+            "rotation": -3.141592653589793
+          },
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        {
+          "label": "844x390",
+          "viewport": {
+            "renderable": true,
+            "scale": 0.4703703703703704,
+            "availableWidth": 844,
+            "availableHeight": 254,
+            "offsetX": 196.22222222222223,
+            "offsetY": 48
+          },
+          "player": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966,
+            "width": 33,
+            "height": 56.5,
+            "rotation": -3.141592653589793
+          },
+          "width": 844,
+          "height": 390,
+          "scrollWidth": 844
+        },
+        {
+          "label": "dpr2",
+          "buffer": [
+            1688,
+            780
+          ],
+          "dpr": 2
+        }
+      ],
+      "console-issues": []
+    },
+    {
+      "project": "preview",
+      "title": "keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures",
+      "outcome": "expected",
+      "durationMs": 13368,
+      "resource-cycles": {
+        "initial": {
+          "applications": 0,
+          "resources": 0,
+          "subscriptions": 0,
+          "cache": {
+            "leases": 0,
+            "textures": 0,
+            "pending": false,
+            "closed": false
+          },
+          "canvases": 0,
+          "observers": 0,
+          "resize": 0,
+          "density": 0,
+          "frames": 0
+        },
+        "cycles": [
+          {
+            "cycle": 1,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          },
+          {
+            "cycle": 2,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          },
+          {
+            "cycle": 3,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          },
+          {
+            "cycle": 4,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          },
+          {
+            "cycle": 5,
+            "mounted": {
+              "applications": 1,
+              "resources": 1,
+              "subscriptions": 1,
+              "cache": {
+                "leases": 1,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 1,
+              "observers": 2,
+              "resize": 1,
+              "density": 1,
+              "frames": 0
+            },
+            "unmounted": {
+              "applications": 0,
+              "resources": 0,
+              "subscriptions": 0,
+              "cache": {
+                "leases": 0,
+                "textures": 30,
+                "pending": false,
+                "closed": false
+              },
+              "canvases": 0,
+              "observers": 0,
+              "resize": 0,
+              "density": 0,
+              "frames": 0
+            }
+          }
+        ]
+      },
+      "console-issues": []
+    },
+    {
+      "project": "preview",
+      "title": "fail-once before cold/warm cache and Retry without refresh",
+      "outcome": "expected",
+      "durationMs": 6560,
+      "console-issues": []
+    },
+    {
+      "project": "preview",
+      "title": "Main Menu cancels a pending load and old callbacks cannot replace a new attempt",
+      "outcome": "expected",
+      "durationMs": 4164,
+      "console-issues": []
+    },
+    {
+      "project": "preview",
+      "title": "real asset failure retries and graphics init failure stays semantic",
+      "outcome": "expected",
+      "durationMs": 4793,
+      "console-issues": []
+    },
+    {
+      "project": "preview",
+      "title": "fits desktop/portrait/landscape and isolated DPR changes without rebuilding",
+      "outcome": "expected",
+      "durationMs": 4445,
+      "viewport-observations": [
+        {
+          "label": "desktop",
+          "viewport": {
+            "renderable": true,
+            "scale": 1.3333333333333333,
+            "availableWidth": 1280,
+            "availableHeight": 764,
+            "offsetX": 0,
+            "offsetY": 70
+          },
+          "player": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966,
+            "width": 33,
+            "height": 56.5,
+            "rotation": -3.141592653589793
+          },
+          "width": 1280,
+          "height": 900,
+          "scrollWidth": 1280
+        },
+        {
+          "label": "320x568",
+          "viewport": {
+            "renderable": true,
+            "scale": 0.3333333333333333,
+            "availableWidth": 320,
+            "availableHeight": 432,
+            "offsetX": 0,
+            "offsetY": 174
+          },
+          "player": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966,
+            "width": 33,
+            "height": 56.5,
+            "rotation": -3.141592653589793
+          },
+          "width": 320,
+          "height": 568,
+          "scrollWidth": 320
+        },
+        {
+          "label": "390x844",
+          "viewport": {
+            "renderable": true,
+            "scale": 0.40625,
+            "availableWidth": 390,
+            "availableHeight": 708,
+            "offsetX": 0,
+            "offsetY": 292.3125
+          },
+          "player": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966,
+            "width": 33,
+            "height": 56.5,
+            "rotation": -3.141592653589793
+          },
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        {
+          "label": "844x390",
+          "viewport": {
+            "renderable": true,
+            "scale": 0.4703703703703704,
+            "availableWidth": 844,
+            "availableHeight": 254,
+            "offsetX": 196.22222222222223,
+            "offsetY": 48
+          },
+          "player": {
+            "xUnits": 480,
+            "yUnits": 270,
+            "headingRadians": -1.5707963267948966,
+            "width": 33,
+            "height": 56.5,
+            "rotation": -3.141592653589793
+          },
+          "width": 844,
+          "height": 390,
+          "scrollWidth": 844
+        },
+        {
+          "label": "dpr2",
+          "buffer": [
+            1688,
+            780
+          ],
+          "dpr": 2
+        }
+      ],
+      "console-issues": []
+    }
+  ]
+}

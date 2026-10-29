@@ -1,0 +1,41 @@
+{
+  "stats": {
+    "total": 44,
+    "expected": 44,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "metadata": {
+    "actualWorkers": 1
+  },
+  "projectNames": [
+    "dev",
+    "preview"
+  ],
+  "files": [
+    {
+      "fileName": "arena.spec.ts",
+      "stats": {
+        "total": 34,
+        "expected": 34,
+        "unexpected": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "ok": true
+      }
+    },
+    {
+      "fileName": "options.spec.ts",
+      "stats": {
+        "total": 10,
+        "expected": 10,
+        "unexpected": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "ok": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "changeName": "implement-player-navigation",
+  "changeDir": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation",
+  "schemaName": "spec-driven",
+  "contextFiles": {
+    "proposal": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\proposal.md"
+    ],
+    "specs": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\specs\\application-shell\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\specs\\arena-rendering\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\specs\\player-navigation\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\specs\\simulation-runtime\\spec.md"
+    ],
+    "design": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\design.md"
+    ],
+    "tasks": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md"
+    ]
+  },
+  "progress": {
+    "total": 18,
+    "complete": 18,
+    "remaining": 0
+  },
+  "tasks": [
+    {
+      "id": "1",
+      "description": "1.1 Criar inicialização explícita a partir de MatchSetup, estado inicial e publicação de snapshots/eventos profundamente imutáveis; verificar em testes sem DOM estado padrão, reprodução, preservação de snapshots anteriores e ausência de efeitos ao importar.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 5
+    },
+    {
+      "id": "2",
+      "description": "1.2 Implementar passo autoritativo de direção/auto-sail com menor arco, empate de π determinístico, dead zone configurada, avanço frontal e nenhuma mecânica futura; verificar giro parado, ausência de alvo, distâncias 11,999/12/12,001, wrap, limites de giro e deslocamento por passo em testes.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 6
+    },
+    {
+      "id": "3",
+      "description": "1.3 Implementar acumulador puro com duração explícita, máximo cinco passos, descarte inteiro do excesso e resto fracionário; verificar mesmos passos/posição/rumo a 30/60/120/144 FPS, deltas inválidos, stall longo e ausência de backlog no frame seguinte.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 7
+    },
+    {
+      "id": "4",
+      "description": "1.4 Implementar transições explícitas de freeze/Resume com auto-sail Off, tempo ativo derivado de passos e baseline/acumulador limpos; verificar congelamento sem avanço e retomada sem catch-up em testes; documentar contratos e política temporal em inglês no ARCHITECTURE.md.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 8
+    },
+    {
+      "id": "5",
+      "description": "2.1 Implementar sweep círculo contra segmentos/vértices das duas ilhas e limites contraídos pelo raio, usando geometria configurada e constantes numéricas documentadas; verificar impactos frontais, grande deslocamento sem travessia, quatro bordas e ausência de dano/eventos de dano em testes.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 12
+    },
+    {
+      "id": "6",
+      "description": "2.2 Implementar projeção tangencial e contatos subsequentes com limite de iterações/fallback válido; verificar tangência em t≈0, afastamento, cantos/vértices de ambas as ilhas, canto da arena e contatos repetidos sem penetração nem bloqueio indevido.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 13
+    },
+    {
+      "id": "7",
+      "description": "2.3 Integrar solver ao passo do player e validar trajetórias ao redor das duas ilhas, giro em contato e saúde constante em cada passo; registrar em ARCHITECTURE.md a diferença entre casco visual, collider, envelope e tolerância artística e física, com convenções e tolerâncias executáveis pelos testes.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 14
+    },
+    {
+      "id": "8",
+      "description": "3.1 Criar adaptador mouse→alvo lógico com origem do host, inversa CSS corrente e clamp; verificar letterbox, origem deslocada, DPR, área zero, retenção no pointerleave e invariância do alvo guardado após resize em testes unitários/integração.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 18
+    },
+    {
+      "id": "9",
+      "description": "3.2 Implementar latch e fila de bordas R ignorando repeat/duplicados, consumindo cada pressão uma vez por passo; verificar zero/vários passos por frame, duas pressões entre frames, keyup e limpeza sem comandos herdados.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 19
+    },
+    {
+      "id": "10",
+      "description": "3.3 Restringir captura ao contexto semântico/focável de jogo pronto e excluir atalhos/editáveis/ações de interface; verificar que menu/loading/erro/freeze não consomem R e que perder posse, blur, hidden e destroy limpam teclas/fila/target; documentar em inglês política de input/foco no ARCHITECTURE.md.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 20
+    },
+    {
+      "id": "11",
+      "description": "4.1 Integrar snapshot e único RAF próprio iniciado somente em mount, mantendo ticker Pixi parado; propagar contratos necessários por owner/loadingAttempt e descarte idempotente; verificar em testes de integração init tardia, espera Loading, saída durante init, freeze/Resume e cancelamento de RAF/listeners.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 24
+    },
+    {
+      "id": "12",
+      "description": "4.2 Apresentar posição/rumo do snapshot e status discretos sem render React por frame; implementar UI em inglês com Arena, instruções mouse/R antes/durante play, Auto-sail On/Off, Paused e Resume explícito com foco acessível; verificar manualmente e em browser teclado, retorno de foco e legibilidade a320 CSS pixels.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 25
+    },
+    {
+      "id": "13",
+      "description": "4.3 Preservar viewport/resize/DPR, loading/retry/cache e separação de coordenadas; verificar regressões existentes e invariância física/target em resize, rotação, densidade e contato com litoral; atualizar README.md em inglês com controles, freeze/Resume e limites atuais do incremento.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 26
+    },
+    {
+      "id": "14",
+      "description": "4.4 Ampliar geometry=1 com casco, litoral, limites e rumo da fonte real e diagnóstico somente leitura com estado/step/tempo/posição; verificar visualmente contatos e transformações, testar imutabilidade dos dados inspecionados e documentar reprodução em README.md.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 27
+    },
+    {
+      "id": "15",
+      "description": "5.1 Atualizar expectativas E2E estáticas e instrumentação de recursos para um RAF durante arena ativa e zero após saída/freeze; direcionar screenshots/reporter/output/traces ao diretório03 preservando02; verificar dev Strict Mode e preview por cinco ciclos Play/saída, sem canvas, listener, loop ou consumidor de cache órfão.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 31
+    },
+    {
+      "id": "16",
+      "description": "5.2 Executar E2E com mouse/R reais ao redor dos quatro lados de ambas ilhas, contatos frontais/oblíquos, retenção do alvo e R mantido; anexar observações de posição/saúde/estado e screenshots com geometria, comprovando rotas e slide sem teleporte ou setter de gameplay.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 32
+    },
+    {
+      "id": "17",
+      "description": "5.3 Executar fluxo browser de blur e hidden durante movimento, retorno de foco sem retomada, Resume sem backlog e novo R necessário; verificar exclusões contextuais de input, resize/portrait/landscape/DPR e UI desktop/320, registrando evidência visual e JSON no relatório03.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 33
+    },
+    {
+      "id": "18",
+      "description": "5.4 Executar npm.cmd run lint, npm.cmd run typecheck, npm.cmd test, npm.cmd run build, E2E dev/preview e openspec.cmd validate implement-player-navigation --strict; registrar comandos, exit codes, ambiente, resultados e limitações reais em apply.md, mantendo tasks marcadas somente com comportamento e evidências concluídos.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-player-navigation\\tasks.md",
+      "line": 34
+    }
+  ],
+  "taskTrackingConfigured": true,
+  "state": "all_done",
+  "instruction": "All tracked tasks are complete.\nReview or verify the change as appropriate before archiving.",
+  "context": "Language: pt-BR\nAll artifacts must be written in pt-BR.\nKeep OpenSpec structural headings and SHALL/MUST keywords in English.\n",
+  "root": {
+    "path": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev",
+    "source": "nearest"
+  }
+}

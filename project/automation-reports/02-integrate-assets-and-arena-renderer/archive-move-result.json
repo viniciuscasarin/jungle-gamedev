@@ -1,0 +1,12 @@
+{
+  "schema": "spec-driven",
+  "change": "integrate-assets-and-arena-renderer",
+  "source": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\integrate-assets-and-arena-renderer",
+  "destination": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\archive\\2026-10-27-integrate-assets-and-arena-renderer",
+  "destinationAbsentBeforeMove": true,
+  "pathsInsideWorkspace": true,
+  "sourceAbsentAfterMove": true,
+  "metadataPreserved": true,
+  "moveSucceeded": true,
+  "preMoveListExit": 0
+}

@@ -1,0 +1,434 @@
+{
+  "metadata": {
+    "actualWorkers": 1
+  },
+  "startTime": 1793124163474,
+  "duration": 85591.809,
+  "files": [
+    {
+      "fileId": "807b057befe601acf025",
+      "fileName": "arena.spec.ts",
+      "tests": [
+        {
+          "testId": "807b057befe601acf025-24a4a5d14dacb735d06d",
+          "title": "keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures",
+          "projectName": "dev",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 59,
+            "column": 1
+          },
+          "duration": 11444,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "menu-desktop",
+                  "contentType": "image/png",
+                  "path": "data/42118e37a77bbd223a72e4f90382b44e6026e910.png"
+                },
+                {
+                  "name": "menu-320x568",
+                  "contentType": "image/png",
+                  "path": "data/1407b7a066bf0b254455faf432afddee0c795fc0.png"
+                },
+                {
+                  "name": "loading",
+                  "contentType": "image/png",
+                  "path": "data/eaa728fd2ce86d755b73e75cd5e3d852faa92946.png"
+                },
+                {
+                  "name": "resource-cycles",
+                  "contentType": "application/json"
+                },
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:02:53.429Z",
+              "workerIndex": 0
+            }
+          ]
+        },
+        {
+          "testId": "807b057befe601acf025-8bf90326acea5f0788b9",
+          "title": "fail-once before cold/warm cache and Retry without refresh",
+          "projectName": "dev",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 82,
+            "column": 1
+          },
+          "duration": 7237,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "fail-once",
+                  "contentType": "image/png",
+                  "path": "data/a184f8cd330fbdd206a0f9f5a94bf2ce2c04fccb.png"
+                },
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:03:06.778Z",
+              "workerIndex": 0
+            }
+          ]
+        },
+        {
+          "testId": "807b057befe601acf025-5827e8a22ac75cfc2752",
+          "title": "Main Menu cancels a pending load and old callbacks cannot replace a new attempt",
+          "projectName": "dev",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 95,
+            "column": 1
+          },
+          "duration": 4733,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:03:14.032Z",
+              "workerIndex": 0
+            }
+          ]
+        },
+        {
+          "testId": "807b057befe601acf025-790ae829baf17ed7d049",
+          "title": "real asset failure retries and graphics init failure stays semantic",
+          "projectName": "dev",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 105,
+            "column": 1
+          },
+          "duration": 5464,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "graphics-failure",
+                  "contentType": "image/png",
+                  "path": "data/a184f8cd330fbdd206a0f9f5a94bf2ce2c04fccb.png"
+                },
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:03:18.781Z",
+              "workerIndex": 0
+            }
+          ]
+        },
+        {
+          "testId": "807b057befe601acf025-949bf2c1aee3da20e826",
+          "title": "fits desktop/portrait/landscape and isolated DPR changes without rebuilding",
+          "projectName": "dev",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 116,
+            "column": 1
+          },
+          "duration": 5259,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "desktop",
+                  "contentType": "image/png",
+                  "path": "data/bafe364523194e57773f5f375079b74930b68253.png"
+                },
+                {
+                  "name": "320x568",
+                  "contentType": "image/png",
+                  "path": "data/de53332ee1bca43bf0ae864829e9c8be5c375b53.png"
+                },
+                {
+                  "name": "390x844",
+                  "contentType": "image/png",
+                  "path": "data/b7054e76bd0591d382a9a13806a3ba59cb638eb0.png"
+                },
+                {
+                  "name": "844x390",
+                  "contentType": "image/png",
+                  "path": "data/2dba49ae4e8d43e06213792e45c764310f04e75a.png"
+                },
+                {
+                  "name": "844x390-dpr2",
+                  "contentType": "image/png",
+                  "path": "data/ae4220401b4831e3d06b74e4fc9f836c39855cc1.png"
+                },
+                {
+                  "name": "viewport-observations",
+                  "contentType": "application/json"
+                },
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:03:24.268Z",
+              "workerIndex": 0
+            }
+          ]
+        },
+        {
+          "testId": "807b057befe601acf025-c8cf7e5a0cb8f602a984",
+          "title": "keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures",
+          "projectName": "preview",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 59,
+            "column": 1
+          },
+          "duration": 13368,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "menu-desktop",
+                  "contentType": "image/png",
+                  "path": "data/42118e37a77bbd223a72e4f90382b44e6026e910.png"
+                },
+                {
+                  "name": "menu-320x568",
+                  "contentType": "image/png",
+                  "path": "data/1407b7a066bf0b254455faf432afddee0c795fc0.png"
+                },
+                {
+                  "name": "loading",
+                  "contentType": "image/png",
+                  "path": "data/eaa728fd2ce86d755b73e75cd5e3d852faa92946.png"
+                },
+                {
+                  "name": "resource-cycles",
+                  "contentType": "application/json"
+                },
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:03:31.508Z",
+              "workerIndex": 1
+            }
+          ]
+        },
+        {
+          "testId": "807b057befe601acf025-5a6b5d0cfc685187089a",
+          "title": "fail-once before cold/warm cache and Retry without refresh",
+          "projectName": "preview",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 82,
+            "column": 1
+          },
+          "duration": 6560,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "fail-once",
+                  "contentType": "image/png",
+                  "path": "data/a184f8cd330fbdd206a0f9f5a94bf2ce2c04fccb.png"
+                },
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:03:47.043Z",
+              "workerIndex": 1
+            }
+          ]
+        },
+        {
+          "testId": "807b057befe601acf025-cc3c43754d7ca8c0fc9e",
+          "title": "Main Menu cancels a pending load and old callbacks cannot replace a new attempt",
+          "projectName": "preview",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 95,
+            "column": 1
+          },
+          "duration": 4164,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:03:53.632Z",
+              "workerIndex": 1
+            }
+          ]
+        },
+        {
+          "testId": "807b057befe601acf025-aefccbb2aae6611a7f99",
+          "title": "real asset failure retries and graphics init failure stays semantic",
+          "projectName": "preview",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 105,
+            "column": 1
+          },
+          "duration": 4793,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "graphics-failure",
+                  "contentType": "image/png",
+                  "path": "data/a184f8cd330fbdd206a0f9f5a94bf2ce2c04fccb.png"
+                },
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:03:57.828Z",
+              "workerIndex": 1
+            }
+          ]
+        },
+        {
+          "testId": "807b057befe601acf025-099306bf2d064a363335",
+          "title": "fits desktop/portrait/landscape and isolated DPR changes without rebuilding",
+          "projectName": "preview",
+          "location": {
+            "file": "arena.spec.ts",
+            "line": 116,
+            "column": 1
+          },
+          "duration": 4445,
+          "annotations": [],
+          "tags": [],
+          "outcome": "expected",
+          "path": [],
+          "ok": true,
+          "results": [
+            {
+              "attachments": [
+                {
+                  "name": "desktop",
+                  "contentType": "image/png",
+                  "path": "data/bafe364523194e57773f5f375079b74930b68253.png"
+                },
+                {
+                  "name": "320x568",
+                  "contentType": "image/png",
+                  "path": "data/de53332ee1bca43bf0ae864829e9c8be5c375b53.png"
+                },
+                {
+                  "name": "390x844",
+                  "contentType": "image/png",
+                  "path": "data/b7054e76bd0591d382a9a13806a3ba59cb638eb0.png"
+                },
+                {
+                  "name": "844x390",
+                  "contentType": "image/png",
+                  "path": "data/2dba49ae4e8d43e06213792e45c764310f04e75a.png"
+                },
+                {
+                  "name": "844x390-dpr2",
+                  "contentType": "image/png",
+                  "path": "data/ae4220401b4831e3d06b74e4fc9f836c39855cc1.png"
+                },
+                {
+                  "name": "viewport-observations",
+                  "contentType": "application/json"
+                },
+                {
+                  "name": "console-issues",
+                  "contentType": "application/json"
+                }
+              ],
+              "startTime": "2026-10-27T18:04:02.637Z",
+              "workerIndex": 1
+            }
+          ]
+        }
+      ],
+      "stats": {
+        "total": 10,
+        "expected": 10,
+        "unexpected": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "ok": true
+      }
+    }
+  ],
+  "projectNames": [
+    "dev",
+    "preview"
+  ],
+  "stats": {
+    "total": 10,
+    "expected": 10,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "errors": [],
+  "options": {},
+  "machines": []
+}

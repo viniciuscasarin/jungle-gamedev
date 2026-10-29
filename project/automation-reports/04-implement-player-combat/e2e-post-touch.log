@@ -1,0 +1,23 @@
+
+> pirate-battle@0.1.0 e2e
+> playwright test --grep real Q W E|held QWE|default empty --reporter=list --output project/automation-reports/04-implement-player-combat/post-touch-test-results
+
+[WebServer] (node:11532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5488) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:14512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [dev] › tests\e2e\arena.spec.ts:262:1 › real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing (2.9s)
+  ok 2 [dev] › tests\e2e\arena.spec.ts:298:1 › held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral (2.9s)
+  ok 3 [dev] › tests\e2e\arena.spec.ts:331:1 › default empty and five active projectile teardown cycles reuse textures and release all native resources (5.0s)
+(node:14140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [preview] › tests\e2e\arena.spec.ts:262:1 › real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing (2.4s)
+  ok 5 [preview] › tests\e2e\arena.spec.ts:298:1 › held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral (2.8s)
+  ok 6 [preview] › tests\e2e\arena.spec.ts:331:1 › default empty and five active projectile teardown cycles reuse textures and release all native resources (4.5s)
+
+  6 passed (32.4s)

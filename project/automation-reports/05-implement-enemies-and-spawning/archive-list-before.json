@@ -1,0 +1,15 @@
+{
+  "changes": [
+    {
+      "name": "implement-enemies-and-spawning",
+      "completedTasks": 17,
+      "totalTasks": 17,
+      "lastModified": "2026-10-28T03:11:17.578Z",
+      "status": "complete"
+    }
+  ],
+  "root": {
+    "path": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev",
+    "source": "nearest"
+  }
+}

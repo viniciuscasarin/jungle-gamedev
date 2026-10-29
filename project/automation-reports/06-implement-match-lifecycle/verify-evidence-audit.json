@@ -1,0 +1,1860 @@
+{
+  "verifiedAtUtc": "2026-10-28T07:16:51.4931065Z",
+  "source": "playwright-report/index.html embedded ZIP, original detailed attachments, extracted browser-evidence, CLI",
+  "stats": {
+    "total": 34,
+    "expected": 34,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "pngAttachments": 112,
+  "pngFiles": 104,
+  "reusedImageLabels": [
+    "dev-route-600-280",
+    "dev-result-time-320",
+    "dev-paused-desktop",
+    "dev-paused-320",
+    "preview-route-600-280",
+    "preview-result-time-320",
+    "preview-paused-desktop",
+    "preview-paused-320"
+  ],
+  "imageLabelPolicy": "Repeated project/label files contain the latest capture. Original per-test captures remain in HTML report data.",
+  "jsonAttachments": 24,
+  "jsonFiles": 24,
+  "specs": [
+    {
+      "capability": "application-shell",
+      "requirements": 1,
+      "scenarios": 7
+    },
+    {
+      "capability": "arena-rendering",
+      "requirements": 1,
+      "scenarios": 7
+    },
+    {
+      "capability": "game-configuration",
+      "requirements": 2,
+      "scenarios": 5
+    },
+    {
+      "capability": "match-lifecycle",
+      "requirements": 8,
+      "scenarios": 15
+    },
+    {
+      "capability": "player-combat",
+      "requirements": 2,
+      "scenarios": 5
+    },
+    {
+      "capability": "simulation-contracts",
+      "requirements": 2,
+      "scenarios": 4
+    },
+    {
+      "capability": "simulation-runtime",
+      "requirements": 3,
+      "scenarios": 6
+    }
+  ],
+  "baselineScenarios": [
+    {
+      "capability": "application-shell",
+      "requirement": "Tela inicial mínima acessível",
+      "previous": 5,
+      "delta": 7,
+      "preserved": true
+    },
+    {
+      "capability": "arena-rendering",
+      "requirement": "Arena composta com player autoritativo",
+      "previous": 6,
+      "delta": 7,
+      "preserved": true
+    },
+    {
+      "capability": "game-configuration",
+      "requirement": "Snapshot profundamente imutável",
+      "previous": 2,
+      "delta": 3,
+      "preserved": true
+    },
+    {
+      "capability": "player-combat",
+      "requirement": "Facções e proveniência estáveis",
+      "previous": 2,
+      "delta": 2,
+      "preserved": true
+    },
+    {
+      "capability": "player-combat",
+      "requirement": "Dano único e destruição atômica",
+      "previous": 2,
+      "delta": 3,
+      "preserved": true
+    },
+    {
+      "capability": "simulation-contracts",
+      "requirement": "Resultado completo imutável",
+      "previous": 2,
+      "delta": 3,
+      "preserved": true
+    },
+    {
+      "capability": "simulation-contracts",
+      "requirement": "Contratos sem execução antecipada de mecânicas",
+      "previous": 1,
+      "delta": 1,
+      "preserved": true
+    },
+    {
+      "capability": "simulation-runtime",
+      "requirement": "Execução autoritativa determinística",
+      "previous": 2,
+      "delta": 2,
+      "preserved": true
+    },
+    {
+      "capability": "simulation-runtime",
+      "requirement": "Tempo congelado e retomada limpa",
+      "previous": 2,
+      "delta": 2,
+      "preserved": true
+    }
+  ],
+  "cycles": [
+    {
+      "project": "dev",
+      "count": 5,
+      "baselineNativeInput": 8,
+      "cacheTextures": 31,
+      "aiDeathActiveMs": 16000.000000000002
+    },
+    {
+      "project": "preview",
+      "count": 5,
+      "baselineNativeInput": 8,
+      "cacheTextures": 31,
+      "aiDeathActiveMs": 16000.000000000002
+    }
+  ],
+  "checks": [
+    {
+      "name": "Original HTML: 34 expected, zero unexpected/flaky/skipped/errors",
+      "passed": true
+    },
+    {
+      "name": "Original HTML: all detailed tests expected",
+      "passed": true
+    },
+    {
+      "name": "dev has 17 tests",
+      "passed": true
+    },
+    {
+      "name": "preview has 17 tests",
+      "passed": true
+    },
+    {
+      "name": "dev original image menu-desktop",
+      "passed": true
+    },
+    {
+      "name": "dev original image menu-320x568",
+      "passed": true
+    },
+    {
+      "name": "dev original image loading",
+      "passed": true
+    },
+    {
+      "name": "dev JSON resource-cycles",
+      "passed": true
+    },
+    {
+      "name": "dev console keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-350-270",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-350-60",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-85-60",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-85-260",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-350-260",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-600-280",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-870-280",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-870-495",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-600-495",
+      "passed": true
+    },
+    {
+      "name": "dev original image route-600-280",
+      "passed": true
+    },
+    {
+      "name": "dev original image northwest-frontal-held-r",
+      "passed": true
+    },
+    {
+      "name": "dev original image northwest-oblique-slide",
+      "passed": true
+    },
+    {
+      "name": "dev original image southeast-frontal",
+      "passed": true
+    },
+    {
+      "name": "dev original image southeast-oblique-slide",
+      "passed": true
+    },
+    {
+      "name": "dev JSON navigation-observations",
+      "passed": true
+    },
+    {
+      "name": "dev console real mouse and R traverse four sides of both islands and slide at frontal/oblique contact",
+      "passed": true
+    },
+    {
+      "name": "dev original image paused-desktop",
+      "passed": true
+    },
+    {
+      "name": "dev original image paused-320",
+      "passed": true
+    },
+    {
+      "name": "dev original image hidden-paused-landscape",
+      "passed": true
+    },
+    {
+      "name": "dev JSON focus-observations",
+      "passed": true
+    },
+    {
+      "name": "dev console retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R",
+      "passed": true
+    },
+    {
+      "name": "dev original image fail-once",
+      "passed": true
+    },
+    {
+      "name": "dev console fail-once before cold/warm cache and Retry without refresh",
+      "passed": true
+    },
+    {
+      "name": "dev console Main Menu cancels a pending load and old callbacks cannot replace a new attempt",
+      "passed": true
+    },
+    {
+      "name": "dev original image graphics-failure",
+      "passed": true
+    },
+    {
+      "name": "dev console real asset failure retries and graphics init failure stays semantic",
+      "passed": true
+    },
+    {
+      "name": "dev original image desktop",
+      "passed": true
+    },
+    {
+      "name": "dev original image 320x568",
+      "passed": true
+    },
+    {
+      "name": "dev original image 390x844",
+      "passed": true
+    },
+    {
+      "name": "dev original image 844x390",
+      "passed": true
+    },
+    {
+      "name": "dev original image 844x390-dpr2",
+      "passed": true
+    },
+    {
+      "name": "dev JSON viewport-observations",
+      "passed": true
+    },
+    {
+      "name": "dev console fits desktop/portrait/landscape and isolated DPR changes without rebuilding",
+      "passed": true
+    },
+    {
+      "name": "dev original image combat-seven-shots-desktop",
+      "passed": true
+    },
+    {
+      "name": "dev original image combat-320",
+      "passed": true
+    },
+    {
+      "name": "dev original image combat-landscape",
+      "passed": true
+    },
+    {
+      "name": "dev original image combat-score-and-sailing",
+      "passed": true
+    },
+    {
+      "name": "dev JSON combat-observations",
+      "passed": true
+    },
+    {
+      "name": "dev console real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing",
+      "passed": true
+    },
+    {
+      "name": "dev JSON combat-freeze",
+      "passed": true
+    },
+    {
+      "name": "dev console held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral",
+      "passed": true
+    },
+    {
+      "name": "dev JSON combat-dynamic-cycles",
+      "passed": true
+    },
+    {
+      "name": "dev console default empty and five active projectile teardown cycles reuse textures and release all native resources",
+      "passed": true
+    },
+    {
+      "name": "dev original image spawn-warning",
+      "passed": true
+    },
+    {
+      "name": "dev original image spawn-warning-paused-320",
+      "passed": true
+    },
+    {
+      "name": "dev original image autonomous-chaser",
+      "passed": true
+    },
+    {
+      "name": "dev original image autonomous-kill-score",
+      "passed": true
+    },
+    {
+      "name": "dev original image autonomous-shooter-after-chaser-kill",
+      "passed": true
+    },
+    {
+      "name": "dev JSON director-observations",
+      "passed": true
+    },
+    {
+      "name": "dev console normal director telegraphs freeze with active time, materializes both archetypes and real Q earns score",
+      "passed": true
+    },
+    {
+      "name": "dev original image shooter-island-blocked",
+      "passed": true
+    },
+    {
+      "name": "dev original image shooter-island-clear-fire",
+      "passed": true
+    },
+    {
+      "name": "dev JSON island-observations",
+      "passed": true
+    },
+    {
+      "name": "dev console normal island preparation blocks Shooter fire until it navigates to actual line of sight",
+      "passed": true
+    },
+    {
+      "name": "dev original image result-time-320",
+      "passed": true
+    },
+    {
+      "name": "dev original image result-time-desktop",
+      "passed": true
+    },
+    {
+      "name": "dev original image result-time-320",
+      "passed": true
+    },
+    {
+      "name": "dev original image result-time-landscape",
+      "passed": true
+    },
+    {
+      "name": "dev original image menu-last-result-desktop",
+      "passed": true
+    },
+    {
+      "name": "dev original image menu-last-result-320",
+      "passed": true
+    },
+    {
+      "name": "dev original image menu-last-result-landscape",
+      "passed": true
+    },
+    {
+      "name": "dev JSON lifecycle-timer-replay",
+      "passed": true
+    },
+    {
+      "name": "dev console lifecycle valid 60s empty timer, terminal freeze, historical Last Result, refresh and current-settings replay",
+      "passed": true
+    },
+    {
+      "name": "dev original image paused-desktop",
+      "passed": true
+    },
+    {
+      "name": "dev original image abandon-confirm-desktop",
+      "passed": true
+    },
+    {
+      "name": "dev original image paused-320",
+      "passed": true
+    },
+    {
+      "name": "dev original image abandon-confirm-320",
+      "passed": true
+    },
+    {
+      "name": "dev original image paused-landscape",
+      "passed": true
+    },
+    {
+      "name": "dev original image abandon-confirm-landscape",
+      "passed": true
+    },
+    {
+      "name": "dev original image result-death-desktop",
+      "passed": true
+    },
+    {
+      "name": "dev original image result-death-320",
+      "passed": true
+    },
+    {
+      "name": "dev original image result-death-landscape",
+      "passed": true
+    },
+    {
+      "name": "dev JSON lifecycle-ai-death",
+      "passed": true
+    },
+    {
+      "name": "dev console lifecycle Escape P Pause, contained dialogs, Keep Playing stays Paused, real AI death and result visuals",
+      "passed": true
+    },
+    {
+      "name": "dev original image result-storage-denied",
+      "passed": true
+    },
+    {
+      "name": "dev console lifecycle denied storage keeps play and memory result available with honest status",
+      "passed": true
+    },
+    {
+      "name": "dev original image captured-custom-map",
+      "passed": true
+    },
+    {
+      "name": "dev console lifecycle captured custom renderer geometry and pointer world clamp survive resize",
+      "passed": true
+    },
+    {
+      "name": "dev JSON lifecycle-five-cycles",
+      "passed": true
+    },
+    {
+      "name": "dev console lifecycle five completed replay abandon cycles have no stale native resources under Strict Mode",
+      "passed": true
+    },
+    {
+      "name": "preview original image menu-desktop",
+      "passed": true
+    },
+    {
+      "name": "preview original image menu-320x568",
+      "passed": true
+    },
+    {
+      "name": "preview original image loading",
+      "passed": true
+    },
+    {
+      "name": "preview JSON resource-cycles",
+      "passed": true
+    },
+    {
+      "name": "preview console keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-350-270",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-350-60",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-85-60",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-85-260",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-350-260",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-600-280",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-870-280",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-870-495",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-600-495",
+      "passed": true
+    },
+    {
+      "name": "preview original image route-600-280",
+      "passed": true
+    },
+    {
+      "name": "preview original image northwest-frontal-held-r",
+      "passed": true
+    },
+    {
+      "name": "preview original image northwest-oblique-slide",
+      "passed": true
+    },
+    {
+      "name": "preview original image southeast-frontal",
+      "passed": true
+    },
+    {
+      "name": "preview original image southeast-oblique-slide",
+      "passed": true
+    },
+    {
+      "name": "preview JSON navigation-observations",
+      "passed": true
+    },
+    {
+      "name": "preview console real mouse and R traverse four sides of both islands and slide at frontal/oblique contact",
+      "passed": true
+    },
+    {
+      "name": "preview original image paused-desktop",
+      "passed": true
+    },
+    {
+      "name": "preview original image paused-320",
+      "passed": true
+    },
+    {
+      "name": "preview original image hidden-paused-landscape",
+      "passed": true
+    },
+    {
+      "name": "preview JSON focus-observations",
+      "passed": true
+    },
+    {
+      "name": "preview console retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R",
+      "passed": true
+    },
+    {
+      "name": "preview original image fail-once",
+      "passed": true
+    },
+    {
+      "name": "preview console fail-once before cold/warm cache and Retry without refresh",
+      "passed": true
+    },
+    {
+      "name": "preview console Main Menu cancels a pending load and old callbacks cannot replace a new attempt",
+      "passed": true
+    },
+    {
+      "name": "preview original image graphics-failure",
+      "passed": true
+    },
+    {
+      "name": "preview console real asset failure retries and graphics init failure stays semantic",
+      "passed": true
+    },
+    {
+      "name": "preview original image desktop",
+      "passed": true
+    },
+    {
+      "name": "preview original image 320x568",
+      "passed": true
+    },
+    {
+      "name": "preview original image 390x844",
+      "passed": true
+    },
+    {
+      "name": "preview original image 844x390",
+      "passed": true
+    },
+    {
+      "name": "preview original image 844x390-dpr2",
+      "passed": true
+    },
+    {
+      "name": "preview JSON viewport-observations",
+      "passed": true
+    },
+    {
+      "name": "preview console fits desktop/portrait/landscape and isolated DPR changes without rebuilding",
+      "passed": true
+    },
+    {
+      "name": "preview original image combat-seven-shots-desktop",
+      "passed": true
+    },
+    {
+      "name": "preview original image combat-320",
+      "passed": true
+    },
+    {
+      "name": "preview original image combat-landscape",
+      "passed": true
+    },
+    {
+      "name": "preview original image combat-score-and-sailing",
+      "passed": true
+    },
+    {
+      "name": "preview JSON combat-observations",
+      "passed": true
+    },
+    {
+      "name": "preview console real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing",
+      "passed": true
+    },
+    {
+      "name": "preview JSON combat-freeze",
+      "passed": true
+    },
+    {
+      "name": "preview console held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral",
+      "passed": true
+    },
+    {
+      "name": "preview JSON combat-dynamic-cycles",
+      "passed": true
+    },
+    {
+      "name": "preview console default empty and five active projectile teardown cycles reuse textures and release all native resources",
+      "passed": true
+    },
+    {
+      "name": "preview original image spawn-warning",
+      "passed": true
+    },
+    {
+      "name": "preview original image spawn-warning-paused-320",
+      "passed": true
+    },
+    {
+      "name": "preview original image autonomous-chaser",
+      "passed": true
+    },
+    {
+      "name": "preview original image autonomous-kill-score",
+      "passed": true
+    },
+    {
+      "name": "preview original image autonomous-shooter-after-chaser-kill",
+      "passed": true
+    },
+    {
+      "name": "preview JSON director-observations",
+      "passed": true
+    },
+    {
+      "name": "preview console normal director telegraphs freeze with active time, materializes both archetypes and real Q earns score",
+      "passed": true
+    },
+    {
+      "name": "preview original image shooter-island-blocked",
+      "passed": true
+    },
+    {
+      "name": "preview original image shooter-island-clear-fire",
+      "passed": true
+    },
+    {
+      "name": "preview JSON island-observations",
+      "passed": true
+    },
+    {
+      "name": "preview console normal island preparation blocks Shooter fire until it navigates to actual line of sight",
+      "passed": true
+    },
+    {
+      "name": "preview original image result-time-320",
+      "passed": true
+    },
+    {
+      "name": "preview original image result-time-desktop",
+      "passed": true
+    },
+    {
+      "name": "preview original image result-time-320",
+      "passed": true
+    },
+    {
+      "name": "preview original image result-time-landscape",
+      "passed": true
+    },
+    {
+      "name": "preview original image menu-last-result-desktop",
+      "passed": true
+    },
+    {
+      "name": "preview original image menu-last-result-320",
+      "passed": true
+    },
+    {
+      "name": "preview original image menu-last-result-landscape",
+      "passed": true
+    },
+    {
+      "name": "preview JSON lifecycle-timer-replay",
+      "passed": true
+    },
+    {
+      "name": "preview console lifecycle valid 60s empty timer, terminal freeze, historical Last Result, refresh and current-settings replay",
+      "passed": true
+    },
+    {
+      "name": "preview original image paused-desktop",
+      "passed": true
+    },
+    {
+      "name": "preview original image abandon-confirm-desktop",
+      "passed": true
+    },
+    {
+      "name": "preview original image paused-320",
+      "passed": true
+    },
+    {
+      "name": "preview original image abandon-confirm-320",
+      "passed": true
+    },
+    {
+      "name": "preview original image paused-landscape",
+      "passed": true
+    },
+    {
+      "name": "preview original image abandon-confirm-landscape",
+      "passed": true
+    },
+    {
+      "name": "preview original image result-death-desktop",
+      "passed": true
+    },
+    {
+      "name": "preview original image result-death-320",
+      "passed": true
+    },
+    {
+      "name": "preview original image result-death-landscape",
+      "passed": true
+    },
+    {
+      "name": "preview JSON lifecycle-ai-death",
+      "passed": true
+    },
+    {
+      "name": "preview console lifecycle Escape P Pause, contained dialogs, Keep Playing stays Paused, real AI death and result visuals",
+      "passed": true
+    },
+    {
+      "name": "preview original image result-storage-denied",
+      "passed": true
+    },
+    {
+      "name": "preview console lifecycle denied storage keeps play and memory result available with honest status",
+      "passed": true
+    },
+    {
+      "name": "preview original image captured-custom-map",
+      "passed": true
+    },
+    {
+      "name": "preview console lifecycle captured custom renderer geometry and pointer world clamp survive resize",
+      "passed": true
+    },
+    {
+      "name": "preview JSON lifecycle-five-cycles",
+      "passed": true
+    },
+    {
+      "name": "preview console lifecycle five completed replay abandon cycles have no stale native resources under Strict Mode",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-spawn-warning-paused-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-result-death-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-route-85-260.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-autonomous-shooter-after-chaser-kill.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-paused-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-loading.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-route-870-280.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-menu-last-result-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-fail-once.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-route-600-495.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-route-350-270.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-combat-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-menu-last-result-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-northwest-oblique-slide.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-fail-once.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-menu-last-result-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-combat-seven-shots-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-spawn-warning.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-result-storage-denied.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-spawn-warning.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-paused-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-shooter-island-clear-fire.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-paused-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-paused-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-combat-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-captured-custom-map.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-abandon-confirm-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-spawn-warning-paused-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-menu-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-result-storage-denied.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-northwest-frontal-held-r.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-route-85-60.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-southeast-frontal.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-shooter-island-blocked.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-graphics-failure.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-southeast-oblique-slide.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-route-350-60.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-autonomous-chaser.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-844x390.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-menu-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-combat-score-and-sailing.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-844x390-dpr2.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-result-time-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-autonomous-kill-score.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-southeast-frontal.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-paused-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-menu-320x568.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-northwest-oblique-slide.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-abandon-confirm-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-captured-custom-map.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-route-350-270.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-result-time-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-390x844.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-combat-score-and-sailing.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-route-870-495.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-abandon-confirm-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-844x390-dpr2.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-menu-last-result-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-menu-320x568.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-loading.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-390x844.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-menu-last-result-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-abandon-confirm-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-route-600-280.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-route-85-260.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-combat-seven-shots-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-northwest-frontal-held-r.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-320x568.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-result-death-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-abandon-confirm-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-autonomous-chaser.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-route-870-280.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-autonomous-shooter-after-chaser-kill.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-result-death-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-844x390.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-combat-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-abandon-confirm-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-result-time-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-hidden-paused-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-shooter-island-clear-fire.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-route-85-60.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-result-time-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-route-600-280.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-route-350-60.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-graphics-failure.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-shooter-island-blocked.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-320x568.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-result-death-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-route-870-495.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-combat-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-result-time-desktop.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-paused-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-route-600-495.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-result-time-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-menu-last-result-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-hidden-paused-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-route-350-260.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-result-death-landscape.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-route-350-260.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-southeast-oblique-slide.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image preview-result-death-320.png",
+      "passed": true
+    },
+    {
+      "name": "Latest extracted image dev-autonomous-kill-score.png",
+      "passed": true
+    },
+    {
+      "name": "dev five mixed cycles",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 removed applications",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 removed resources",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 removed observers",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 removed resize",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 removed density",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 removed frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 0 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 removed applications",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 removed resources",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 removed observers",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 removed resize",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 removed density",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 removed frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 1 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 removed applications",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 removed resources",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 removed observers",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 removed resize",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 removed density",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 removed frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 2 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 removed applications",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 removed resources",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 removed observers",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 removed resize",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 removed density",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 removed frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 3 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 removed applications",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 removed resources",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 removed observers",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 removed resize",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 removed density",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 removed frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "dev cycle 4 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "dev exact real-engine 60s terminal",
+      "passed": true
+    },
+    {
+      "name": "dev new replay ID/current options/history",
+      "passed": true
+    },
+    {
+      "name": "dev AI death and pause",
+      "passed": true
+    },
+    {
+      "name": "preview five mixed cycles",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 removed applications",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 removed resources",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 removed observers",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 removed resize",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 removed density",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 removed frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 0 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 removed applications",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 removed resources",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 removed observers",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 removed resize",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 removed density",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 removed frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 1 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 removed applications",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 removed resources",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 removed observers",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 removed resize",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 removed density",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 removed frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 2 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 removed applications",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 removed resources",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 removed observers",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 removed resize",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 removed density",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 removed frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 3 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 removed applications",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 removed resources",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 removed subscriptions",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 removed inputListeners",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 removed canvases",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 removed observers",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 removed resize",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 removed density",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 removed frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 menu clean and cache stable",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 terminal stops frames",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 single replay owner",
+      "passed": true
+    },
+    {
+      "name": "preview cycle 4 replay starts clean",
+      "passed": true
+    },
+    {
+      "name": "preview exact real-engine 60s terminal",
+      "passed": true
+    },
+    {
+      "name": "preview new replay ID/current options/history",
+      "passed": true
+    },
+    {
+      "name": "preview AI death and pause",
+      "passed": true
+    },
+    {
+      "name": "Seven deltas, nineteen requirements, forty-nine scenarios",
+      "passed": true
+    },
+    {
+      "name": "Preserved baseline scenarios: application-shell / Tela inicial mínima acessível",
+      "passed": true
+    },
+    {
+      "name": "Preserved baseline scenarios: arena-rendering / Arena composta com player autoritativo",
+      "passed": true
+    },
+    {
+      "name": "Preserved baseline scenarios: game-configuration / Snapshot profundamente imutável",
+      "passed": true
+    },
+    {
+      "name": "Preserved baseline scenarios: player-combat / Facções e proveniência estáveis",
+      "passed": true
+    },
+    {
+      "name": "Preserved baseline scenarios: player-combat / Dano único e destruição atômica",
+      "passed": true
+    },
+    {
+      "name": "Preserved baseline scenarios: simulation-contracts / Resultado completo imutável",
+      "passed": true
+    },
+    {
+      "name": "Preserved baseline scenarios: simulation-contracts / Contratos sem execução antecipada de mecânicas",
+      "passed": true
+    },
+    {
+      "name": "Preserved baseline scenarios: simulation-runtime / Execução autoritativa determinística",
+      "passed": true
+    },
+    {
+      "name": "Preserved baseline scenarios: simulation-runtime / Tempo congelado e retomada limpa",
+      "passed": true
+    },
+    {
+      "name": "CLI tracks complete 24/24 tasks",
+      "passed": true
+    },
+    {
+      "name": "All product sources predate final original report",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

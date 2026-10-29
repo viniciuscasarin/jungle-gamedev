@@ -1,0 +1,227 @@
+{
+  "browser": "156.0.8078.4",
+  "pages": [
+    {
+      "server": "dev",
+      "viewport": "desktop",
+      "title": "Pirate Battle",
+      "status": "Static renderer preview · No match is running",
+      "viewportWidth": 1280,
+      "scrollWidth": 1280,
+      "canvasCount": 1,
+      "canvasHidden": true,
+      "canvasSize": [
+        990,
+        557
+      ],
+      "observerCount": 2,
+      "resizeListeners": 1,
+      "pendingAnimationFrames": 0,
+      "buttons": 0,
+      "aria": "- main:\n  - paragraph: FOUNDATION / 01\n  - heading \"Pirate Battle\" [level=1]\n  - paragraph: The voyage starts here.\n  - paragraph: \"The technical foundation is ready: typed game configuration, simulation contracts, and a static ocean preview. Gameplay will follow in later increments.\"\n  - figure \"Static renderer preview · No match is running\":\n    - status: Static renderer preview · No match is running\n  - text: React + PixiJS + TypeScript Technical preview",
+      "screenshot": "dev-desktop.png",
+      "issues": [
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        }
+      ]
+    },
+    {
+      "server": "dev",
+      "viewport": "320px",
+      "title": "Pirate Battle",
+      "status": "Static renderer preview · No match is running",
+      "viewportWidth": 320,
+      "scrollWidth": 320,
+      "canvasCount": 1,
+      "canvasHidden": true,
+      "canvasSize": [
+        270,
+        152
+      ],
+      "observerCount": 2,
+      "resizeListeners": 1,
+      "pendingAnimationFrames": 0,
+      "buttons": 0,
+      "aria": "- main:\n  - paragraph: FOUNDATION / 01\n  - heading \"Pirate Battle\" [level=1]\n  - paragraph: The voyage starts here.\n  - paragraph: \"The technical foundation is ready: typed game configuration, simulation contracts, and a static ocean preview. Gameplay will follow in later increments.\"\n  - figure \"Static renderer preview · No match is running\":\n    - status: Static renderer preview · No match is running\n  - text: React + PixiJS + TypeScript Technical preview",
+      "screenshot": "dev-320px.png",
+      "issues": [
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+        }
+      ]
+    },
+    {
+      "server": "dev",
+      "consoleAfterCycles": [
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "message": "[.WebGL-0x1b140041d800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+        }
+      ]
+    },
+    {
+      "server": "preview",
+      "viewport": "desktop",
+      "title": "Pirate Battle",
+      "status": "Static renderer preview · No match is running",
+      "viewportWidth": 1280,
+      "scrollWidth": 1280,
+      "canvasCount": 1,
+      "canvasHidden": true,
+      "canvasSize": [
+        990,
+        557
+      ],
+      "observerCount": 2,
+      "resizeListeners": 1,
+      "pendingAnimationFrames": 0,
+      "buttons": 0,
+      "aria": "- main:\n  - paragraph: FOUNDATION / 01\n  - heading \"Pirate Battle\" [level=1]\n  - paragraph: The voyage starts here.\n  - paragraph: \"The technical foundation is ready: typed game configuration, simulation contracts, and a static ocean preview. Gameplay will follow in later increments.\"\n  - figure \"Static renderer preview · No match is running\":\n    - status: Static renderer preview · No match is running\n  - text: React + PixiJS + TypeScript Technical preview",
+      "screenshot": "preview-desktop.png",
+      "issues": []
+    },
+    {
+      "server": "preview",
+      "viewport": "320px",
+      "title": "Pirate Battle",
+      "status": "Static renderer preview · No match is running",
+      "viewportWidth": 320,
+      "scrollWidth": 320,
+      "canvasCount": 1,
+      "canvasHidden": true,
+      "canvasSize": [
+        270,
+        152
+      ],
+      "observerCount": 2,
+      "resizeListeners": 1,
+      "pendingAnimationFrames": 0,
+      "buttons": 0,
+      "aria": "- main:\n  - paragraph: FOUNDATION / 01\n  - heading \"Pirate Battle\" [level=1]\n  - paragraph: The voyage starts here.\n  - paragraph: \"The technical foundation is ready: typed game configuration, simulation contracts, and a static ocean preview. Gameplay will follow in later increments.\"\n  - figure \"Static renderer preview · No match is running\":\n    - status: Static renderer preview · No match is running\n  - text: React + PixiJS + TypeScript Technical preview",
+      "screenshot": "preview-320px.png",
+      "issues": []
+    },
+    {
+      "server": "preview",
+      "consoleAfterCycles": []
+    }
+  ],
+  "cycles": [
+    {
+      "cycle": 1,
+      "mounted": {
+        "canvases": 2,
+        "observers": 4,
+        "listeners": 2,
+        "pendingAnimationFrames": 0
+      },
+      "unmounted": {
+        "canvases": 1,
+        "observers": 2,
+        "listeners": 1,
+        "pendingAnimationFrames": 0
+      }
+    },
+    {
+      "cycle": 2,
+      "mounted": {
+        "canvases": 2,
+        "observers": 4,
+        "listeners": 2,
+        "pendingAnimationFrames": 0
+      },
+      "unmounted": {
+        "canvases": 1,
+        "observers": 2,
+        "listeners": 1,
+        "pendingAnimationFrames": 0
+      }
+    },
+    {
+      "cycle": 3,
+      "mounted": {
+        "canvases": 2,
+        "observers": 4,
+        "listeners": 2,
+        "pendingAnimationFrames": 0
+      },
+      "unmounted": {
+        "canvases": 1,
+        "observers": 2,
+        "listeners": 1,
+        "pendingAnimationFrames": 0
+      }
+    },
+    {
+      "cycle": 4,
+      "mounted": {
+        "canvases": 2,
+        "observers": 4,
+        "listeners": 2,
+        "pendingAnimationFrames": 0
+      },
+      "unmounted": {
+        "canvases": 1,
+        "observers": 2,
+        "listeners": 1,
+        "pendingAnimationFrames": 0
+      }
+    },
+    {
+      "cycle": 5,
+      "mounted": {
+        "canvases": 2,
+        "observers": 4,
+        "listeners": 2,
+        "pendingAnimationFrames": 0
+      },
+      "unmounted": {
+        "canvases": 1,
+        "observers": 2,
+        "listeners": 1,
+        "pendingAnimationFrames": 0
+      }
+    }
+  ],
+  "failure": {
+    "status": "Renderer preview unavailable. Your browser could not initialize graphics.",
+    "title": "Pirate Battle",
+    "canvasCount": 0,
+    "pageErrors": []
+  }
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "capability": "application-shell",
+    "added": 0,
+    "modified": 1,
+    "deltaScenarios": 7,
+    "untouchedRequirements": 2,
+    "syncNeeded": true,
+    "blocked": false
+  },
+  {
+    "capability": "arena-rendering",
+    "added": 0,
+    "modified": 1,
+    "deltaScenarios": 7,
+    "untouchedRequirements": 3,
+    "syncNeeded": true,
+    "blocked": false
+  },
+  {
+    "capability": "game-configuration",
+    "added": 1,
+    "modified": 1,
+    "deltaScenarios": 5,
+    "untouchedRequirements": 5,
+    "syncNeeded": true,
+    "blocked": false
+  },
+  {
+    "capability": "match-lifecycle",
+    "added": 8,
+    "modified": 0,
+    "deltaScenarios": 15,
+    "untouchedRequirements": 0,
+    "syncNeeded": true,
+    "blocked": false
+  },
+  {
+    "capability": "player-combat",
+    "added": 0,
+    "modified": 2,
+    "deltaScenarios": 5,
+    "untouchedRequirements": 7,
+    "syncNeeded": true,
+    "blocked": false
+  },
+  {
+    "capability": "simulation-contracts",
+    "added": 0,
+    "modified": 2,
+    "deltaScenarios": 4,
+    "untouchedRequirements": 4,
+    "syncNeeded": true,
+    "blocked": false
+  },
+  {
+    "capability": "simulation-runtime",
+    "added": 1,
+    "modified": 2,
+    "deltaScenarios": 6,
+    "untouchedRequirements": 2,
+    "syncNeeded": true,
+    "blocked": false
+  }
+]

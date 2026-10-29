@@ -1,0 +1,208 @@
+{
+  "changeName": "implement-match-lifecycle",
+  "changeDir": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle",
+  "schemaName": "spec-driven",
+  "contextFiles": {
+    "proposal": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\proposal.md"
+    ],
+    "specs": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\specs\\application-shell\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\specs\\arena-rendering\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\specs\\game-configuration\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\specs\\match-lifecycle\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\specs\\player-combat\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\specs\\simulation-contracts\\spec.md",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\specs\\simulation-runtime\\spec.md"
+    ],
+    "design": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\design.md"
+    ],
+    "tasks": [
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md"
+    ]
+  },
+  "progress": {
+    "total": 24,
+    "complete": 24,
+    "remaining": 0
+  },
+  "tasks": [
+    {
+      "id": "1",
+      "description": "1.1 Definir preparação de sessão e conclusão autoritativa com identidade/metadados explícitos, preservando MatchSetup e importação sem efeitos; verificar typecheck app/core e testes de captura profunda sem DOM.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 5
+    },
+    {
+      "id": "2",
+      "description": "1.2 Implementar chave canônica de todos os parâmetros de gameplay e versões, independente de ordem de propriedades/seed/identidade/preferências; verificar equivalência, alterações por família de parâmetros e preservação da ordem de arrays relevantes em testes unitários.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 6
+    },
+    {
+      "id": "3",
+      "description": "1.3 Implementar validação de unknown para configuração completa e CompletedMatchResult, incluindo tipos aninhados, geometria, limites, enums, identidade, seed, data UTC, score, duração e chave consistente; verificar round-trip histórico, campo ausente/errado em cada família, chave divergente e imutabilidade com Vitest.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 7
+    },
+    {
+      "id": "4",
+      "description": "1.4 Documentar em ARCHITECTURE.md, em inglês, fronteira de sessão, dados puros, representação da chave e contrato histórico; conferir exemplos contra os testes e preservar o encoding não afetado.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 8
+    },
+    {
+      "id": "5",
+      "description": "2.1 Implementar limite exato de tempo ativo, morte/empate com precedência de morte e estado completed irreversível; verificar tempo válido de 60s em cenário vazio, morte por dano real, score zero, limite numérico e step/freeze/resume inertes após terminal.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 12
+    },
+    {
+      "id": "6",
+      "description": "2.2 Integrar a fronteira terminal após todas as balas existentes e contatos válidos, antes de emissões/diretor, com ended único e último; preservar a regressão de combate score 2 no passo letal e testar ordem dano/destruição/score/ended, contato letal no limite e ausência de tiro/spawn tardio.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 13
+    },
+    {
+      "id": "7",
+      "description": "2.3 Entregar eventos por passo no loop, impedir consumo de input/passos após terminal e cancelar RAF/baseline/acumulador; verificar frame multistep, apresentação/resize repetidos e callbacks tardios sem conclusão duplicada, com driver de frames controlável.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 14
+    },
+    {
+      "id": "8",
+      "description": "2.4 Atualizar documentação do passo final e protocolo de eventos em ARCHITECTURE.md e ajustar expectativas antigas sem apagar cenários de colisão/IA; verificar suites core afetadas e importar a engine sem plataforma.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 15
+    },
+    {
+      "id": "9",
+      "description": "3.1 Criar adapter local versionado para opções válidas, identidade e Last Result, isolando leitura/escrita/parse e falhas de acesso/quota; verificar round-trip, dados inválidos, defaults explicados, resultado histórico sem reconstrução por defaults e storage negado em Vitest.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 19
+    },
+    {
+      "id": "10",
+      "description": "3.2 Preparar Play/Play Again com novo ID, seed e opções salvas atuais, conservar preparação em Retry e materializar/salvar conclusão uma vez antes do status salvo; verificar fábricas injetadas, callback duplicado/obsoleto, data fornecida uma vez e reset completo de engine/RNG/IDs.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 20
+    },
+    {
+      "id": "11",
+      "description": "3.3 Garantir que refresh/abandono não persistem sessão ativa nem sobrescrevem Last Result; falha de escrita retém resultado em memória e o dado anterior em storage, com status honesto; verificar esses caminhos em testes de sessão/storage e documentar chaves/fallback em ARCHITECTURE.md.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 21
+    },
+    {
+      "id": "12",
+      "description": "4.1 Implementar Escape/P por borda sem repeat/keydown duplicado e Pause contextual, passando pela mesma pausa de blur/hidden; verificar ausência de avanço no comando de pausa, limpeza de Q/W/E/R/steering/movimento/joypad neutro e ausência de comandos capturados em menus/diálogos/modificadores em testes de input/loop.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 25
+    },
+    {
+      "id": "13",
+      "description": "4.2 Completar Resume explícito, com nova limpeza de input, auto-sail Off, reset da baseline e zero RAF enquanto paused/terminal; verificar ausência longa, foco restaurado sem retomada, cooldowns, balas, IA, RNG e reservas congelados sem catch-up.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 26
+    },
+    {
+      "id": "14",
+      "description": "4.3 Passar configuração/seed capturadas a todo o renderer e input, incluindo mapa, playerStart, raios, viewport, clamp, overlays, telegraphs e diagnósticos opt-in preparados antes da captura; verificar cenário com configuração diferente dos defaults e regressões de resize/DPR/geometria sem alterar a sessão.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 27
+    },
+    {
+      "id": "15",
+      "description": "4.4 Estender owner/resource para pause/resume/término e descarte sem duplicar listeners/canvas ou destruir texturas compartilhadas; verificar Strict Mode, cancelamento Loading, inicialização tardia e replay com testes de ownership; atualizar documentação técnica dos novos caminhos.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 28
+    },
+    {
+      "id": "16",
+      "description": "5.1 Integrar Menu/Loading/Playing/Paused/Result e status semântico de tempo restante, saúde, score e estado com publicação limitada; verificar loading/falha/retry sem relógio, zero negativo, pausa e resultado anunciados sem atualização por frame, e layout desktop/320px/landscape.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 32
+    },
+    {
+      "id": "17",
+      "description": "5.2 Implementar Pause e confirmação Abandon this match? com Keep Playing/Abandon, foco contido/visível e retorno de Keep Playing a Paused; verificar teclado, hotkeys ignoradas nos diálogos, Resume explícito, restauração de foco e descarte sem resultado via E2E real.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 33
+    },
+    {
+      "id": "18",
+      "description": "5.3 Entregar Result com score/duração/motivo/status local/Play Again/Main Menu e Last Result no menu sem montar simulação; verificar ambos os motivos, falha local legível, refresh conservando último concluído e recuperação histórica sem novo registro em E2E.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 34
+    },
+    {
+      "id": "19",
+      "description": "5.4 Implementar replay com nova engine/configuração atual e reset de saúde/score/tempo/armas/inimigos/diretor/reservas/projéteis/efeitos/input/steering/auto-sail/RNG; verificar novo ID, opções salvas alteradas antes do replay e configuração histórica intacta, usando preparação anterior e controles reais.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 35
+    },
+    {
+      "id": "20",
+      "description": "5.5 Atualizar README.md em inglês com loop, Escape/P/Pause/Resume, abandono, Play Again/Last Result, storage, cenários opt-in e reprodução dos finais; adaptar helpers E2E antigos à confirmação de saída e verificar os comandos documentados sem antecipar Options ou API.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 36
+    },
+    {
+      "id": "21",
+      "description": "6.1 Executar E2E completos em dev e preview com storage isolado: tempo válido de 60s em empty, morte por IA real, pausa manual/blur/hidden, recargas/reservas congeladas, diálogos/foco, abandono, Result/Last Result/refresh, storage negado e replay/opções atuais; salvar HTML/anexos/traces em evidências 06, sem setters de saúde/score e sem alterar evidências 01–05.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 40
+    },
+    {
+      "id": "22",
+      "description": "6.2 Executar cinco ciclos que misturem término/replay/abandono sob Strict Mode e inspecionar entidades/canvas/RAF/listeners/observers/subscriptions/recursos; confirmar zero recursos próprios da arena no menu e ausência de crescimento sustentado/callbacks obsoletos, com contadores e limitação de ambiente registrados.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 41
+    },
+    {
+      "id": "23",
+      "description": "6.3 Inspecionar capturas de Paused, confirmação, Result e Menu com Last Result em desktop, 320px e landscape; corrigir cortes/overflow/foco/legibilidade e registrar evidências visuais do estado entregue.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 42
+    },
+    {
+      "id": "24",
+      "description": "6.4 Executar npm.cmd run lint, npm.cmd run typecheck, npm.cmd test, npm.cmd run build, E2E e openspec.cmd validate implement-match-lifecycle --strict --json; registrar comandos, exit codes, arquivos, decisões e limitações em apply.md, marcando somente tarefas implementadas e verificadas.",
+      "done": true,
+      "sourcePath": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-match-lifecycle\\tasks.md",
+      "line": 43
+    }
+  ],
+  "taskTrackingConfigured": true,
+  "state": "all_done",
+  "instruction": "All tracked tasks are complete.\nReview or verify the change as appropriate before archiving.",
+  "context": "Language: pt-BR\nAll artifacts must be written in pt-BR.\nKeep OpenSpec structural headings and SHALL/MUST keywords in English.\n",
+  "root": {
+    "path": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev",
+    "source": "nearest"
+  }
+}

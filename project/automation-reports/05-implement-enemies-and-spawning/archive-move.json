@@ -1,0 +1,51 @@
+{
+  "Source": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\implement-enemies-and-spawning",
+  "Destination": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\openspec\\changes\\archive\\2026-10-28-implement-enemies-and-spawning",
+  "SaoPauloTime": "2026-10-28T00:28:05.8964742-03:00",
+  "DestinationAbsentBeforeMove": true,
+  "PathsResolvedInsideWorkspace": true,
+  "Files": [
+    {
+      "Path": ".openspec.yaml",
+      "Hash": "89901217D56BDFB49C20B541962DC5DB50E8161BEB30E5C2CAE1D189E5D53EB5"
+    },
+    {
+      "Path": "design.md",
+      "Hash": "14A831C9F1EC5294B9BEB91064F6A9B5B8086CF9B99BA5C8D58CC0C8B87E33D7"
+    },
+    {
+      "Path": "proposal.md",
+      "Hash": "9C555BE4B8F9FE92A8276826EDFAA3D5A70AEB0B83676320BB0DCC600C0DD5CF"
+    },
+    {
+      "Path": "tasks.md",
+      "Hash": "B0E85984C41A600B1EFC5A040AD230C6F9958F20B001398FD01EE6B96151A482"
+    },
+    {
+      "Path": "specs\\arena-rendering\\spec.md",
+      "Hash": "14768DF580E898F4E82648E7DE805683684D8BB31B66D75B27CC4F3CEF4570FB"
+    },
+    {
+      "Path": "specs\\enemy-behavior\\spec.md",
+      "Hash": "BF7B15AFAD84304CA7B93D97981C81947D2B5EBE6B3C1685756F7EAF6AC56AFD"
+    },
+    {
+      "Path": "specs\\player-combat\\spec.md",
+      "Hash": "D6DEC73117DC88E483F9A681E3BBFCF81AE81562CB6662821C7D1CF48CCB4A96"
+    },
+    {
+      "Path": "specs\\simulation-contracts\\spec.md",
+      "Hash": "9FFCD23C53E31DCC2CE83563191D9FACF4922D63141E6E5BFBF2C952D943CAF8"
+    },
+    {
+      "Path": "specs\\simulation-runtime\\spec.md",
+      "Hash": "97AAB413FB91545EF721B4D2BA53B788C3EC6E84FB78B3C99FD3AAA68DFD6420"
+    },
+    {
+      "Path": "specs\\spawn-director\\spec.md",
+      "Hash": "B92B45EEF08DCEF77074919C4581C5F8EE7681FACA174A4A07A4F6DD08B7E72D"
+    }
+  ],
+  "MoveCommand": "Move-Item -LiteralPath $sourcePath -Destination $destinationPath",
+  "ExitCode": 0
+}

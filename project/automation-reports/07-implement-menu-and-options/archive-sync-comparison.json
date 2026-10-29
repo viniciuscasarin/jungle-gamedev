@@ -1,0 +1,43 @@
+[
+  {
+    "capability": "application-shell",
+    "newSpec": false,
+    "deltaRequirements": 1,
+    "deltaScenarios": 8,
+    "mainRequirements": 3,
+    "mainScenarios": 13,
+    "unmentionedRequirementsPreserved": [
+      "Recursos de renderização com dono explícito",
+      "Falha de renderização legível"
+    ],
+    "allDeltaRequirementsAndScenariosMatch": true,
+    "titleAndPurposePreserved": true
+  },
+  {
+    "capability": "asset-loading",
+    "newSpec": false,
+    "deltaRequirements": 2,
+    "deltaScenarios": 5,
+    "mainRequirements": 6,
+    "mainScenarios": 11,
+    "unmentionedRequirementsPreserved": [
+      "Carregamento compartilhado recuperável",
+      "Falha demonstrável com cache quente",
+      "Texturas compartilhadas sobrevivem a consumidores descartados",
+      "Procedência e pendências explícitas"
+    ],
+    "allDeltaRequirementsAndScenariosMatch": true,
+    "titleAndPurposePreserved": true
+  },
+  {
+    "capability": "menu-options",
+    "newSpec": true,
+    "deltaRequirements": 7,
+    "deltaScenarios": 12,
+    "mainRequirements": 7,
+    "mainScenarios": 12,
+    "unmentionedRequirementsPreserved": [],
+    "allDeltaRequirementsAndScenariosMatch": true,
+    "titleAndPurposePreserved": "new title; delta Purpose verbatim"
+  }
+]

@@ -1,0 +1,59 @@
+
+> pirate-battle@0.1.0 e2e
+> playwright test
+
+[WebServer] (node:14104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 44 tests using 1 worker
+
+(node:1820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [dev] › tests\e2e\arena.spec.ts:69:1 › keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures (4.7s)
+  ok  2 [dev] › tests\e2e\arena.spec.ts:126:1 › real mouse and R traverse four sides of both islands and slide at frontal/oblique contact (30.4s)
+  ok  3 [dev] › tests\e2e\arena.spec.ts:152:1 › retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R (2.8s)
+  ok  4 [dev] › tests\e2e\arena.spec.ts:193:1 › fail-once before cold/warm cache and Retry without refresh (5.1s)
+  ok  5 [dev] › tests\e2e\arena.spec.ts:211:1 › Main Menu cancels a pending load and old callbacks cannot replace a new attempt (2.0s)
+  ok  6 [dev] › tests\e2e\arena.spec.ts:221:1 › real asset failure retries and graphics init failure stays semantic (3.2s)
+  ok  7 [dev] › tests\e2e\arena.spec.ts:232:1 › fits desktop/portrait/landscape and isolated DPR changes without rebuilding (2.5s)
+  ok  8 [dev] › tests\e2e\arena.spec.ts:269:1 › real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing (2.7s)
+  ok  9 [dev] › tests\e2e\arena.spec.ts:305:1 › held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral (3.0s)
+  ok 10 [dev] › tests\e2e\arena.spec.ts:338:1 › default empty and five active projectile teardown cycles reuse textures and release all native resources (5.6s)
+  ok 11 [dev] › tests\e2e\arena.spec.ts:358:1 › normal director telegraphs freeze with active time, materializes both archetypes and real Q earns score (5.7s)
+  ok 12 [dev] › tests\e2e\arena.spec.ts:387:1 › normal island preparation blocks Shooter fire until it navigates to actual line of sight (3.7s)
+  ok 13 [dev] › tests\e2e\arena.spec.ts:413:1 › lifecycle valid 60s empty timer, terminal freeze, historical Last Result, refresh and current-settings replay (42.3s)
+  ok 14 [dev] › tests\e2e\arena.spec.ts:446:1 › lifecycle Escape P Pause, contained dialogs, Keep Playing stays Paused, real AI death and result visuals (12.7s)
+  ok 15 [dev] › tests\e2e\arena.spec.ts:470:1 › lifecycle denied storage keeps play and memory result available with honest status (10.3s)
+  ok 16 [dev] › tests\e2e\arena.spec.ts:480:1 › lifecycle captured custom renderer geometry and pointer world clamp survive resize (1.7s)
+  ok 17 [dev] › tests\e2e\arena.spec.ts:489:1 › lifecycle five completed replay abandon cycles have no stale native resources under Strict Mode (52.1s)
+  ok 18 [dev] › tests\e2e\options.spec.ts:32:1 › options keyboard, validation guard, Save-refresh, Cancel and Escape preserve the last Save (4.1s)
+  ok 19 [dev] › tests\e2e\options.spec.ts:57:1 › options corruption defaults, repair resolves only options warning, real touch and button states (4.9s)
+  ok 20 [dev] › tests\e2e\options.spec.ts:74:1 › options denied Save keeps draft and earlier data; retry succeeds and Cancel discards (2.1s)
+  ok 21 [dev] › tests\e2e\options.spec.ts:82:1 › options DOM image failure keeps semantic fallback and never blocks Pixi Play (1.7s)
+  ok 22 [dev] › tests\e2e\options.spec.ts:88:1 › options UI Save captures immutable active setup and Last Result replay uses last confirmed Save (37.2s)
+(node:3556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 23 [preview] › tests\e2e\arena.spec.ts:69:1 › keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures (4.6s)
+  ok 24 [preview] › tests\e2e\arena.spec.ts:126:1 › real mouse and R traverse four sides of both islands and slide at frontal/oblique contact (29.3s)
+  ok 25 [preview] › tests\e2e\arena.spec.ts:152:1 › retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R (2.5s)
+  ok 26 [preview] › tests\e2e\arena.spec.ts:193:1 › fail-once before cold/warm cache and Retry without refresh (3.8s)
+  ok 27 [preview] › tests\e2e\arena.spec.ts:211:1 › Main Menu cancels a pending load and old callbacks cannot replace a new attempt (1.7s)
+  ok 28 [preview] › tests\e2e\arena.spec.ts:221:1 › real asset failure retries and graphics init failure stays semantic (2.4s)
+  ok 29 [preview] › tests\e2e\arena.spec.ts:232:1 › fits desktop/portrait/landscape and isolated DPR changes without rebuilding (2.1s)
+  ok 30 [preview] › tests\e2e\arena.spec.ts:269:1 › real Q W E destroy diagnostic targets through collisions, orientation and simultaneous sailing (2.3s)
+  ok 31 [preview] › tests\e2e\arena.spec.ts:305:1 › held QWE freeze on native blur and platform hidden signal; Resume requires new commands and out-of-context keys stay neutral (2.6s)
+  ok 32 [preview] › tests\e2e\arena.spec.ts:338:1 › default empty and five active projectile teardown cycles reuse textures and release all native resources (4.6s)
+  ok 33 [preview] › tests\e2e\arena.spec.ts:358:1 › normal director telegraphs freeze with active time, materializes both archetypes and real Q earns score (5.7s)
+  ok 34 [preview] › tests\e2e\arena.spec.ts:387:1 › normal island preparation blocks Shooter fire until it navigates to actual line of sight (3.2s)
+  ok 35 [preview] › tests\e2e\arena.spec.ts:413:1 › lifecycle valid 60s empty timer, terminal freeze, historical Last Result, refresh and current-settings replay (40.7s)
+  ok 36 [preview] › tests\e2e\arena.spec.ts:446:1 › lifecycle Escape P Pause, contained dialogs, Keep Playing stays Paused, real AI death and result visuals (12.2s)
+  ok 37 [preview] › tests\e2e\arena.spec.ts:470:1 › lifecycle denied storage keeps play and memory result available with honest status (9.5s)
+  ok 38 [preview] › tests\e2e\arena.spec.ts:480:1 › lifecycle captured custom renderer geometry and pointer world clamp survive resize (1.3s)
+  ok 39 [preview] › tests\e2e\arena.spec.ts:489:1 › lifecycle five completed replay abandon cycles have no stale native resources under Strict Mode (51.6s)
+  ok 40 [preview] › tests\e2e\options.spec.ts:32:1 › options keyboard, validation guard, Save-refresh, Cancel and Escape preserve the last Save (3.5s)
+  ok 41 [preview] › tests\e2e\options.spec.ts:57:1 › options corruption defaults, repair resolves only options warning, real touch and button states (4.9s)
+  ok 42 [preview] › tests\e2e\options.spec.ts:74:1 › options denied Save keeps draft and earlier data; retry succeeds and Cancel discards (3.2s)
+  ok 43 [preview] › tests\e2e\options.spec.ts:82:1 › options DOM image failure keeps semantic fallback and never blocks Pixi Play (1.5s)
+  ok 44 [preview] › tests\e2e\options.spec.ts:88:1 › options UI Save captures immutable active setup and Last Result replay uses last confirmed Save (36.6s)
+
+  44 passed (8.1m)

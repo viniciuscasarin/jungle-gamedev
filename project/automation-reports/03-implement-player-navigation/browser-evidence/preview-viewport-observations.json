@@ -1,0 +1,98 @@
+[
+  {
+    "label": "desktop",
+    "viewport": {
+      "renderable": true,
+      "scale": 1.3333333333333333,
+      "availableWidth": 1280,
+      "availableHeight": 764,
+      "offsetX": 0,
+      "offsetY": 70
+    },
+    "player": {
+      "xUnits": 480,
+      "yUnits": 270,
+      "headingRadians": -1.5707963267948966,
+      "width": 33,
+      "height": 56.5,
+      "rotation": -3.141592653589793
+    },
+    "width": 1280,
+    "height": 900,
+    "scrollWidth": 1280
+  },
+  {
+    "label": "320x568",
+    "viewport": {
+      "renderable": true,
+      "scale": 0.3333333333333333,
+      "availableWidth": 320,
+      "availableHeight": 432,
+      "offsetX": 0,
+      "offsetY": 174
+    },
+    "player": {
+      "xUnits": 480,
+      "yUnits": 270,
+      "headingRadians": -1.5707963267948966,
+      "width": 33,
+      "height": 56.5,
+      "rotation": -3.141592653589793
+    },
+    "width": 320,
+    "height": 568,
+    "scrollWidth": 320
+  },
+  {
+    "label": "390x844",
+    "viewport": {
+      "renderable": true,
+      "scale": 0.40625,
+      "availableWidth": 390,
+      "availableHeight": 708,
+      "offsetX": 0,
+      "offsetY": 292.3125
+    },
+    "player": {
+      "xUnits": 480,
+      "yUnits": 270,
+      "headingRadians": -1.5707963267948966,
+      "width": 33,
+      "height": 56.5,
+      "rotation": -3.141592653589793
+    },
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390
+  },
+  {
+    "label": "844x390",
+    "viewport": {
+      "renderable": true,
+      "scale": 0.4703703703703704,
+      "availableWidth": 844,
+      "availableHeight": 254,
+      "offsetX": 196.22222222222223,
+      "offsetY": 48
+    },
+    "player": {
+      "xUnits": 480,
+      "yUnits": 270,
+      "headingRadians": -1.5707963267948966,
+      "width": 33,
+      "height": 56.5,
+      "rotation": -3.141592653589793
+    },
+    "width": 844,
+    "height": 390,
+    "scrollWidth": 844
+  },
+  {
+    "label": "dpr2",
+    "buffer": [
+      1688,
+      780
+    ],
+    "dpr": 2
+  }
+]
