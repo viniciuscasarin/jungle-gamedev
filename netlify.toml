@@ -1,0 +1,40 @@
+# Netlify Configuration for Pirate Battle Web Application
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA Fallback: rotas desconhecidas ou navegação direta retornam index.html com status 200
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Cabeçalhos globais de segurança e políticas de proteção
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Service Worker MSW: entrega correta com escopo irrestrito e revalidação mandatória
+[[headers]]
+  for = "/mockServiceWorker.js"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+    Service-Worker-Allowed = "/"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Assets versionados com fingerprint: cache imutável de longa duração (1 ano)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# index.html raiz: nunca armazenar em cache persistente para refletir releases imediatamente
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
