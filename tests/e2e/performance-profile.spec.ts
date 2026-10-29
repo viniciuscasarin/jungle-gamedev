@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './test';
 import type { Page, TestInfo } from '@playwright/test';
 import os from 'node:os';
 

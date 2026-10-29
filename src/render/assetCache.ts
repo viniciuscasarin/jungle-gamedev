@@ -1,9 +1,13 @@
+import { withDeadline } from '../startup/deadline';
+
 export interface AssetLease<T> { readonly ready: Promise<ReadonlyMap<string, T>>; release(): void }
 export interface AssetBackend<T> { load(url: string): Promise<T>; unload(url: string, value: T): Promise<void> }
 
 /** Session owner: successful partial loads stay warm; only rejected work is retried. */
-export function createAssetCache<T>(urls: readonly string[], backend: AssetBackend<T>) {
+export function createAssetCache<T>(urls: readonly string[], backend: AssetBackend<T>, timeoutMs = 30_000) {
   const values = new Map<string, T>();
+  const listeners = new Set<(url: string) => void>();
+  const physical = new Set<Promise<T>>();
   let pending: Promise<ReadonlyMap<string, T>> | undefined;
   let leases = 0;
   let closed = false;
@@ -14,9 +18,16 @@ export function createAssetCache<T>(urls: readonly string[], backend: AssetBacke
     if (closed) throw new Error('Asset cache is closed.');
     leases++;
     if (!pending) {
-      const work = Promise.allSettled(urls.filter(url => !values.has(url)).map(async url => {
-        const value = await backend.load(url);
-        values.set(url, value);
+      const work = Promise.allSettled([...new Set(urls)].filter(url => !values.has(url)).map(async url => {
+        const loading = backend.load(url);
+        physical.add(loading);
+        // Non-cancellable Pixi work remains session-owned, including late textures.
+        void loading.then(value => {
+          if (!values.has(url)) values.set(url, value);
+          physical.delete(loading); signal();
+        }, () => { physical.delete(loading); signal(); });
+        await withDeadline(loading, timeoutMs);
+        for (const listener of listeners) listener(url);
       })).then(results => {
         const failed = results.find(result => result.status === 'rejected');
         if (failed?.status === 'rejected') throw failed.reason;
@@ -36,7 +47,7 @@ export function createAssetCache<T>(urls: readonly string[], backend: AssetBacke
     if (closing) return closing;
     closed = true;
     closing = (async () => {
-      while (leases > 0 || pending) await new Promise<void>(resolve => { wake = resolve; });
+      while (leases > 0 || pending || physical.size) await new Promise<void>(resolve => { wake = resolve; });
       const results = await Promise.allSettled([...values].map(([url, value]) => backend.unload(url, value)));
       values.clear();
       const failed = results.find(result => result.status === 'rejected');
@@ -44,5 +55,13 @@ export function createAssetCache<T>(urls: readonly string[], backend: AssetBacke
     })();
     return closing;
   }
-  return { acquire, close, inspect: () => ({ leases, textures: values.size, pending: !!pending, closed }) };
+  return {
+    acquire, close,
+    subscribe(listener: (url: string) => void) {
+      listeners.add(listener);
+      for (const url of values.keys()) listener(url);
+      return () => { listeners.delete(listener); };
+    },
+    inspect: () => ({ leases, textures: values.size, pending: !!pending, closed }),
+  };
 }

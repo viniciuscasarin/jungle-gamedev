@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, settleStartup } from './test';
 import { DETERMINISTIC_FIXTURES } from '../../src/mocks/fixtures';
 
 test.describe('Result Outbox E2E flows', () => {
@@ -6,7 +6,7 @@ test.describe('Result Outbox E2E flows', () => {
     await page.clock.install({ time: new Date('2026-10-28T03:00:00Z') });
     await page.clock.pauseAt(new Date('2026-10-28T03:00:01Z'));
 
-    await page.goto('/?seed=0');
+    await page.goto('/?seed=0'); await settleStartup(page);
 
     // Save fast enemy spawn so match completes quickly via destruction, and enable mock network outage
     await page.evaluate(data => {

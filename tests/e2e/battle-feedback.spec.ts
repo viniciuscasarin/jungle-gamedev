@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './test';
 
 test.describe('Battle feedback, audio and accessibility', () => {
   test('unlocks audio on user gesture, toggles mute in HUD and synchronizes with Options', async ({ page }) => {

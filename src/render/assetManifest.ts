@@ -62,7 +62,7 @@ export const ASSET_MANIFEST = {
 } as const satisfies Record<string, AssetDefinition>;
 export type AssetId = keyof typeof ASSET_MANIFEST;
 export const DOM_ASSET_IDS = ['menuPanel', 'menuTitle', 'primaryButton', 'primaryHover', 'primaryPressed', 'primaryDisabled', 'secondaryButton', 'secondaryPressed', 'menuBackdrop', 'frontReference', 'portIcon', 'starboardIcon', 'sailIcon', 'pauseIcon', 'roundButton', 'roundHover', 'roundPressed', 'healthFrame', 'healthFill'] as const;
-// Pixi only borrows gameplay textures. Decorative DOM failures cannot block Play.
+// Pixi only borrows gameplay textures; DOM resources have a separate startup owner.
 export const ASSET_URLS = Object.entries(ASSET_MANIFEST).filter(([id]) => !(DOM_ASSET_IDS as readonly string[]).includes(id)).map(([, asset]) => asset.url);
 export const UI_LAYOUT = {
   round: {size: {width: 64, height: 64}, outer: {x: 4, y: 4, width: 56, height: 56}, center: {x: 32, y: 32}, icon: {width: 32, height: 32}, anchor: {x: 0.5, y: 0.5}},

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, playableSize } from './test';
 
 test.describe('Ranking and Match History Tabs E2E', () => {
   test('displays ranking by default, allows pagination, and switches tabs via click and keyboard', async ({
@@ -74,14 +74,14 @@ test.describe('Ranking and Match History Tabs E2E', () => {
   });
 
   test('responsive viewport 320px width without horizontal body overflow', async ({ page }) => {
-    await page.setViewportSize({ width: 320, height: 600 });
+    await page.setViewportSize(playableSize(320, 600));
     await page.goto('/');
 
     const rankingTab = page.getByRole('tab', { name: 'Ranking', exact: true });
     await expect(rankingTab).toBeVisible();
 
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
-    expect(scrollWidth).toBeLessThanOrEqual(320);
+    expect(scrollWidth).toBeLessThanOrEqual(playableSize(320, 600).width);
 
     const tableContainer = page.locator('.table-responsive-container');
     await expect(tableContainer).toBeVisible();

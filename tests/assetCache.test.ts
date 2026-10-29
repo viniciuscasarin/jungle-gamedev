@@ -2,6 +2,33 @@ import { describe, expect, it, vi } from 'vitest';
 import { createAssetCache } from '../src/render/assetCache';
 const deferred = <T>() => { let resolve!: (v:T)=>void; let reject!: (e:Error)=>void; const promise=new Promise<T>((yes,no)=>{resolve=yes;reject=no;});return {promise,resolve,reject}; };
 describe('session texture leases', () => {
+  it('releases timed-out leases and keeps a late shared texture alive through Retry', async () => {
+    vi.useFakeTimers();
+    try {
+      const old = deferred<string>();
+      const backend = { load: vi.fn().mockReturnValueOnce(old.promise).mockResolvedValue('current'), unload: vi.fn(async () => {}) };
+      const cache = createAssetCache(['a'], backend);
+      const first = cache.acquire(); const failure = expect(first.ready).rejects.toThrow('timed out');
+      await vi.advanceTimersByTimeAsync(30_000); await failure;
+      expect(cache.inspect()).toMatchObject({ leases: 0, pending: false });
+      const retry = cache.acquire(); expect((await retry.ready).get('a')).toBe('current');
+      old.resolve('old'); await Promise.resolve();
+      expect((await retry.ready).get('a')).toBe('current'); expect(backend.unload).not.toHaveBeenCalled();
+      const closing = cache.close(); expect(backend.unload).not.toHaveBeenCalled();
+      retry.release(); await closing; expect(backend.unload).toHaveBeenCalledExactlyOnceWith('a', 'current');
+    } finally { vi.useRealTimers(); }
+  });
+  it('reports each resolved resource and replays warm progress without another load', async () => {
+    const backend = { load: vi.fn(async (url: string) => url), unload: vi.fn(async () => {}) };
+    const cache = createAssetCache(['a', 'b', 'a'], backend);
+    const progress = vi.fn(); const stop = cache.subscribe(progress);
+    const startup = cache.acquire(); await startup.ready; startup.release(); stop();
+    expect(progress.mock.calls.flat()).toEqual(['a', 'b']);
+    const warm = vi.fn(); cache.subscribe(warm);
+    const play = cache.acquire(); await play.ready; play.release();
+    expect(warm.mock.calls.flat()).toEqual(['a', 'b']); expect(backend.load).toHaveBeenCalledTimes(2);
+    await cache.close();
+  });
   it('shares pending work and preserves a surviving consumer and warm cache', async () => {
     const loading=deferred<string>();const backend={load:vi.fn(()=>loading.promise),unload:vi.fn(async()=>{})};
     const cache=createAssetCache(['a'],backend);const a=cache.acquire(),b=cache.acquire();

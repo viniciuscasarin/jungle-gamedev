@@ -539,8 +539,9 @@ loading/Retry and resource ownership regressions remain in `arena.spec.ts`.
 
 `ASSET_MANIFEST` records gameplay and DOM PNGs. `DOM_ASSET_IDS` explicitly excludes
 menu decoration and catalog-only UI references from required Pixi `ASSET_URLS`;
-cache leases/Retry/teardown continue to own gameplay textures. New DOM image failures
-leave CSS backgrounds, real labels and controls usable and cannot fail arena loading.
+cache leases/Retry/teardown continue to own gameplay textures. A preparação inicial
+exige também imagens DOM carregadas e decodificadas; falhas visuais impedem a revelação
+do menu e oferecem Retry com CSS básico, independente das imagens indisponíveis.
 The title has a semantic text fallback. Menu/Options use the measured 384×480 panel
 with border-image slices 40/32/40/32, content inset 30/26, and flexible center fill.
 Buttons preserve 256:88 proportions and the supplied label inset; primaries select
@@ -551,7 +552,49 @@ and label rectangles in logical 1× units; tests compare default/retina metadata
 CSS safe areas and normal vertical flow permit scrolling on short/narrow screens.
 No source artwork conversion or animation was introduced.
 
+## Preparação inicial compartilhada
+
+`src/startup/manifest.ts` estabiliza e deduplica os URLs do catálogo visual, logo e
+`AUDIO_MANIFEST`. O progresso mede quantidade de recursos preparados, nunca bytes ou
+tempo; 100% exige também o bootstrap concluído. Ranking e histórico não participam.
+O build mantém os arquivos externos (`assetsInlineLimit: 0`) para conservar a mesma
+identidade de URL entre preparação, CSS, logo estático e consumidores finais.
+Imagens DOM usam `Image`/`decode`; não alocam texturas Pixi. O aquecimento usa leases
+de `sessionAssets`, libera cada lease ao concluir e conserva o cache para Play.
+O renderer continua tendo sua própria inicialização e recuperação pós-Play.
+
+Cada recurso tem limite de 30 segundos. Falha visual permite Retry de trabalho
+faltante, preservando sucessos. Áudio com falha/timeout termina silenciosamente.
+`sessionAudioData` compartilha bytes/pending promises sem criar AudioContext; a
+reprodução após gesto decodifica uma cópia desses bytes e respeita mute.
+Gerações antigas não publicam estado no coordenador. Trabalho Pixi não cancelável
+continua pertencendo ao cache até a saída da sessão; uma conclusão tardia não
+substitui textura válida nem descarrega recursos emprestados a outro consumidor.
+Testes: `startupManifest`, `startupImages`, `startup`, `audioData`, `audio` e `assetCache`.
+
 ## Responsive battle controls and presentation
+
+`input/orientation.ts` define a política pura: ponteiro primário coarse e largura
+efetiva menor ou igual à altura exigem proteção. `browserOrientation` observa
+viewport visual/resize, orientação, fullscreen, visibilidade, pageshow e alterações
+do ponteiro primário; HMR libera os listeners. Touch adicional em desktop fine não
+ativa a política. Trocar a modalidade do gameplay não altera essa classificação.
+
+O shell mantém a árvore da tela atual montada, mas `inert`/`aria-hidden` sob a
+proteção opaca. Somente o contexto visível aceita foco/Tab; diálogos cobertos não
+mantêm `aria-modal` ativo. Ao retirar a proteção, restaura foco conectado ou Resume.
+Rascunhos de Options e a partida conservam sua identidade durante as rotações.
+
+A solicitação nativa parte apenas de `Enter landscape`/Play: tenta lock landscape,
+e, após recusa, fullscreen condicional e lock. Todas as rejeições são tratadas.
+Não há solicitação automática após sair de fullscreen; rotação física continua
+funcional e o viewport, não a resposta da API, libera a interface.
+
+Portrait chama pausa/limpeza existentes e `audioEngine.onPause()`. O owner registra
+pausa mesmo durante inicialização e encaminha `mount(paused)` através da tentativa
+de loading até o loop: nenhum RAF ativo é agendado nessa montagem. Landscape não
+retoma automaticamente. Resume verifica a política atual e chama resize antes de
+resume. Estado de domínio/simulação não conhece APIs de orientação ou fullscreen.
 
 The input buffer composes keyboard sources and a set of pointer IDs for each weapon.
 Releasing one source cannot erase another. The joypad has one owner; displacement

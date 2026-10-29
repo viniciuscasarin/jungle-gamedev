@@ -19,6 +19,15 @@ function fixture() {
   return { init, resource, stop, observeResize, onState, owner, resize: () => resize?.() };
 }
 describe('async preview ownership', () => {
+  it('remembers a pause during initialization and resizes before explicit Resume', async () => {
+    const f = fixture(); f.owner.pause();
+    f.init.resolve(f.resource); await f.owner.ready;
+    expect(f.resource.mount).toHaveBeenCalledExactlyOnceWith(true);
+    expect(f.resource.resume).not.toHaveBeenCalled();
+    f.owner.resume();
+    expect(f.resource.resize.mock.invocationCallOrder.at(-1)).toBeLessThan(f.resource.resume.mock.invocationCallOrder[0]!);
+    f.owner.dispose();
+  });
   it('mounts once, resizes and releases subscriptions and resource exactly once', async () => {
     const f = fixture();
     f.init.resolve(f.resource);

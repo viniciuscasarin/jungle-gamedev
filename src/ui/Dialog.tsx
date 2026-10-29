@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useSyncExternalStore } from 'react';
 import type { ReactNode } from 'react';
+import { orientation } from '../input/browserOrientation';
 
 export interface DialogProps {
   readonly title: string;
@@ -12,6 +13,7 @@ const FOCUSABLE_SELECTOR = 'button:not([disabled]), [href], input:not([disabled]
 export function Dialog({ title, children, onEscape }: DialogProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+  const { blocked } = useSyncExternalStore(orientation.subscribe, orientation.getSnapshot, orientation.getSnapshot);
 
   useEffect(() => {
     triggerRef.current = document.activeElement as HTMLElement | null;
@@ -22,11 +24,13 @@ export function Dialog({ title, children, onEscape }: DialogProps) {
     }
 
     return () => {
-      triggerRef.current?.focus?.();
+      const trigger = triggerRef.current;
+      if (trigger?.isConnected && !trigger.closest('[inert]')) trigger.focus();
     };
   }, [title]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (blocked) return;
     if (event.key === 'Escape' && onEscape) {
       event.preventDefault();
       onEscape();
@@ -59,7 +63,7 @@ export function Dialog({ title, children, onEscape }: DialogProps) {
       <div
         className="session-panel"
         role="dialog"
-        aria-modal="true"
+        aria-modal={blocked ? undefined : true}
         aria-labelledby="dialog-title"
         ref={dialogRef}
         onKeyDown={handleKeyDown}

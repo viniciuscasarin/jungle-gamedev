@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { ALL_SOUND_IDS, AUDIO_MANIFEST } from '../src/audio/audioManifest';
 import { createAudioEngine, MAX_EFFECT_VOICES } from '../src/audio/audioEngine';
+import { createAudioData } from '../src/audio/audioData';
 
 function createMockAudioContext() {
   const destination = {} as AudioDestinationNode;
@@ -75,6 +76,32 @@ describe('audioManifest', () => {
 });
 
 describe('audioEngine', () => {
+  it('keeps an initially muted ambience silent and restores it on unmute without a new transfer', async () => {
+    const transfer = vi.fn(async () => ({ ok: true, arrayBuffer: async () => new ArrayBuffer(8) } as Response));
+    const context = createMockAudioContext();
+    const engine = createAudioEngine({ context, data: createAudioData(transfer), initialMuted: true });
+    await engine.unlock(); await engine.startLoop('oceanAmbience');
+    expect(context._createdGainNodes[0]?.gain.value).toBe(0);
+    expect(context._createdSources).toHaveLength(1);
+    engine.setMuted(false); await engine.startLoop('oceanAmbience');
+    expect(context._createdGainNodes[0]?.gain.value).toBe(1);
+    expect(context._createdSources).toHaveLength(1); expect(transfer).toHaveBeenCalledOnce();
+    engine.onPause(); expect(context._createdSources[0]?.stop).toHaveBeenCalledOnce();
+  });
+  it('transfers before gesture without sound, reuses bytes after unlock and respects mute', async () => {
+    const transfer = vi.fn(async () => ({ ok: true, arrayBuffer: async () => new ArrayBuffer(8) } as Response));
+    const data = createAudioData(transfer);
+    const context = createMockAudioContext();
+    const engine = createAudioEngine({ context, data });
+    await data.load(AUDIO_MANIFEST.cannonFire1.url);
+    await engine.play('cannonFire1');
+    expect(context.decodeAudioData).not.toHaveBeenCalled();
+    expect(context.createBufferSource).not.toHaveBeenCalled();
+    await engine.unlock(); await engine.play('cannonFire1');
+    expect(transfer).toHaveBeenCalledOnce(); expect(context.createBufferSource).toHaveBeenCalledOnce();
+    engine.setMuted(true); await engine.play('cannonFire1');
+    expect(context.createBufferSource).toHaveBeenCalledOnce();
+  });
   it('operates silently as no-op fallback when AudioContext is absent', async () => {
     const engine = createAudioEngine();
     expect(engine.isUnlocked()).toBe(false);

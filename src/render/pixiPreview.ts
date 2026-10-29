@@ -287,7 +287,7 @@ export async function initializePixiPreview(host: HTMLElement, textures: Readonl
     };
     countedResource = true; live.resources++;
     return {
-      mount() { if (mounted || destroyed) return; mounted = true; host.append(app.canvas); for (const [target, type, listener] of listeners) target.addEventListener(type, listener); live.inputListeners += listeners.length; inspectNavigation = inspect; loop.mount(); if (document.hidden) loop.freeze(); },
+      mount(paused = false) { if (mounted || destroyed) return; mounted = true; host.append(app.canvas); for (const [target, type, listener] of listeners) target.addEventListener(type, listener); live.inputListeners += listeners.length; inspectNavigation = inspect; loop.mount(paused || document.hidden); },
       pause() { loop.freeze(); },
       resume() { loop.resume(); },
       resize() {

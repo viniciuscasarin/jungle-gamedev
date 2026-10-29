@@ -32,7 +32,7 @@ export function createLoadingAttempt<T>(dependencies: AttemptDependencies<T>) {
       holdsResource = true;
       await delay;
       let destroyed = false;
-      return { mount: () => resource.mount(), resize: () => resource.resize(), pause: () => { if (!destroyed) resource.pause?.(); }, resume: () => { if (!destroyed) resource.resume?.(); }, destroy() {
+      return { mount: paused => resource.mount(paused), resize: () => resource.resize(), pause: () => { if (!destroyed) resource.pause?.(); }, resume: () => { if (!destroyed) resource.resume?.(); }, destroy() {
         if (destroyed) return;
         destroyed = true;
         try { resource.destroy(); } finally { holdsResource = false; release(); }

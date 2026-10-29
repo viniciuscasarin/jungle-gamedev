@@ -1,5 +1,6 @@
 import { AUDIO_MANIFEST, type SoundDefinition, type SoundId, type SoundPriority } from './audioManifest';
 import type { SimulationEvent } from '../simulation/contracts';
+import { sessionAudioData } from './audioData';
 
 export const MAX_EFFECT_VOICES = 4;
 
@@ -20,6 +21,7 @@ export interface ActiveVoice {
 export interface AudioEngineOptions {
   readonly context?: AudioContext;
   readonly initialMuted?: boolean;
+  readonly data?: typeof sessionAudioData;
 }
 
 export interface AudioEngine {
@@ -59,6 +61,10 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
   // Buffer cache
   const bufferCache = new Map<SoundId, AudioBuffer>();
   const loadingPromises = new Map<SoundId, Promise<AudioBuffer | null>>();
+  const audioData = options.data ?? sessionAudioData;
+  let acousticGeneration = 0;
+  let destroyed = false;
+  const loopRequests = new Map<string, number>();
 
   // Check Web Audio API availability
   const hasWebAudio = typeof window !== 'undefined' && (
@@ -124,9 +130,9 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
     const def: SoundDefinition = AUDIO_MANIFEST[id];
     const promise = (async () => {
       try {
-        const response = await fetch(def.url);
-        const arrayBuffer = await response.arrayBuffer();
-        const decoded = await ctx.decodeAudioData(arrayBuffer);
+        const arrayBuffer = await audioData.load(def.url);
+        if (!arrayBuffer || destroyed) return null;
+        const decoded = await ctx.decodeAudioData(arrayBuffer.slice(0));
         bufferCache.set(id, decoded);
         return decoded;
       } catch {
@@ -169,7 +175,8 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
   }
 
   async function play(id: SoundId): Promise<void> {
-    if (!unlocked) return;
+    if (!unlocked || muted || destroyed) return;
+    const generation = acousticGeneration;
     const ctx = getContext();
     if (!ctx) return;
 
@@ -214,7 +221,7 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
     }
 
     const buffer = await loadBuffer(id);
-    if (!buffer || !ctx) return;
+    if (!buffer || !ctx || muted || destroyed || generation !== acousticGeneration) return;
 
     try {
       const source = ctx.createBufferSource();
@@ -250,15 +257,18 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
   }
 
   async function startLoop(id: 'oceanAmbience' | 'shipSailing'): Promise<void> {
-    if (!unlocked) return;
+    if (!unlocked || destroyed || loopRequests.has(id) || muted && !masterGain) return;
+    const generation = acousticGeneration;
     const ctx = getContext();
     if (!ctx) return;
 
     const existing = loops[id];
     if (existing?.source) return; // already looping
-
+    loopRequests.set(id, generation);
     const buffer = await loadBuffer(id);
-    if (!buffer || !ctx) return;
+    const valid = loopRequests.get(id) === generation;
+    if (valid) loopRequests.delete(id);
+    if (!buffer || !ctx || !valid || muted && !masterGain || destroyed || generation !== acousticGeneration) return;
 
     try {
       const source = ctx.createBufferSource();
@@ -283,6 +293,7 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
   }
 
   function stopLoop(id: 'oceanAmbience' | 'shipSailing'): void {
+    loopRequests.delete(id);
     const loop = loops[id];
     if (loop?.source) {
       try {
@@ -324,6 +335,7 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
   }
 
   function onPause(): void {
+    acousticGeneration++;
     // 1. Immediately cut sailing loops and ambience
     stopAllLoops();
     // 2. Discard all acoustic backlog (clear active transient voices)
@@ -333,6 +345,7 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
   }
 
   function onResume(): void {
+    acousticGeneration++;
     // Discard any accumulated acoustic backlog
     stopAllTransientVoices();
     // Play game_resume jingle
@@ -388,6 +401,8 @@ export function createAudioEngine(options: AudioEngineOptions = {}): AudioEngine
   }
 
   function destroy(): void {
+    destroyed = true;
+    acousticGeneration++;
     stopAllLoops();
     stopAllTransientVoices();
     if (context) {

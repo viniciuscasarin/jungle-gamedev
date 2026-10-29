@@ -70,13 +70,30 @@ servers and reuse existing servers; they must serve this checkout. Reports and t
 `project/automation-reports/14-validate-game-end-to-end/playwright-report` and
 `project/automation-reports/14-validate-game-end-to-end/test-results`.
 Visual regression baselines are stored in `tests/e2e/visual-regression.spec.ts-snapshots/`.
-Full E2E validation covers both `desktop-chrome` (1280x900) and `mobile-chrome` (390x844 with touch).
+Os projetos E2E usam `desktop-chrome` (1280×900, ponteiro primário fine com touch adicional)
+e `mobile-chrome` (844×390, coarse). Casos dedicados verificam portrait 390×844 e landscape 568×320.
 Open the HTML report using
 `npx playwright show-report project/automation-reports/14-validate-game-end-to-end/playwright-report`.
 Prior increment evidence is preserved. The GDD Section 14 verification matrix is recorded in
 `project/automation-reports/14-validate-game-end-to-end/verify.md`.
 
 ## Controls and recovery
+
+Na abertura, uma cobertura preta estática aparece antes dos módulos/mocks. O logo
+Jungle Gaming acompanha a preparação das imagens DOM, texturas e transferência dos
+sons usados. A porcentagem representa recursos preparados, não bytes. O menu só
+aparece quando os recursos visuais e o bootstrap concluem; não há espera mínima.
+Cada recurso tem limite de 30 segundos. Falha visual mantém a tela preta e Retry
+reaproveita sucessos sem refresh. Áudio indisponível termina silenciosamente; sua
+reprodução exige gesto e respeita mute. Voltar ao menu reaproveita a preparação.
+
+Para reproduzir espera, desabilite o cache nas ferramentas do navegador e limite a
+rede; observe a barra e as frases a cada três segundos. Para reproduzir recuperação,
+bloqueie a requisição de `ui_scene_background` (ou `ship_5`/`logo_jungle_gaming`) no
+painel Network antes de abrir a página; remova o bloqueio e acione Retry. O teste
+`npm run e2e -- tests/e2e/startup.spec.ts` intercepta esses recursos em dev e preview,
+controla o relógio para as frases e salva capturas inicial/parcial/erro em
+`project/automation-reports/startup-landscape/`. Execute build antes de testar preview.
 
 Choose Play with mouse, touch or Tab/Enter. Loading lasts at least 300ms. Arena
 focuses the named Sailing controls region. Move a mouse to steer with finite turn
@@ -92,7 +109,26 @@ works during Loading. Retry recovers failed assets or graphics initialization.
 
 `?assetScenario=fail-once` makes the next Play fail even with a warm cache; Retry
 uses the normal loader. Refresh rearms the scenario; remove the query to disable.
-The world remains entirely visible between the measured HUD bands, including safe areas once. Portrait/landscape/320px layouts use uniform scale; DPR only changes buffer.
+O mundo permanece inteiro entre as faixas medidas do HUD, com safe areas aplicadas
+uma vez. Desktop permite portrait e landscape; mobile exige landscape, inclusive
+em 568×320. DPR altera somente o buffer gráfico.
+
+Mobile é definido pelo ponteiro **primário coarse**, independentemente de largura,
+user-agent, suporte adicional a toque ou modalidade atual de input. Em portrait
+(incluindo viewport quadrado), a proteção opaca prevalece sobre menu, Options,
+diálogos e Result. Carregamento e Retry continuam disponíveis nessa proteção.
+`Enter landscape` tenta a API de orientação após gesto; fullscreen só é tentado
+como alternativa quando o bloqueio direto falha e a API existe. Ausência ou recusa
+não impede girar fisicamente o aparelho. Sair de fullscreen não provoca novas
+solicitações automáticas; o viewport efetivo sempre decide o acesso.
+
+Entrar em portrait pausa a partida, solta capturas/comandos, desliga auto-sail e
+suspende loops sonoros. Retornar a landscape conserva matchId, mundo, tempo e
+cooldowns em Paused; Resume explícito é obrigatório e atualiza o enquadramento
+antes de aceitar input. Preparação gráfica que termina em portrait monta a partida
+já pausada, sem avançar um passo. Options conserva o rascunho durante rotações.
+`tests/e2e/orientation.spec.ts` verifica esses caminhos em dev/preview; a emulação
+das APIs não comprova bloqueio físico universal em navegadores ou dispositivos.
 
 ## Geometry and diagnostics
 

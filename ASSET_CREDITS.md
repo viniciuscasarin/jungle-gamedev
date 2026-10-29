@@ -30,7 +30,7 @@ The repository contains exactly **520 files** in the `assets/` directory. None o
 
 ## 2. Active Runtime Asset Subset
 
-The live game application consumes a carefully verified subset of the assets: exactly **52 unique images** (33 core PixiJS combat textures + 19 DOM UI images) and **27 audio sound effects**.
+O catálogo visual preparado contém **53 imagens** (33 texturas Pixi, 19 imagens DOM e o logo SVG) e **27 sons**. Recursos DOM participam da prontidão inicial sem serem alocados no renderer.
 
 ### 2.1 Core Combat Textures (33 Images — Loaded into PixiJS)
 
@@ -64,7 +64,7 @@ Cataloged in `src/render/assetManifest.ts` (`ASSET_MANIFEST` / `ASSET_URLS`). Th
 
 ### 2.2 DOM UI Images (19 Images — Rendered via React HTML/CSS)
 
-Cataloged in `src/render/assetManifest.ts` (`DOM_ASSET_IDS`). These decorative elements are decoupled from the PixiJS canvas so that decorative asset delays or failures never block combat initialization:
+Catalogados em `src/render/assetManifest.ts` (`DOM_ASSET_IDS`). São independentes do canvas Pixi; sua preparação inicial é obrigatória antes do menu, com Retry em caso de falha:
 
 | Category | Asset Role | File Path (relative to `assets/`) | Dimensions |
 | --- | --- | --- | --- |
@@ -83,9 +83,18 @@ Cataloged in `src/render/assetManifest.ts` (`DOM_ASSET_IDS`). These decorative e
 | **HUD Health** | Frame / Green Fill | `png/default/ui/hud/health_frame.png`, `health_fill_green.png` | 256×48 px each |
 
 *Subtotal: 9 menu assets + 5 HUD icons + 3 round buttons + 2 health bar assets = **19 DOM UI images**.*  
-*Total Runtime Visual Assets: 33 + 19 = **52 images**.*
+*Total visual preparado: 33 + 19 + 1 logo = **53 imagens**.*
 
-### 2.3 Audio Sound Effects (27 WAV Files)
+### 2.3 Logo Jungle Gaming
+
+`assets/logo_jungle_gaming.svg` é o arquivo fornecido já presente no repositório,
+com `viewBox="0 0 1774 887"`, preenchimento branco e fundo transparente. É usado
+sem transformação do desenho, conservando proporção 2:1 na abertura. A descrição
+interna identifica o wordmark Jungle Gaming. O repositório não comprova autor,
+origem externa ou licença desse logo; esses dados permanecem pendentes, sem
+presumir que compartilhe a licença de outros arquivos. Nenhum recurso foi gerado.
+
+### 2.4 Audio Sound Effects (27 WAV Files)
 
 Cataloged in `src/audio/audioManifest.ts` (`AUDIO_MANIFEST`). All 27 sound files present in `assets/sounds/` are actively used in runtime:
 
@@ -169,7 +178,7 @@ All third-party software libraries consumed by the project are formally audited,
 | Asset / Component Category | Inventory Count | Licensing Status | Production Bundle Viability |
 | --- | --- | --- | --- |
 | Supplied Assets (`assets/`) | 520 files | Pending Documentation (GDD §15) | Bundled as local static assets for evaluation |
-| Active Runtime Images | 52 files (33 Pixi + 19 DOM) | Pending Documentation (GDD §15) | Fingerprinted and packaged in `dist/assets/` |
+| Active Runtime Images | 53 files (33 Pixi + 19 DOM + logo SVG) | Pending Documentation (GDD §15) | Fingerprinted and packaged in `dist/assets/` |
 | Active Sound Effects | 27 WAV files | Pending Documentation (GDD §15) | Fingerprinted and packaged in `dist/assets/` |
 | Procedural Pixi Geometries | Dynamic | Original Authorial Code | 100% Free / Unencumbered |
 | Software Dependencies | 11 core packages | MIT / Apache-2.0 Verified | 100% Permissive Open Source |

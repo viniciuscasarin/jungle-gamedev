@@ -3,10 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#071e2b" />
+    <meta name="theme-color" content="#000000" />
     <meta name="description" content="Pirate Battle: steer a sailing ship around two islands with mouse and R." />
     <link rel="icon" href="data:," />
     <title>Pirate Battle</title>
+    <style>
+      html, body { margin: 0; background: #000; }
+      .startup-screen { position: fixed; inset: 0; z-index: 10000; box-sizing: border-box; overflow: auto; display: flex; flex-direction: column; justify-content: safe center; align-items: center; padding: max(20px, var(--startup-safe-top, env(safe-area-inset-top))) max(20px, var(--startup-safe-right, env(safe-area-inset-right))) max(20px, var(--startup-safe-bottom, env(safe-area-inset-bottom))) max(20px, var(--startup-safe-left, env(safe-area-inset-left))); background: #000; color: #fff; font: 16px/1.4 system-ui, sans-serif; text-align: center; }
+      .startup-screen .startup-logo { display: block; width: min(440px, 80vw, 100%); height: auto; aspect-ratio: 2 / 1; object-fit: contain; margin: 0 0 24px; }
+      .startup-progress { box-sizing: border-box; width: min(360px, 80vw, 100%); height: 20px; border: 2px solid #fff; background: #000; }
+      .startup-progress-fill { height: 100%; background: #fff; }
+      .startup-screen p { max-width: 40ch; color: #fff; margin: 12px 0; }
+      .startup-screen .startup-phrase { min-height: 3em; width: min(360px, 80vw, 100%); margin: 12px 0 0; }
+      .startup-screen section { max-width: 100%; }
+      .startup-screen h1, .startup-screen h2 { color: #fff; font-size: 1.4rem; margin: 8px 0; }
+      .startup-screen button { display: inline-flex; align-items: center; justify-content: center; width: auto; min-width: 140px; min-height: 48px; aspect-ratio: auto; padding: 10px 20px; margin: 8px; border: 2px solid #fff; border-radius: 0; color: #fff; background: #000; font: 700 1rem/1.4 system-ui, sans-serif; cursor: pointer; }
+      .startup-screen button:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+      .startup-screen[hidden], .startup-screen [hidden] { display: none; }
+      .startup-fatal { z-index: 10002; }
+      @media (max-height: 420px) { .startup-screen .startup-logo { width: min(280px, 60vw); margin-bottom: 8px; } .startup-screen { padding-top: max(8px, var(--startup-safe-top, env(safe-area-inset-top))); padding-bottom: max(8px, var(--startup-safe-bottom, env(safe-area-inset-bottom))); } .startup-screen p { margin: 6px 0; } }
+    </style>
+    <script>
+      // Vite relocates module tags during build; this listener survives that rewrite.
+      window.addEventListener('error', function (event) {
+        if (!(event.target instanceof HTMLScriptElement) || event.target.type !== 'module') return;
+        function showFailure() {
+          var cover = document.getElementById('startup-cover');
+          var fatal = document.getElementById('startup-fatal');
+          if (cover) cover.hidden = true;
+          if (fatal) { fatal.hidden = false; fatal.querySelector('button').focus(); }
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showFailure, { once: true });
+        else showFailure();
+      }, true);
+    </script>
   </head>
-  <body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body>
+  <body>
+    <div id="startup-cover" class="startup-screen">
+      <img class="startup-logo" src="/assets/logo_jungle_gaming.svg" alt="Jungle Gaming" fetchpriority="high" width="1774" height="887" />
+      <div class="startup-progress" role="progressbar" aria-label="Preparing game resources" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="startup-progress-fill" style="width:0%"></div></div>
+      <p>Preparing Pirate Battle · 0%</p>
+      <p class="startup-phrase">Bribing the kraken…</p>
+      <noscript>JavaScript is required to play Pirate Battle.</noscript>
+    </div>
+    <div id="startup-fatal" class="startup-screen startup-fatal" hidden role="alert">
+      <h1>Pirate Battle could not start</h1><p>Please retry to reload the application.</p>
+      <button onclick="location.reload()">Retry</button>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

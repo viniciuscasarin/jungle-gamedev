@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, playableSize, playableLayout, settleStartup } from './test';
 import type { Page, TestInfo, CDPSession } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -7,7 +7,7 @@ interface Audit { captures: Map<number,Element>; observers: Set<object>; resize:
 type NavigationSnapshot = SimulationSnapshot;
 interface Diagnostics { applications: number; resources: number; subscriptions: number; inputListeners: number; navigation: { snapshot: NavigationSnapshot; telegraphGraphics:number; dynamicSprites:number; target: { xUnits: number; yUnits: number } | null } | null; cache: { leases: number; textures: number; pending: boolean; closed: boolean } }
 declare global { interface Window { __arenaAudit: Audit; __arenaDiagnostics(): Diagnostics } }
-const evidence = 'project/automation-reports/08-implement-responsive-hud-and-touch/browser-evidence';
+const evidence = 'project/automation-reports/startup-landscape/arena-evidence';
 async function screenshot(page: Page, info: TestInfo, label: string) {
   await mkdir(evidence,{recursive:true});
   const file=path.resolve(evidence,`${info.project.name}-${label}.png`);
@@ -74,8 +74,8 @@ test.afterEach(async({page},info)=>{
 test('keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures',async({page},info)=>{
   await page.goto('/');await expect(page.getByRole('heading',{name:'Pirate Battle'})).toBeVisible();
   await screenshot(page,info,'menu-desktop');
-  await page.setViewportSize({width:320,height:568});
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(320);
+  await page.setViewportSize(playableSize(320, 568));
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(playableSize(320, 568).width);
   await expect(page.getByRole('heading',{name:'Pirate Battle'})).toBeVisible();await screenshot(page,info,'menu-320x568');
   await page.setViewportSize({width:1280,height:900});const initial=await counts(page);const cycles=[];
   for(let cycle=1;cycle<=5;cycle++) {
@@ -87,12 +87,12 @@ test('keyboard menu/loading/arena/menu and five Strict Mode cycles reuse texture
     const mounted=await counts(page);
     expect(mounted.nativeInput).toBeGreaterThanOrEqual(initial.nativeInput+7);
     if(cycles.length)expect(mounted.nativeInput).toBe(cycles[0]!.mounted.nativeInput);
-    expect(mounted).toMatchObject({applications:1,resources:1,subscriptions:1,canvases:1,observers:2,resize:1,density:1,frames:1,cache:{leases:1,pending:false}});
+    expect(mounted).toMatchObject({applications:1,resources:1,subscriptions:1,canvases:1,observers:2,resize:2,density:2,frames:1,cache:{leases:1,pending:false}});
     await expect(page.locator('.arena-host')).toHaveAttribute('data-ticker-started','false');
     await menu(page);await expect(page.getByRole('button',{name:'Play',exact:true})).toBeFocused();await settled(page);
     const unmounted=await counts(page);
     expect(unmounted.nativeInput).toBe(initial.nativeInput);
-    expect(unmounted).toMatchObject({applications:0,resources:0,subscriptions:0,inputListeners:0,canvases:0,observers:0,resize:0,density:0,frames:0,cache:{leases:0,pending:false}});
+    expect(unmounted).toMatchObject({applications:0,resources:0,subscriptions:0,inputListeners:0,canvases:0,observers:0,resize:1,density:1,frames:0,cache:{leases:0,pending:false}});
     expect(unmounted.cache.textures).toBeGreaterThan(0);cycles.push({cycle,mounted,unmounted});
   }
   await info.attach('resource-cycles',{body:JSON.stringify({initial,cycles},null,2),contentType:'application/json'});
@@ -108,7 +108,7 @@ async function pointWorld(page: Page, x: number, y: number) {
 }
 async function clockArena(page: Page, query = '?geometry=1') {
   await page.clock.install({time:new Date('2026-10-27T12:00:00Z')}); await page.clock.pauseAt(new Date('2026-10-27T12:00:01Z'));
-  await page.goto(`/${query}`); await page.getByRole('button', { name: 'Play', exact: true }).click();
+  await page.goto(`/${query}`); await settleStartup(page); await page.getByRole('button', { name: 'Play', exact: true }).click();
   for (let n = 0; n < 30 && await page.locator('.arena-screen').getAttribute('data-state') !== 'ready'; n++) await page.clock.runFor(100);
   await arena(page,false);
   // Asset/graphics completion is asynchronous relative to the controlled clock.
@@ -166,8 +166,8 @@ test('retains target across leave/resize/DPR; blur and hidden freeze until acces
   const paused = await observe(page); expect(paused.snapshot.state).toBe('paused'); expect(paused.snapshot.autoSailEnabled).toBe(false); expect(paused.target).toBeNull(); await settled(page);
   await page.clock.runFor(30000); await page.bringToFront(); await page.clock.runFor(1000); expect(await observe(page)).toEqual(paused);
   await page.keyboard.up('r'); await screenshot(page,info,'paused-desktop');
-  await page.setViewportSize({width:320,height:568}); await page.clock.runFor(30); await screenshot(page,info,'paused-320');
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(320);
+  await page.setViewportSize(playableSize(320, 568)); await page.clock.runFor(30); await screenshot(page,info,'paused-320');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(playableSize(320, 568).width);
   await page.getByRole('button',{name:'Resume',exact:true}).focus(); await page.keyboard.press('Enter');
   await expect(page.getByRole('region',{name:'Sailing controls'})).toBeFocused(); await page.clock.runFor(1000);
   expect((await observe(page)).snapshot.player).toEqual(paused.snapshot.player); expect((await observe(page)).snapshot.autoSailEnabled).toBe(false);
@@ -178,7 +178,7 @@ test('retains target across leave/resize/DPR; blur and hidden freeze until acces
   await page.getByRole('button',{name:'Main Menu',exact:true}).focus(); await page.keyboard.press('r'); await page.clock.runFor(20); expect((await observe(page)).snapshot.autoSailEnabled).toBe(false);
   await page.getByRole('region',{name:'Sailing controls'}).focus(); await pointWorld(page,900,270); const target = (await observe(page)).target;
   const beforeResize = (await observe(page)).snapshot.player.position;
-  for (const [width,height] of [[390,844],[844,390]]) { await page.setViewportSize({width:width!,height:height!}); await page.clock.runFor(50); expect((await observe(page)).target).toEqual(target); expect((await observe(page)).snapshot.player.position).toEqual(beforeResize); }
+  for (const [width,height] of ([[390,844],[844,390]]).map(playableLayout)) { await page.setViewportSize({width:width!,height:height!}); await page.clock.runFor(50); expect((await observe(page)).target).toEqual(target); expect((await observe(page)).snapshot.player.position).toEqual(beforeResize); }
   const session = await context.newCDPSession(page); await session.send('Emulation.setDeviceMetricsOverride',{width:844,height:390,deviceScaleFactor:2,mobile:false}); await session.send('Emulation.setEmulatedMedia',{media:'screen'}); await page.clock.runFor(50);
   expect((await observe(page)).target).toEqual(target); expect((await observe(page)).snapshot.player.position).toEqual(beforeResize);
   await session.send('Emulation.setDeviceMetricsOverride',{width:844,height:390,deviceScaleFactor:1,mobile:false}); await session.send('Emulation.setEmulatedMedia',{media:''}); await session.detach();
@@ -197,7 +197,7 @@ test('retains target across leave/resize/DPR; blur and hidden freeze until acces
 });
 test('fail-once before cold/warm cache and Retry without refresh',async({page},info)=>{
   await page.goto('/?assetScenario=fail-once');await page.getByRole('button',{name:'Play',exact:true}).click();
-  await expect(page.getByRole('heading',{name:'Loading failed'})).toBeVisible();expect((await counts(page)).cache.textures).toBe(0);
+  await expect(page.getByRole('heading',{name:'Loading failed'})).toBeVisible();expect((await counts(page)).cache.textures).toBeGreaterThan(0);
   const preparedId=await page.locator('.arena-screen').getAttribute('data-match-id');
   await saveOptions(page,180000,10000); // Retry must keep the logical preparation captured before this edit.
   await screenshot(page,info,'fail-once');await page.getByRole('button',{name:'Retry',exact:true}).click();await arena(page);
@@ -213,21 +213,21 @@ test('fail-once before cold/warm cache and Retry without refresh',async({page},i
   expect((await counts(page)).cache.textures).toBe(warm);expect((await counts(page)).cache.leases).toBe(0);
   await page.getByRole('button',{name:'Retry',exact:true}).click();await arena(page);expect((await counts(page)).cache.textures).toBe(warm);await menu(page);
 });
-test('Main Menu cancels a pending load and old callbacks cannot replace a new attempt',async({page})=>{
-  let release!:()=>void;let requested!:()=>void;const requestStarted=new Promise<void>(resolve=>{requested=resolve;});const gate=new Promise<void>(resolve=>{release=resolve;});
-  await page.route('**/*ship_5*.png*',async route=>{requested();await gate;await route.continue();});
-  await page.goto('/');await page.getByRole('button',{name:'Play',exact:true}).click();await requestStarted;
+test('Main Menu cancels pending graphics preparation with warm textures and ignores old callbacks',async({page})=>{
+  await page.goto('/');await expect(page.getByRole('button',{name:'Play',exact:true})).toBeVisible();
+  await page.clock.install();await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())+1000));
+  await page.getByRole('button',{name:'Play',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Loading',exact:true})).toBeVisible();await menu(page);
-  expect((await counts(page)).cache.pending).toBe(true);expect((await counts(page)).cache.leases).toBe(0);
-  release();await expect.poll(async()=> (await counts(page)).cache.pending).toBe(false);
+  await page.clock.runFor(2000);expect((await counts(page)).cache.pending).toBe(false);expect((await counts(page)).cache.leases).toBe(0);
   await expect(page.getByRole('button',{name:'Play',exact:true})).toBeVisible();await expect(page.locator('canvas')).toHaveCount(0);
-  await page.getByRole('button',{name:'Play',exact:true}).click();await arena(page);await menu(page);
+  await page.getByRole('button',{name:'Play',exact:true}).click();await page.clock.runFor(2000);await arena(page,false);await menu(page);
 });
 test('real asset failure retries and graphics init failure stays semantic',async({page},info)=>{
   let failing=true;
   await page.route('**/*ship_5*.png*',async route=>{if(failing)await route.fulfill({status:200,contentType:'image/png',body:'invalid image bytes'});else await route.continue();});
-  await page.goto('/');await page.getByRole('button',{name:'Play',exact:true}).click();await expect(page.getByRole('heading',{name:'Loading failed'})).toBeVisible();
-  await expect(page.locator('canvas')).toHaveCount(0);failing=false;await page.getByRole('button',{name:'Retry',exact:true}).click();await arena(page);await menu(page);
+  await page.goto('/');await expect(page.getByText('Game images could not be prepared. Please try again.')).toBeVisible();
+  await expect(page.locator('canvas')).toHaveCount(0);failing=false;await page.getByRole('button',{name:'Retry',exact:true}).click();
+  await page.getByRole('button',{name:'Play',exact:true}).click();await arena(page);await menu(page);
   await page.addInitScript(()=>{HTMLCanvasElement.prototype.getContext=(()=>null) as typeof HTMLCanvasElement.prototype.getContext;});
   await page.goto('/');await page.getByRole('button',{name:'Play',exact:true}).click();await expect(page.getByRole('heading',{name:'Loading failed'})).toBeVisible();
   await expect(page.getByRole('button',{name:'Retry',exact:true})).toBeVisible();await expect(page.locator('canvas')).toHaveCount(0);
@@ -237,7 +237,7 @@ test('real asset failure retries and graphics init failure stays semantic',async
 test('fits desktop/portrait/landscape and isolated DPR changes without rebuilding',async({page,context},info)=>{
   await page.goto('/?geometry=1');await page.getByRole('button',{name:'Play',exact:true}).click();await arena(page);
   const samples=[];
-  for(const [label,width,height] of [['desktop',1280,900],['320x568',320,568],['390x844',390,844],['844x390',844,390]] as const) {
+  for(const [label,width,height] of ([['desktop',1280,900],['320x568',320,568],['390x844',390,844],['844x390',844,390]] as const).map(playableLayout)) {
     await page.setViewportSize({width,height});await expect.poll(()=>page.locator('canvas').evaluate(c=>(c as HTMLCanvasElement).width)).toBe(width);
     const sample=await page.locator('.arena-host').evaluate(host=>({viewport:JSON.parse((host as HTMLElement).dataset.viewport!),player:JSON.parse((host as HTMLElement).dataset.player!),width:innerWidth,height:innerHeight,scrollWidth:document.documentElement.scrollWidth}));
     expect(sample.scrollWidth).toBe(width);const v=sample.viewport;expect(v.renderable).toBe(true);
@@ -284,7 +284,7 @@ test('real Q W E destroy diagnostic targets through collisions, orientation and 
   expect(headings.filter(h => Math.abs(Math.abs(h) - Math.PI) < 1e-8)).toHaveLength(3);
   expect(headings.filter(h => Math.abs(h) < 1e-8)).toHaveLength(3);
   await screenshot(page,info,'combat-seven-shots-desktop');
-  for (const [width,height,label] of [[320,568,'combat-320'],[844,390,'combat-landscape']] as const) {
+  for (const [width,height,label] of ([[320,568,'combat-320'],[844,390,'combat-landscape']] as const).map(playableLayout)) {
     await page.setViewportSize({width,height}); await page.clock.runFor(30);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);
     const boxes = await page.locator('.combat-status, #sailing-instructions').evaluateAll(nodes=>nodes.map(n=>{const b=n.getBoundingClientRect();return {left:b.left,right:b.right,top:b.top,bottom:b.bottom};}));
@@ -350,10 +350,10 @@ test('default empty and five active projectile teardown cycles reuse textures an
     for(const key of ['q','w','e']) await page.keyboard.down(key);
     await expect.poll(async()=>(await observe(page)).snapshot.projectiles.length).toBe(7);
     const active=await counts(page);expect(active.navigation!.snapshot.projectiles).toHaveLength(7);
-    expect(active).toMatchObject({applications:1,resources:1,subscriptions:1,inputListeners:13,canvases:1,observers:2,resize:1,density:1,frames:1});
+    expect(active).toMatchObject({applications:1,resources:1,subscriptions:1,inputListeners:13,canvases:1,observers:2,resize:2,density:2,frames:1});
     expect(active.cache.textures).toBe(baseline.cache.textures);
     await menu(page);for(const key of ['q','w','e'])await page.keyboard.up(key);
-    const removed=await counts(page);expect(removed).toMatchObject({applications:0,resources:0,subscriptions:0,inputListeners:0,canvases:0,observers:0,resize:0,density:0,frames:0,navigation:null,cache:{leases:0}});
+    const removed=await counts(page);expect(removed).toMatchObject({applications:0,resources:0,subscriptions:0,inputListeners:0,canvases:0,observers:0,resize:1,density:1,frames:0,navigation:null,cache:{leases:0}});
     expect(removed.nativeInput).toBe(baseline.nativeInput);expect(removed.cache.textures).toBe(active.cache.textures);cycles.push({active,removed});
   }
   await info.attach('combat-dynamic-cycles',{body:JSON.stringify(cycles,null,2),contentType:'application/json'});
@@ -368,7 +368,7 @@ test('normal director telegraphs freeze with active time, materializes both arch
   const focusSession=await context.newCDPSession(page);await focusSession.send('Emulation.setFocusEmulationEnabled',{enabled:false});
   const other=await context.newPage();await other.goto('about:blank');await other.bringToFront();
   await expect(page.getByRole('button',{name:'Resume',exact:true})).toBeVisible();const paused=await observe(page);await page.clock.runFor(15000);expect(await observe(page)).toEqual(paused);
-  await page.setViewportSize({width:320,height:568});await page.clock.runFor(50);expect(await observe(page)).toEqual(paused);await screenshot(page,info,'spawn-warning-paused-320');await page.setViewportSize({width:1280,height:900});
+  await page.setViewportSize(playableSize(320, 568));await page.clock.runFor(50);expect(await observe(page)).toEqual(paused);await screenshot(page,info,'spawn-warning-paused-320');await page.setViewportSize({width:1280,height:900});
   await page.bringToFront();await page.getByRole('button',{name:'Resume',exact:true}).click();await page.clock.runFor(100);
   expect((await observe(page)).snapshot.reservations).toHaveLength(1);
   while((await observe(page)).snapshot.activeTimeMs<3650)await page.clock.runFor(50);
@@ -418,7 +418,7 @@ async function startClockPlay(page: Page) {
 test('lifecycle valid 60s empty timer, terminal freeze, historical Last Result, refresh and current-settings replay',async({page},info)=>{
   test.setTimeout(180000);
   await page.clock.install({time:new Date('2026-10-28T03:00:00Z')});await page.clock.pauseAt(new Date('2026-10-28T03:00:01Z'));
-  await page.goto('/?combatScenario=empty&seed=123');await saveOptions(page);await startClockPlay(page);
+  await page.goto('/?combatScenario=empty&seed=123');await settleStartup(page);await saveOptions(page);await startClockPlay(page);
   const firstId=await page.locator('.arena-screen').getAttribute('data-match-id');
   expect((await currentSetup(page)).configuration.options.sessionDurationMs).toBe(60000);
   await saveOptions(page,180000,10000); // changes after capture must affect only the next preparation
@@ -429,12 +429,12 @@ test('lifecycle valid 60s empty timer, terminal freeze, historical Last Result, 
   const persisted=await page.evaluate(()=>JSON.parse(localStorage.getItem('pirate-battle.last-result.v1')!));
   expect(persisted.data).toMatchObject({matchId:firstId,activeDurationMs:60000,score:0,endReason:'time_expired',configuration:{options:{sessionDurationMs:60000}},seed:123});
   await page.clock.runFor(30000);expect(await observe(page)).toEqual(terminal);expect((await counts(page)).frames).toBe(0);
-  await page.setViewportSize({width:320,height:568});await page.clock.runFor(40);expect(await observe(page)).toEqual(terminal);await screenshot(page,info,'result-time-320');
-  for(const [width,height,label] of [[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const){
+  await page.setViewportSize(playableSize(320, 568));await page.clock.runFor(40);expect(await observe(page)).toEqual(terminal);await screenshot(page,info,'result-time-320');
+  for(const [width,height,label] of ([[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const).map(playableLayout)){
     await page.setViewportSize({width,height});await page.clock.runFor(40);expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);await screenshot(page,info,`result-time-${label}`);
   }
   await menu(page);await expect(page.getByRole('button',{name:'Last Result',exact:true})).toBeVisible();
-  for(const [width,height,label] of [[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const){await page.setViewportSize({width,height});await screenshot(page,info,`menu-last-result-${label}`);}
+  for(const [width,height,label] of ([[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const).map(playableLayout)){await page.setViewportSize({width,height});await screenshot(page,info,`menu-last-result-${label}`);}
   await page.getByRole('button',{name:'Last Result',exact:true}).click();await expect(page.getByRole('heading',{name:'Result',exact:true})).toBeFocused();expect((await counts(page)).navigation).toBeNull();
   expect(await page.locator('.result-screen').getAttribute('data-match-id')).toBe(firstId);await menu(page);
   await page.reload();await expect(page.getByRole('button',{name:'Last Result',exact:true})).toBeVisible();await page.getByRole('button',{name:'Last Result',exact:true}).click();
@@ -456,7 +456,7 @@ test('lifecycle Escape P Pause, contained dialogs, Keep Playing stays Paused, re
   await expect(page.getByRole('button',{name:'Resume',exact:true})).toBeFocused();
   await page.keyboard.press('Shift+Tab');await expect(page.getByRole('button',{name:'Main Menu',exact:true})).toBeFocused();await page.keyboard.press('Tab');await expect(page.getByRole('button',{name:'Resume',exact:true})).toBeFocused();
   await page.keyboard.press('p');await page.keyboard.press('Escape');await page.keyboard.press('q');await page.clock.runFor(30000);expect(await observe(page)).toEqual(paused);
-  for(const [width,height,label] of [[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const){
+  for(const [width,height,label] of ([[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const).map(playableLayout)){
     await page.setViewportSize({width,height});await page.clock.runFor(40);await screenshot(page,info,`paused-${label}`);
     await page.getByRole('button',{name:'Main Menu',exact:true}).click();await expect(page.getByRole('dialog',{name:'Abandon this match?'})).toBeVisible();await expect(page.getByRole('button',{name:'Keep Playing',exact:true})).toBeFocused();
     await screenshot(page,info,`abandon-confirm-${label}`);await page.keyboard.press('Shift+Tab');await expect(page.getByRole('button',{name:'Abandon',exact:true})).toBeFocused();await page.keyboard.press('Tab');await expect(page.getByRole('button',{name:'Keep Playing',exact:true})).toBeFocused();
@@ -468,7 +468,7 @@ test('lifecycle Escape P Pause, contained dialogs, Keep Playing stays Paused, re
   await page.getByRole('button',{name:'Resume',exact:true}).click();await page.clock.runFor(50);await page.getByRole('button',{name:'Pause',exact:true}).click();expect((await observe(page)).snapshot.state).toBe('paused');
   await page.getByRole('button',{name:'Resume',exact:true}).click();await runToResult(page);
   await expect(page.getByText('Ship destroyed',{exact:true})).toBeVisible();const dead=await observe(page);expect(dead.snapshot.player.health).toBe(0);expect(dead.snapshot.state).toBe('completed');expect(dead.snapshot.activeTimeMs).toBeLessThan(120000);
-  for(const [width,height,label] of [[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const){await page.setViewportSize({width,height});await page.clock.runFor(40);await screenshot(page,info,`result-death-${label}`);}
+  for(const [width,height,label] of ([[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const).map(playableLayout)){await page.setViewportSize({width,height});await page.clock.runFor(40);await screenshot(page,info,`result-death-${label}`);}
   await info.attach('lifecycle-ai-death',{body:JSON.stringify({paused,p,dead},null,2),contentType:'application/json'});await menu(page);
 });
 
@@ -488,7 +488,7 @@ test('lifecycle captured custom renderer geometry and pointer world clamp surviv
   // Use the actual letterbox below the measured HUD.
   await pointWorld(page,600,-1);expect((await observe(page)).target).toEqual({xUnits:600,yUnits:0});
   await page.getByRole('button',{name:'Pause',exact:true}).click();const paused=await observe(page);
-  for(const [width,height] of [[320,568],[844,390]]){await page.setViewportSize({width:width!,height:height!});await page.clock.runFor(40);expect(await observe(page)).toEqual(paused);const v=await page.locator('.arena-host').evaluate(h=>JSON.parse((h as HTMLElement).dataset.viewport!));expect(v.offsetX+1200*v.scale).toBeLessThanOrEqual(width!+1e-6);expect(v.offsetY+600*v.scale).toBeLessThanOrEqual(height!-88+1e-6);}
+  for(const [width,height] of ([[320,568],[844,390]]).map(playableLayout)){await page.setViewportSize({width:width!,height:height!});await page.clock.runFor(40);expect(await observe(page)).toEqual(paused);const v=await page.locator('.arena-host').evaluate(h=>JSON.parse((h as HTMLElement).dataset.viewport!));expect(v.offsetX+1200*v.scale).toBeLessThanOrEqual(width!+1e-6);expect(v.offsetY+600*v.scale).toBeLessThanOrEqual(height!-88+1e-6);}
   await screenshot(page,info,'captured-custom-map');await menu(page);
 });
 
@@ -498,9 +498,9 @@ test('lifecycle five completed replay abandon cycles have no stale native resour
   for(let cycle=0;cycle<5;cycle++){
     await startClockPlay(page);const id=await page.locator('.arena-screen').getAttribute('data-match-id');await runToResult(page);const completed=await counts(page);expect(completed.frames).toBe(0);expect(completed.navigation!.snapshot.state).toBe('completed');
     await page.getByRole('button',{name:'Play Again',exact:true}).click();for(let n=0;n<40&&await page.locator('.arena-screen').getAttribute('data-state')!=='ready';n++)await page.clock.runFor(100);await arena(page,false);
-    const fresh=await counts(page);expect(await page.locator('.arena-screen').getAttribute('data-match-id')).not.toBe(id);expect(fresh).toMatchObject({applications:1,resources:1,subscriptions:1,inputListeners:13,canvases:1,observers:2,resize:1,density:1});expect(fresh.navigation!.snapshot).toMatchObject({score:0,player:{health:100},enemies:[],projectiles:[],reservations:[],autoSailEnabled:false,cooldownsMs:{front:0,port:0,starboard:0}});
+    const fresh=await counts(page);expect(await page.locator('.arena-screen').getAttribute('data-match-id')).not.toBe(id);expect(fresh).toMatchObject({applications:1,resources:1,subscriptions:1,inputListeners:13,canvases:1,observers:2,resize:2,density:2});expect(fresh.navigation!.snapshot).toMatchObject({score:0,player:{health:100},enemies:[],projectiles:[],reservations:[],autoSailEnabled:false,cooldownsMs:{front:0,port:0,starboard:0}});
     await page.getByRole('button',{name:'Pause',exact:true}).click();await page.getByRole('button',{name:'Main Menu',exact:true}).click();await page.getByRole('button',{name:'Abandon',exact:true}).click();
-    const removed=await counts(page);expect(removed).toMatchObject({applications:0,resources:0,subscriptions:0,inputListeners:0,canvases:0,observers:0,resize:0,density:0,frames:0,navigation:null,cache:{leases:0}});expect(removed.nativeInput).toBe(baseline.nativeInput);expect(removed.cache.textures).toBe(baseline.cache.textures);
+    const removed=await counts(page);expect(removed).toMatchObject({applications:0,resources:0,subscriptions:0,inputListeners:0,canvases:0,observers:0,resize:1,density:1,frames:0,navigation:null,cache:{leases:0}});expect(removed.nativeInput).toBe(baseline.nativeInput);expect(removed.cache.textures).toBe(baseline.cache.textures);
     expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('pirate-battle.last-result.v1')!).data.matchId)).toBe(id);cycles.push({cycle,id,completed,fresh,removed});
   }
   await info.attach('lifecycle-five-cycles',{body:JSON.stringify({baseline,cycles,limitation:'Headless Chromium counters; not a hardware memory/FPS benchmark.'},null,2),contentType:'application/json'});
@@ -539,7 +539,7 @@ async function tracePointers(page:Page) {
   });
 }
 test('native multitouch joypad plus QWE uses capture, real projectiles and damage/score',async({page,context},info)=>{
-  await clockArena(page,'?combatScenario=targets&geometry=1');await page.setViewportSize({width:390,height:844});
+  await clockArena(page,'?combatScenario=targets&geometry=1');await page.setViewportSize(playableSize(390, 844));
   const session=await context.newCDPSession(page);await tracePointers(page);await useTouch(page,session);
   const joy=await center(page,'.joypad',10);joy.y-=24;
   const q=await center(page,'[data-control=front]',20),w=await center(page,'[data-control=port]',30),e=await center(page,'[data-control=starboard]',40);
@@ -556,7 +556,7 @@ test('native multitouch joypad plus QWE uses capture, real projectiles and damag
 });
 
 test('native independent releases, drag-out, foreign joypad ID, R cancel/up and pause with contacts',async({page,context},info)=>{
-  await clockArena(page,'?combatScenario=empty');await page.setViewportSize({width:320,height:568});const session=await context.newCDPSession(page);await tracePointers(page);await useTouch(page,session);
+  await clockArena(page,'?combatScenario=empty');await page.setViewportSize(playableSize(320, 568));const session=await context.newCDPSession(page);await tracePointers(page);await useTouch(page,session);
   const joy=await center(page,'.joypad',1);joy.x+=28;
   const q=await center(page,'[data-control=front]',2),q2={...q,id:3,x:q.x+5},foreign={...joy,id:4,x:joy.x-40};
   await touch(session,'touchStart',[joy]);await touch(session,'touchStart',[joy,q]);await touch(session,'touchStart',[joy,q,q2]);await touch(session,'touchStart',[joy,q,q2,foreign]);await page.clock.runFor(40);
@@ -596,7 +596,7 @@ test('native mode switches neutralize without stepping; resize and DPR retain th
   const joy=await center(page,'.joypad',2);joy.y-=30;await touch(session,'touchStart',[joy]);await page.clock.runFor(40);await touch(session,'touchEnd',[]);
   const r=await center(page,'[data-control=R]',3);await touch(session,'touchStart',[r]);await touch(session,'touchEnd',[]);await page.clock.runFor(40);
   const stable=(await observe(page)).snapshot,logical=(await touchNavigation(page)).sources;
-  for(const [width,height] of [[320,568],[844,390],[568,320]]) {await page.setViewportSize({width:width!,height:height!});expect((await observe(page)).snapshot).toEqual(stable);expect((await touchNavigation(page)).sources).toEqual(logical);expect((await touchNavigation(page)).mode).toBe('touch');}
+  for(const [width,height] of ([[320,568],[844,390],[568,320]]).map(playableLayout)) {await page.setViewportSize({width:width!,height:height!});expect((await observe(page)).snapshot).toEqual(stable);expect((await touchNavigation(page)).sources).toEqual(logical);expect((await touchNavigation(page)).mode).toBe('touch');}
   await session.send('Emulation.setDeviceMetricsOverride',{width:568,height:320,deviceScaleFactor:2,mobile:false});await session.send('Emulation.setEmulatedMedia',{media:'screen'});
   expect((await observe(page)).snapshot).toEqual(stable);expect((await touchNavigation(page)).sources).toEqual(logical);expect(await page.locator('.arena-screen').getAttribute('data-match-id')).toBe(id);expect(await currentSetup(page)).toEqual(setup);
   await page.mouse.move(200,160);expect((await observe(page)).snapshot).toEqual({...stable,autoSailEnabled:false});expect((await touchNavigation(page)).mode).toBe('desktop');expect((await touchNavigation(page)).sources.direction).toBeNull();
@@ -631,7 +631,7 @@ test('HUD measured bands, safe areas, all five layouts and horizontal bars from 
   await page.keyboard.press('r');for(const key of ['q','w','e'])await page.keyboard.down(key);await page.clock.runFor(40);for(const key of ['q','w','e'])await page.keyboard.up(key);
   await expect(page.locator('[data-control=R]')).toHaveAttribute('data-state','On');await screenshot(page,info,'hud-desktop-1280x900-cooldown-Ron');await hudGeometry(page,1280,900);
   await useTouch(page,session);const measurements=[];
-  for(const [width,height] of [[320,568],[390,844],[844,390],[568,320]]) {
+  for(const [width,height] of ([[320,568],[390,844],[844,390],[568,320]]).map(playableLayout)) {
     await page.setViewportSize({width:width!,height:height!});await page.clock.runFor(40);
     await page.locator('.arena-screen').evaluate(e=>{const s=(e as HTMLElement).style;s.setProperty('--safe-top','7px');s.setProperty('--safe-bottom','9px');s.setProperty('--safe-left','5px');s.setProperty('--safe-right','6px');});
     await page.clock.runFor(40);await expect.poll(()=>page.locator('.arena-host').evaluate(h=>{const i=JSON.parse((h as HTMLElement).dataset.insets!);return Math.abs(i.top-document.querySelector('[data-hud-band=top]')!.getBoundingClientRect().bottom)<.1&&i.left===5;})).toBe(true);const measured=await hudGeometry(page,width!,height!);measurements.push({width,height,measured});
@@ -644,7 +644,7 @@ test('HUD measured bands, safe areas, all five layouts and horizontal bars from 
   await menu(page);await page.evaluate(()=>history.replaceState(null,'','/?seed=0&geometry=1'));await startClockPlay(page);
   while((await observe(page)).snapshot.player.health===100)await page.clock.runFor(100);
   const playerDamage=(await observe(page)).snapshot;expect(playerDamage.player.health).toBeLessThan(100);expect(playerDamage.player.health).toBeGreaterThan(0);
-  await page.setViewportSize({width:390,height:844});await screenshot(page,info,'hud-player-real-contact-damage-390x844');await page.getByRole('button',{name:'Pause',exact:true}).click();const damagedBars=await touchNavigation(page);expect(damagedBars.healthBars.find(b=>b.id==='player')!.fraction).toBe(playerDamage.player.health/100);
+  await page.setViewportSize(playableSize(390, 844));await screenshot(page,info,'hud-player-real-contact-damage-390x844');await page.getByRole('button',{name:'Pause',exact:true}).click();const damagedBars=await touchNavigation(page);expect(damagedBars.healthBars.find(b=>b.id==='player')!.fraction).toBe(playerDamage.player.health/100);
   await screenshot(page,info,'hud-player-real-contact-damage-paused-390x844');await page.clock.runFor(10000);expect((await touchNavigation(page)).healthBars).toEqual(damagedBars.healthBars);
   await info.attach('hud-geometry-real-damage',{body:JSON.stringify({chaser,shooter,playerDamage,damagedBars,measurements,safeAreas:'Controlled CSS insets, not physical notch hardware.'},null,2),contentType:'application/json'});await session.detach();await menu(page);
 });
@@ -656,7 +656,7 @@ test('native contacts are cleared across five Pause Menu Play cycles and active-
     const foreign={...joy,id:30,x:joy.x-20};await touch(session,'touchStart',[joy,q,foreign]);await touch(session,'touchMove',[{...joy,x:joy.x+1},q,foreign]);await page.clock.runFor(40);const active=await counts(page);expect((await touchNavigation(page)).contacts).toHaveLength(2);
     if(cycle%2===0){await page.getByRole('button',{name:'Pause',exact:true}).evaluate((b:HTMLButtonElement)=>b.click());expect((await touchNavigation(page)).contacts).toEqual([]);await screenshot(page,info,`touch-cycle-${cycle}-paused`);}
     // Main Menu synchronously freezes and clears active contacts before abandonment.
-    await menu(page);await touch(session,'touchEnd',[]);const removed=await counts(page);expect(removed).toMatchObject({applications:0,resources:0,subscriptions:0,inputListeners:0,canvases:0,observers:0,resize:0,density:0,frames:0,navigation:null,cache:{leases:0}});expect(removed.nativeInput).toBe(baseline.nativeInput);expect(removed.orphanBattleInput).toBe(0);expect(removed.captures).toBe(0);cycles.push({active,removed});
+    await menu(page);await touch(session,'touchEnd',[]);const removed=await counts(page);expect(removed).toMatchObject({applications:0,resources:0,subscriptions:0,inputListeners:0,canvases:0,observers:0,resize:1,density:1,frames:0,navigation:null,cache:{leases:0}});expect(removed.nativeInput).toBe(baseline.nativeInput);expect(removed.orphanBattleInput).toBe(0);expect(removed.captures).toBe(0);cycles.push({active,removed});
   }
   await startClockPlay(page);await page.clock.runFor(1400);expect((await observe(page)).snapshot).toMatchObject({autoSailEnabled:false,player:{position:{xUnits:480,yUnits:270}},projectiles:[]});expect((await touchNavigation(page)).contacts).toEqual([]);
   await info.attach('native-five-cycles',{body:JSON.stringify(cycles,null,2),contentType:'application/json'});await session.detach();await menu(page);

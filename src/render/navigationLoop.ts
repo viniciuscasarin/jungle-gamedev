@@ -27,7 +27,7 @@ export function createNavigationLoop(setup: MatchSetup, input: { consume(): Step
   return {
     inspect: simulation.inspect,
     neutralizeAutoSail() { if (destroyed) return; simulation.neutralizeAutoSail(); present(simulation.inspect()); },
-    mount() { if (mounted || destroyed) return; mounted = true; present(simulation.inspect()); schedule(); },
+    mount(paused = false) { if (mounted || destroyed) return; mounted = true; if (paused) { reset(); simulation.freeze(); } present(simulation.inspect()); schedule(); },
     freeze() { if (!mounted || destroyed) return; reset(); simulation.freeze(); present(simulation.inspect()); },
     resume() { if (!mounted || destroyed || simulation.inspect().state !== 'paused') return; reset(); simulation.resume(); present(simulation.inspect()); schedule(); },
     destroy() { if (destroyed) return; destroyed = true; mounted = false; reset(); },

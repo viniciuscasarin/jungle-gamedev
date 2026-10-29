@@ -1,16 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, playableLayout, settleStartup } from './test';
 import type { Page, TestInfo } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 const optionsKey='pirate-battle.options.v1';
 const resultKey='pirate-battle.last-result.v1';
-const evidence='project/automation-reports/08-implement-responsive-hud-and-touch/browser-evidence';
+const evidence='project/automation-reports/startup-landscape/options-evidence';
 async function shot(page:Page,info:TestInfo,label:string){
   await mkdir(evidence,{recursive:true});const file=path.resolve(evidence,`${info.project.name}-${label}.png`);
   await page.screenshot({path:file,fullPage:true});await info.attach(label,{path:file,contentType:'image/png'});
 }
 async function layouts(page:Page,info:TestInfo,label:string){
-  for(const [width,height,name] of [[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const){
+  for(const [width,height,name] of ([[1280,900,'desktop'],[320,568,'320'],[844,390,'landscape']] as const).map(playableLayout)){
     await page.setViewportSize({width,height});expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);
     await shot(page,info,`${label}-${name}`);
   }
@@ -30,7 +30,7 @@ async function startClock(page:Page,button='Play'){
 async function back(page:Page){await page.getByRole('button',{name:'Main Menu',exact:true}).click();if(await page.getByRole('button',{name:'Abandon',exact:true}).isVisible())await page.getByRole('button',{name:'Abandon',exact:true}).click();}
 
 test('options keyboard, validation guard, Save-refresh, Cancel and Escape preserve the last Save',async({page},info)=>{
-  const remote:string[]=[];page.on('request',request=>{if(!new URL(request.url()).hostname.match(/^(127\.0\.0\.1|localhost)$/))remote.push(request.url());});
+  const remote:string[]=[];page.on('request',request=>{const url=new URL(request.url());if(['http:','https:'].includes(url.protocol)&&!url.hostname.match(/^(127\.0\.0\.1|localhost)$/))remote.push(request.url());});
   await page.goto('/');await expect(page.getByRole('button',{name:'Last Result',exact:true})).toHaveCount(0);
   await expect(page.getByRole('tab',{name:'Ranking',exact:true})).toBeVisible();await expect(page.getByRole('tab',{name:'Match History',exact:true})).toBeVisible();
   await layouts(page,info,'menu-empty');await page.setViewportSize({width:1280,height:900});
@@ -79,15 +79,19 @@ test('options denied Save keeps draft and earlier data; retry succeeds and Cance
   await page.evaluate(()=>Reflect.set(window,'denyOptions',false));await page.getByRole('button',{name:'Save',exact:true}).click();await expect(page.getByRole('button',{name:'Options',exact:true})).toBeFocused();expect(JSON.parse((await stored(page))!).data.sessionDurationMs).toBe(180000);
 });
 
-test('options DOM image failure keeps semantic fallback and never blocks Pixi Play',async({page},info)=>{
-  await page.route(/(?:ui_scene_background|title_pirate_battle|panel_menu|button_primary|button_secondary).*\.png/,route=>route.abort());
-  await page.goto('/?combatScenario=empty');await expect(page.getByRole('heading',{name:'Pirate Battle',exact:true})).toBeVisible();await shot(page,info,'menu-image-fallback');
+test('options DOM image failure blocks startup with Retry and preserves prepared Pixi textures',async({page},info)=>{
+  const pattern=/(?:ui_scene_background|title_pirate_battle|panel_menu|button_primary|button_secondary).*\.png/;
+  await page.route(pattern,route=>route.abort());
+  await page.goto('/?combatScenario=empty');await expect(page.getByText('Game images could not be prepared. Please try again.')).toBeVisible();await shot(page,info,'startup-image-failure');
+  await expect(page.getByRole('button',{name:'Play',exact:true})).toHaveCount(0);
+  await page.unroute(pattern);await page.getByRole('button',{name:'Retry',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Pirate Battle',exact:true})).toBeVisible();
   await open(page);await expect(page.getByRole('button',{name:'Save',exact:true})).toBeEnabled();await shot(page,info,'options-image-fallback');await page.getByRole('button',{name:'Cancel',exact:true}).click();await page.getByRole('button',{name:'Play',exact:true}).click();await ready(page);expect((await setup(page)).configuration.options.sessionDurationMs).toBe(120000);
 });
 
 test('options UI Save captures immutable active setup and Last Result replay uses last confirmed Save',async({page},info)=>{
   test.setTimeout(180000);await page.clock.install({time:new Date('2026-10-28T03:00:00Z')});await page.clock.pauseAt(new Date('2026-10-28T03:00:01Z'));
-  await page.goto('/?combatScenario=empty&seed=123');await save(page,'60','1.5');await startClock(page);
+  await page.goto('/?combatScenario=empty&seed=123');await settleStartup(page);await save(page,'60','1.5');await startClock(page);
   const firstId=await page.locator('.arena-screen').getAttribute('data-match-id'),captured=await setup(page);expect(captured.configuration.options).toEqual({sessionDurationMs:60000,enemySpawnIntervalMs:1500});
   await page.evaluate(key=>localStorage.setItem(key,JSON.stringify({version:1,data:{sessionDurationMs:180000,enemySpawnIntervalMs:10000}})),optionsKey);expect(await setup(page)).toEqual(captured);
   for(let n=0;n<65&&!await page.getByRole('heading',{name:'Result',exact:true}).isVisible();n++)await page.clock.runFor(1000);

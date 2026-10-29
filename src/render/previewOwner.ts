@@ -1,5 +1,5 @@
 export interface PreviewResource {
-  mount(): void;
+  mount(paused?: boolean): void;
   resize(): void;
   resume?(): void;
   pause?(): void;
@@ -14,6 +14,7 @@ export interface PreviewDependencies {
 /** One owner per effect. Initialization cannot attach before cancellation is checked. */
 export function createPreviewOwner(dependencies: PreviewDependencies): { dispose(): void; ready: Promise<void>; resume(): void; pause(): void } {
   let disposed = false;
+  let paused = false;
   let resource: PreviewResource | undefined;
   let stopObserving: (() => void) | undefined;
   const release = (): void => {
@@ -27,7 +28,7 @@ export function createPreviewOwner(dependencies: PreviewDependencies): { dispose
       const initialized = await dependencies.initialize();
       if (disposed) { initialized.destroy(); return; }
       resource = initialized;
-      resource.mount();
+      resource.mount(paused);
       resource.resize();
       stopObserving = dependencies.observeResize(() => { if (!disposed) resource?.resize(); });
       dependencies.onState('ready');
@@ -36,5 +37,10 @@ export function createPreviewOwner(dependencies: PreviewDependencies): { dispose
       if (!disposed) dependencies.onState('failed');
     }
   })();
-  return { ready, pause() { if (!disposed) resource?.pause?.(); }, resume() { if (!disposed) resource?.resume?.(); }, dispose() { if (disposed) return; disposed = true; release(); } };
+  return {
+    ready,
+    pause() { if (!disposed) { paused = true; resource?.pause?.(); } },
+    resume() { if (!disposed) { paused = false; resource?.resize(); resource?.resume?.(); } },
+    dispose() { if (disposed) return; disposed = true; release(); },
+  };
 }

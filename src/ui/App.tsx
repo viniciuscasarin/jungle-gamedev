@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '../data/queryClient';
 import { createPreviewOwner } from '../render/previewOwner';
@@ -22,6 +22,7 @@ import { MainMenu } from './screens/MainMenu';
 import { outboxStore } from '../data/outboxStore';
 import { outboxService } from '../data/outboxService';
 import { createAudioEngine } from '../audio/audioEngine';
+import { orientation, enterLandscape } from '../input/browserOrientation';
 import './styles.css';
 
 const local = createLocalAdapter(() => window.localStorage);
@@ -71,13 +72,18 @@ function Arena({
   });
   const controls = useRef({ pause: () => {}, resume: () => {} });
   const [confirm, setConfirm] = useState(false);
+  const { blocked } = useSyncExternalStore(orientation.subscribe, orientation.getSnapshot);
+  const navigationPaused = useRef(false);
+  useLayoutEffect(() => {
+    if (blocked) { controls.current.pause(); audioEngine.onPause(); }
+  }, [blocked]);
 
   useEffect(() => {
     const element = host.current;
     if (!element) return;
     let active = true;
     audioEngine.resetThresholds();
-    void audioEngine.startLoop('oceanAmbience');
+    navigationPaused.current = false;
 
     const attempt = createLoadingAttempt({
       fail,
@@ -87,8 +93,10 @@ function Arena({
         textures,
         value => {
           if (active) {
+            if (value.paused && !navigationPaused.current) audioEngine.onPause();
+            navigationPaused.current = value.paused;
             setNavigation(value);
-            audioEngine.checkThresholds(value.health, value.maxHealth, value.remainingSeconds);
+            if (!value.paused) audioEngine.checkThresholds(value.health, value.maxHealth, value.remainingSeconds);
           }
         },
         run.preparation.setup,
@@ -109,9 +117,13 @@ function Arena({
         countSubscription(1);
         return () => { stop(); countSubscription(-1); };
       },
-      onState: setState,
+      onState: value => {
+        setState(value);
+        if (value === 'ready' && !orientation.getSnapshot().blocked && !navigationPaused.current) void audioEngine.startLoop('oceanAmbience');
+      },
     });
     controls.current = owner;
+    if (orientation.getSnapshot().blocked) owner.pause();
 
     return () => {
       active = false;
@@ -123,17 +135,17 @@ function Arena({
 
   // Restore game focus only after React has removed the paused host's inert flag.
   useEffect(() => {
-    if (outcome) return;
+    if (outcome || blocked) return;
     if (state === 'ready') { if (!navigation.paused) host.current?.focus(); }
     else status.current?.focus();
-  }, [state, navigation.paused, outcome]);
+  }, [state, navigation.paused, outcome, blocked]);
 
   const pauseGame = () => {
     controls.current.pause();
-    audioEngine.onPause();
   };
 
   const resumeGame = () => {
+    if (orientation.getSnapshot().blocked) return;
     controls.current.resume();
     audioEngine.onResume();
   };
@@ -222,6 +234,9 @@ export function App() {
   };
 
   const start = () => {
+    if (orientation.getSnapshot().blocked) return;
+    void audioEngine.unlock();
+    if (orientation.getSnapshot().coarse) void enterLandscape();
     active.current?.completion.dispose();
     const options = local.readOptions();
     setOptionsNotice(options.notice);

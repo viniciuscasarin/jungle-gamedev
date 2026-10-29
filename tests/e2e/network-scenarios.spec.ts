@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, playableSize } from './test';
 
 test.describe('Network Scenarios Diagnostics and Controls E2E', () => {
   test('diagnostic panel opens, selects scenario, and reflects empty list immediately', async ({ page }) => {
@@ -76,7 +76,7 @@ test.describe('Network Scenarios Diagnostics and Controls E2E', () => {
   });
 
   test('Mobile viewport (320px) preserves 44px touch targets without horizontal overflow', async ({ page }) => {
-    await page.setViewportSize({ width: 320, height: 640 });
+    await page.setViewportSize(playableSize(320, 640));
     await page.goto('/');
 
     const summary = page.locator('.network-scenario-summary');
@@ -95,6 +95,6 @@ test.describe('Network Scenarios Diagnostics and Controls E2E', () => {
 
     // Verify horizontal containment (no body overflow > 320px)
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
-    expect(scrollWidth).toBeLessThanOrEqual(320);
+    expect(scrollWidth).toBeLessThanOrEqual(playableSize(320, 640).width);
   });
 });

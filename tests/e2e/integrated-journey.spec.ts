@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, settleStartup } from './test';
 import type { Page } from '@playwright/test';
 
 // Diagnostics contracts
@@ -83,7 +83,7 @@ test.describe('Integrated End-to-End Player Journey', () => {
     await page.clock.install({ time: new Date('2026-10-28T12:00:00Z') });
     await page.clock.pauseAt(new Date('2026-10-28T12:00:01Z'));
 
-    await page.goto('/?combatScenario=targets&geometry=1&seed=424242');
+    await page.goto('/?combatScenario=targets&geometry=1&seed=424242'); await settleStartup(page);
     await page.getByRole('button', { name: 'Play', exact: true }).click();
 
     for (let n = 0; n < 30 && (await page.locator('.arena-screen').getAttribute('data-state')) !== 'ready'; n++) {
@@ -139,7 +139,7 @@ test.describe('Integrated End-to-End Player Journey', () => {
     await page.clock.install({ time: new Date('2026-10-28T12:00:00Z') });
     await page.clock.pauseAt(new Date('2026-10-28T12:00:01Z'));
 
-    await page.goto('/?combatScenario=empty&geometry=1&seed=424242');
+    await page.goto('/?combatScenario=empty&geometry=1&seed=424242'); await settleStartup(page);
     await page.getByRole('button', { name: 'Play', exact: true }).click();
 
     for (let n = 0; n < 30 && (await page.locator('.arena-screen').getAttribute('data-state')) !== 'ready'; n++) {
@@ -178,7 +178,7 @@ test.describe('Integrated End-to-End Player Journey', () => {
     await page.clock.install({ time: new Date('2026-10-28T12:00:00Z') });
     await page.clock.pauseAt(new Date('2026-10-28T12:00:01Z'));
 
-    await page.goto('/?combatScenario=targets&geometry=1&seed=424242');
+    await page.goto('/?combatScenario=targets&geometry=1&seed=424242'); await settleStartup(page);
     await page.getByRole('button', { name: 'Play', exact: true }).click();
 
     for (let n = 0; n < 30 && (await page.locator('.arena-screen').getAttribute('data-state')) !== 'ready'; n++) {
@@ -222,7 +222,7 @@ test.describe('Integrated End-to-End Player Journey', () => {
     await page.clock.install({ time: new Date('2026-10-28T03:00:00Z') });
     await page.clock.pauseAt(new Date('2026-10-28T03:00:01Z'));
 
-    await page.goto('/?seed=0');
+    await page.goto('/?seed=0'); await settleStartup(page);
 
     // Configure session duration in options
     await page.evaluate(data => {
@@ -300,7 +300,7 @@ test.describe('Integrated End-to-End Player Journey', () => {
     await page.clock.install({ time: new Date('2026-10-28T12:00:00Z') });
     await page.clock.pauseAt(new Date('2026-10-28T12:00:01Z'));
 
-    await page.goto('/?combatScenario=empty&geometry=1&seed=424242');
+    await page.goto('/?combatScenario=empty&geometry=1&seed=424242'); await settleStartup(page);
     await page.getByRole('button', { name: 'Play', exact: true }).click();
 
     for (let n = 0; n < 30 && (await page.locator('.arena-screen').getAttribute('data-state')) !== 'ready'; n++) {
@@ -450,7 +450,7 @@ test.describe('Integrated End-to-End Player Journey', () => {
       localStorage.setItem('pirate-battle.options.v1', JSON.stringify({ version: 1, data }));
     }, { sessionDurationMs: 60000, enemySpawnIntervalMs: 1000 });
 
-    await page.goto('/?combatScenario=targets&geometry=1&seed=424242');
+    await page.goto('/?combatScenario=targets&geometry=1&seed=424242'); await settleStartup(page);
     await page.getByRole('button', { name: 'Play', exact: true }).click();
 
     for (let n = 0; n < 40 && (await page.locator('.arena-screen').getAttribute('data-state')) !== 'ready'; n++) {
@@ -506,7 +506,7 @@ test.describe('Integrated End-to-End Player Journey', () => {
     await page.clock.install({ time: new Date('2026-10-28T03:00:00Z') });
     await page.clock.pauseAt(new Date('2026-10-28T03:00:01Z'));
 
-    await page.goto('/?networkScenario=commit-timeout&seed=0');
+    await page.goto('/?networkScenario=commit-timeout&seed=0'); await settleStartup(page);
 
     // Configure fast session and commit-timeout scenario
     await page.evaluate(data => {
