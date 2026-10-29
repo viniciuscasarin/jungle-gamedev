@@ -10,10 +10,10 @@
                      "archive"
                  ],
     "currentIncrement":  17,
-    "currentPhase":  "apply",
-    "activeAgent":  "/root/i17_apply",
+    "currentPhase":  "archive",
+    "activeAgent":  "/root/i17_archive",
     "attempt":  1,
-    "lastUpdatedAt":  "2026-10-29T00:01:00.0000000-03:00",
+    "lastUpdatedAt":  "2026-10-29T00:30:00.0000000-03:00",
     "lastError":  null,
     "automationId":  "pirate-battle-openspec-sequencial",
     "increments":  [
@@ -736,11 +736,25 @@
                                                           "report":  "project/automation-reports/17-publish-game-release/propose.md"
                                                       },
                                           "apply":  {
-                                                        "status":  "running",
+                                                        "status":  "completed",
                                                         "attempt":  1,
                                                         "startedAt":  "2026-10-29T00:01:00.0000000-03:00",
-                                                        "agent":  "/root/i17_apply"
-                                                    }
+                                                        "agent":  "/root/i17_apply",
+                                                        "report":  "project/automation-reports/17-publish-game-release/apply.md"
+                                                    },
+                                          "verify":  {
+                                                         "status":  "completed",
+                                                         "attempt":  1,
+                                                         "startedAt":  "2026-10-29T00:26:00.0000000-03:00",
+                                                         "agent":  "/root/i17_verify",
+                                                         "report":  "project/automation-reports/17-publish-game-release/verify.md"
+                                                     },
+                                          "archive":  {
+                                                          "status":  "running",
+                                                          "attempt":  1,
+                                                          "startedAt":  "2026-10-29T00:30:00.0000000-03:00",
+                                                          "agent":  "/root/i17_archive"
+                                                      }
                                       }
                        }
                    ]
