@@ -1,6 +1,6 @@
 ﻿{
     "version":  1,
-    "status":  "running",
+    "status":  "completed",
     "source":  "project/prompts.md",
     "workflow":  [
                      "explore",
@@ -10,10 +10,10 @@
                      "archive"
                  ],
     "currentIncrement":  17,
-    "currentPhase":  "archive",
-    "activeAgent":  "/root/i17_archive",
+    "currentPhase":  "completed",
+    "activeAgent":  null,
     "attempt":  1,
-    "lastUpdatedAt":  "2026-10-29T00:30:00.0000000-03:00",
+    "lastUpdatedAt":  "2026-10-29T00:35:00.0000000-03:00",
     "lastError":  null,
     "automationId":  "pirate-battle-openspec-sequencial",
     "increments":  [
@@ -718,7 +718,7 @@
                        {
                            "number":  17,
                            "change":  "publish-game-release",
-                           "status":  "running",
+                           "status":  "completed",
                            "requiresPublicationAuthorization":  true,
                            "phases":  {
                                           "explore":  {
@@ -750,12 +750,14 @@
                                                          "report":  "project/automation-reports/17-publish-game-release/verify.md"
                                                      },
                                           "archive":  {
-                                                          "status":  "running",
+                                                          "status":  "completed",
                                                           "attempt":  1,
                                                           "startedAt":  "2026-10-29T00:30:00.0000000-03:00",
-                                                          "agent":  "/root/i17_archive"
+                                                          "agent":  "/root/i17_archive",
+                                                          "report":  "project/automation-reports/17-publish-game-release/archive.md"
                                                       }
-                                      }
+                                      },
+                           "archivePath":  "openspec/changes/archive/2026-10-28-publish-game-release"
                        }
                    ]
 }
