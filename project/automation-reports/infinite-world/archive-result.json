@@ -1,0 +1,20 @@
+{
+  "change": "add-infinite-procedural-world",
+  "archive": "openspec/changes/archive/2026-10-30-add-infinite-procedural-world",
+  "specSync": "loader-landscape then procedural; both verified inline",
+  "specValidation": {
+    "passed": 25,
+    "failed": 0,
+    "warnings": [
+      "Texto longo no requisito Tela inicial mínima acessível"
+    ]
+  },
+  "tasks": {
+    "complete": 37,
+    "total": 38,
+    "remaining": [
+      "7.2"
+    ]
+  },
+  "userAuthorizedIncompleteArchive": true
+}

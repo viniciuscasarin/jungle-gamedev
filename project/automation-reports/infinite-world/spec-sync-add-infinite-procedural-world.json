@@ -1,0 +1,190 @@
+{
+  "change": "add-infinite-procedural-world",
+  "verified": true,
+  "capabilities": [
+    {
+      "capability": "arena-rendering",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Arena composta com player autoritativo"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Transformações reversíveis de coordenadas"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Saúde sobre todos os navios vivos"
+        },
+        {
+          "kind": "REMOVED",
+          "requirement": "Mundo completo sem distorção"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Câmera de acompanhamento sem distorção"
+        }
+      ]
+    },
+    {
+      "capability": "enemy-behavior",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Rotas por waypoints seguras para cada casco"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Separação local com colisão entre cascos"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Continuidade de entidades fora da tela"
+        }
+      ]
+    },
+    {
+      "capability": "game-configuration",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Valores iniciais centralizados e versionados"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Geometria sólida de ilhas compartilhada"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Chave canônica da configuração de gameplay"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Compatibilidade dos resultados de mapas finitos"
+        }
+      ]
+    },
+    {
+      "capability": "performance-budgets",
+      "new": false,
+      "operations": [
+        {
+          "kind": "ADDED",
+          "requirement": "Retenção limitada durante exploração procedural"
+        }
+      ]
+    },
+    {
+      "capability": "player-combat",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Emissão segura fora do casco"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Lifetime e primeiro impacto contínuo"
+        }
+      ]
+    },
+    {
+      "capability": "player-navigation",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Conversão e invariância do alvo"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Casco contido e deslizamento sem dano"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Diagnóstico fiel ao estado"
+        }
+      ]
+    },
+    {
+      "capability": "procedural-world",
+      "new": true,
+      "operations": [
+        {
+          "kind": "ADDED",
+          "requirement": "Terreno determinístico sem perímetro jogável"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Catálogo de ilhas com geometria correspondente"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Perfis predefinidos de espaçamento"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Água conectada e manobra possível"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Início seguro e repetível"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Terreno disponível antes da interação"
+        }
+      ]
+    },
+    {
+      "capability": "responsive-hud",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Hierarquia do HUD desktop"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Hierarquia do HUD touch"
+        }
+      ]
+    },
+    {
+      "capability": "simulation-contracts",
+      "new": false,
+      "operations": [
+        {
+          "kind": "ADDED",
+          "requirement": "Contratos puros de terreno procedural"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Separação entre descritor de mundo e estado materializado"
+        }
+      ]
+    },
+    {
+      "capability": "spawn-director",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Escolha por seed e alternância por sucesso"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Posição segura com rota navegável"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Reserva com telegraph e revalidação"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001638) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "durationMs": 15023.199999988079,
+  "frames": 84511,
+  "avgFps": 5635.15613018517,
+  "p95FrameMs": 0.3000000000010914,
+  "severeFrameIntervalsMs": [
+    34.69999999999982
+  ]
+}

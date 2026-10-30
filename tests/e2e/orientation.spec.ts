@@ -1,4 +1,4 @@
-import { test, expect } from './test';
+import { test, expect, APP_ORIGINS } from './test';
 import type { Page } from '@playwright/test';
 import type { SimulationSnapshot } from '../../src/simulation/contracts';
 
@@ -16,7 +16,7 @@ async function coarse(page: Page, value = true) {
 const inspect = (page: Page) => page.evaluate(() => window.__arenaDiagnostics().navigation as unknown as {
   snapshot: SimulationSnapshot; contacts: unknown[]; target: unknown;
 });
-for (const origin of ['http://127.0.0.1:5173', 'http://127.0.0.1:4173']) {
+for (const origin of APP_ORIGINS) {
   test.describe(`Orientation ${origin}`, () => {
     for (const scenario of ['allowed', 'fullscreen', 'refused', 'unavailable']) {
       test(`native request ${scenario} keeps viewport authoritative and never repeats on fullscreen exit`, async ({ page }) => {

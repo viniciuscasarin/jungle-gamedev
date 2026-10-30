@@ -1,0 +1,26 @@
+[
+  {
+    "family": "compact",
+    "widthUnits": 160,
+    "heightUnits": 120,
+    "samples": 768,
+    "maxBoundaryErrorUnits": 1.875,
+    "maxReverseErrorUnits": 1.9008632907181937
+  },
+  {
+    "family": "elongated",
+    "widthUnits": 160,
+    "heightUnits": 280,
+    "samples": 1280,
+    "maxBoundaryErrorUnits": 1.875,
+    "maxReverseErrorUnits": 1.9008632907181937
+  },
+  {
+    "family": "wide",
+    "widthUnits": 320,
+    "heightUnits": 120,
+    "samples": 1280,
+    "maxBoundaryErrorUnits": 1.875,
+    "maxReverseErrorUnits": 1.9008632907181937
+  }
+]

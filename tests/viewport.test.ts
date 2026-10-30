@@ -1,6 +1,25 @@
 import { describe, expect, it } from 'vitest';
-import { fitViewport, screenToWorld, worldToScreen } from '../src/render/viewport';
-import { DEFAULT_CONFIG, snapshotConfiguration } from '../src/domain/config';
+import { fitViewport, followCamera, cameraBounds, screenToWorld, worldToScreen } from '../src/render/viewport';
+import { snapshotConfiguration } from '../src/domain/config';
+import { HISTORICAL_FINITE_CONFIG as DEFAULT_CONFIG } from '../src/domain/historicalFiniteConfig';
+
+it.each([[1280, 900], [844, 390], [568, 320], [320, 568]])('fills %i/%i around signed camera positions with reversible CSS transforms', (width, height) => {
+  const player = { x: -1580, y: 2670 }, insets = { left: 24, right: 28, top: 90, bottom: 116 };
+  const v = followCamera(width, height, player, insets);
+  expect(v.renderable).toBe(true); if (!v.renderable) return;
+  expect(v.scale).toBe(Math.max(width / 960, height / 540));
+  expect(worldToScreen(player, v).x).toBeCloseTo(24 + (width - 52) / 2, 8);
+  expect(worldToScreen(player, v).y).toBeCloseTo(90 + (height - 206) / 2, 8);
+  for (const p of [player, { x: -9000, y: -7000 }, { x: 0, y: 0 }]) {
+    const back = screenToWorld(worldToScreen(p, v), v);
+    expect(back.x).toBeCloseTo(p.x, 8); expect(back.y).toBeCloseTo(p.y, 8);
+  }
+  const bounds = cameraBounds(width, height, v);
+  expect(worldToScreen({ x: bounds.minX, y: bounds.minY }, v).x).toBeCloseTo(0, 8);
+  expect(worldToScreen({ x: bounds.maxX, y: bounds.maxY }, v).y).toBeCloseTo(height, 8);
+  expect(followCamera(0, height, player)).toEqual({ renderable: false });
+  expect(followCamera(width, height, player, { ...insets, bottom: height })).toEqual({ renderable: false });
+});
 
 describe('CSS viewport transforms', () => {
   it.each([[1280,900], [320,568], [390,844], [844,390], [960,676]])('fits and roundtrips at %i×%i', (width,height) => {

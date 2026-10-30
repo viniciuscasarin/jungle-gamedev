@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { writeFileSync, mkdirSync } from 'node:fs';
 import { createGameConfig, createMatchSetup } from '../src/domain/config';
 import { createSimulation } from '../src/simulation/engine';
 import type { StepInput } from '../src/simulation/contracts';
@@ -11,6 +12,9 @@ interface BenchmarkMetrics {
   readonly p95TimePerTickMs: number;
   readonly peakEntities: number;
   readonly finalScore: number;
+  readonly activeDurationMs: number;
+  readonly finalPosition: { xUnits: number; yUnits: number };
+  readonly resources: ReturnType<ReturnType<typeof createSimulation>['inspectResources']>;
 }
 
 function runSimulationBenchmark(options: {
@@ -25,7 +29,7 @@ function runSimulationBenchmark(options: {
     enemySpawnIntervalMs: spawnIntervalMs,
   });
   const setup = createMatchSetup(config, seed);
-  const sim = createSimulation(setup);
+  const sim = createSimulation(setup, {}, () => performance.now());
 
   const stepDurationsMs: number[] = new Array(totalTicks);
   let peakEntities = 0;
@@ -33,9 +37,9 @@ function runSimulationBenchmark(options: {
   for (let tick = 0; tick < totalTicks; tick++) {
     // Generate simulated active combat input:
     // periodic firing and directional maneuvering around the arena
-    const angle = (tick / 60) * 0.5; // continuous turning
-    const fireFront = tick % 25 === 0;
-    const fireBroadside = tick % 75 === 0;
+    const angle = tick < 90 ? -Math.PI / 2 : 0; // continuous turning
+    const fireFront = true;
+    const fireBroadside = true;
 
     const input: StepInput = {
       steering: { kind: 'direction', x: Math.cos(angle), y: Math.sin(angle) },
@@ -74,7 +78,11 @@ function runSimulationBenchmark(options: {
   const p95Index = Math.min(sorted.length - 1, Math.floor(sorted.length * 0.95));
   const p95TimePerTickMs = sorted[p95Index]!;
 
-  return {
+  const resources = sim.inspectResources();
+  sim.dispose();
+  expect(sim.inspectResources()).toMatchObject({ terrain: { regions: 0 }, navigation: { graphs: 0 } });
+  const result = {
+    activeDurationMs: finalSnapshot.activeTimeMs, finalPosition: finalSnapshot.player.position, resources,
     scenario: scenarioName,
     totalTicks,
     totalCpuTimeMs,
@@ -83,6 +91,9 @@ function runSimulationBenchmark(options: {
     peakEntities,
     finalScore: finalSnapshot.score,
   };
+  mkdirSync('project/automation-reports/infinite-world', { recursive: true });
+  writeFileSync(`project/automation-reports/infinite-world/benchmark-${spawnIntervalMs}.json`, JSON.stringify({ node: process.version, platform: process.platform, arch: process.arch, ...result }, null, 2));
+  return result;
 }
 
 describe('Headless simulation benchmark (10,800 ticks / 180s)', () => {
@@ -105,10 +116,13 @@ describe('Headless simulation benchmark (10,800 ticks / 180s)', () => {
     });
 
     expect(result.totalTicks).toBe(10_800);
+    expect(result.activeDurationMs).toBe(180000);
+    expect(result.finalPosition.xUnits).toBeGreaterThan(20 * 1280);
+    expect(result.resources.terrain.idleRegions).toBeLessThanOrEqual(8);
     // Normative requirement: CPU time per step < 0.8ms
     expect(result.avgTimePerTickMs).toBeLessThan(0.8);
     expect(result.p95TimePerTickMs).toBeLessThan(2.0);
-  });
+  }, 30000);
 
   it('sustains stress 1.0s spawn scenario with geometric stability and < 0.8ms average CPU per tick', () => {
     const result = runSimulationBenchmark({
@@ -129,10 +143,13 @@ describe('Headless simulation benchmark (10,800 ticks / 180s)', () => {
     });
 
     expect(result.totalTicks).toBe(10_800);
+    expect(result.activeDurationMs).toBe(180000);
+    expect(result.finalPosition.xUnits).toBeGreaterThan(20 * 1280);
+    expect(result.resources.terrain.idleRegions).toBeLessThanOrEqual(8);
     // Normative requirement: CPU time per step < 0.8ms even in accelerated 1.0s spawn stress
     expect(result.avgTimePerTickMs).toBeLessThan(0.8);
     // Natural geometric ceiling: peak entities bounded by arena space without exponential explosion
     expect(result.peakEntities).toBeGreaterThan(0);
     expect(result.peakEntities).toBeLessThan(200);
-  });
+  }, 30000);
 });

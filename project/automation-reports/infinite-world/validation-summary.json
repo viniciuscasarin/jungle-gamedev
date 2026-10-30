@@ -1,0 +1,279 @@
+{
+  "status": "37/38; 7.2 pending normative frame budgets",
+  "checks": {
+    "node": "v26.11.1",
+    "npm": "11.20.0",
+    "typecheck": 0,
+    "lint": 0,
+    "test": 0,
+    "build": 0
+  },
+  "browser": {
+    "browser-profile-software-3000.json": {
+      "environment": {
+        "node": "v26.11.1",
+        "platform": "win32",
+        "release": "10.0.26300",
+        "cpu": "AMD Ryzen 5 5600G with Radeon Graphics         ",
+        "cpuCount": 12,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "software": true
+      },
+      "interval": 3000,
+      "avgFps": 35.120904529168456,
+      "p95FrameMs": 33.40000000000873,
+      "p95RenderMs": 0.9000000059604645,
+      "normative": null,
+      "peakEntities": 53,
+      "peakRegions": 25,
+      "peakSprites": 961,
+      "result": {
+        "seed": 42,
+        "activeDurationMs": 180000,
+        "endReason": "time_expired"
+      }
+    },
+    "browser-profile-software-1000.json": {
+      "environment": {
+        "node": "v26.11.1",
+        "platform": "win32",
+        "release": "10.0.26300",
+        "cpu": "AMD Ryzen 5 5600G with Radeon Graphics         ",
+        "cpuCount": 12,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "software": true
+      },
+      "interval": 1000,
+      "avgFps": 33.811447750852594,
+      "p95FrameMs": 33.40000000000873,
+      "p95RenderMs": 0.9000000059604645,
+      "normative": null,
+      "peakEntities": 127,
+      "peakRegions": 30,
+      "peakSprites": 962,
+      "result": {
+        "seed": 42,
+        "activeDurationMs": 180000,
+        "endReason": "time_expired"
+      }
+    },
+    "browser-profile-3000.json": {
+      "environment": {
+        "uncappedReference": false,
+        "browserFlags": [
+          "--enable-gpu",
+          "--use-angle=d3d11"
+        ],
+        "node": "v26.11.1",
+        "platform": "win32",
+        "release": "10.0.26300",
+        "cpu": "AMD Ryzen 5 5600G with Radeon Graphics         ",
+        "cpuCount": 12,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001638) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "software": false
+      },
+      "interval": 3000,
+      "avgFps": 59.912197544872484,
+      "p95FrameMs": 17,
+      "p95RenderMs": 0.8999999761581421,
+      "normative": {
+        "hardwareReference": true,
+        "fps60": false,
+        "p95Below20": true,
+        "severeDrops": 1
+      },
+      "peakEntities": 56,
+      "peakRegions": 25,
+      "peakSprites": 961,
+      "result": {
+        "seed": 42,
+        "activeDurationMs": 180000,
+        "endReason": "time_expired"
+      }
+    },
+    "browser-profile-hardware-uncapped-3000.json": {
+      "environment": {
+        "uncappedReference": true,
+        "browserFlags": [
+          "--enable-gpu",
+          "--use-angle=d3d11",
+          "--disable-frame-rate-limit",
+          "--disable-gpu-vsync"
+        ],
+        "node": "v26.11.1",
+        "platform": "win32",
+        "release": "10.0.26300",
+        "cpu": "AMD Ryzen 5 5600G with Radeon Graphics         ",
+        "cpuCount": 12,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001638) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "software": false
+      },
+      "interval": 3000,
+      "avgFps": 1028.1390450108975,
+      "p95FrameMs": 1.8000000000029104,
+      "p95RenderMs": 0.8999999761581421,
+      "normative": {
+        "hardwareReference": true,
+        "fps60": true,
+        "p95Below20": true,
+        "severeDrops": 79
+      },
+      "peakEntities": 56,
+      "peakRegions": 27,
+      "peakSprites": 960,
+      "result": {
+        "seed": 42,
+        "activeDurationMs": 180000,
+        "endReason": "time_expired"
+      }
+    },
+    "browser-profile-hardware-uncapped-1000.json": {
+      "environment": {
+        "uncappedReference": true,
+        "browserFlags": [
+          "--enable-gpu",
+          "--use-angle=d3d11",
+          "--disable-frame-rate-limit",
+          "--disable-gpu-vsync"
+        ],
+        "node": "v26.11.1",
+        "platform": "win32",
+        "release": "10.0.26300",
+        "cpu": "AMD Ryzen 5 5600G with Radeon Graphics         ",
+        "cpuCount": 12,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001638) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "software": false
+      },
+      "interval": 1000,
+      "avgFps": 891.8471138443471,
+      "p95FrameMs": 2,
+      "p95RenderMs": 0.5999999940395355,
+      "normative": {
+        "hardwareReference": true,
+        "fps60": true,
+        "p95Below20": true,
+        "severeDrops": 1
+      },
+      "peakEntities": 132,
+      "peakRegions": 32,
+      "peakSprites": 962,
+      "result": {
+        "seed": 42,
+        "activeDurationMs": 180000,
+        "endReason": "time_expired"
+      }
+    }
+  },
+  "resumedAttempt": {
+    "summary": "resume-attempt-summary.json",
+    "rawProfile": "browser-profile-resume-3000.json",
+    "control": "resume-environment-probe.json",
+    "checks": {
+      "typecheck": 0,
+      "lint": 0
+    },
+    "buildAndTargetedTests": {
+      "test": 0,
+      "build": 0
+    },
+    "functional": {
+      "startTime": "2026-10-30T13:55:42.156Z",
+      "duration": 660025.902,
+      "expected": 23,
+      "skipped": 2,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "snapshotRetry": {
+      "startTime": "2026-10-30T14:07:37.969Z",
+      "duration": 6851.148,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "edgeReferenceAttempt": {
+    "summary": {
+      "environment": {
+        "uncappedReference": true,
+        "browserFlags": [
+          "--enable-gpu",
+          "--use-angle=d3d11",
+          "--disable-frame-rate-limit",
+          "--disable-gpu-vsync"
+        ],
+        "node": "v26.11.1",
+        "platform": "win32",
+        "release": "10.0.26300",
+        "cpu": "AMD Ryzen 5 5600G with Radeon Graphics         ",
+        "cpuCount": 12,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001638) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "software": false
+      },
+      "avgFps": 468.5557600918102,
+      "p95FrameMs": 2.1000000000058208,
+      "p95RenderMs": 0.4000000059604645,
+      "wallDurationMs": 195115.90000000596,
+      "normative": {
+        "hardwareReference": true,
+        "fps60": true,
+        "p95Below20": true,
+        "severeDrops": 876
+      },
+      "peakEntities": 44,
+      "peakRegions": 22,
+      "peakSprites": 961,
+      "finalActiveMs": 132916.6666666667,
+      "result": null,
+      "maxFrameMs": 680.5
+    },
+    "control": {
+      "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001638) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "durationMs": 30046.59999999404,
+      "frames": 148931,
+      "avgFps": 4964.846601838178,
+      "p95FrameMs": 0.3999999999996362
+    },
+    "controlSevereFrames": 31,
+    "e2e": {
+      "startTime": "2026-10-30T14:36:06.871Z",
+      "duration": 204199.296,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "decision": "Keep criteria; independent GPU host still required"
+  }
+}

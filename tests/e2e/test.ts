@@ -36,3 +36,5 @@ export function playableLayout<T extends readonly (string | number)[]>(layout: T
   result[offset] = size.width; result[offset + 1] = size.height;
   return result as unknown as T;
 }
+
+export const APP_ORIGINS = [`http://127.0.0.1:${process.env.PLAYWRIGHT_DEV_PORT ?? 5173}`, `http://127.0.0.1:${process.env.PLAYWRIGHT_PREVIEW_PORT ?? 4173}`];

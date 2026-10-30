@@ -8,6 +8,9 @@ import { DEFAULT_CONFIGURATION_KEY } from '../src/mocks/fixtures';
 import type { CompletedMatchResult } from '../src/domain/result';
 import { ConflictError, ValidationError, ApiError } from '../src/data/contracts';
 import { LOCAL_KEYS } from '../src/storage/local';
+import legacyFixture from './fixtures/finite-result-v2.json';
+import { validateCompletedResult } from '../src/domain/result';
+import { createApiClient } from '../src/data/client';
 
 describe('Result Outbox Pattern and Dispatcher', () => {
   const createSampleResult = (id: string, score = 10): CompletedMatchResult => ({
@@ -37,6 +40,19 @@ describe('Result Outbox Pattern and Dispatcher', () => {
   });
 
   describe('OutboxStore persistence and operations', () => {
+    it('rehydrates and dispatches a pending literal finite result through the unchanged REST envelope', async () => {
+      const result = validateCompletedResult(legacyFixture);
+      const memory = new Map<string, string>([[LOCAL_KEYS.outbox, JSON.stringify({ version: 1, data: [{ matchId: result.matchId, result, status: 'pending', attempts: 0, lastAttemptAt: null, error: null, permanentFailure: false, createdAt: result.completedAt }] })]]);
+      const store = createOutboxStore(() => ({ getItem: k => memory.get(k) ?? null, setItem: (k, v) => { memory.set(k, v); } } as Storage));
+      expect(store.getEntries()[0]?.result).toEqual(result);
+      const api = createApiClient();
+      const service = createOutboxService({ store, postMatch: api.postMatch });
+      expect(await service.dispatchEntry(result.matchId)).toEqual(result);
+      expect(store.getEntry(result.matchId)).toBeUndefined(); // confirmed delivery consumes the pending entry
+      service.dispose();
+      expect((await api.getRanking({ configurationKey: result.configurationKey })).items).toContainEqual(result);
+      expect((await api.getPlayerMatches(result.playerId)).items).toContainEqual(result);
+    });
     it('enqueues match results atomically and preserves them', () => {
       const memory: Record<string, string> = {};
       const fakeStorage: Storage = {

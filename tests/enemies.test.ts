@@ -1,6 +1,7 @@
 import { expect, it } from 'vitest';
-import { DEFAULT_CONFIG as c, createMatchSetup } from '../src/domain/config';
-import type { GameConfig } from '../src/domain/config';
+import { createMatchSetup } from '../src/domain/config';
+import { HISTORICAL_FINITE_CONFIG as c } from '../src/domain/historicalFiniteConfig';
+import type { HistoricalFiniteConfig as GameConfig } from '../src/domain/historicalFiniteConfig';
 import { createSimulation } from '../src/simulation/engine';
 import { NEUTRAL_INPUT } from '../src/simulation/contracts';
 import type { ShipSnapshot } from '../src/simulation/contracts';
@@ -9,9 +10,73 @@ import { hullIsValid } from '../src/simulation/collision';
 import { createEnemyBehavior, constrainHull, lineOfSight, normalizeAngle, separateHulls } from '../src/simulation/enemies';
 import { createDirector, createRandom, spawnIsSafe } from '../src/simulation/director';
 import { emitWeapon } from '../src/simulation/combat';
+import { DEFAULT_CONFIG as ocean } from '../src/domain/config';
+import { createTerrain } from '../src/simulation/world/terrain';
+import { createNavigator } from '../src/simulation/navigation';
 const ship=(id:string,archetype:'player'|'chaser'|'shooter',xUnits:number,yUnits:number,headingRadians=0):ShipSnapshot=>({id,archetype,position:{xUnits,yUnits},headingRadians,health:c.ships[archetype].maxHealth,maxHealth:c.ships[archetype].maxHealth});
 const run=(sim:ReturnType<typeof createSimulation>,steps:number)=>{for(let i=0;i<steps;i++)sim.step(NEUTRAL_INPUT);return sim.inspect();};
 const empty:GameConfig={...c,world:{...c.world,islands:[]}};
+
+it('reserves and revalidates the full annulus around a distant signed player with independent terrain RNG', () => {
+  const terrain = createTerrain(ocean, 0), navigation = createNavigator(ocean, terrain);
+  const player = ship('player', 'player', -3000, 40), a = createDirector(0, ocean, (() => { let n = 0; return () => `a-${n++}`; })(), terrain, navigation);
+  const reservation = a(3000, player, [], []).reservations;
+  expect(reservation).toHaveLength(1);
+  const distance = distanceBetween(reservation[0]!.position, player.position);
+  expect(distance).toBeGreaterThanOrEqual(240); expect(distance).toBeLessThanOrEqual(520);
+  for (let n = 0; n < 20; n++) terrain.region(n, -20);
+  expect(a(3599, player, [], reservation).reservations).toEqual(reservation);
+  const materialized = a(3600, player, [], reservation);
+  expect(materialized.enemies[0]).toMatchObject({ archetype: 'chaser', position: reservation[0]!.position });
+  const second = a(6000, player, materialized.enemies, []).reservations;
+  expect(second[0]!.archetype).toBe('shooter');
+  const canceled = a(6600, { ...player, position: { xUnits: 5000, yUnits: 40 } }, materialized.enemies, second);
+  expect(canceled.reservations).toEqual([]); expect(canceled.enemies).toEqual(materialized.enemies);
+  expect(a(9000, player, materialized.enemies, []).reservations[0]!.archetype).toBe('shooter');
+  navigation.dispose(); terrain.dispose();
+});
+
+it('pursues across a changed player region and conserves an offscreen enemy through renderer queries', () => {
+  const terrain = createTerrain(ocean, 0), nav = createNavigator(ocean, terrain), behavior = createEnemyBehavior(ocean, terrain, nav);
+  let chaser = ship('traveler', 'chaser', -1240, 40);
+  let player = ship('player', 'player', 40, 40);
+  const before = distanceBetween(chaser.position, player.position);
+  for (let n = 0; n < 600; n++) chaser = behavior.move(chaser, player, [chaser], n * ocean.timing.fixedStepMs);
+  expect(distanceBetween(chaser.position, player.position)).toBeLessThan(before - 500);
+  player = { ...player, position: { xUnits: 1320, yUnits: 40 } };
+  const changed = distanceBetween(chaser.position, player.position);
+  for (let n = 600; n < 1200; n++) chaser = behavior.move(chaser, player, [chaser], n * ocean.timing.fixedStepMs);
+  expect(distanceBetween(chaser.position, player.position)).toBeLessThan(changed - 500);
+  const initial = { enemies: [ship('hidden-shooter', 'shooter', -2500, 40)] };
+  const a = createSimulation(createMatchSetup(ocean, 0), initial), b = createSimulation(createMatchSetup(ocean, 0), initial);
+  for (let n = 0; n < 360; n++) {
+    a.terrain.region(n % 20, -5); a.inspect();
+    a.step(NEUTRAL_INPUT); b.step(NEUTRAL_INPUT); expect(a.events()).toEqual(b.events());
+  }
+  expect(a.inspect()).toEqual(b.inspect());
+  expect(a.inspect().enemies.find(e => e.id === 'hidden-shooter')).toMatchObject({ health: 60 });
+  expect(a.inspect().enemies.find(e => e.id === 'hidden-shooter')!.position).not.toEqual(initial.enemies[0]!.position);
+  a.dispose(); b.dispose(); nav.dispose(); terrain.dispose();
+});
+
+it('makes actual steering progress around all three procedural families from both sides', () => {
+  const terrain = createTerrain(ocean, 0), nav = createNavigator(ocean, terrain), families = new Set<string>();
+  for (let x = -10; x < 10 && families.size < 3; x++) for (const island of terrain.region(x, -2).islands) {
+    if (families.has(island.modelId)) continue; families.add(island.modelId);
+    for (const reverse of [false, true]) {
+      const left = island.origin.xUnits - 40, right = island.origin.xUnits + island.widthUnits + 40, y = island.origin.yUnits + island.heightUnits / 2;
+      const player = ship('player', 'player', reverse ? left : right, y);
+      let enemy = ship('routing', 'chaser', reverse ? right : left, y, reverse ? Math.PI : 0);
+      const behavior = createEnemyBehavior(ocean, terrain, nav);
+      for (let n = 0; n < 1200; n++) {
+        enemy = behavior.move(enemy, player, [enemy], (n + 1) * ocean.timing.fixedStepMs);
+        expect(hullIsValid(enemy.position, ocean, 16, terrain)).toBe(true);
+      }
+      expect(distanceBetween(enemy.position, player.position)).toBeLessThan(80);
+    }
+  }
+  expect(families.size).toBe(3); nav.dispose(); terrain.dispose();
+});
 
 it('keeps normal AI/director with captured initial data and explicitly isolates stationary targets',()=>{
   const data={enemies:[ship('enemy','chaser',480,100)]},sim=createSimulation(createMatchSetup(c,0),data),old=sim.inspect();

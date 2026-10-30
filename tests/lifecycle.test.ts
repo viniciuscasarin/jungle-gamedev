@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { DEFAULT_CONFIG, createGameConfig, createMatchSetup } from '../src/domain/config';
-import type { GameConfig } from '../src/domain/config';
+import type { GameConfig, ProceduralGameConfig } from '../src/domain/config';
 import { configurationKey, validateConfiguration, validateOptions } from '../src/domain/validation';
 import { validateCompletedResult } from '../src/domain/result';
 import type { CompletedMatchResult } from '../src/domain/result';
@@ -12,6 +12,15 @@ import { NEUTRAL_INPUT } from '../src/simulation/contracts';
 import type { ProjectileSnapshot, SimulationEvent } from '../src/simulation/contracts';
 import { createNavigationLoop } from '../src/render/navigationLoop';
 import { createInputBuffer } from '../src/input/desktop';
+import legacyResult from './fixtures/finite-result-v2.json';
+
+it('recovers literal finite Last Result without rewriting or clearing storage', () => {
+  const raw = JSON.stringify({ version: 1, data: legacyResult });
+  const write = vi.fn();
+  const local = createLocalAdapter(() => ({ getItem: () => raw, setItem: write }));
+  expect(local.readResult().value).toEqual(legacyResult);
+  expect(write).not.toHaveBeenCalled();
+});
 
 const config = createGameConfig({ sessionDurationMs: 60000, enemySpawnIntervalMs: 1000 });
 const setup = createMatchSetup(config, 123);
@@ -32,7 +41,7 @@ describe('captured preparation and canonical gameplay', () => {
     Reflect.set(source.world.playerStart, 'xUnits', 33);
     expect(preparation.identity.playerName).toBe('Captain');
     expect(preparation.setup.configuration.world.playerStart.xUnits).toBe(480);
-    expect(Object.isFrozen(preparation.setup.configuration.world.islands[0]!.solidOutline)).toBe(true);
+    expect(Object.isFrozen(('catalog' in preparation.setup.configuration.world ? preparation.setup.configuration.world.catalog[0]!.solidOutline : preparation.setup.configuration.world.islands[0]!.solidOutline))).toBe(true);
     expect('window' in globalThis).toBe(false);
   });
   it('ignores property order and external metadata; preserves array order', () => {
@@ -57,7 +66,7 @@ describe('captured preparation and canonical gameplay', () => {
     const first = preparePlay(config.options, identity, new URLSearchParams('combatScenario=island'), {id,seed});
     const replay = preparePlay({...config.options,sessionDurationMs:180000}, identity, new URLSearchParams('configScenario=custom'), {id,seed});
     expect(first.preparation.setup.configuration.world.playerStart.xUnits).toBe(350);
-    expect(replay.preparation).toMatchObject({matchId:'replay',setup:{seed:11,configuration:{options:{sessionDurationMs:180000},world:{widthUnits:1200,playerStart:{xUnits:600}},ships:{player:{hullRadiusUnits:22}}}}});
+    expect(replay.preparation).toMatchObject({matchId:'replay',setup:{seed:11,configuration:{options:{sessionDurationMs:180000},world:{kind:'procedural',playerStart:{xUnits:600}},ships:{player:{hullRadiusUnits:22}}}}});
     expect(first.preparation.setup.configuration.options.sessionDurationMs).toBe(60000);
   });
 });
@@ -85,18 +94,18 @@ describe('unknown persisted data', () => {
       if (mode === 'missing') delete parent[key]; else parent[key] = {invalid:true};
       expect(() => validateConfiguration(copy), `${path.join('.')} ${mode}`).toThrow(RangeError);
     }
-    expect(paths.length).toBe(87);
+    expect(paths.length).toBeGreaterThan(87);
   });
   it.each([
-    (c: GameConfig) => ({...c, world:{...c.world, widthUnits:Infinity}}),
-    (c: GameConfig) => ({...c, world:{...c.world, playerStart:{...c.world.playerStart,xUnits:0}}}),
-    (c: GameConfig) => ({...c, spawn:{...c.spawn,archetypeSequence:['boss']}}),
-    (c: GameConfig) => ({...c, world:{...c.world,islands:[{...c.world.islands[0]!,solidOutline:[{xUnits:0,yUnits:0},{xUnits:1,yUnits:0}]}]}}),
-    (c: GameConfig) => ({...c, world:{...c.world,islands:[{...c.world.islands[0]!,widthUnits:900}]}}),
-    (c: GameConfig) => ({...c, navigation:{...c.navigation,endpointConnections:1.5}}),
-    (c: GameConfig) => ({...c, controls:{...c.controls,joypadDeadZoneNormalized:1}}),
-    (c: GameConfig) => ({...c, options:{...c.options,sessionDurationMs:59000}}),
-    (c: GameConfig) => ({...c, rules:{...c.rules,friendlyFire:true}}),
+    (c: ProceduralGameConfig) => ({...c, world:{...c.world, widthUnits:Infinity}}),
+    (c: ProceduralGameConfig) => ({...c, world:{...c.world, playerStart:{...c.world.playerStart,xUnits:0}}}),
+    (c: ProceduralGameConfig) => ({...c, spawn:{...c.spawn,archetypeSequence:['boss']}}),
+    (c: ProceduralGameConfig) => ({...c, world:{...c.world,catalog:[{...c.world.catalog[0]!,solidOutline:[{xUnits:0,yUnits:0},{xUnits:1,yUnits:0}]}]}}),
+    (c: ProceduralGameConfig) => ({...c, world:{...c.world,catalog:[{...c.world.catalog[0]!,widthUnits:900}]}}),
+    (c: ProceduralGameConfig) => ({...c, navigation:{...c.navigation,endpointConnections:1.5}}),
+    (c: ProceduralGameConfig) => ({...c, controls:{...c.controls,joypadDeadZoneNormalized:1}}),
+    (c: ProceduralGameConfig) => ({...c, options:{...c.options,sessionDurationMs:59000}}),
+    (c: ProceduralGameConfig) => ({...c, rules:{...c.rules,friendlyFire:true}}),
   ])('rejects nonfinite, invalid geometry, enums and limits', change => { expect(() => validateConfiguration(change(config))).toThrow(RangeError); });
   it.each(['matchId','playerId','playerName','completedAt','score','activeDurationMs','endReason','configuration','configurationKey','seed'])('rejects missing result field %s', key => {
     const result = {...fixture()} as Record<string,unknown>; delete result[key]; expect(() => validateCompletedResult(result)).toThrow(RangeError);

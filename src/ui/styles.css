@@ -488,3 +488,14 @@ button.skill:active:not(:disabled) { background-image: url('../../assets/png/def
   cursor: pointer;
   touch-action: manipulation;
 }
+/* Ocean fills the host; only the individual HUD groups intercept input. */
+.battle-top, .battle-bottom { background: transparent; pointer-events: none; }
+.battle-top button, .battle-bottom button, .battle-bottom .joypad { pointer-events: auto; }
+.top-line { width: fit-content; max-width: 100%; margin-inline: auto; padding: 3px 8px; border-radius: 12px; background: #082e3ce8; }
+.control-guide { width: fit-content; max-width: 100%; margin: 0 auto 4px; padding: 3px 8px; border-radius: 8px; background: #082e3ce8; }
+@media (max-width: 600px) { .top-line { padding-inline: 4px; } }
+@media (max-height: 400px) {
+  [data-input-mode=touch] .skills { grid-template-columns: repeat(2, 52px); }
+  [data-input-mode=touch] button.skill { width: 52px; height: 52px; grid-template-rows: 28px 16px; background-size: 44px 44px; }
+  [data-input-mode=touch] .skill img { width: 28px; height: 28px; }
+}

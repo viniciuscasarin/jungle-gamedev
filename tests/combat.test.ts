@@ -1,6 +1,7 @@
 import { expect, it } from 'vitest';
-import { DEFAULT_CONFIG as c, createMatchSetup } from '../src/domain/config';
-import type { GameConfig } from '../src/domain/config';
+import { createMatchSetup } from '../src/domain/config';
+import { HISTORICAL_FINITE_CONFIG as c } from '../src/domain/historicalFiniteConfig';
+import type { HistoricalFiniteConfig as GameConfig } from '../src/domain/historicalFiniteConfig';
 import { createSimulation } from '../src/simulation/engine';
 import { captureCombatData, diagnosticTargets, emitWeapon } from '../src/simulation/combat';
 import { hullIsValid, sweepCircle, sweepSolid } from '../src/simulation/collision';
@@ -8,11 +9,39 @@ import { NEUTRAL_INPUT } from '../src/simulation/contracts';
 import type { InitialCombatData, ProjectileSnapshot, ShipSnapshot, StepInput } from '../src/simulation/contracts';
 import { createInputBuffer } from '../src/input/desktop';
 import { createNavigationLoop } from '../src/render/navigationLoop';
+import { DEFAULT_CONFIG as ocean } from '../src/domain/config';
+import { createTerrain } from '../src/simulation/world/terrain';
 const setup = createMatchSetup(c, 7);
 const fire: StepInput = { ...NEUTRAL_INPUT, fire: { front: true, port: true, starboard: true } };
 const enemy = (id = 'victim', archetype: 'chaser' | 'shooter' = 'chaser', xUnits = 480, yUnits = 145): ShipSnapshot => ({ id, archetype, position: { xUnits, yUnits }, headingRadians: 0, health: c.ships[archetype].maxHealth, maxHealth: c.ships[archetype].maxHealth });
 const ball = (id = 'ball', patch: Partial<ProjectileSnapshot> = {}): ProjectileSnapshot => ({ id, ownerId: 'player', faction: 'player', damage: 20, radiusUnits: 5, speedUnitsPerSecond: 420, headingRadians: -Math.PI / 2, position: { xUnits: 480, yUnits: 180 }, remainingLifetimeMs: 1200, ...patch });
 const run = (sim: ReturnType<typeof createSimulation>, count: number, input = NEUTRAL_INPUT) => { for (let i = 0; i < count; i++) sim.step(input); return sim.inspect(); };
+
+it('resolves first shoreline impact in cold signed terrain and protects the far-side enemy', () => {
+  const terrain = createTerrain(ocean, 0), island = terrain.region(-2, -2).islands[0]!;
+  const y = island.origin.yUnits + island.heightUnits / 2;
+  const initial = { mode: 'stationary-targets' as const, enemies: [enemy('protected', 'shooter', island.origin.xUnits + island.widthUnits + 60, y)],
+    projectiles: [ball('fast', { position: { xUnits: island.origin.xUnits - 80, yUnits: y }, headingRadians: 0, speedUnitsPerSecond: 100000 })] };
+  const sim = createSimulation(createMatchSetup(ocean, 0), initial);
+  sim.terrain.region(50, 50); // evict independently of the requested solid
+  sim.step(NEUTRAL_INPUT);
+  expect(sim.inspect().projectiles).toHaveLength(0); expect(sim.inspect().enemies[0]!.health).toBe(60);
+  expect(sim.events()).toEqual([]);
+  const shooter = { ...enemy('muzzle', 'shooter', island.origin.xUnits - 18.0001, y), headingRadians: 0 };
+  let n = 0;
+  expect(emitWeapon(shooter, 'shooter', ocean, () => `cold-${n++}`, sim.terrain)).toHaveLength(0);
+  sim.dispose(); terrain.dispose();
+});
+
+it('preserves signed emission and partial lifetime across empty ownership borders', () => {
+  const sim = createSimulation(createMatchSetup(ocean, 0), { mode: 'stationary-targets', projectiles: [ball('cross', { position: { xUnits: -1, yUnits: 40 }, headingRadians: 0, speedUnitsPerSecond: 420, remainingLifetimeMs: 50 })] });
+  expect(run(sim, 1).projectiles[0]!.position.xUnits).toBeCloseTo(6);
+  expect(run(sim, 2).projectiles).toHaveLength(0);
+  expect(sim.events().map(e => e.type)).toEqual(['water_hit']);
+  const shooter = { ...sim.inspect().player, position: { xUnits: -2000, yUnits: 40 }, headingRadians: 0 };
+  expect(emitWeapon(shooter, 'front', ocean, () => 'signed', sim.terrain)[0]!.position.xUnits).toBeLessThan(0);
+  sim.dispose();
+});
 
 it('captures technical geometry, real archetypes, initial data and default emptiness without a DOM', () => {
   expect('document' in globalThis).toBe(false);

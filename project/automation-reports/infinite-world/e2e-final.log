@@ -1,0 +1,128 @@
+
+Running 36 tests using 1 worker
+
+
+
+[1/36] [desktop-chrome] › tests\e2e\arena.spec.ts:77:1 › keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures
+[2/36] [desktop-chrome] › tests\e2e\arena.spec.ts:215:1 › real asset failure retries and graphics init failure stays semantic
+[3/36] [desktop-chrome] › tests\e2e\arena.spec.ts:617:1 › HUD measured bands, safe areas, all five layouts and horizontal bars from real damage
+[4/36] [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:54:3 › Battle feedback, audio and accessibility › live region announces pause and resume events politely without frame spam
+[5/36] [desktop-chrome] › tests\e2e\orientation.spec.ts:87:5 › Orientation http://127.0.0.1:6173 › rotation releases held contacts and preserves the same frozen battle until Resume
+[6/36] [desktop-chrome] › tests\e2e\orientation.spec.ts:122:5 › Orientation http://127.0.0.1:6173 › graphics completing in portrait never advances the simulation
+[7/36] [desktop-chrome] › tests\e2e\orientation.spec.ts:87:5 › Orientation http://127.0.0.1:6174 › rotation releases held contacts and preserves the same frozen battle until Resume
+[8/36] [desktop-chrome] › tests\e2e\orientation.spec.ts:122:5 › Orientation http://127.0.0.1:6174 › graphics completing in portrait never advances the simulation
+[9/36] [desktop-chrome] › tests\e2e\startup.spec.ts:6:5 › Startup http://127.0.0.1:6173 › resources finish below 100 while mocks are delayed and the menu stays unavailable
+  1) [desktop-chrome] › tests\e2e\startup.spec.ts:6:5 › Startup http://127.0.0.1:6173 › resources finish below 100 while mocks are delayed and the menu stays unavailable
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('progressbar')
+    Expected: "99"
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('progressbar') with timeout 15000ms
+      - waiting for getByRole('progressbar')
+
+
+      10 |       await page.route(origin.includes('5173') ? '**/src/mocks/browser.ts*' : /\/assets\/browser-[^/]*\.js$/, async route => { await gate; await route.continue(); });
+      11 |       await page.goto(origin);
+    > 12 |       await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '99');
+         |                                                   ^
+      13 |       await expect(page.getByText('Finishing initialization…')).toBeVisible();
+      14 |       await expect(page.getByRole('button', { name: 'Play', exact: true })).toHaveCount(0);
+      15 |       release(); await settleStartup(page);
+        at C:\Users\Vinicius\Dev\repos\challenges\jungle-gamedev\tests\e2e\startup.spec.ts:12:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    project\automation-reports\infinite-world\e2e-final\startup-Startup-http-127-0-c9170--the-menu-stays-unavailable-desktop-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: project\automation-reports\infinite-world\e2e-final\startup-Startup-http-127-0-c9170--the-menu-stays-unavailable-desktop-chrome\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    project\automation-reports\infinite-world\e2e-final\startup-Startup-http-127-0-c9170--the-menu-stays-unavailable-desktop-chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace project\automation-reports\infinite-world\e2e-final\startup-Startup-http-127-0-c9170--the-menu-stays-unavailable-desktop-chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+
+[10/36] [desktop-chrome] › tests\e2e\startup.spec.ts:6:5 › Startup http://127.0.0.1:6174 › resources finish below 100 while mocks are delayed and the menu stays unavailable
+[11/36] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:23:3 › Deterministic Visual Regression Baselines › main-menu-desktop baseline
+[12/36] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:34:3 › Deterministic Visual Regression Baselines › main-menu-mobile baseline
+[13/36] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:46:3 › Deterministic Visual Regression Baselines › main-menu-focused baseline
+[14/36] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:62:3 › Deterministic Visual Regression Baselines › battle-desktop-paused baseline
+[15/36] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:84:3 › Deterministic Visual Regression Baselines › battle-mobile-hud baseline
+[16/36] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:107:3 › Deterministic Visual Regression Baselines › options-modal-desktop baseline
+[17/36] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:118:3 › Deterministic Visual Regression Baselines › options-modal-mobile baseline
+[18/36] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:130:3 › Deterministic Visual Regression Baselines › result-screen-desktop baseline
+
+
+[19/36] [mobile-chrome] › tests\e2e\arena.spec.ts:77:1 › keyboard menu/loading/arena/menu and five Strict Mode cycles reuse textures
+[20/36] [mobile-chrome] › tests\e2e\arena.spec.ts:215:1 › real asset failure retries and graphics init failure stays semantic
+[21/36] [mobile-chrome] › tests\e2e\arena.spec.ts:617:1 › HUD measured bands, safe areas, all five layouts and horizontal bars from real damage
+[22/36] [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:54:3 › Battle feedback, audio and accessibility › live region announces pause and resume events politely without frame spam
+[23/36] [mobile-chrome] › tests\e2e\orientation.spec.ts:87:5 › Orientation http://127.0.0.1:6173 › rotation releases held contacts and preserves the same frozen battle until Resume
+[24/36] [mobile-chrome] › tests\e2e\orientation.spec.ts:122:5 › Orientation http://127.0.0.1:6173 › graphics completing in portrait never advances the simulation
+[25/36] [mobile-chrome] › tests\e2e\orientation.spec.ts:87:5 › Orientation http://127.0.0.1:6174 › rotation releases held contacts and preserves the same frozen battle until Resume
+[26/36] [mobile-chrome] › tests\e2e\orientation.spec.ts:122:5 › Orientation http://127.0.0.1:6174 › graphics completing in portrait never advances the simulation
+[27/36] [mobile-chrome] › tests\e2e\startup.spec.ts:6:5 › Startup http://127.0.0.1:6173 › resources finish below 100 while mocks are delayed and the menu stays unavailable
+  2) [mobile-chrome] › tests\e2e\startup.spec.ts:6:5 › Startup http://127.0.0.1:6173 › resources finish below 100 while mocks are delayed and the menu stays unavailable
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('progressbar')
+    Expected: "99"
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('progressbar') with timeout 15000ms
+      - waiting for getByRole('progressbar')
+
+
+      10 |       await page.route(origin.includes('5173') ? '**/src/mocks/browser.ts*' : /\/assets\/browser-[^/]*\.js$/, async route => { await gate; await route.continue(); });
+      11 |       await page.goto(origin);
+    > 12 |       await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '99');
+         |                                                   ^
+      13 |       await expect(page.getByText('Finishing initialization…')).toBeVisible();
+      14 |       await expect(page.getByRole('button', { name: 'Play', exact: true })).toHaveCount(0);
+      15 |       release(); await settleStartup(page);
+        at C:\Users\Vinicius\Dev\repos\challenges\jungle-gamedev\tests\e2e\startup.spec.ts:12:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    project\automation-reports\infinite-world\e2e-final\startup-Startup-http-127-0-c9170--the-menu-stays-unavailable-mobile-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: project\automation-reports\infinite-world\e2e-final\startup-Startup-http-127-0-c9170--the-menu-stays-unavailable-mobile-chrome\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    project\automation-reports\infinite-world\e2e-final\startup-Startup-http-127-0-c9170--the-menu-stays-unavailable-mobile-chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace project\automation-reports\infinite-world\e2e-final\startup-Startup-http-127-0-c9170--the-menu-stays-unavailable-mobile-chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+
+[28/36] [mobile-chrome] › tests\e2e\startup.spec.ts:6:5 › Startup http://127.0.0.1:6174 › resources finish below 100 while mocks are delayed and the menu stays unavailable
+[29/36] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:23:3 › Deterministic Visual Regression Baselines › main-menu-desktop baseline
+[30/36] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:34:3 › Deterministic Visual Regression Baselines › main-menu-mobile baseline
+[31/36] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:46:3 › Deterministic Visual Regression Baselines › main-menu-focused baseline
+[32/36] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:62:3 › Deterministic Visual Regression Baselines › battle-desktop-paused baseline
+[33/36] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:84:3 › Deterministic Visual Regression Baselines › battle-mobile-hud baseline
+[34/36] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:107:3 › Deterministic Visual Regression Baselines › options-modal-desktop baseline
+[35/36] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:118:3 › Deterministic Visual Regression Baselines › options-modal-mobile baseline
+[36/36] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:130:3 › Deterministic Visual Regression Baselines › result-screen-desktop baseline
+  2 failed
+    [desktop-chrome] › tests\e2e\startup.spec.ts:6:5 › Startup http://127.0.0.1:6173 › resources finish below 100 while mocks are delayed and the menu stays unavailable
+    [mobile-chrome] › tests\e2e\startup.spec.ts:6:5 › Startup http://127.0.0.1:6173 › resources finish below 100 while mocks are delayed and the menu stays unavailable
+  8 skipped
+  26 passed (3.1m)

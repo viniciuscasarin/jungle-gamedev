@@ -1,0 +1,48 @@
+
+Running 2 tests using 1 worker
+
+
+
+(node:5012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1/2] [desktop-chrome] › tests\e2e\performance-profile.spec.ts:312:37 › profiles 180s of procedural exploration with 3000ms spawns
+[desktop-chrome] › tests\e2e\performance-profile.spec.ts:312:37 › profiles 180s of procedural exploration with 3000ms spawns
+[PROCEDURAL PROFILE] {
+  interval: 3000,
+  avgFps: 490.041567193458,
+  p95: 2.1000000000058208,
+  renderP95: 0.699999988079071,
+  peakRegions: 22,
+  peakEntities: 49,
+  result: undefined
+}
+
+  1) [desktop-chrome] › tests\e2e\performance-profile.spec.ts:312:37 › profiles 180s of procedural exploration with 3000ms spawns
+
+    Error: expect(received).toMatchObject(expected)
+
+    Matcher error: received value must be a non-null object
+
+    Received has value: null
+
+      352 |   await info.attach('procedural-180s-profile',{body:JSON.stringify(report),contentType:'application/json'});
+      353 |   console.info('[PROCEDURAL PROFILE]',{interval,avgFps,p95,renderP95,peakRegions:raw.peakRegions,peakEntities:raw.peakEntities,result:raw.result?.endReason});
+    > 354 |   expect(raw.result).toMatchObject({activeDurationMs:180000,endReason:'time_expired',seed:42});
+          |                      ^
+      355 |   expect(raw.samples.length).toBeGreaterThan(100);
+      356 |   expect((raw.samples[raw.samples.length-1] as {time:number}).time).toBeGreaterThanOrEqual(179000);
+      357 |   await page.getByRole('button',{name:'Main Menu',exact:true}).click();
+        at C:\Users\Vinicius\Dev\repos\challenges\jungle-gamedev\tests\e2e\performance-profile.spec.ts:354:22
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    project\automation-reports\infinite-world\e2e-resume-hardware\performance-profile-profil-8f3af-loration-with-3000ms-spawns-desktop-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: project\automation-reports\infinite-world\e2e-resume-hardware\performance-profile-profil-8f3af-loration-with-3000ms-spawns-desktop-chrome\error-context.md
+
+
+
+(node:13868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[2/2] [desktop-chrome] › tests\e2e\performance-profile.spec.ts:312:37 › profiles 180s of procedural exploration with 1000ms spawns

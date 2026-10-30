@@ -10,7 +10,7 @@ hidden document freezes simulation until explicit Resume. Session lifecycle, loc
 
 Numerical balance remains an initial proposal, not a playtest result.
 `src/domain/config.ts` is the single typed source of gameplay data. The map is
-**arena-v2** (solid shoreline replacing arena-v1 envelopes); balance is **balance-v1**.
+**ocean-v1**, gerador **archipelago-v1**, balanceamento **balance-v1**. O schema arena-v2 permanece congelado em historicalFiniteConfig.ts para leitura histórica e diagnóstico opt-in.
 Asset paths and visual layout belong to adapters, never to the core.
 
 ## Toolchain and boundaries
@@ -49,7 +49,7 @@ Clock values use Ms, speeds UnitsPerSecond and turn speeds RadiansPerSecond.
 | GDD source | Central initial data |
 | --- | --- |
 | §8 options | Session 120000ms, range 60000–180000, step 1000; spawn 3000ms, range 1000–10000, step 500 |
-| §5 map |960×540; player(480,270), heading−π/2; island origins(135,95)/(665,325),160×120 each |
+| §5 map | Oceano procedural; regiões 1280×1280 assinadas; player(480,270), heading−π/2; catálogo compact/elongated/wide |
 | §6 player/chaser/shooter | Health 100/40/60; speed 150/115/90; turn equivalent 180/140/110°/s; hull radius 18/16/18 |
 | §6 contact | Player 0; Chaser 25 once before destruction; Shooter 0 |
 | §6 front | Damage 20,1 projectile,350ms cooldown,420units/s,1200ms life |
@@ -57,7 +57,7 @@ Clock values use Ms, speeds UnitsPerSecond and turn speeds RadiansPerSecond.
 | §6 shooter cannon | Damage 10,1 projectile,1500ms cooldown,260units/s,1500ms life |
 | §6–7 readiness | Player initially ready; Shooter first shot waits one full cooldown in range |
 | §7 shooter | Range 300, preferred distance 240, hysteresis 30; aim tolerance 10° |
-| §7 spawn | Minimum player distance 240, telegraph 600ms; alternating Chaser/Shooter starting Chaser; no initial cap; first full interval; no backlog |
+| §7 spawn | Faixa lógica 240–520 ao redor do player, telegraph 600ms; alternating Chaser/Shooter starting Chaser; no initial cap; first full interval; no backlog |
 | §4 controls | Mouse dead zone 12; joypad dead zone 0.15; auto-sail starts off |
 | §6 rules | Damage protection 0; player enemy destruction+1; contact self-destruction 0; friendly fire/piercing/splash/shoreline damage/projectile collisions off |
 | §13 timing | Fixed step 1000/60ms, catch-up bound 5 |
@@ -141,7 +141,9 @@ mutates gameplay.
 
 ## Arena composition and measured geometry
 
-World 960×540. Water uses TilingSprite tile 73 with tile scale 40/64. The two islands
+A composição de 160×120 abaixo é a base medida do catálogo e a arena finita histórica. A execução normal usa os modelos e o streaming de Procedural world, descritos ao final.
+
+Na arena finita histórica, world=960×540. A água base usa TilingSprite tile 73 with tile scale 40/64. The two islands
 compose independent Sprite tiles: rows 6/7/8/9,22/23/24/25,54/55/56/57. Cell dimensions
 derive from configured island 160×120 divided by 4 columns/3 rows, yielding 40×40.
 Alternative interior 38..41 is cataloged only. Rock 49, foliage 70 and palm 72 decorate
@@ -193,25 +195,19 @@ The hull solver uses these same solids; decorations do not add obstacles.
 
 ## CSS viewport and safe areas
 
-fitViewport is pure and knows neither DOM nor Pixi/DPR. Screen means CSS pixels local
-to host top-left. Given host width/height and left/right/top/bottom reserved insets:
+followCamera é uma transformação pura em CSS pixels, independente de DOM/Pixi/DPR. A referência 960×540 define o enquadramento, sem limitar o mundo.
 
 ```text
 W = hostWidth - left - right; H = hostHeight - top - bottom
-s = min(W/worldWidth, H/worldHeight)
-ox = left + (W - worldWidth*s)/2; oy = top + (H - worldHeight*s)/2
+s = max(hostWidth/960, hostHeight/540)
+ox = left + W/2 - playerX*s; oy = top + H/2 - playerY*s
 worldToScreen(x,y) = (ox+x*s, oy+y*s)
 screenToWorld(x,y) = ((x-ox)/s, (y-oy)/s)
 ```
 
-Runtime insets come from measured top/bottom HUD border boxes, including safe areas exactly once. viewport-fit=cover opts into safe-area layout. The pure fit helper retains legacy default insets for callers without HUD measurement; the live renderer always supplies measured insets. Extra space becomes letterbox. Nonpositive/nonfinite host or usable
-area returns renderable:false; no division by zero is consumed, and later resize can
-restore rendering. The inverse does not clamp letterbox points. The pointer adapter subtracts host bounding-client coordinates and clamps the result to the world.
+Os grupos medidos do HUD incluem safe areas uma vez e determinam somente a âncora do player. Água e cenário cobrem o host inteiro, inclusive sob controles. Área central vazia retorna renderable:false; resize reapresenta o mesmo snapshot, sem passos, eventos repetidos ou outra RAF. DPR altera apenas a resolução do buffer. fitViewport permanece para consumidores finitos históricos e o diagnóstico opt-in.
 
-Renderer resolution/autoDensity control the backing buffer: CSS size×DPR. They do not
-enter s/ox/oy or mutate logical coordinates. Tests roundtrip corners/center/outside
-points within 1e−8. Browser checks desktop 1280×900,320×568,390×844,844×390, DPR 2 and an
-isolated density change with CSS dimensions held constant.
+O mouse subtrai a origem client do host, aplica a inversa atual e armazena direção normalizada relativa ao player apresentado. A dead zone inclusiva de 12 unidades remove steering e conserva o rumo. Ponteiro parado, saída do canvas, resize e DPR conservam a direção armazenada. Alvos explícitos continuam disponíveis no core. Blur/portrait limpa comandos; retorno exige Resume e novo input.
 
 ## Verification and remaining integrations
 
@@ -255,8 +251,7 @@ Only HTML Resume restarts with a clean baseline. Destroy cancels and removes eve
 owned listener idempotently; loadingAttempt and previewOwner forward Resume safely.
 
 The host is a named, focusable region; canvas is decorative. Mouse focuses the host
-and stores a CSS inverse-transformed, clamped logical target. Pointerleave retains
-it; resize/DPR do not reinterpret it. Zero-area transforms ignore new targets.
+e armazena direção normalizada pela inversa CSS atual, relativa ao player. Pointerleave, resize e DPR conservam esse comando. Área vazia ignora novos comandos inválidos.
 Q/W/E/R/Escape/P are accepted in the focused sailing region or its skill controls while playing.
 Ctrl/Alt/Meta/Shift shortcuts, editable fields and interface controls retain normal
 behavior. Repeats/duplicate downs are ignored until keyup; queued pressure edges
@@ -272,7 +267,7 @@ The visual ship is 33x56.5; its circular collider has radius18. Visual sails and
 the solid, not the art envelope; artistic tolerance4 is unrelated to physics.
 
 collision.ts sweeps a moving circle against every translated segment face and vertex
-circle, plus world bounds inset by hull radius. It selects earliest contact with
+circle. AABBs consultam todos os sólidos necessários antes da varredura; paredes com inset existem somente no schema finito histórico. It selects earliest contact with
 stable configuration/feature ordering, backs off CONTACT_EPSILON=1e-7 units and
 projects remaining inward velocity out of the contact normal. Up to eight contacts
 are solved per move; exhausted movement is discarded at the last valid position.
@@ -282,7 +277,7 @@ interior. Rotation leaves the circle unchanged. Scenario contacts emit no damage
 Tests cover every segment/vertex of both islands, repeated/tangential/separating
 contacts, large sweeps, bounds/corners and authoritative paths with health100.
 
-geometry=1 adds inset center bounds (yellow), hull (cyan) and actual heading (white)
+geometry=1 mostra limites da câmera (amarelo), fronteira regional informativa, casco (cyan) e rumo real (branco)
 to the pink shorelines. __arenaDiagnostics returns a detached deeply frozen copy of
 resource/cache counts and navigation snapshot/target, without mutation methods.
 One current snapshot feeds Pixi; no interpolation or gameplay setters are exposed.
@@ -329,7 +324,7 @@ fire targets only the player; player fire targets only living enemies. Allies ne
 consume a ball and balls do not collide with each other. Effective travel time is
 min(fixed step,remaining life), including a hit at the final valid instant. No later
 travel occurs. The circle sweep checks the same convex shore faces and rounded vertex
-circles as navigation and radius-inset world bounds, with no slide. It selects global
+circles as navigation, com paredes somente em configurações finitas históricas e sem slide. It selects global
 minimum normalized TOI across solids and hostile hull circles. Initial overlap is t=0.
 A 1e-7 TOI comparison tolerance gives solid priority on ties, then lexicographic ship ID;
 solid feature ties have the same consume-only outcome. Occupancy assertions retain
@@ -353,9 +348,7 @@ React subscription or extra ticker is added.
 
 ## Enemy navigation and tactical phases
 
-`navigation.ts` caches a deterministic graph by serialized world geometry, hull
-radius plus clearance, and grid spacing. Nodes are spaced 20 units; each diagonal
-and orthogonal edge is a circular swept segment. Graph data contains no run state.
+`navigation.ts` mantém grafos locais na sessão, com região e raio+clearance como chave e capacidade LRU de oito entradas. Configuração e seed são capturadas pela instância. Nós esparsos cercam envelopes seguros; cada conexão passa pela varredura circular. Corredores regionais conectam o próximo vizinho. Não há grafo global acumulado.
 A* uses stable node order and tie breaks. Each actual endpoint connects to up to 12
 nearest visible nodes; a destination invalid for the enemy radius selects a nearby
 reachable region. Direct routes are preferred. Smoothing and endpoint connections
@@ -390,7 +383,7 @@ repulsion influences enemy intent near other enemies; authoritative hull barrier
 remain mandatory. Repairs move enemies only, never the player. Coincident/group
 preparations use stable ID order and a finite radial search (24 rings, 16 directions)
 for a scenario-safe position free of all other hulls. A blocked player stops instead
-of being pushed into a shore or beyond a world edge. These technical tolerances and
+de ser empurrado para terra. O oceano não possui paredes; a broad phase espacial preserva a ordem estável e as mesmas verificações locais. These technical tolerances and
 limits are centralized in `configuration.navigation`, independent of GDD balance.
 
 Shooter deadlines start at first in-range evaluation with activeTime+1500ms; leaving
@@ -405,12 +398,7 @@ Freeze executes no steps, preserving every private deadline.
 ## Seeded director and warning ownership
 
 `director.ts` uses Mulberry32 with explicit uint32 addition/bitwise arithmetic;
-seed zero is valid. Every attempted perimeter sample consumes one draw, rejected
-samples included; no global Math.random is read. Each opportunity tries up to 64
-candidates, stopping at the first valid one. Inset is hull radius plus twice the
-0.05-unit clearance. The continuous rectangular perimeter uses one uniform scalar.
-Candidate validation checks full hull against scenery/world, >=240 player distance,
-all live hulls and other reservations, and a connected route for its own radius.
+Seed zero é válida. Cada candidato procedural consome dois sorteios privados, ângulo e raio entre 240 e 520 do player, incluindo candidatos rejeitados. Geração de terreno não consome esse RNG. Até 64 tentativas verificam casco completo, terreno, faixa mínima/máxima, cascos vivos, reservas e rota para seu raio. O diagnóstico finito preserva sua amostragem de perímetro histórica. Câmera e viewport não participam da escolha.
 
 The absolute opportunity deadline starts at one configured interval and advances by
 whole intervals, discarding missed slots. It never queues replacement work, imposes
@@ -638,7 +626,7 @@ are applied once. Input inverts that same uniform transform, without multiplying
 CSS coordinates by DPR. An empty available area is explicitly non-renderable.
 
 Each living ship ID owns a horizontal Pixi Graphics health bar, separate from its
-rotating sprite. Geometry clamps health and bar rectangles to the world and converts
+rotating sprite. A geometria limita saúde e retângulos da barra aos limites assinados da câmera e converte
 24×4 CSS pixel minimums through the world scale. Bars track snapshots, survive pause
 and resize, and are destroyed on death/exit without destroying borrowed textures.
 Read-only diagnostics expose bar geometry/count, capture ownership, composed sources
@@ -857,3 +845,35 @@ In accordance with GDD Section 15, gameplay performance, telemetry, and hot-loop
 ### 4. Canonical Balance Versioning
 - **Version Identifier**: Centralized as `balance-v1` in `src/domain/config.ts`.
 - **Deterministic Key Derivation**: Incorporated directly into `configurationKey()` to guarantee configuration integrity, reproducible ranking partitions, and backward-compatible option migration.
+
+## Procedural world
+
+O schema ativo é ProceduralGameConfig, com world.kind=procedural; GameConfig aceita também HistoricalFiniteConfig. A validação histórica usa seu próprio exemplo congelado, sem completar campos com DEFAULT_CONFIG. Fixtures literais finite-arena-v2.json e finite-result-v2.json preservam dados e a chave gameplay-v1 original. Last Result, histórico, ranking e outbox usam o mesmo envelope REST. Play Again prepara configuração atual com opções válidas.
+
+configurationKey ordena propriedades recursivamente, preserva ordem das listas e inclui opções, catálogo, layouts, folgas, faixa de spawn, navegação, armas e versões. Seed, identidade, câmera, caches e regiões materializadas ficam fora. Coordenadas finitas procedurais são assinadas; dimensões, raios, velocidades e durações conservam limites positivos. Sessão padrão 120s, opções 60–180s. Mudanças de gameplay exigem versão/chave correspondente.
+
+Catálogo: compact (160×120), elongated (160×280), wide (320×120), rotações aprovadas 0/90/180/270°. Os 66 layouts iniciais usam 0/90°, duas a quatro ilhas: 54 pares e 12 variantes com ilhas superiores. Tiles 40×40 acrescentam faixas centrais, sem esticar cantos. A geometria convexa estende essas mesmas faixas da costa medida. Paths de asset pertencem ao renderer. Medição em project/automation-reports/infinite-world/measure-shoreline.py: erro costa→contorno 1,875 e inverso 1,901 unidades nos três modelos, abaixo da tolerância de 4. Decoração não cria sólidos.
+
+Hipóteses iniciais de calibração: região 1280, margem de água 80 por lado, espaçamentos designados 160/280/440 com tolerância 1, manobra 40 e disco inicial livre de raio 160 em (480,270). Distâncias são entre polígonos, incluindo detecção de arestas cruzadas/contenção. Outros pares preservam separação mínima 160; regiões distintas têm margens compartilhadas de pelo menos 160. Vizinhos diagonais conservam ambas as margens; não se promete um dos três alvos para toda dupla do oceano.
+
+validateProceduralWorld verifica convexidade, os três moldes e contornos aprovados, tiles fixos de 40 unidades, referências/rotações, pares, margens e água inicial antes de Play. Catálogos sem correspondência com a composição visual são rejeitados. Sólidos convexos inflados por casco+folga são disjuntos e estritamente interiores: não formam bolsões fechados, e o corredor externo conecta portais vizinhos. A margem também excede casco+velocidade/velocidadeAngular+clearance dos navios. Início customizado precisa satisfazer o disco seguro nas variantes; coordenadas negativas equivalentes são aceitas.
+
+regionAt usa floor(coordenada/1280), borda superior exclusiva inclusive em negativos. O hash usa domínio terrain, versão, seed uint32 e índices assinados completos. IDs região:slot têm proprietário único. Geração síncrona é independente da ordem de consultas e não consome o Mulberry32 do diretor.
+
+Cada createSimulation possui Terrain e Navigator. Antes de interações, beginStep reúne AABBs de cascos, reservas e segmentos de balas; consultas de rota acrescentam suas regiões exigidas. O cache mantém regiões atualmente necessárias mais até oito ociosas LRU. requiredRegions/idleRegions/generations/peakRegions tornam esse limite observável, sem histórico de visitação. Reconstrução não muta valores entregues. Queries externas não alteram snapshots, eventos ou RNG. Cache miss gera geometria antes de responder; nunca significa água livre.
+
+Broad phase usa AABB do segmento inteiro expandida pelo raio. Narrow phase conserva varredura contínua de faces/vértices, primeiro impacto e prioridade sólido/casco. MoveHull desliza e permite afastamento/tangência. Não há paredes procedurais. Emissão consulta também canhão→origem externa. Limites de tela/região e evicção não consomem balas; lifetime parcial e autoria permanecem.
+
+Rotas regionais reduzem Manhattan, x antes de y, cruzando o corredor reservado. A* local usa grafo esparso de cantos externos seguros, endpoints reais e atalhos varridos para cada raio. Grafos pertencem à sessão: até oito entradas LRU por região/raio; configuração e seed pertencem à instância. Não existe Map global. IA replaneja em 250ms para destinos móveis. Shooter consulta linha de visão tática na faixa pertinente e conserva distância preferida, dano, giro e cooldowns.
+
+Diretor sorteia ângulo/raio em 240–520 ao redor do player, com 64 tentativas. Cadência absoluta, espera inicial completa, aviso 600ms ativos, alternância por sucesso e ausência de backlog permanecem. Materialização revalida faixa completa, terreno, ocupação, reservas e rota mesmo em outra região. Não há cap/despawn adicional. Entidades ocultas conservam IDs, saúde, cooldowns, IA e score autoritativos.
+
+createRegionalPresentation mantém nós do retângulo visível expandido por uma região em cada lado. Nós distantes são destruídos com texture/textureSource=false; revisitas recompõem os mesmos IDs. Água mantém fase mundial. Barras horizontais usam bounds da câmera; culling afeta somente apresentação. Efeitos/telegraphs congelam fora de Playing. geometry=1 mostra costa, casco, rumo, câmera e fronteira informativa; não há setters de teleporte/dano/score.
+
+navigationLoop.destroy chama simulation.dispose e libera terreno/grafos. Cleanup Pixi libera regiões, entidades, efeitos e barras; texturas continuam sob a lease existente. Existe uma RAF. Geração/rotas aceitam relógio de medição injetado pelo adaptador/benchmark, sem relógio ambiente no core ou interferência no gameplay. As descrições finitas anteriores documentam somente compatibilidade histórica; este contrato define a execução normal procedural.
+
+O contexto WebGL do oceano é opaco e sem MSAA; a água tile_73 é comprovadamente opaca e usa blendMode=none. Sprites PNG mantêm bordas com alpha e interpolação. Profiling desliga screenshots de trace para evitar stalls por readback; coleta quadros nativos, snapshots amostrados, CPU de renderização e contadores. O requisito normativo de hardware (60 FPS/p95<20ms) é distinguido dos limites do harness SwiftShader (mínimo 30 FPS), sem declarar que um resultado por software comprova hardware.
+
+A reconciliação Pixi reutiliza a identidade do snapshot imutável: se nenhum passo ou mudança de layout/modo ocorreu, mantém câmera, sprites, barras e telegraphs existentes. Efeitos e app.render continuam em cada RAF. Resize e mudança de input invalidam explicitamente essa reutilização. A apresentação regional só reavalia proprietários quando muda o intervalo de índices coberto pela câmera mais uma região.
+
+O profiler usa __arenaDiagnostics('performance'), uma projeção profundamente imutável que omite setup e seu catálogo, preservando snapshots e contadores atuais. A inspeção completa sem argumento continua disponível. Isso reduz alocações da própria telemetria sem amostrar menos quadros nem filtrar intervalos severos.

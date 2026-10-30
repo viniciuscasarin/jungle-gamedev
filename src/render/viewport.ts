@@ -6,6 +6,21 @@ export type Viewport = { readonly renderable: false } | {
 };
 export const RESERVED_INSETS: Insets = { top: 48, right: 0, bottom: 88, left: 0 };
 
+/** Fill the whole host; measured HUD bands affect the player anchor only. */
+export function followCamera(width: number, height: number, player: Point, insets: Insets = RESERVED_INSETS): Viewport {
+  if ([width, height, ...Object.values(insets)].some(v => !Number.isFinite(v) || v < 0) || !Number.isFinite(player.x) || !Number.isFinite(player.y)) return { renderable: false };
+  const availableWidth = width - insets.left - insets.right, availableHeight = height - insets.top - insets.bottom;
+  if (width <= 0 || height <= 0 || availableWidth <= 0 || availableHeight <= 0) return { renderable: false };
+  const scale = Math.max(width / 960, height / 540);
+  return { renderable: true, scale, availableWidth, availableHeight,
+    offsetX: insets.left + availableWidth / 2 - player.x * scale,
+    offsetY: insets.top + availableHeight / 2 - player.y * scale };
+}
+export function cameraBounds(width: number, height: number, viewport: Extract<Viewport, { renderable: true }>) {
+  const start = screenToWorld({ x: 0, y: 0 }, viewport), end = screenToWorld({ x: width, y: height }, viewport);
+  return { minX: start.x, minY: start.y, maxX: end.x, maxY: end.y };
+}
+
 /** Screen coordinates are CSS pixels relative to the host, independent of DPR. */
 export function fitViewport(width: number, height: number, worldWidth: number, worldHeight: number, insets: Insets = RESERVED_INSETS): Viewport {
   const values = [width, height, worldWidth, worldHeight, ...Object.values(insets)];

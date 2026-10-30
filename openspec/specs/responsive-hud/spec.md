@@ -8,21 +8,28 @@ Apresentar informações e controles de combate com hierarquia consistente e ace
 
 ### Requirement: Hierarquia do HUD desktop
 
-O HUD desktop SHALL centralizar a vida atual/máxima na base e Q/W/E/R imediatamente acima, nessa ordem. Score, tempo restante e Pause SHALL permanecer no topo, com alinhamento comum de vida e skills e respeito às safe areas.
+O HUD desktop SHALL centralizar vida atual/máxima na base e Q/W/E/R imediatamente acima, nessa ordem. Score, tempo restante e Pause SHALL permanecer no topo com safe areas. O cenário SHALL preencher a tela sob os grupos do HUD, preservando contraste e uma área central para acompanhar o player; não SHALL reservar bandas sem cenário.
 
 #### Scenario: Combate por mouse e teclado
 - **WHEN** a arena pronta usa modo desktop
-- **THEN** vida e skills ocupam a faixa inferior central, score e tempo ficam no topo e Pause é uma ação semântica acessível
-- **AND** os indicadores e instruções estão em inglês e o mundo permanece totalmente visível entre as faixas
+- **THEN** vida e skills ocupam a parte inferior central, score e tempo ficam no topo e Pause é uma ação semântica acessível
+- **AND** indicadores e instruções estão em inglês e o cenário continua sob os controles sem letterbox
+- **AND** a posição de acompanhamento do player considera os grupos do HUD para preservar sua leitura
 
 ### Requirement: Hierarquia do HUD touch
 
-O HUD touch SHALL centralizar a vida atual/máxima no topo, com score, tempo e Pause próximos sem sobreposição. Joypad circular SHALL ficar embaixo à esquerda e Q/W/E/R embaixo à direita, usando grupo 2×2 quando a largura exigir, deixando o centro inferior livre do painel desktop.
+O HUD touch SHALL centralizar vida no topo com score, tempo e Pause próximos sem sobreposição. Joypad SHALL ficar embaixo à esquerda e Q/W/E/R embaixo à direita, em 2×2 quando necessário, deixando o centro inferior livre. O cenário SHALL preencher a tela sob os controles. Mobile SHALL permitir combate somente em landscape; portrait SHALL apresentar proteção com partida pausada.
 
 #### Scenario: Portrait estreito e landscape
-- **WHEN** o modo touch é apresentado em 320×568, 390×844, 844×390 ou landscape com 320 CSS px de altura
-- **THEN** vida, joypad, skills e Pause ficam integralmente acessíveis, sem rolagem horizontal ou recorte e sem encobrir o combate
-- **AND** o grupo compacto preserva a ordem de leitura Q/W/E/R
+- **WHEN** o dispositivo mobile apresenta viewport 320×568, 390×844, 844×390 ou landscape com 320 CSS px de altura
+- **THEN** em landscape vida, joypad, skills e Pause ficam acessíveis, sem rolagem horizontal ou recorte, com o player na área central legível
+- **AND** cenário permanece sob os grupos e o grupo compacto preserva a ordem de leitura Q/W/E/R
+- **AND** em portrait a proteção impede interação e foco nos controles do HUD
+
+#### Scenario: Alternância de modo e áreas seguras
+- **WHEN** modo de input ou safe areas muda sem reiniciar a partida
+- **THEN** HUD e área de acompanhamento se ajustam sem reduzir o cenário a um retângulo entre faixas
+- **AND** controles mantêm hitboxes mínimas de 48×48 CSS px no touch, foco e contraste, sem alterar posição lógica ou comandos por causa do layout
 
 ### Requirement: Feedback autoritativo das skills
 
@@ -48,12 +55,17 @@ HUD e ações SHALL expor nomes, estado, score, segundos arredondados, vida num�
 
 ### Requirement: Alvos touch e áreas seguras
 
-Cada ação touch SHALL ter área acionável mínima de 48×48 CSS px, separação suficiente e padding das safe areas. Bordas e ícones fornecidos SHALL decorar controles sem substituir seus nomes, hitboxes ou feedback textual. Mudanças de layout SHALL manter controles dentro da área útil.
+Cada ação touch SHALL ter área acionável mínima de 48×48 CSS px, separação suficiente e padding das safe areas. Bordas e ícones fornecidos SHALL decorar controles sem substituir seus nomes, hitboxes ou feedback textual. Mudanças de layout SHALL manter controles dentro da área útil. Em portrait mobile SHALL somente as ações da proteção de orientação e recuperação inicial permanecer disponíveis.
 
 #### Scenario: Retângulos mínimos e insets
-- **WHEN** os controles são medidos em portrait e landscape com insets seguros não nulos
+- **WHEN** os controles são medidos nas orientações permitidas com insets seguros não nulos
 - **THEN** joypad, Q/W/E/R e Pause possuem hitboxes mínimas, não se sobrepõem e permanecem afastados das áreas inseguras
 - **AND** foco e estados pressionado/ready/cooldown permanecem legíveis sem depender somente da arte
+
+#### Scenario: Proteção em portrait mobile
+- **WHEN** o aparelho entra em portrait com safe areas não nulas
+- **THEN** a instrução de rotação e suas ações disponíveis ficam dentro da área útil e têm alvos de toque de pelo menos 48×48 CSS px
+- **AND** os controles de combate subjacentes não recebem input nem foco
 
 ### Requirement: Anúncios acessíveis via live regions
 O BattleHUD SHALL disponibilizar uma região DOM com `role="status"` e `aria-live="polite"` para anunciar com discrição marcos fundamentais da partida (saúde crítica ≤25%, contagem regressiva de 10 segundos, pontuação por destruição de inimigo e transições de pausa/retomada). A região SHALL NOT anunciar atualizações a cada segundo rotineiro, tiros individuais ou oscilações contínuas de recarga de armas.

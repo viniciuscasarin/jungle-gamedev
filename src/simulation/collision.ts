@@ -1,3 +1,6 @@
+import { isProceduralWorld } from '../domain/config';
+import { querySolids, sweptAabb } from './world/terrain';
+import type { Terrain } from './world/terrain';
 import type { GameConfig } from '../domain/config';
 import type { WorldPoint } from './contracts';
 
@@ -9,8 +12,10 @@ const dot = (a: Vector, b: Vector) => a.x * b.x + a.y * b.y;
 type Hit = { t: number; normal: Vector };
 
 /** Continuous circle sweep against clockwise convex shoreline segments and vertices. */
-export function moveHull(position: WorldPoint, displacement: Vector, configuration: GameConfig, radius = configuration.ships.player.hullRadiusUnits): WorldPoint {
-  const { widthUnits, heightUnits, islands } = configuration.world;
+export function moveHull(position: WorldPoint, displacement: Vector, configuration: GameConfig, radius = configuration.ships.player.hullRadiusUnits, terrain?: Terrain): WorldPoint {
+  const finiteWorld = !isProceduralWorld(configuration.world) ? configuration.world : undefined;
+  const widthUnits = finiteWorld?.widthUnits ?? Infinity, heightUnits = finiteWorld?.heightUnits ?? Infinity;
+  const islands = querySolids(configuration, sweptAabb(position, displacement, radius), terrain);
   let p = { x: position.xUnits, y: position.yUnits }, remaining = { ...displacement };
   for (let iteration = 0; iteration < MAX_CONTACT_ITERATIONS; iteration++) {
     if (Math.hypot(remaining.x, remaining.y) <= CONTACT_EPSILON) break;
@@ -19,10 +24,10 @@ export function moveHull(position: WorldPoint, displacement: Vector, configurati
       if (t < -CONTACT_EPSILON || t > 1 || dot(remaining, normal) >= -CONTACT_EPSILON) return;
       if (!hit || t < hit.t) hit = { t: Math.max(0, t), normal };
     };
-    if (remaining.x < 0) candidate((radius - p.x) / remaining.x, { x: 1, y: 0 });
-    if (remaining.x > 0) candidate((widthUnits - radius - p.x) / remaining.x, { x: -1, y: 0 });
-    if (remaining.y < 0) candidate((radius - p.y) / remaining.y, { x: 0, y: 1 });
-    if (remaining.y > 0) candidate((heightUnits - radius - p.y) / remaining.y, { x: 0, y: -1 });
+    if (finiteWorld && remaining.x < 0) candidate((radius - p.x) / remaining.x, { x: 1, y: 0 });
+    if (finiteWorld && remaining.x > 0) candidate((widthUnits - radius - p.x) / remaining.x, { x: -1, y: 0 });
+    if (finiteWorld && remaining.y < 0) candidate((radius - p.y) / remaining.y, { x: 0, y: 1 });
+    if (finiteWorld && remaining.y > 0) candidate((heightUnits - radius - p.y) / remaining.y, { x: 0, y: -1 });
     for (const island of islands) {
       const vertices = island.solidOutline;
       for (let i = 0; i < vertices.length; i++) {
@@ -62,10 +67,12 @@ export function moveHull(position: WorldPoint, displacement: Vector, configurati
 }
 
 /** Shared validity assertion for diagnostics/tests; the art envelope is not a solid. */
-export function hullIsValid(position: WorldPoint, configuration: GameConfig, radius = configuration.ships.player.hullRadiusUnits): boolean {
+export function hullIsValid(position: WorldPoint, configuration: GameConfig, radius = configuration.ships.player.hullRadiusUnits, terrain?: Terrain): boolean {
   const r = radius, t = PENETRATION_TOLERANCE;
-  const { widthUnits, heightUnits, islands } = configuration.world;
-  if (position.xUnits < r - t || position.xUnits > widthUnits - r + t || position.yUnits < r - t || position.yUnits > heightUnits - r + t) return false;
+  const finiteWorld = !isProceduralWorld(configuration.world) ? configuration.world : undefined;
+  const widthUnits = finiteWorld?.widthUnits ?? Infinity, heightUnits = finiteWorld?.heightUnits ?? Infinity;
+  const islands = querySolids(configuration, sweptAabb(position, { x: 0, y: 0 }, radius), terrain);
+  if (finiteWorld && (position.xUnits < r - t || position.xUnits > widthUnits - r + t || position.yUnits < r - t || position.yUnits > heightUnits - r + t)) return false;
   for (const island of islands) {
     let inside = true, minimum = Infinity;
     for (let i = 0; i < island.solidOutline.length; i++) {
@@ -95,19 +102,21 @@ export function sweepCircle(position: WorldPoint, displacement: Vector, center: 
 }
 
 /** Same convex faces/vertices as hull navigation, without any slide response. */
-export function sweepSolid(position: WorldPoint, displacement: Vector, radius: number, configuration: GameConfig): number | undefined {
+export function sweepSolid(position: WorldPoint, displacement: Vector, radius: number, configuration: GameConfig, terrain?: Terrain): number | undefined {
   // Projectiles consume an initial touch, even if moving tangent or away.
   // Compensate the validity assertion's penetration allowance before testing touch.
-  if (!hullIsValid(position, configuration, radius + PENETRATION_TOLERANCE + CONTACT_EPSILON)) return 0;
+  if (!hullIsValid(position, configuration, radius + PENETRATION_TOLERANCE + CONTACT_EPSILON, terrain)) return 0;
   let earliest: number | undefined;
   const candidate = (t: number) => {
     if (t >= -CONTACT_EPSILON && t <= 1 + CONTACT_EPSILON && (earliest === undefined || t < earliest)) earliest = Math.max(0, Math.min(1, t));
   };
-  const { widthUnits, heightUnits, islands } = configuration.world;
-  if (displacement.x < 0) candidate((radius - position.xUnits) / displacement.x);
-  if (displacement.x > 0) candidate((widthUnits - radius - position.xUnits) / displacement.x);
-  if (displacement.y < 0) candidate((radius - position.yUnits) / displacement.y);
-  if (displacement.y > 0) candidate((heightUnits - radius - position.yUnits) / displacement.y);
+  const finiteWorld = !isProceduralWorld(configuration.world) ? configuration.world : undefined;
+  const widthUnits = finiteWorld?.widthUnits ?? Infinity, heightUnits = finiteWorld?.heightUnits ?? Infinity;
+  const islands = querySolids(configuration, sweptAabb(position, displacement, radius), terrain);
+  if (finiteWorld && displacement.x < 0) candidate((radius - position.xUnits) / displacement.x);
+  if (finiteWorld && displacement.x > 0) candidate((widthUnits - radius - position.xUnits) / displacement.x);
+  if (finiteWorld && displacement.y < 0) candidate((radius - position.yUnits) / displacement.y);
+  if (finiteWorld && displacement.y > 0) candidate((heightUnits - radius - position.yUnits) / displacement.y);
   for (const island of islands) {
     for (let i = 0; i < island.solidOutline.length; i++) {
       const vertex = island.solidOutline[i]!, next = island.solidOutline[(i + 1) % island.solidOutline.length]!;

@@ -1,0 +1,9 @@
+# Saídas brutas e temporárias das execuções ficam disponíveis localmente.
+# Métricas, resumos, logs e overlays no nível raiz acompanham o commit.
+*/
+apply-*.json
+archive-status.json
+startup-status-for-archive.json
+browser-profile-before-resume-*.json
+browser-profile-with-trace-*.json
+hardware-probe.json

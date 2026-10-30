@@ -3,10 +3,15 @@ import type { StepInput, WorldPoint, SteeringIntent } from '../simulation/contra
 import type { Viewport } from '../render/viewport';
 import { screenToWorld } from '../render/viewport';
 
-export function pointerTarget(clientX: number, clientY: number, origin: { left: number; top: number }, viewport: Viewport, width: number, height: number): WorldPoint | undefined {
+export function pointerTarget(clientX: number, clientY: number, origin: { left: number; top: number }, viewport: Viewport, width?: number, height?: number): WorldPoint | undefined {
   if (!viewport.renderable || !Number.isFinite(clientX) || !Number.isFinite(clientY)) return;
   const point = screenToWorld({ x: clientX - origin.left, y: clientY - origin.top }, viewport);
-  return { xUnits: Math.max(0, Math.min(width, point.x)), yUnits: Math.max(0, Math.min(height, point.y)) };
+  return { xUnits: width === undefined ? point.x : Math.max(0, Math.min(width, point.x)), yUnits: height === undefined ? point.y : Math.max(0, Math.min(height, point.y)) };
+}
+export function pointerDirection(point: WorldPoint, player: WorldPoint, deadZoneUnits: number): Extract<SteeringIntent, { kind: 'direction' }> | undefined {
+  const x = point.xUnits - player.xUnits, y = point.yUnits - player.yUnits, length = Math.hypot(x, y);
+  if (!Number.isFinite(length) || length <= deadZoneUnits) return;
+  return { kind: 'direction', x: x / length, y: y / length };
 }
 export function createInputBuffer() {
   let target: WorldPoint | undefined, held = false, edges = 0, pause = false, moving = false;
@@ -17,6 +22,7 @@ export function createInputBuffer() {
   const weapon = (code: string) => code === 'KeyQ' ? 'front' : code === 'KeyW' ? 'port' : code === 'KeyE' ? 'starboard' : undefined;
   return {
     point(value: WorldPoint) { target = { ...value }; direction = undefined; },
+    steer(value: Extract<SteeringIntent, { kind: 'direction' }> | undefined) { target = undefined; direction = value ? { ...value } : undefined; },
     toggle() { edges++; },
     pulse(key: keyof typeof fire) { pulses.add(key); },
     attack(key: keyof typeof fire, id: number, active: boolean) { if (active) fire[key].add(`pointer:${id}`); else fire[key].delete(`pointer:${id}`); },

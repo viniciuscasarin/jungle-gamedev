@@ -1,0 +1,78 @@
+
+Running 26 tests using 1 worker
+
+
+
+(node:20904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1/26] [desktop-chrome] › tests\e2e\arena.spec.ts:147:1 › retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R
+[2/26] [desktop-chrome] › tests\e2e\arena.spec.ts:534:1 › native multitouch joypad plus QWE uses capture, real projectiles and damage/score
+[3/26] [desktop-chrome] › tests\e2e\arena.spec.ts:619:1 › HUD measured bands, safe areas, all five layouts and horizontal bars from real damage
+[4/26] [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:4:3 › Battle feedback, audio and accessibility › unlocks audio on user gesture, toggles mute in HUD and synchronizes with Options
+[5/26] [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:54:3 › Battle feedback, audio and accessibility › live region announces pause and resume events politely without frame spam
+[6/26] [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:73:3 › Battle feedback, audio and accessibility › confines keyboard focus in modal dialog with focus trap and restores focus
+[7/26] [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:107:3 › Battle feedback, audio and accessibility › respects prefers-reduced-motion media query
+[8/26] [desktop-chrome] › tests\e2e\procedural-world.spec.ts:52:3 › real mouse explores signed regions with active combat, stable direction and frozen resize http://127.0.0.1:6273
+[9/26] [desktop-chrome] › tests\e2e\procedural-world.spec.ts:99:3 › real touch crosses old and regional bounds with compact HUD http://127.0.0.1:6273
+[10/26] [desktop-chrome] › tests\e2e\procedural-world.spec.ts:52:3 › real mouse explores signed regions with active combat, stable direction and frozen resize http://127.0.0.1:6274
+[11/26] [desktop-chrome] › tests\e2e\procedural-world.spec.ts:99:3 › real touch crosses old and regional bounds with compact HUD http://127.0.0.1:6274
+[12/26] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:62:3 › Deterministic Visual Regression Baselines › battle-desktop-paused baseline
+  1) [desktop-chrome] › tests\e2e\visual-regression.spec.ts:62:3 › Deterministic Visual Regression Baselines › battle-desktop-paused baseline
+
+    Test timeout of 180000ms exceeded.
+
+    Error: locator.click: Test timeout of 180000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Play', exact: true })
+
+
+      69 |       })
+      70 |     );
+    > 71 |     await page.getByRole('button', { name: 'Play', exact: true }).click();
+         |                                                                   ^
+      72 |     await expect(page.getByRole('heading', { name: 'Arena', exact: true })).toBeVisible();
+      73 |     await expect(page.locator('canvas')).toHaveCount(1);
+      74 |
+        at C:\Users\Vinicius\Dev\repos\challenges\jungle-gamedev\tests\e2e\visual-regression.spec.ts:71:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    project\automation-reports\infinite-world\e2e-resume-functional\visual-regression-Determin-2585c-tle-desktop-paused-baseline-desktop-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: project\automation-reports\infinite-world\e2e-resume-functional\visual-regression-Determin-2585c-tle-desktop-paused-baseline-desktop-chrome\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    project\automation-reports\infinite-world\e2e-resume-functional\visual-regression-Determin-2585c-tle-desktop-paused-baseline-desktop-chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace project\automation-reports\infinite-world\e2e-resume-functional\visual-regression-Determin-2585c-tle-desktop-paused-baseline-desktop-chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+(node:18108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[13/26] [desktop-chrome] › tests\e2e\visual-regression.spec.ts:84:3 › Deterministic Visual Regression Baselines › battle-mobile-hud baseline
+
+(node:18404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[14/26] [mobile-chrome] › tests\e2e\arena.spec.ts:147:1 › retains target across leave/resize/DPR; blur and hidden freeze until accessible Resume and new R
+[15/26] [mobile-chrome] › tests\e2e\arena.spec.ts:534:1 › native multitouch joypad plus QWE uses capture, real projectiles and damage/score
+[16/26] [mobile-chrome] › tests\e2e\arena.spec.ts:619:1 › HUD measured bands, safe areas, all five layouts and horizontal bars from real damage
+[17/26] [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:4:3 › Battle feedback, audio and accessibility › unlocks audio on user gesture, toggles mute in HUD and synchronizes with Options
+[18/26] [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:54:3 › Battle feedback, audio and accessibility › live region announces pause and resume events politely without frame spam
+[19/26] [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:73:3 › Battle feedback, audio and accessibility › confines keyboard focus in modal dialog with focus trap and restores focus
+[20/26] [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:107:3 › Battle feedback, audio and accessibility › respects prefers-reduced-motion media query
+[21/26] [mobile-chrome] › tests\e2e\procedural-world.spec.ts:52:3 › real mouse explores signed regions with active combat, stable direction and frozen resize http://127.0.0.1:6273
+[22/26] [mobile-chrome] › tests\e2e\procedural-world.spec.ts:99:3 › real touch crosses old and regional bounds with compact HUD http://127.0.0.1:6273
+[23/26] [mobile-chrome] › tests\e2e\procedural-world.spec.ts:52:3 › real mouse explores signed regions with active combat, stable direction and frozen resize http://127.0.0.1:6274
+[24/26] [mobile-chrome] › tests\e2e\procedural-world.spec.ts:99:3 › real touch crosses old and regional bounds with compact HUD http://127.0.0.1:6274
+[25/26] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:62:3 › Deterministic Visual Regression Baselines › battle-desktop-paused baseline
+[26/26] [mobile-chrome] › tests\e2e\visual-regression.spec.ts:84:3 › Deterministic Visual Regression Baselines › battle-mobile-hud baseline
+  1 failed
+    [desktop-chrome] › tests\e2e\visual-regression.spec.ts:62:3 › Deterministic Visual Regression Baselines › battle-desktop-paused baseline
+  2 skipped
+  23 passed (11.0m)

@@ -1,15 +1,55 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_CONFIG, createMatchSetup } from '../src/domain/config';
+import { createMatchSetup } from '../src/domain/config';
+import { HISTORICAL_FINITE_CONFIG as DEFAULT_CONFIG } from '../src/domain/historicalFiniteConfig';
 import { createSimulation, normalizeAngle } from '../src/simulation/engine';
 import { createAccumulator } from '../src/simulation/accumulator';
 import { NEUTRAL_INPUT } from '../src/simulation/contracts';
 import { hullIsValid, moveHull } from '../src/simulation/collision';
-import { createInputBuffer, pointerTarget } from '../src/input/desktop';
-import { fitViewport } from '../src/render/viewport';
+import { createInputBuffer, pointerTarget, pointerDirection } from '../src/input/desktop';
+import { fitViewport, followCamera, worldToScreen } from '../src/render/viewport';
 import { createNavigationLoop } from '../src/render/navigationLoop';
 import type { StepInput } from '../src/simulation/contracts';
+import { DEFAULT_CONFIG as ocean } from '../src/domain/config';
+import { createTerrain } from '../src/simulation/world/terrain';
 const setup = createMatchSetup(DEFAULT_CONFIG, 123);
 const target = (xUnits: number, yUnits: number, toggleAutoSailPressed = false): StepInput => ({ ...NEUTRAL_INPUT, steering: { kind: 'target', target: { xUnits, yUnits } }, toggleAutoSailPressed });
+
+it('stores mouse direction across camera movement, pointer exit, resize and DPR with inclusive logical dead zone', () => {
+  const player = { xUnits: -480, yUnits: 270 }, buffer = createInputBuffer();
+  const v = followCamera(844, 390, { x: player.xUnits, y: player.yUnits });
+  if (!v.renderable) throw new Error('camera');
+  const screen = worldToScreen({ x: -280, y: 270 }, v), origin = { left: 35, top: 17 };
+  const point = pointerTarget(screen.x + origin.left, screen.y + origin.top, origin, v)!;
+  expect(point.xUnits).toBeCloseTo(-280);
+  buffer.steer(pointerDirection(point, player, 12));
+  const original = buffer.consume().steering;
+  for (const width of [320, 844, 1280]) {
+    followCamera(width, 390, { x: -1000, y: -1000 });
+    expect(buffer.consume().steering).toEqual(original);
+  }
+  for (const xUnits of [-480, -468]) expect(pointerDirection({ xUnits, yUnits: 270 }, player, 12)).toBeUndefined();
+  expect(pointerDirection({ xUnits: -467.9, yUnits: 270 }, player, 12)).toEqual({ kind: 'direction', x: 1, y: 0 });
+  buffer.steer(undefined); expect(buffer.consume().steering).toEqual({ kind: 'none' });
+});
+
+it('slides, departs and separates at signed procedural shoreline faces for every family with cold geometry', () => {
+  const terrain = createTerrain(ocean, 0), families = new Set<string>();
+  for (let x = -10; x < 10 && families.size < 3; x++) for (const island of terrain.region(x, -2).islands) {
+    if (families.has(island.modelId)) continue; families.add(island.modelId);
+    for (let i = 0; i < island.solidOutline.length; i++) {
+      const a = island.solidOutline[i]!, b = island.solidOutline[(i + 1) % island.solidOutline.length]!;
+      const dx = b.xUnits - a.xUnits, dy = b.yUnits - a.yUnits, d = Math.hypot(dx, dy), nx = dy / d, ny = -dx / d;
+      const start = { xUnits: island.origin.xUnits + (a.xUnits + b.xUnits) / 2 + nx * 30, yUnits: island.origin.yUnits + (a.yUnits + b.yUnits) / 2 + ny * 30 };
+      const contact = moveHull(start, { x: -nx * 100, y: -ny * 100 }, ocean, 18, terrain);
+      expect(hullIsValid(contact, ocean, 18, terrain)).toBe(true);
+      const tangent = moveHull(contact, { x: dx / d * 4, y: dy / d * 4 }, ocean, 18, terrain);
+      expect(hullIsValid(tangent, ocean, 18, terrain)).toBe(true);
+      expect(Math.hypot(tangent.xUnits - contact.xUnits, tangent.yUnits - contact.yUnits)).toBeGreaterThan(3.9);
+      expect(hullIsValid(moveHull(contact, { x: nx * 4, y: ny * 4 }, ocean, 18, terrain), ocean, 18, terrain)).toBe(true);
+    }
+  }
+  expect(families.size).toBe(3); terrain.dispose();
+});
 
 it('initializes explicitly and preserves deeply immutable historical snapshots and neutral events', () => {
   const a = createSimulation(setup), b = createSimulation(setup), initial = a.inspect();

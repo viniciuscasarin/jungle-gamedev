@@ -1,0 +1,65 @@
+[
+  {
+    "family": "compact",
+    "seed": 3,
+    "layoutId": "compact-compact-0-160",
+    "island": {
+      "id": "0:0:0",
+      "region": {
+        "x": 0,
+        "y": 0
+      },
+      "modelId": "compact",
+      "rotation": 0,
+      "widthUnits": 160,
+      "heightUnits": 120,
+      "origin": {
+        "xUnits": 100,
+        "yUnits": 580
+      }
+    },
+    "vertices": 65
+  },
+  {
+    "family": "elongated",
+    "seed": 0,
+    "layoutId": "elongated-compact-0-280",
+    "island": {
+      "id": "0:0:0",
+      "region": {
+        "x": 0,
+        "y": 0
+      },
+      "modelId": "elongated",
+      "rotation": 0,
+      "widthUnits": 160,
+      "heightUnits": 280,
+      "origin": {
+        "xUnits": 100,
+        "yUnits": 580
+      }
+    },
+    "vertices": 65
+  },
+  {
+    "family": "wide",
+    "seed": 4,
+    "layoutId": "wide-wide-0-160",
+    "island": {
+      "id": "0:0:0",
+      "region": {
+        "x": 0,
+        "y": 0
+      },
+      "modelId": "wide",
+      "rotation": 0,
+      "widthUnits": 320,
+      "heightUnits": 120,
+      "origin": {
+        "xUnits": 100,
+        "yUnits": 580
+      }
+    },
+    "vertices": 65
+  }
+]

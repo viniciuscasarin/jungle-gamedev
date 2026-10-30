@@ -1,6 +1,11 @@
 import { defineConfig } from '@playwright/test';
 
 const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE;
+const devPort = Number(process.env.PLAYWRIGHT_DEV_PORT ?? 5173), previewPort = Number(process.env.PLAYWRIGHT_PREVIEW_PORT ?? 4173);
+// An uncapped reference run measures rendering capacity independently of the
+// desktop's refresh rate. This applies only to explicitly requested GPU profiling.
+const gpuMode = process.env.PLAYWRIGHT_HARDWARE_GPU;
+const gpuArgs = gpuMode === '1' || gpuMode === 'capped' ? ['--enable-gpu', '--use-angle=d3d11', ...(gpuMode === '1' ? ['--disable-frame-rate-limit', '--disable-gpu-vsync'] : [])] : [];
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -27,8 +32,8 @@ export default defineConfig({
     hasTouch: true,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    baseURL: 'http://127.0.0.1:4173',
-    launchOptions: executablePath ? { executablePath } : {},
+    baseURL: `http://127.0.0.1:${previewPort}`,
+    launchOptions: { ...(executablePath ? { executablePath } : {}), args: gpuArgs },
   },
   projects: [
     {
@@ -47,7 +52,7 @@ export default defineConfig({
     },
   ],
   webServer: [
-    { command: 'npm run dev -- --port 5173 --strictPort', url: 'http://127.0.0.1:5173', reuseExistingServer: true },
-    { command: 'npm run preview -- --port 4173 --strictPort', url: 'http://127.0.0.1:4173', reuseExistingServer: true },
+    { command: `npm run dev -- --port ${devPort} --strictPort`, url: `http://127.0.0.1:${devPort}`, reuseExistingServer: true },
+    { command: `npm run preview -- --port ${previewPort} --strictPort`, url: `http://127.0.0.1:${previewPort}`, reuseExistingServer: true },
   ],
 });

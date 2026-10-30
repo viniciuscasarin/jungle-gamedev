@@ -1,0 +1,8 @@
+{
+  "dateUtc": "2026-10-30T14:35:54.3608646Z",
+  "executable": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+  "version": "156.0.4314.50",
+  "buildIndexSha256": "C9ABDE90D5A766ED44AB402337CC8533375A78F0CC18AAC14E395DEDA426E035",
+  "reference": "Different browser on same Windows host and AMD GPU; not an independent machine",
+  "mode": "uncapped GPU; same raw frame criteria"
+}

@@ -5,6 +5,29 @@ import { materializeCompletedResult } from '../src/domain/result';
 import type { CompletedMatchResult } from '../src/domain/result';
 import { NEUTRAL_INPUT } from '../src/simulation/contracts';
 import type { SimulationEvent, SimulationSnapshot, StepInput } from '../src/simulation/contracts';
+import type { GeneratedRegion } from '../src/simulation/contracts';
+import { immutableCopy } from '../src/domain/immutable';
+
+it('captures signed procedural region data without platform dependencies or nested mutations', () => {
+  const source = { id: '-1:0', coordinates: { x: -1, y: 0 }, layoutId: 'compact-pair', islands: [{ id: '-1:0:0', modelId: 'compact', region: { x: -1, y: 0 }, rotation: 0 as const, origin: { xUnits: -1200, yUnits: 80 }, widthUnits: 160, heightUnits: 120, solidOutline: [{ xUnits: 0, yUnits: 40 }, { xUnits: 40, yUnits: 0 }, { xUnits: 160, yUnits: 120 }] }] };
+  const region: GeneratedRegion = immutableCopy(source);
+  source.islands[0]!.solidOutline[0]!.xUnits = 999;
+  expect(region.islands[0]!.solidOutline[0]!.xUnits).toBe(0);
+  expect(Reflect.set(region.coordinates, 'x', 1)).toBe(false);
+  expect(Reflect.set(region.islands[0]!.solidOutline[0]!, 'xUnits', 2)).toBe(false);
+  expect(JSON.parse(JSON.stringify(region))).toEqual(region);
+  expect('document' in globalThis).toBe(false);
+});
+
+function staticTerrainChecks(region: GeneratedRegion) {
+  // @ts-expect-error Region indices are captured readonly.
+  region.coordinates.x = 0;
+  // @ts-expect-error Generated collections are readonly.
+  region.islands.push(region.islands[0]!);
+  // @ts-expect-error Shoreline vertices are deeply readonly.
+  region.islands[0]!.solidOutline[0]!.xUnits = 0;
+}
+void staticTerrainChecks;
 
 const fixture: CompletedMatchResult = { matchId: 'match-fixture', playerId: 'player-fixture', playerName: 'Captain-Test', completedAt: '2026-10-27T17:00:00.000Z', score: 3, activeDurationMs: 120000, endReason: 'time_expired', configuration: DEFAULT_CONFIG, configurationKey: configurationKey(DEFAULT_CONFIG), seed: 0 };
 

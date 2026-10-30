@@ -1,0 +1,39 @@
+{
+  "node": "v26.11.1",
+  "platform": "win32",
+  "arch": "x64",
+  "activeDurationMs": 180000,
+  "finalPosition": {
+    "xUnits": 27228.98557412128,
+    "yUnits": -1.485574121281755
+  },
+  "resources": {
+    "terrain": {
+      "regions": 24,
+      "requiredRegions": 19,
+      "idleRegions": 5,
+      "capacity": 8,
+      "generations": 65,
+      "peakRegions": 25,
+      "generationMs": 5.356599999999162,
+      "timingMeasured": true,
+      "disposed": false
+    },
+    "navigation": {
+      "graphs": 8,
+      "capacity": 8,
+      "builds": 23,
+      "routes": 27404,
+      "routeMs": 542.472400000043,
+      "timingMeasured": true,
+      "disposed": false
+    }
+  },
+  "scenario": "Standard 3.0s Spawn",
+  "totalTicks": 10800,
+  "totalCpuTimeMs": 2546.295400000002,
+  "avgTimePerTickMs": 0.23576809259259277,
+  "p95TimePerTickMs": 0.5833999999999833,
+  "peakEntities": 56,
+  "finalScore": 2
+}

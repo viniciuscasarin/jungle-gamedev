@@ -1,0 +1,30 @@
+{
+  "status": "failed; task 7.2 remains open",
+  "normal": {
+    "avgFps": 490.041567193458,
+    "p95FrameMs": 2.1000000000058208,
+    "p95RenderMs": 0.699999988079071,
+    "wallDurationMs": 195000.90000000596,
+    "normative": {
+      "hardwareReference": true,
+      "fps60": true,
+      "p95Below20": true,
+      "severeDrops": 843
+    },
+    "peakRegions": 22,
+    "peakEntities": 49
+  },
+  "normalFinalActiveMs": 157266.6666666667,
+  "normalResult": null,
+  "stress": "interrupted after normal failure; no acceptance result",
+  "emptyCanvasControl": {
+    "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001638) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "durationMs": 15023.199999988079,
+    "frames": 84511,
+    "avgFps": 5635.15613018517,
+    "p95FrameMs": 0.3000000000010914
+  },
+  "emptyCanvasSevereIntervalsMs": [
+    34.69999999999982
+  ]
+}

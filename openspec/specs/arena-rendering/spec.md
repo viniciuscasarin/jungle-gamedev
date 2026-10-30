@@ -8,12 +8,12 @@ Apresentar o mapa estático com os assets fornecidos e preservar uma correspond�
 
 ### Requirement: Arena composta com player autoritativo
 
-A arena SHALL mostrar água, ilhas de litoral arredondado, player, inimigos vivos, alvos de diagnóstico e projéteis do mundo configurado (960×540 por padrão), usando assets e configuração capturada. Samples SHALL servir de referência visual. Navios e player SHALL manter proporções, posição e rumo autoritativos; player inicia em (480,270) para cima. Projéteis efêmeros SHALL usar object pooling mitigando alocação e destruição de nós.
+A arena SHALL mostrar água contínua, ilhas procedurais, player, inimigos, alvos de diagnóstico e projéteis usando a configuração capturada e o terreno autoritativo. Player SHALL iniciar em (480,270) para cima; navios SHALL preservar proporções, posições e rumos. A apresentação SHALL acompanhar a região visível, reciclando recursos sem alterar gameplay; projéteis efêmeros SHALL usar pooling.
 
 #### Scenario: Carregamento concluído
 - **WHEN** o carregamento e a inicialização gráfica da configuração padrão concluem
-- **THEN** a água ocupa o mundo, as ilhas ficam a noroeste e sudeste e o player aparece ao centro com vela azul clara
-- **AND** a arena montada executa navegação, combate, IA e diretor somente durante Playing, com término autoritativo e apresentação congelada em Paused ou completed
+- **THEN** a água preenche a tela e o player aparece na área central com vela azul clara e terreno inicial seguro
+- **AND** a arena executa navegação, combate, IA e diretor somente durante Playing, com término autoritativo e apresentação congelada em Paused ou completed
 
 #### Scenario: Litoral e decoração
 - **WHEN** o mapa é inspecionado junto à geometria documentada
@@ -27,13 +27,15 @@ A arena SHALL mostrar água, ilhas de litoral arredondado, player, inimigos vivo
 
 #### Scenario: Entidades dinâmicas e descarte
 - **WHEN** o snapshot acrescenta ou remove projéteis, inimigos autônomos ou alvos do cenário opt-in
-- **THEN** os respectivos elementos visuais aparecem ou são desativados e reciclados no pool sem alterar saúde ou score no renderer
-- **AND** consumo, impacto ou término da partida desativam as entidades visuais e retornam sprites de projéteis ao pool sem destruir texturas compartilhadas
+- **THEN** os elementos visuais visíveis aparecem ou são reciclados sem alterar saúde ou score no renderer
+- **AND** consumo, impacto ou término desativam os sprites de projéteis sem destruir texturas compartilhadas
+- **AND** sair do campo de visão somente oculta a apresentação da entidade, preservando sua existência autoritativa
 
 #### Scenario: Telegraph de reserva
-- **WHEN** o snapshot contém uma reserva ativa de spawn
-- **THEN** um anel visível de água marca sua posição e progresso autoritativos antes do inimigo aparecer
-- **AND** congelamento conserva o progresso visual; cancelamento, materialização ou saída remove o anel sem deixar recursos órfãos
+- **WHEN** uma reserva ativa de spawn está dentro do campo de visão
+- **THEN** um anel de água marca sua posição e progresso autoritativos antes de o inimigo aparecer
+- **AND** congelamento conserva o progresso; cancelamento, materialização ou saída remove o anel sem recursos órfãos
+- **AND** reservas fora da tela continuam sujeitas aos mesmos prazos e regras
 
 #### Scenario: Identidades autônomas
 - **WHEN** Chaser e Shooter aparecem no fluxo normal
@@ -41,37 +43,23 @@ A arena SHALL mostrar água, ilhas de litoral arredondado, player, inimigos vivo
 - **AND** o renderer não escolhe candidatos, calcula rotas nem decide disparos ou dano
 
 #### Scenario: Configuração capturada em toda a apresentação
-- **WHEN** a preparação usa geometria, posição inicial, raios ou opções diferentes dos defaults
-- **THEN** mapa, player, entidades, telegraphs, diagnósticos, viewport e conversão de input usam a mesma configuração capturada da simulação
+- **WHEN** a preparação usa catálogo, posição inicial, raios ou opções diferentes dos defaults
+- **THEN** terreno, entidades, telegraphs, diagnósticos e conversão de input usam a mesma configuração e seed capturadas da simulação
 - **AND** resize e reapresentação conservam estado e configuração, sem executar regras nem reconsumir término
 
-### Requirement: Mundo completo sem distorção
-
-O enquadramento SHALL exibir o mundo inteiro com escala uniforme, centralização e letterbox quando necessário. SHALL reservar faixas superiores e inferiores correspondentes ao HUD/controles reais do modo corrente, respeitar safe areas uma única vez e manter conteúdo e ações legíveis a partir de 320 CSS pixels, em portrait e landscape. Alterações dessas faixas SHALL atualizar o enquadramento mesmo sem resize do host.
-
-#### Scenario: Redimensionamento e rotação
-- **WHEN** o host muda de tamanho ou orientação
-- **THEN** o mundo permanece inteiro, os tiles continuam quadrados e os navios mantêm a razão de aspecto
-- **AND** posições lógicas não mudam nem a arena é coberta pelas faixas reservadas
-
-#### Scenario: HUD muda no mesmo host
-- **WHEN** uma troca de modo ou reorganização do grupo de skills modifica as faixas ocupadas sem alterar o tamanho externo
-- **THEN** a arena se ajusta à área livre efetiva sem sobrepor os controles ou reiniciar a simulação
-- **AND** o mesmo enquadramento em CSS pixels serve à apresentação e à conversão de coordenadas de input
-
-#### Scenario: Insets seguros e área temporariamente pequena
-- **WHEN** existem safe areas não nulas ou a área útil fica temporariamente vazia
-- **THEN** os insets não são aplicados duas vezes e nenhuma transformação inválida é consumida
-- **AND** o enquadramento retoma quando houver área útil, preservando estado e configuração
+#### Scenario: Travessia e reconstrução visual
+- **WHEN** a câmera cruza regiões e depois revisita terreno já liberado
+- **THEN** o cenário aparece preparado antes de entrar na tela, sem buracos, cortes ou duplicação de ilhas
+- **AND** a textura da água mantém continuidade espacial e as ilhas reconstruídas conservam suas posições e modelos
 
 ### Requirement: Transformações reversíveis de coordenadas
 
-O sistema SHALL disponibilizar transformações puras mundo↔tela baseadas na área útil, escala e offsets correntes. Coordenadas de tela SHALL usar CSS pixels relativos ao host, com origem e letterbox explícitos. Host sem área útil SHALL produzir estado não renderizável sem NaN ou divisão por zero.
+O sistema SHALL fornecer transformações puras mundo/tela baseadas na posição corrente da câmera, escala uniforme e origem do host em CSS pixels. As transformações SHALL aceitar coordenadas assinadas e não depender do DPR. Host sem área útil SHALL produzir estado não renderizável sem NaN ou divisão por zero.
 
 #### Scenario: Ida e volta após resize
-- **WHEN** centro e cantos do mundo são convertidos para tela e de volta antes e depois de resize
+- **WHEN** pontos visíveis do mundo são convertidos para tela e de volta antes e depois de resize ou deslocamento da câmera
 - **THEN** as coordenadas originais são recuperadas dentro da tolerância numérica documentada
-- **AND** os offsets refletem a centralização e as faixas reservadas
+- **AND** os offsets refletem a câmera e a área central livre dos controles
 
 #### Scenario: Área temporariamente vazia
 - **WHEN** a área útil tem largura ou altura zero
@@ -88,17 +76,17 @@ A renderização SHALL adaptar seu buffer ao DPR atual e ao tamanho CSS sem alte
 
 ### Requirement: Saúde sobre todos os navios vivos
 
-Cada navio vivo SHALL ter barra de saúde horizontal sobre sua posição na arena PixiJS, sem herdar a rotação do casco. Preenchimento SHALL refletir saúde atual/máxima do estado autoritativo. As barras SHALL permanecer legíveis em 320 CSS px e dentro dos limites visíveis, acompanhar movimento e desaparecer na morte ou descarte.
+Cada navio vivo visível SHALL ter barra de saúde horizontal sobre sua posição, sem herdar rotação do casco. Preenchimento SHALL refletir o estado autoritativo e ser legível a partir de 320 CSS px. Barras SHALL acompanhar a câmera, permanecer dentro da tela quando seu navio estiver visível e desaparecer com morte, descarte visual ou saída do campo de visão.
 
 #### Scenario: Player e arquétipos danificados
-- **WHEN** player, Chaser e Shooter vivos recebem dano real de projéteis ou contato válido e giram ou se movem
-- **THEN** suas barras acompanham a posição, reduzem proporcionalmente e permanecem horizontais
+- **WHEN** player, Chaser e Shooter visíveis recebem dano real e giram ou se movem
+- **THEN** suas barras acompanham posição e câmera, reduzem proporcionalmente e permanecem horizontais
 - **AND** a barra do player permanece sobre o navio mesmo com vida também apresentada no HUD
 
 #### Scenario: Pausa, limites e morte
-- **WHEN** navios se aproximam das bordas, a partida pausa, ocorre resize ou um navio chega a zero de vida
-- **THEN** barras vivas permanecem contidas e coerentes com o estado congelado ou reapresentado; a barra do navio morto é removida
-- **AND** saída da arena libera recursos próprios das barras sem destruir texturas compartilhadas ou deixar outro loop ativo
+- **WHEN** navios se aproximam das bordas da tela, a partida pausa, ocorre resize ou um navio chega a zero de vida
+- **THEN** barras visíveis permanecem contidas e coerentes com o estado congelado ou reapresentado; barras de navios mortos ou fora da tela são removidas
+- **AND** saída libera recursos próprios sem destruir texturas compartilhadas ou deixar outro loop ativo
 
 ### Requirement: Efeitos visuais de combate
 A arena PixiJS SHALL renderizar feedback tátil em combate com clarões (*muzzle flash*), partículas de madeira (`wood_1..4.png`), explosão em 3 frames (`explosion_1..3.png`), desvanecimento de naufrágio e indicador "+1" ao abater inimigos. Efeitos pós-morte SHALL ser cosméticos, sem colisão e sem pontuação extra. Partículas visuais e textos flutuantes SHALL utilizar object pooling para reciclagem de nós e mitigação de pausas de GC.
@@ -147,3 +135,32 @@ Todas as animações de partículas, clarões, explosões e afundamento SHALL co
 - **WHEN** a preferência por redução de movimento está ativa no sistema do usuário
 - **THEN** tremores de tela são desativados e explosões utilizam transição estática de desvanecimento
 - **AND** as trajetórias, velocidades e regras autoritativas dos navios permanecem inalteradas
+
+### Requirement: Câmera de acompanhamento sem distorção
+
+A câmera SHALL acompanhar o player na área central livre do HUD, preservando proporções e preenchendo todo o host com cenário sob os controles, sem letterbox. Resize e mudanças do HUD SHALL atualizar o enquadramento sem alterar o mundo. Mobile SHALL manter landscape obrigatório e exigir Resume após retorno de portrait.
+
+#### Scenario: Redimensionamento e rotação
+- **WHEN** o host muda de tamanho ou orientação
+- **THEN** nas orientações permitidas o cenário continua preenchendo a tela, tiles e navios preservam proporções e o player permanece na área central livre dos controles
+- **AND** posições lógicas não mudam; portrait mobile congela a partida sob a proteção de orientação
+
+#### Scenario: HUD muda no mesmo host
+- **WHEN** troca de modo ou reorganização de skills modifica as áreas ocupadas sem alterar o host
+- **THEN** a área de acompanhamento é atualizada sem reiniciar a simulação ou deixar bandas vazias
+- **AND** apresentação e input usam a mesma transformação corrente em CSS pixels
+
+#### Scenario: Insets seguros e área temporariamente pequena
+- **WHEN** existem safe areas não nulas ou a área central fica temporariamente vazia
+- **THEN** insets não são aplicados duas vezes e nenhuma transformação inválida é consumida
+- **AND** a apresentação retoma ao haver espaço sem alterar a partida
+
+#### Scenario: Retorno de portrait mobile
+- **WHEN** o aparelho retorna a landscape após a proteção de orientação
+- **THEN** a câmera usa a área atual e preserva partida e configuração, sem canvas ou loop duplicado
+- **AND** o mundo permanece congelado até Resume explícito, com transformação atualizada antes de aceitar input
+
+#### Scenario: Câmera durante combate e pausa
+- **WHEN** o player se move, pausa e retoma
+- **THEN** a câmera acompanha o deslocamento sem modificar rumos, velocidades ou posições autoritativas
+- **AND** pausa congela seu acompanhamento e não existem rotações de câmera ou zooms automáticos por proximidade de ilhas

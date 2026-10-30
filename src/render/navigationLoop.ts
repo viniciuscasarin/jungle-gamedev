@@ -5,8 +5,8 @@ import type { InitialCombatData, SimulationEvent, SimulationSnapshot, StepInput 
 
 export interface FrameDriver { request(callback: (timeMs: number) => void): number; cancel(id: number): void }
 /** Scheduling is explicit and only starts when the owning resource mounts. */
-export function createNavigationLoop(setup: MatchSetup, input: { consume(): StepInput; clear(): void }, driver: FrameDriver, present: (snapshot: SimulationSnapshot) => void, initial: InitialCombatData = {}, onEvents: (events: readonly SimulationEvent[]) => void = () => {}) {
-  const simulation = createSimulation(setup, initial), accumulator = createAccumulator(setup.configuration.timing.fixedStepMs, setup.configuration.timing.maxCatchUpStepsPerFrame);
+export function createNavigationLoop(setup: MatchSetup, input: { consume(): StepInput; clear(): void }, driver: FrameDriver, present: (snapshot: SimulationSnapshot) => void, initial: InitialCombatData = {}, onEvents: (events: readonly SimulationEvent[]) => void = () => {}, measureNow?: () => number) {
+  const simulation = createSimulation(setup, initial, measureNow), accumulator = createAccumulator(setup.configuration.timing.fixedStepMs, setup.configuration.timing.maxCatchUpStepsPerFrame);
   let frame: number | undefined, baseline: number | undefined, mounted = false, destroyed = false;
   const schedule = () => { if (mounted && !destroyed && simulation.inspect().state === 'playing' && frame === undefined) frame = driver.request(tick); };
   const tick = (time: number) => {
@@ -26,10 +26,12 @@ export function createNavigationLoop(setup: MatchSetup, input: { consume(): Step
   const reset = () => { if (frame !== undefined) driver.cancel(frame); frame = undefined; baseline = undefined; accumulator.reset(); input.clear(); };
   return {
     inspect: simulation.inspect,
+    terrain: simulation.terrain,
+    inspectResources: simulation.inspectResources,
     neutralizeAutoSail() { if (destroyed) return; simulation.neutralizeAutoSail(); present(simulation.inspect()); },
     mount(paused = false) { if (mounted || destroyed) return; mounted = true; if (paused) { reset(); simulation.freeze(); } present(simulation.inspect()); schedule(); },
     freeze() { if (!mounted || destroyed) return; reset(); simulation.freeze(); present(simulation.inspect()); },
     resume() { if (!mounted || destroyed || simulation.inspect().state !== 'paused') return; reset(); simulation.resume(); present(simulation.inspect()); schedule(); },
-    destroy() { if (destroyed) return; destroyed = true; mounted = false; reset(); },
+    destroy() { if (destroyed) return; destroyed = true; mounted = false; reset(); simulation.dispose(); },
   };
 }

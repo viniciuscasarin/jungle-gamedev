@@ -4,10 +4,22 @@ import {createTouchAdapter, joypadDirection} from '../src/input/touch';
 import {createSimulation} from '../src/simulation/engine';
 import {createMatchSetup, DEFAULT_CONFIG} from '../src/domain/config';
 import {NEUTRAL_INPUT} from '../src/simulation/contracts';
-import {healthBarGeometry} from '../src/render/healthBars';
+import {healthBarGeometry, shipIsVisible} from '../src/render/healthBars';
 import {hullIsValid} from '../src/simulation/collision';
 import {createNavigationLoop} from '../src/render/navigationLoop';
 const setup = createMatchSetup(DEFAULT_CONFIG, 1);
+it('keeps horizontal bars inside signed camera bounds for partially visible rotating ships', () => {
+  const bounds = { minX: -1000, minY: -500, maxX: -40, maxY: 40 };
+  const ship = { ...createSimulation(setup).inspect().player, position: { xUnits: -1005, yUnits: -300 } };
+  expect(shipIsVisible(ship, bounds)).toBe(true);
+  for (const headingRadians of [0, Math.PI / 2, Math.PI]) for (const scale of [0.5, 1, 2]) {
+    const bar = healthBarGeometry({ ...ship, headingRadians }, scale, 960, 540, -1000, -500);
+    expect(bar.x).toBeGreaterThanOrEqual(bounds.minX); expect(bar.x + bar.width).toBeLessThanOrEqual(bounds.maxX);
+    expect(bar.y).toBeGreaterThanOrEqual(bounds.minY); expect(bar.y + bar.height).toBeLessThanOrEqual(bounds.maxY);
+    expect(bar.rotation).toBe(0);
+  }
+  expect(shipIsVisible({ ...ship, position: { xUnits: -1100, yUnits: -300 } }, bounds)).toBe(false);
+});
 it('uses inclusive 15% CSS radius, fixed normalized magnitude, and rejects invalid geometry', () => {
   for (const x of [0, 14.9, 15]) expect(joypadDirection(x, 0, 100)).toBeUndefined();
   expect(joypadDirection(15.1, 0, 100)).toEqual({x: 1, y: 0});
@@ -45,7 +57,7 @@ it('neutralizes only auto-sail without a step, clock change, heading change or s
 it('keeps manual direction trajectories inside all configured shores and world bounds',()=>{
   const sim=createSimulation(setup,{mode:'stationary-targets'});
   for(const [x,y] of [[-1,-1],[0,-1],[-1,0],[1,0],[1,1],[0,1]]) for(let i=0;i<500;i++) {
-    const s=sim.step({...NEUTRAL_INPUT,movementRequested:true,steering:{kind:'direction',x:x!,y:y!}});expect(hullIsValid(s.player.position,DEFAULT_CONFIG)).toBe(true);expect(s.player.health).toBe(100);
+    const s=sim.step({...NEUTRAL_INPUT,movementRequested:true,steering:{kind:'direction',x:x!,y:y!}});expect(hullIsValid(s.player.position,DEFAULT_CONFIG,DEFAULT_CONFIG.ships.player.hullRadiusUnits,sim.terrain)).toBe(true);expect(s.player.health).toBe(100);
   }
 });
 it('loop mode neutralization republishes without consuming a step or queuing another RAF',()=>{

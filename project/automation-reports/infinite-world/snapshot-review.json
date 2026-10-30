@@ -1,0 +1,16 @@
+[
+  {
+    "file": "battle-desktop-paused-desktop-chrome-win32.png",
+    "pixels": 1152000,
+    "changedPixels": 989358,
+    "changedFraction": 0.8588177083333334,
+    "reason": "Câmera procedural, água preenchendo o host, HUD em grupos e contexto opaco sem MSAA."
+  },
+  {
+    "file": "battle-mobile-hud-mobile-chrome-win32.png",
+    "pixels": 329160,
+    "changedPixels": 217166,
+    "changedFraction": 0.6597581723174141,
+    "reason": "Câmera procedural, água preenchendo o host, HUD em grupos e contexto opaco sem MSAA."
+  }
+]

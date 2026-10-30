@@ -1,0 +1,186 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\Vinicius\\AppData\\Local\\Author Software\\nvm\\installs\\v26.11.1\\node.exe",
+      "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/visual-regression.spec.ts",
+      "--grep",
+      "battle-desktop-paused",
+      "--project",
+      "desktop-chrome",
+      "--reporter",
+      "line,json",
+      "--output",
+      "project/automation-reports/infinite-world/e2e-resume-snapshot-retry"
+    ],
+    "configFile": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\playwright.config.ts",
+    "rootDir": "C:/Users/Vinicius/Dev/repos/challenges/jungle-gamedev/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Vinicius/Dev/repos/challenges/jungle-gamedev/project/automation-reports/infinite-world/e2e-resume-snapshot-retry",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-chrome",
+        "name": "desktop-chrome",
+        "testDir": "C:/Users/Vinicius/Dev/repos/challenges/jungle-gamedev/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "C:/Users/Vinicius/Dev/repos/challenges/jungle-gamedev/project/automation-reports/infinite-world/e2e-resume-snapshot-retry",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-chrome",
+        "name": "mobile-chrome",
+        "testDir": "C:/Users/Vinicius/Dev/repos/challenges/jungle-gamedev/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\project\\automation-reports\\infinite-world\\e2e-resume-snapshot-retry",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop-chrome",
+        "testDir": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\Vinicius\\Dev\\repos\\challenges\\jungle-gamedev\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 180000,
+        "use": {
+          "browserName": "chromium",
+          "headless": true,
+          "hasTouch": true,
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "baseURL": "http://127.0.0.1:6274",
+          "launchOptions": {
+            "args": []
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 900
+          },
+          "isMobile": false
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop-chrome"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "visual-regression.spec.ts",
+      "file": "visual-regression.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Deterministic Visual Regression Baselines",
+          "file": "visual-regression.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "battle-desktop-paused baseline",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-chrome",
+                  "projectName": "desktop-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4610,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-30T14:07:39.913Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-fc26d815ce3b10b6dab3",
+              "file": "visual-regression.spec.ts",
+              "line": 62,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-30T14:07:37.969Z",
+    "duration": 6851.148,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

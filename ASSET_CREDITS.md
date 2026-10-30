@@ -182,3 +182,11 @@ All third-party software libraries consumed by the project are formally audited,
 | Active Sound Effects | 27 WAV files | Pending Documentation (GDD §15) | Fingerprinted and packaged in `dist/assets/` |
 | Procedural Pixi Geometries | Dynamic | Original Authorial Code | 100% Free / Unencumbered |
 | Software Dependencies | 11 core packages | MIT / Apache-2.0 Verified | 100% Permissive Open Source |
+
+## Composição procedural ocean-v1
+
+Reutiliza tiles 6/7/8/9, 22/23/24/25 e 54/55/56/57 em células 40×40 unidades (64×64 pixels × 0,625), água 73 e decorações 49/70/72. Compact 160×120, elongated 160×280 e wide 320×120 acrescentam faixas centrais, com rotações inteiras e proporções preservadas. Tiles 38–41 continuam catalogados. Nenhum asset/dependência foi acrescentado.
+
+A medição RGB reproduzível em project/automation-reports/infinite-world/measure-shoreline.py usa 768/1280/1280 amostras. Nos três modelos, erro máximo costa→contorno 1,875 e contorno→costa 1,901 unidades, abaixo de 4. Rotações rígidas conservam os erros. Areia define sólido; água/decoração não expandem colisores. Descarte regional libera nós e conserva texturas compartilhadas.
+
+A água tile_73 tem alpha mínimo e máximo 255 em todos os pixels. O renderer usa essa camada opaca sem blending; o contexto opaco sem MSAA evita multisampling do oceano inteiro. As bordas PNG de navios/ilhas conservam seu alpha e a interpolação das texturas. A mudança é de apresentação, sem efeito nos sólidos ou regras.

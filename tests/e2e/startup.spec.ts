@@ -1,13 +1,13 @@
-import { test, expect, settleStartup } from './test';
+import { test, expect, APP_ORIGINS, settleStartup } from './test';
 
 const evidence = 'project/automation-reports/startup-landscape';
-for (const origin of ['http://127.0.0.1:5173', 'http://127.0.0.1:4173']) {
+for (const origin of APP_ORIGINS) {
   test.describe(`Startup ${origin}`, () => {
     test('resources finish below 100 while mocks are delayed and the menu stays unavailable', async ({ page }) => {
       await page.clock.install({ time: new Date('2026-10-29T12:00:00Z') });
       await page.clock.pauseAt(new Date('2026-10-29T12:00:01Z'));
       let release!: () => void; const gate = new Promise<void>(resolve => { release = resolve; });
-      await page.route(origin.includes('5173') ? '**/src/mocks/browser.ts*' : /\/assets\/browser-[^/]*\.js$/, async route => { await gate; await route.continue(); });
+      await page.route(origin === APP_ORIGINS[0] ? '**/src/mocks/browser.ts*' : /\/assets\/browser-[^/]*\.js$/, async route => { await gate; await route.continue(); });
       await page.goto(origin);
       await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '99');
       await expect(page.getByText('Finishing initialization…')).toBeVisible();
@@ -15,7 +15,7 @@ for (const origin of ['http://127.0.0.1:5173', 'http://127.0.0.1:4173']) {
       release(); await settleStartup(page);
     });
     test('fatal module failure leaves an accessible image-independent recovery', async ({ page }) => {
-      await page.route(origin.includes('5173') ? '**/src/main.tsx*' : /\/assets\/index-.*\.js$/, route => route.abort());
+      await page.route(origin === APP_ORIGINS[0] ? '**/src/main.tsx*' : /\/assets\/index-.*\.js$/, route => route.abort());
       await page.goto(origin);
       await expect(page.getByRole('heading', { name: 'Pirate Battle could not start' })).toBeVisible();
       await expect(page.getByRole('button', { name: 'Retry', exact: true })).toBeVisible();
@@ -24,7 +24,7 @@ for (const origin of ['http://127.0.0.1:5173', 'http://127.0.0.1:4173']) {
     test('static black cover survives delayed modules and mocks', async ({ page }, info) => {
       let release!: () => void;
       const gate = new Promise<void>(resolve => { release = resolve; });
-      await page.route(origin.includes('5173') ? '**/src/main.tsx*' : /\/assets\/index-.*\.js$/, async route => { await gate; await route.continue(); });
+      await page.route(origin === APP_ORIGINS[0] ? '**/src/main.tsx*' : /\/assets\/index-.*\.js$/, async route => { await gate; await route.continue(); });
       await page.goto(origin, { waitUntil: 'commit' });
       await expect(page.locator('#startup-cover')).toBeVisible();
       await expect(page.locator('#startup-cover')).toHaveCSS('background-color', 'rgb(0, 0, 0)');

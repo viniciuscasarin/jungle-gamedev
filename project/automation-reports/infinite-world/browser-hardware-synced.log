@@ -1,0 +1,42 @@
+
+Running 1 test using 1 worker
+
+
+
+[1/1] [desktop-chrome] › tests\e2e\performance-profile.spec.ts:310:37 › profiles 180s of procedural exploration with 3000ms spawns
+[desktop-chrome] › tests\e2e\performance-profile.spec.ts:310:37 › profiles 180s of procedural exploration with 3000ms spawns
+[PROCEDURAL PROFILE] {
+  interval: 3000,
+  avgFps: 59.912197544872484,
+  p95: 17,
+  renderP95: 0.8999999761581421,
+  peakRegions: 25,
+  peakEntities: 56,
+  result: 'time_expired'
+}
+
+  1) [desktop-chrome] › tests\e2e\performance-profile.spec.ts:310:37 › profiles 180s of procedural exploration with 3000ms spawns
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 60
+    Received:    59.912197544872484
+
+      355 |   expect(renderP95).toBeLessThan(5);
+      356 |   expect(avgFps).toBeGreaterThanOrEqual(software?30:55);
+    > 357 |   if(!software) { expect(avgFps).toBeGreaterThanOrEqual(60); expect(p95).toBeLessThan(20); expect(frames.filter(ms=>ms>33.3)).toHaveLength(0); }
+          |                                  ^
+      358 |   await page.getByRole('button',{name:'Main Menu',exact:true}).click();
+      359 |   await expect(page.locator('canvas')).toHaveCount(0);
+      360 |   expect(await page.evaluate(()=>window.__arenaDiagnostics())).toMatchObject({applications:0,resources:0,inputListeners:0,navigation:null});
+        at C:\Users\Vinicius\Dev\repos\challenges\jungle-gamedev\tests\e2e\performance-profile.spec.ts:357:34
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    project\automation-reports\infinite-world\e2e-hardware-synced\performance-profile-profil-8f3af-loration-with-3000ms-spawns-desktop-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: project\automation-reports\infinite-world\e2e-hardware-synced\performance-profile-profil-8f3af-loration-with-3000ms-spawns-desktop-chrome\error-context.md
+
+
+  1 failed
+    [desktop-chrome] › tests\e2e\performance-profile.spec.ts:310:37 › profiles 180s of procedural exploration with 3000ms spawns

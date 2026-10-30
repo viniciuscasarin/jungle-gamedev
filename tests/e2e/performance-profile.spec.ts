@@ -1,6 +1,10 @@
+import { mkdir, writeFile } from 'node:fs/promises';
 import { test, expect } from './test';
 import type { Page, TestInfo } from '@playwright/test';
 import os from 'node:os';
+
+// Trace screenshots cause GPU readback stalls; measure the game without capture.
+test.use({ trace: 'off' });
 
 interface PerformanceProfileData {
   readonly environment: {
@@ -32,6 +36,7 @@ interface CycleMemoryMetric {
   readonly jsHeapUsedBytes: number;
   readonly jsHeapTotalBytes: number;
   readonly nodesCount: number;
+  readonly exploration?: unknown;
   readonly diagnostics: {
     readonly applications: number;
     readonly resources: number;
@@ -186,9 +191,11 @@ test.describe('Performance Profiler and Gameplay Tuning', () => {
       await startMatch(page);
 
       // 2. Play briefly (simulate action)
-      await page.keyboard.press('KeyW');
-      await page.keyboard.press('KeyQ');
-      await page.waitForTimeout(400);
+      await aimEast(page); await page.waitForTimeout(1100);
+      await page.keyboard.press('KeyR'); await page.keyboard.down('KeyQ');
+      await page.waitForTimeout(7000); await page.keyboard.up('KeyQ');
+      const exploration = await page.evaluate(() => window.__arenaDiagnostics().navigation as unknown as { region: { x: number }; streaming: unknown });
+      expect(exploration.region.x).toBeGreaterThanOrEqual(1);
 
       // 3. Return to menu
       await returnToMenu(page);
@@ -232,10 +239,12 @@ test.describe('Performance Profiler and Gameplay Tuning', () => {
         jsHeapUsedBytes: jsHeapUsed,
         jsHeapTotalBytes: jsHeapTotal,
         nodesCount: nodes,
-        diagnostics,
+        diagnostics, exploration,
       });
     }
 
+    await mkdir('project/automation-reports/infinite-world',{recursive:true});
+    await writeFile('project/automation-reports/infinite-world/memory-five-cycles.json',JSON.stringify({cycleMetrics},null,2));
     await info.attach('memory-five-cycles-audit', {
       body: JSON.stringify({ cycleMetrics }, null, 2),
       contentType: 'application/json',
@@ -290,4 +299,65 @@ test.describe('Performance Profiler and Gameplay Tuning', () => {
     expect(diag.activeEntities).toBeGreaterThan(0);
     expect(diag.activeEntities).toBeLessThan(50); // Bound by natural arena geometry
   });
+});
+
+async function aimEast(page: Page) {
+  const point = await page.locator('.arena-host').evaluate(node => {
+    const host=node as HTMLElement,v=JSON.parse(host.dataset.viewport!),p=JSON.parse(host.dataset.player!),r=host.getBoundingClientRect();
+    return { x:r.left+v.offsetX+p.xUnits*v.scale+40,y:r.top+v.offsetY+p.yUnits*v.scale };
+  });
+  await page.mouse.move(point.x,point.y);
+}
+
+for (const interval of [3000,1000]) test(`profiles 180s of procedural exploration with ${interval}ms spawns`, async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop-chrome', 'Single reference browser profile');
+  test.setTimeout(240000);
+  await page.addInitScript(interval => localStorage.setItem('pirate-battle.options.v1',JSON.stringify({version:1,data:{sessionDurationMs:180000,enemySpawnIntervalMs:interval}})),interval);
+  await page.goto('/?seed=42'); await startMatch(page);
+  for (const key of ['KeyQ','KeyW','KeyE']) await page.keyboard.down(key);
+  await page.keyboard.press('KeyR'); await page.waitForTimeout(1500); await aimEast(page);
+  const raw = await page.evaluate(async () => {
+    const canvas=document.querySelector('canvas')!,gl=canvas.getContext('webgl2')!;
+    const ext=gl.getExtension('WEBGL_debug_renderer_info'),renderer=ext?String(gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)):'unknown';
+    const frames:number[]=[],renders:number[]=[],samples:unknown[]=[];
+    let last=performance.now(),frame=0,peakEntities=0,peakRegions=0,peakSprites=0;
+    const started=last;
+    type Live={snapshot:{state:string;activeTimeMs:number;player:{position:{xUnits:number;yUnits:number}};enemies:unknown[];projectiles:unknown[];reservations:unknown[]};streaming:{terrain:{regions:number;idleRegions:number;requiredRegions:number;generations:number;generationMs:number};navigation:{graphs:number;routes:number;routeMs:number};presentation:{regions:number};terrainSprites:number};dynamicSprites:number};
+    return await new Promise<{frames:number[];renders:number[];samples:unknown[];renderer:string;wallDurationMs:number;peakEntities:number;peakRegions:number;peakSprites:number;result:{activeDurationMs:number;endReason:string;seed:number}|null}>(resolve=>{
+      const collect=(now:number)=>{const delta=now-last;last=now;if(delta>0){frames.push(delta);renders.push(Reflect.get(window,'__lastRenderMs')??0);}frame=requestAnimationFrame(collect);};
+      frame=requestAnimationFrame(collect);
+      const timer=setInterval(()=>{
+        const live=window.__arenaDiagnostics('performance').navigation as unknown as Live|null;
+        if(live){
+          const s=live.snapshot,r=live.streaming;
+          peakEntities=Math.max(peakEntities,1+s.enemies.length+s.projectiles.length+s.reservations.length);
+          peakRegions=Math.max(peakRegions,r.terrain.regions);peakSprites=Math.max(peakSprites,r.terrainSprites+live.dynamicSprites);
+          samples.push({time:s.activeTimeMs,position:s.player.position,streaming:r});
+        }
+        if(!live || live.snapshot.state==='completed' || performance.now()-started>195000){
+          clearInterval(timer);cancelAnimationFrame(frame);
+          const saved=localStorage.getItem('pirate-battle.last-result.v1');
+          resolve({frames,renders,samples,renderer,wallDurationMs:performance.now()-started,peakEntities,peakRegions,peakSprites,result:saved?JSON.parse(saved).data:null});
+        }
+      },250);
+    });
+  });
+  const percentile=(values:number[],fraction:number)=>[...values].sort((a,b)=>a-b)[Math.floor((values.length-1)*fraction)]!;
+  const frames=raw.frames.slice(10),avgFps=1000/(frames.reduce((n,v)=>n+v,0)/frames.length),p95=percentile(frames,.95),renderP95=percentile(raw.renders.slice(10),.95);
+  const software=/swiftshader|llvmpipe|software|warp/i.test(raw.renderer);
+  const normative={hardwareReference:!software,fps60:avgFps>=60,p95Below20:p95<20,severeDrops:frames.filter(ms=>ms>33.3).length};
+  const report={severeFrameIntervalsMs:frames.filter(ms=>ms>33.3),normative,environment:{uncappedReference:process.env.PLAYWRIGHT_HARDWARE_GPU==='1',browserFlags:process.env.PLAYWRIGHT_HARDWARE_GPU==='1'?['--enable-gpu','--use-angle=d3d11','--disable-frame-rate-limit','--disable-gpu-vsync']:process.env.PLAYWRIGHT_HARDWARE_GPU==='capped'?['--enable-gpu','--use-angle=d3d11']:[],node:process.version,platform:os.platform(),release:os.release(),cpu:os.cpus()[0]?.model,cpuCount:os.cpus().length,userAgent:await page.evaluate(()=>navigator.userAgent),viewport:page.viewportSize(),renderer:raw.renderer,software},interval,avgFps,p95FrameMs:p95,p95RenderMs:renderP95,...raw,frames:frames.length,renders:raw.renders.length};
+  await mkdir('project/automation-reports/infinite-world',{recursive:true});
+  await writeFile(`project/automation-reports/infinite-world/browser-profile-${interval}.json`,JSON.stringify(report,null,2));
+  await info.attach('procedural-180s-profile',{body:JSON.stringify(report),contentType:'application/json'});
+  console.info('[PROCEDURAL PROFILE]',{interval,avgFps,p95,renderP95,peakRegions:raw.peakRegions,peakEntities:raw.peakEntities,result:raw.result?.endReason});
+  expect(raw.result).toMatchObject({activeDurationMs:180000,endReason:'time_expired',seed:42});
+  expect(raw.samples.length).toBeGreaterThan(100);
+  expect((raw.samples[raw.samples.length-1] as {time:number}).time).toBeGreaterThanOrEqual(179000);
+  await page.getByRole('button',{name:'Main Menu',exact:true}).click();
+  await expect(page.locator('canvas')).toHaveCount(0);
+  expect(await page.evaluate(()=>window.__arenaDiagnostics())).toMatchObject({applications:0,resources:0,inputListeners:0,navigation:null});
+  expect(renderP95).toBeLessThan(5);
+  expect(avgFps).toBeGreaterThanOrEqual(software?30:55);
+  if(!software) { expect(avgFps).toBeGreaterThanOrEqual(60); expect(p95).toBeLessThan(20); expect(frames.filter(ms=>ms>33.3)).toHaveLength(0); }
 });

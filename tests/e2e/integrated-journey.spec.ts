@@ -52,7 +52,8 @@ async function pointWorld(page: Page, x: number, y: number): Promise<void> {
     (host, p) => {
       const v = JSON.parse((host as HTMLElement).dataset.viewport!);
       const rect = host.getBoundingClientRect();
-      return { x: rect.left + v.offsetX + p.x * v.scale, y: rect.top + v.offsetY + p.y * v.scale };
+      const ship=JSON.parse((host as HTMLElement).dataset.player!),dx=p.x-ship.xUnits,dy=p.y-ship.yUnits,d=Math.hypot(dx,dy);
+      return { x: rect.left + v.offsetX + ship.xUnits*v.scale+(d?dx/d*40:0), y: rect.top+v.offsetY+ship.yUnits*v.scale+(d?dy/d*40:0) };
     },
     { x, y }
   );
@@ -62,7 +63,10 @@ async function pointWorld(page: Page, x: number, y: number): Promise<void> {
 async function waitForArenaReady(page: Page): Promise<void> {
   await expect(page.getByRole('heading', { name: 'Arena', exact: true })).toBeVisible();
   await expect(page.locator('canvas')).toHaveCount(1);
+  const initial = (await getSnapshot(page)).step;
+  for(let n=0;n<10&&(await getSnapshot(page)).step<initial+3;n++) await page.clock.runFor(20);
 }
+
 
 test.describe('Integrated End-to-End Player Journey', () => {
   test.beforeEach(async ({ page }) => {

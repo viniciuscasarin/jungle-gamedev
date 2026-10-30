@@ -99,7 +99,7 @@ Choose Play with mouse, touch or Tab/Enter. Loading lasts at least 300ms. Arena
 focuses the named Sailing controls region. Move a mouse to steer with finite turn
 speed; R toggles forward auto-sail once per press. Holding R does not repeat.
 Auto-sail starts Off. The ship can turn while stopped, retains heading before the
-first target and retains the last logical target when the mouse leaves the host.
+first input and retains the last normalized direction when the mouse leaves the host.
 Targets within 12 units preserve heading. Touch uses the lower-left joypad: drag outside its inclusive 15% dead zone to steer and sail. Release stops manual motion; R On retains movement toward the last selected heading.
 
 Escape / P, the Pause button, window blur or a hidden document immediately pauses, clears input and turns auto-sail
@@ -109,8 +109,7 @@ works during Loading. Retry recovers failed assets or graphics initialization.
 
 `?assetScenario=fail-once` makes the next Play fail even with a warm cache; Retry
 uses the normal loader. Refresh rearms the scenario; remove the query to disable.
-O mundo permanece inteiro entre as faixas medidas do HUD, com safe areas aplicadas
-uma vez. Desktop permite portrait e landscape; mobile exige landscape, inclusive
+A câmera acompanha o navio e preenche a tela com cenário sob o HUD; safe areas são aplicadas uma vez. 960×540 define a escala uniforme, sem limitar o mapa. Desktop permite portrait e landscape; mobile exige landscape, inclusive
 em 568×320. DPR altera somente o buffer gráfico.
 
 Mobile é definido pelo ponteiro **primário coarse**, independentemente de largura,
@@ -133,14 +132,14 @@ das APIs não comprova bloqueio físico universal em navegadores ou dispositivos
 ## Geometry and diagnostics
 
 Open `/?geometry=1` then Play. Pink outlines show actual configured solid shores,
-cyan shows the circular hull, white its heading and yellow the inset center bounds.
+cyan shows the circular hull, white its heading and amarelo mostra a câmera e cinza a fronteira informativa da região.
 Drive into each shoreline frontally or diagonally: contact stops inward motion and
 permits tangential sliding without damage. Circle radius 18 is independent of visual
 sails. The artistic shoreline tolerance 4 units does not allow physical penetration.
 
 `window.__arenaDiagnostics()` returns deeply frozen detached inspection data: live
 applications/resources/resize subscription/input listener counts, cache leases and
-current navigation snapshot/target. It has no gameplay setters. Step, activeTimeMs,
+current navigation snapshot and sources.direction. It has no gameplay setters. Step, activeTimeMs,
 position, heading, health, state and auto-sail come from the real simulation. Host
 `data-viewport`, `data-player`, `data-ticker-started` expose presentation coordinates.
 Expect 1 app/resource / resize group/cache lease, 13 input listeners and 1 owned RAF while
@@ -149,7 +148,7 @@ Pixi ticker remains stopped. React only updates discrete status changes.
 
 ## Scope and source of truth
 
-`src/domain/config.ts` owns immutable arena-v2/balance-v1 data. Setup captures config
+`src/domain/config.ts` owns immutable ocean-v1/archipelago-v1/balance-v1 data. Setup captures config
 and separate uint32 seed. Fixed steps use 1000/60ms and at most 5 per frame, discarding
 excess whole backlog while retaining the fraction. Time counts executed steps only.
 See [ARCHITECTURE.md](ARCHITECTURE.md) for modules, numerical tolerances, collision,
@@ -292,8 +291,7 @@ Initial mode follows the primary coarse pointer. Actual gameplay touch switches 
 touch; mouse steering or gameplay keys switch to desktop. Switching modes clears
 old input and disables auto-sail without restarting or advancing the match. Screen
 resize, rotation and DPR changes only rearrange layout and preserve the logical
-command. On mobile, landscape offers a larger view; the full world remains visible
-in portrait too. All live ships retain horizontal Pixi health bars in addition to
+command. Mobile exige landscape; portrait congela a partida até retorno e Resume explícito. A câmera preenche o host e acompanha o player, inclusive após resize. All live ships retain horizontal Pixi health bars in addition to
 numeric player health. HUD updates use active simulation time, with no extra timer.
 
 Tests use real CDP multi-touch contacts with persistent IDs and native pointer capture
@@ -430,3 +428,11 @@ In accordance with GDD Section 15, the project features headless simulation benc
 - **Projectile Object Pooling**: Reusable `projectilePool` in `src/render/pixiPreview.ts` toggles `visible = false` and resets transform/physics properties upon despawn, eliminating allocations in the rendering tick.
 - **Battle Effects Object Pooling**: `muzzleFlashPool`, `woodParticlePool`, and `floatingScorePool` in `src/render/battleEffects.ts` eliminate garbage collection thrashing during intense broadside engagements.
 - **Canonical Balance Versioning**: Pinned to `balance-v1` in `src/domain/config.ts` and deterministically included in `configurationKey()` derivation.
+
+## Oceano procedural
+
+Navegue além de 0–960/0–540, inclusive em coordenadas negativas. Regiões por seed contêm ilhas compactas, alongadas e largas; revisitas recompõem o terreno. Mundo/câmera não impõem paredes. Mouse seleciona direção relativa ao navio com dead zone lógica inclusiva de 12 unidades. Com R ligado, ponteiro parado conserva direção durante o acompanhamento. Resize/DPR reapresenta sem mudar input ou posição.
+
+geometry=1 e window.__arenaDiagnostics() oferecem posição assinada, região, câmera e contadores de terreno/grafos/sprites, somente leitura. Caches mantêm recursos necessários mais oito ociosos; sair libera recursos da partida. Entidades ocultas continuam combate. Resultados/envios pendentes finitos continuam legíveis sob as chaves originais; novas partidas usam configuração procedural e opções atuais de 60–180s (padrão 120s).
+
+Hipóteses de calibração: região 1280, margens 80, pares designados 160/280/440 com tolerância 1, disco inicial livre 160 e spawns 240–520 do player. Medições, benchmarks e aceitação ficam em project/automation-reports/infinite-world. Não foram acrescentados assets ou dependências.

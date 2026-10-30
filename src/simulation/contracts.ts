@@ -1,5 +1,6 @@
 import { immutableCopy } from '../domain/immutable';
 import type { EndReason } from '../domain/result';
+export type { RegionCoordinates, WorldAabb, IslandModel, RegionLayout, ProceduralWorldDescriptor, GeneratedIsland, GeneratedRegion } from './world/types';
 
 export type PlayerWeapon = 'front' | 'port' | 'starboard';
 

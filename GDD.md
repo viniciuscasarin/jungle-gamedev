@@ -61,7 +61,7 @@ Q, W, E, and R are the skill row in that order. R is a toggleable movement passi
 
 While auto-sail is enabled, the ship continuously advances along its current heading and turns toward the mouse. The mouse selects a destination direction, not an instantaneous ship position: the configured forward and turn speeds still apply. Front and lateral shots follow the actual hull orientation, not a separate mouse-facing turret. There is no reverse or strafing.
 
-Proposed steering details: auto-sail starts disabled for each match; the ship may turn toward the mouse while stopped so the player can aim before enabling R. Use a small 12-unit dead zone around the ship to prevent heading jitter. Sailing remains enabled on arrival and keeps the last heading inside that dead zone. Convert pointer coordinates through the arena's scale and offset; clamp out-of-arena positions to its edge. Before the first valid mouse position, retain the initial heading. Pointer exit retains the last target; focus loss pauses the game. Island and arena collisions remain authoritative: auto-sail does not provide automatic pathfinding around land.
+Proposed steering details: auto-sail starts disabled for each match; the ship may turn toward the mouse while stopped so the player can aim before enabling R. Use a small 12-unit dead zone around the ship to prevent heading jitter. Sailing remains enabled on arrival and keeps the last heading inside that dead zone. Converter pela câmera atual e armazenar direção relativa ao navio, sem clamp de coordenadas assinadas. Before the first valid mouse position, retain the initial heading. Saída do ponteiro conserva a direção; focus loss pauses the game. Colisões de ilha continuam autoritativas: auto-sail does not provide automatic pathfinding around land.
 
 ### Mobile controls — confirmed layout
 
@@ -75,25 +75,19 @@ Show the relevant controls before play and during combat. Menus use standard key
 
 ## 5. Arena and navigation
 
-### Proposed initial map
+### Procedural ocean
 
-Use a fixed **960 × 540 logical-unit** world. Logical units are independent of device pixels. Maintain the same geometry and rules on every device; scale the full world proportionally into the available viewport.
+O mundo padrão não possui perímetro jogável. A câmera imediata acompanha o player na área central livre do HUD e preenche a tela, inclusive sob controles. 960×540 é referência visual; coordenadas podem ser negativas. Início (480,270), para cima, com disco de água livre de raio 160.
 
-| Element | Proposed geometry |
-| --- | --- |
-| Player start | Center at (480, 270), heading up |
-| Northwest island | Rounded footprint inside x=130–300, y=90–220 |
-| Southeast island | Rounded footprint inside x=660–830, y=320–450 |
-| Navigable space | Continuous water routes around both islands and through the center |
-| Spawn region | Valid positions near the perimeter, inset enough to contain the full ship collider |
+Catálogo: compacta 160×120, alongada 160×280 e larga 320×120, com tiles proporcionais de 40 unidades. Layouts de duas a quatro ilhas usam pares designados com alvos iniciais de 160/280/440 entre litorais reais e tolerância 1. São hipóteses técnicas de calibração, não valores confirmados por playtest. Outros pares preservam mínimo 160; margens de água 80 por lado de região 1280×1280 conectam vizinhos e permitem manobra. Folhagem e pedras continuam decorativas.
 
-Island artwork is assembled from supplied water, shore, grass, and decoration tiles. Collision footprints must match the visible solid shoreline and be documented alongside the map. Decorative water and wakes never block movement. Rocks on an island are decoration; any separate water obstacle would need an explicit collider and is outside the initial map.
+Configuração versionada e seed determinam cada região independentemente da exploração. Terreno e sprites distantes são reconstruídos nas revisitas. Navegação combina corredores regionais e A* local com contornos inflados pelo raio. Ilhas bloqueiam cascos/balas; tela e regiões não são sólidos. Movimento conserva deslizamento sem dano de litoral.
 
-Ships cannot leave the arena or overlap solid islands. Resolve movement against obstacles while preserving tangential movement where possible; a glancing collision should slide rather than lock the ship. Shoreline contact causes no health damage. Rotation cannot force a collider through an obstacle.
+Spawns ficam a 240–520 do player, independentemente da câmera, com revalidação de faixa, terreno, ocupação e rota após 600ms ativos. Cadência, alternância por sucesso, 64 tentativas e ausência de backlog permanecem. Entidades ocultas continuam IA/combate até destruição ou fim, com mesmos IDs, saúde e cooldowns, sem cap/despawn adicional. Armas, giro, saúde, dano e score conservam os valores anteriores. Tempo padrão 120s, opções 60–180s e término por tempo ou morte permanecem.
 
 **Proposed collision model:** circular ship bodies, circles for cannonballs, and convex or rectangular pieces for islands. The ship radius covers the solid hull rather than the sail's transparent rectangle. Swept projectile collision selects the earliest impact along each movement segment to prevent fast cannonballs crossing thin obstacles between steps.
 
-Ship-to-ship overlap is separated without damage, except a Chaser touching the player. A Shooter's hull does not inflict contact damage. Enemy separation should not push the player into land or outside the arena.
+Ship-to-ship overlap is separated without damage, except a Chaser touching the player. A Shooter's hull does not inflict contact damage. A separação nunca empurra o player para terra; não há paredes procedurais.
 
 ## 6. Combat rules
 
@@ -156,8 +150,8 @@ Both archetypes use obstacle-aware waypoint navigation with local separation. Na
 
 - Default interval: **3 seconds**; Options accepts **1–10 seconds**, in 0.5-second steps. Values must be finite and positive.
 - Spawn one enemy at each interval of active play, starting after the first full interval.
-- Alternate Chaser and Shooter, starting with Chaser: a deterministic 50/50 distribution over pairs. Both appear within six active seconds in the default match.
-- Choose positions using a seeded generator, at least 240 units from the player, outside islands and other hulls, and with a navigable route into the arena.
+- Alternate Chaser and Shooter, starting with Chaser: a deterministic 50/50 distribution over pairs. Com aviso completo, as primeiras materializações ocorrem em 3,6s e 6,6s ativos quando seguras.
+- Choose positions using a seeded generator, entre 240 e 520 unidades do player, fora de ilhas/cascos e com rota regional navegável.
 - Telegraph a selected position for 0.6 active seconds using a visible water ring. Reserve and revalidate the position at materialization; cancel if it becomes unsafe. The first appearance is delayed by this telegraph duration.
 - If no safe position exists, skip that opportunity and retry at the next scheduled interval. Do not accumulate a spawn backlog. Advance the archetype sequence only after a successful spawn.
 - Stop scheduling and materialization on pause or match end. The initial design has no live-enemy cap; evaluate the one-second setting during profiling before changing that policy.
@@ -308,7 +302,7 @@ The following are delivery acceptance checks, not claims of completed testing.
 | --- | --- |
 | Options | Validation, Save/Cancel, refresh persistence, configuration snapshot behavior |
 | Assets | Visible loading, simulated failure, successful retry |
-| Navigation | R toggles once per press, mouse-follow steering and dead zone, finite turn speed, mobile joypad and cruise behavior, arena bounds, island collision |
+| Navigation | R toggles once per press, mouse-follow steering and dead zone, finite turn speed, mobile joypad and cruise behavior, travessia regional, colisão com ilhas |
 | Combat | Q front, W left, E right; simultaneous steering/fire, independent cooldowns, damage once, single-point scoring |
 | Enemies | Both archetypes, obstacle navigation, safe spawns, configured cadence |
 | Lifecycle | End by time/death, terminal freeze, complete replay reset |

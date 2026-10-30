@@ -65,7 +65,7 @@ test.describe('Deterministic Visual Regression Baselines', () => {
     await page.goto(
       buildDeterministicUrl('/', {
         seed: DETERMINISTIC_SEED,
-        combatScenario: 'island',
+        combatScenario: 'empty',
       })
     );
     await page.getByRole('button', { name: 'Play', exact: true }).click();
@@ -87,7 +87,7 @@ test.describe('Deterministic Visual Regression Baselines', () => {
     await page.goto(
       buildDeterministicUrl('/', {
         seed: DETERMINISTIC_SEED,
-        combatScenario: 'island',
+        combatScenario: 'empty',
       })
     );
     await page.getByRole('button', { name: 'Play', exact: true }).click();

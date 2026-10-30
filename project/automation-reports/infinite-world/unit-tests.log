@@ -1,0 +1,23 @@
+
+> pirate-battle@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 C:/Users/Vinicius/Dev/repos/challenges/jungle-gamedev
+
+(node:14868) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20200) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5028) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11188) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  34 passed (34)
+      Tests  400 passed (400)
+   Start at  01:41:08
+   Duration  65.13s (tests 78%, import 21%)
+
+    Isolate  34 workers spawned · ~142ms startup each (spawn + environment, per file)
+             at least ~4.70s faster with isolate: false — reuses workers across files instead of one per file

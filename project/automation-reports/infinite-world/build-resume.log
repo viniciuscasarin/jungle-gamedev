@@ -1,0 +1,116 @@
+
+> pirate-battle@0.1.0 build
+> npm run typecheck && vite build
+
+
+> pirate-battle@0.1.0 typecheck
+> tsc -p tsconfig.json && tsc -p tsconfig.core.json
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 961 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/wood_1-slJ-CkKT.png                        0.34 kB
+dist/assets/cannon_ball-BxJrRwrc.png                   0.38 kB
+dist/assets/wood_3-DiybsOPa.png                        0.43 kB
+dist/assets/wood_4-C1Ce_OKj.png                        0.46 kB
+dist/assets/wood_2-Cwl-5Bmx.png                        0.60 kB
+dist/assets/fire_2-D1Z-1ALK.png                        0.90 kB
+dist/assets/fire_1-BCMiD51B.png                        1.51 kB
+dist/assets/tile_49-BrfRFplc.png                       2.49 kB
+dist/assets/icon_fire_front-dfJ_5ALp.png               2.56 kB
+dist/assets/icon_forward-BGooRcjX.png                  2.71 kB
+dist/assets/icon_pause-Db8ta38x.png                    3.19 kB
+dist/assets/tile_72-BeITRKt1.png                       3.43 kB
+dist/assets/tile_70-DBuDFgJf.png                       3.49 kB
+dist/assets/explosion_3-CIS4Ja5y.png                   3.58 kB
+dist/assets/icon_fire_left-ChqGJwyO.png                4.18 kB
+dist/assets/icon_fire_right-BrvzlOIE.png               4.22 kB
+dist/index.html                                        4.89 kB │ gzip:   1.89 kB
+dist/assets/tile_6-DV6hjmaK.png                        5.41 kB
+dist/assets/tile_57-DvqmRyeO.png                       5.49 kB
+dist/assets/tile_9-B488uaTJ.png                        5.51 kB
+dist/assets/tile_54-Bv1It1WP.png                       5.54 kB
+dist/assets/tile_55-CKHTv_xD.png                       6.14 kB
+dist/assets/tile_7-Crnhggnl.png                        6.15 kB
+dist/assets/explosion_2-C1f2aaVX.png                   6.19 kB
+dist/assets/tile_25-BvA_S_ES.png                       6.19 kB
+dist/assets/health_fill_green-DoUt8XPb.png             6.29 kB
+dist/assets/tile_22-DZ0Hx8xR.png                       6.31 kB
+dist/assets/tile_56-VABpzp87.png                       6.43 kB
+dist/assets/tile_41-C4uyUuCl.png                       6.45 kB
+dist/assets/tile_23-DlGWBfLN.png                       6.55 kB
+dist/assets/tile_8-DWd-KQUw.png                        6.58 kB
+dist/assets/tile_38-UQIp6Zb1.png                       6.67 kB
+dist/assets/tile_40-BqqDeUGt.png                       7.03 kB
+dist/assets/tile_73-D_wTUrWW.png                       7.18 kB
+dist/assets/button_round_pressed-CySV73CX.png          7.32 kB
+dist/assets/tile_24-B9mt0I3n.png                       7.42 kB
+dist/assets/tile_39-Dpg11c1S.png                       7.42 kB
+dist/assets/button_round_normal-QF14w93V.png           7.51 kB
+dist/assets/button_round_hover-CxpkXZDY.png            7.65 kB
+dist/assets/explosion_1-DMioQM6e.png                   8.79 kB
+dist/assets/ship_3-BN5vuR1F.png                       10.95 kB
+dist/assets/ship_5-DsjvB4dj.png                       11.35 kB
+dist/assets/ui_hover-D_XYGLh2.wav                     11.51 kB
+dist/assets/ship_8-BV_IKD0F.png                       11.83 kB
+dist/assets/health_frame-BgRPFNcH.png                 16.71 kB
+dist/assets/logo_jungle_gaming-DJ6LxWQy.svg           19.34 kB │ gzip:   7.14 kB
+dist/assets/ui_click-DDd1MmLf.wav                     20.33 kB
+dist/assets/button_secondary_pressed-CuHjOdKy.png     30.69 kB
+dist/assets/button_secondary_normal-CMn5yKy_.png      30.84 kB
+dist/assets/button_primary_disabled-BM4tsnTp.png      31.88 kB
+dist/assets/button_primary_pressed-CL7I2ROY.png       32.29 kB
+dist/assets/button_primary_normal-DqzfnljP.png        33.05 kB
+dist/assets/button_primary_hover-mSELEr7_.png         33.12 kB
+dist/assets/time_warning-CMVncTTc.wav                 42.38 kB
+dist/assets/ui_back-uJvIEPBn.wav                      42.38 kB
+dist/assets/score_point--Tvk1ukt.wav                  44.14 kB
+dist/assets/game_pause-S5EiJ5fs.wav                   48.55 kB
+dist/assets/game_resume-BpX1mHDC.wav                  48.55 kB
+dist/assets/ship_wood_hit_1-o3yARAo0.wav              52.96 kB
+dist/assets/ship_wood_hit_2-DkdamYiI.wav              52.96 kB
+dist/assets/ui_close-BxSuaoYl.wav                     52.96 kB
+dist/assets/ui_open-BmIj-EBb.wav                      52.96 kB
+dist/assets/title_pirate_battle-B_4QOAcq.png          71.04 kB
+dist/assets/health_low-Bg1BOilO.wav                   75.01 kB
+dist/assets/cannonball_water_hit_1-BpLSwv5t.wav       81.18 kB
+dist/assets/cannonball_water_hit_2-C3l6DSXM.wav       95.30 kB
+dist/assets/cannon_fire_1-BxCtBQ6Y.wav               104.12 kB
+dist/assets/cannon_fire_2-DRDipQ6z.wav               110.29 kB
+dist/assets/game_start-BC7A7XjW.wav                  110.29 kB
+dist/assets/cannon_fire_3-Cs4z8ae4.wav               116.46 kB
+dist/assets/ship_collision-BH8_GRBz.wav              127.93 kB
+dist/assets/game_complete-7EfUevRE.wav               132.34 kB
+dist/assets/game_over-CeFM6zb0.wav                   141.16 kB
+dist/assets/cannon_broadside-DHz2veVv.wav            149.98 kB
+dist/assets/panel_menu-CIWHivxt.png                  205.06 kB
+dist/assets/ship_explosion_1-Bwx9VfIk.wav            211.72 kB
+dist/assets/ship_explosion_2-D9xeOBcj.wav            229.36 kB
+dist/assets/ship_sinking-DZWI_vG-.wav                291.10 kB
+dist/assets/ui_scene_background-DaVheB5U.png         507.67 kB
+dist/assets/ship_sailing_loop-fJYCg3KC.wav         1,411.24 kB
+dist/assets/ocean_ambience_loop-BCUBiOIj.wav       2,116.84 kB
+dist/assets/index-DM9TlxUG.css                        19.53 kB │ gzip:   4.84 kB
+dist/assets/webworkerAll-DOq8LxpX.js                   0.05 kB │ gzip:   0.06 kB
+dist/assets/getTextureBatchBindGroup-CckcnH94.js       0.34 kB │ gzip:   0.26 kB
+dist/assets/Cache-fEtFvAzf.js                          1.10 kB │ gzip:   0.55 kB
+dist/assets/canvasUtils-BlnLdLY1.js                    6.01 kB │ gzip:   2.04 kB
+dist/assets/getTexelRangeRects-Bq4_sg7o.js            11.35 kB │ gzip:   2.99 kB
+dist/assets/init-C13aKhLJ.js                          14.84 kB │ gzip:   4.59 kB
+dist/assets/GCManagedHash-B_jK_A5g.js                 19.32 kB │ gzip:   6.28 kB
+dist/assets/Filter-B0XMl_yL.js                        41.95 kB │ gzip:  12.02 kB
+dist/assets/browserAll-C5Iz6w-G.js                    43.50 kB │ gzip:  11.24 kB
+dist/assets/RenderTargetSystem-CsL5RbX7.js            58.80 kB │ gzip:  16.47 kB
+dist/assets/GraphicsContext-B2A15lkN.js               61.68 kB │ gzip:  20.62 kB
+dist/assets/CanvasPool-BZ0sA3Gt.js                    71.20 kB │ gzip:  23.30 kB
+dist/assets/browser-D2to0cbZ.js                      399.03 kB │ gzip: 153.56 kB
+dist/assets/index-DOIWE87n.js                        725.55 kB │ gzip: 222.56 kB
+
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.24s

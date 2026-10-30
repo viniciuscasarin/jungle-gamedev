@@ -1,0 +1,32 @@
+
+Running 2 tests using 1 worker
+
+
+
+[1/2] [desktop-chrome] › tests\e2e\performance-profile.spec.ts:310:37 › profiles 180s of procedural exploration with 3000ms spawns
+[desktop-chrome] › tests\e2e\performance-profile.spec.ts:310:37 › profiles 180s of procedural exploration with 3000ms spawns
+[PROCEDURAL PROFILE] {
+  interval: 3000,
+  avgFps: 35.120904529168456,
+  p95: 33.40000000000873,
+  renderP95: 0.9000000059604645,
+  peakRegions: 25,
+  peakEntities: 53,
+  result: 'time_expired'
+}
+
+[2/2] [desktop-chrome] › tests\e2e\performance-profile.spec.ts:310:37 › profiles 180s of procedural exploration with 1000ms spawns
+[desktop-chrome] › tests\e2e\performance-profile.spec.ts:310:37 › profiles 180s of procedural exploration with 1000ms spawns
+[PROCEDURAL PROFILE] {
+  interval: 1000,
+  avgFps: 33.811447750852594,
+  p95: 33.40000000000873,
+  renderP95: 0.9000000059604645,
+  peakRegions: 30,
+  peakEntities: 127,
+  result: 'time_expired'
+}
+
+  Slow test file: [desktop-chrome] › tests\e2e\performance-profile.spec.ts (6.1m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  2 passed (6.1m)

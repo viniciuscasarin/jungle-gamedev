@@ -1,3 +1,6 @@
+import { createTerrain, sweptAabb } from './world/terrain';
+import { createNavigator } from './navigation';
+import { createHullIndex } from './hullIndex';
 import { createMatchSetup } from '../domain/config';
 import type { MatchSetup } from '../domain/config';
 import { immutableCopy } from '../domain/immutable';
@@ -9,14 +12,16 @@ import { constrainHull, createEnemyBehavior, normalizeAngle, separateHulls } fro
 import { createDirector } from './director';
 export { normalizeAngle } from './enemies';
 
-export function createSimulation(preparation: MatchSetup, initialData: InitialCombatData = {}) {
+export function createSimulation(preparation: MatchSetup, initialData: InitialCombatData = {}, measureNow?: () => number) {
   const setup = createMatchSetup(preparation.configuration, preparation.seed), c = setup.configuration;
-  const initial = captureCombatData(initialData, c);
+  const terrain = createTerrain(c, setup.seed, measureNow), navigation = createNavigator(c, terrain, measureNow);
+  const initial = captureCombatData(initialData, c, terrain);
+  let disposed = false;
   const deadlines = { front: 0, port: 0, starboard: 0 };
   const usedIds = new Set(['player', ...(initial.enemies ?? []).map(e => e.id), ...(initial.projectiles ?? []).map(p => p.id)]);
   let projectileSequence = 0;
   const nextId = () => { let id: string; do { id = `projectile-${++projectileSequence}`; } while (usedIds.has(id)); usedIds.add(id); return id; };
-  const behavior = createEnemyBehavior(c), director = createDirector(setup.seed, c, nextId);
+  const behavior = createEnemyBehavior(c, terrain, navigation), director = createDirector(setup.seed, c, nextId, terrain, navigation);
   const autonomous = initial.mode !== 'stationary-targets';
   let currentSnapshot: SimulationSnapshot = {
     step: 0,
@@ -42,6 +47,9 @@ export function createSimulation(preparation: MatchSetup, initialData: InitialCo
   let cachedFrozenEvents: readonly SimulationEvent[] | null = null;
 
   return {
+    terrain,
+    inspectResources: () => ({ terrain: terrain.inspect(), navigation: navigation.inspect() }),
+    dispose() { terrain.dispose(); navigation.dispose(); disposed = true; },
     inspect: () => {
       if (!cachedFrozenSnapshot) {
         cachedFrozenSnapshot = immutableCopy(currentSnapshot);
@@ -75,7 +83,7 @@ export function createSimulation(preparation: MatchSetup, initialData: InitialCo
     step(input: StepInput) {
       currentEvents = [];
       cachedFrozenEvents = null;
-      if (currentSnapshot.state !== 'playing') return currentSnapshot;
+      if (disposed || currentSnapshot.state !== 'playing') return currentSnapshot;
       if (input.pausePressed) {
         currentSnapshot = { ...currentSnapshot, state: 'paused', autoSailEnabled: false };
         cachedFrozenSnapshot = null;
@@ -83,7 +91,13 @@ export function createSimulation(preparation: MatchSetup, initialData: InitialCo
       }
       const step = currentSnapshot.step + 1, activeTimeMs = Math.min(c.options.sessionDurationMs, step * c.timing.fixedStepMs);
       const time = { step, activeTimeMs }, emittedEvents: SimulationEvent[] = [];
+      terrain.beginStep([
+        ...[currentSnapshot.player, ...currentSnapshot.enemies].map(s => sweptAabb(s.position, { x: 0, y: 0 }, c.ships[s.archetype].hullRadiusUnits + c.ships[s.archetype].forwardSpeedUnitsPerSecond * c.timing.fixedStepMs / 1000)),
+        ...currentSnapshot.projectiles.map(b => { const distance = b.speedUnitsPerSecond * Math.min(c.timing.fixedStepMs, b.remainingLifetimeMs) / 1000; return sweptAabb(b.position, { x: Math.cos(b.headingRadians) * distance, y: Math.sin(b.headingRadians) * distance }, b.radiusUnits); }),
+        ...currentSnapshot.reservations.map(r => sweptAabb(r.position, { x: 0, y: 0 }, c.ships[r.archetype].hullRadiusUnits)),
+      ]);
       let player = currentSnapshot.player, enemies = [...currentSnapshot.enemies], score = currentSnapshot.score;
+      const hullIndex = createHullIndex([player, ...enemies]);
       const damage = (ship: ShipSnapshot, amount: number, sourceId: string, cause: 'projectile' | 'contact', playerCredit: boolean) => {
         if (ship.health <= 0) return;
         const health = Math.max(0, ship.health - amount), updated = { ...ship, health };
@@ -93,6 +107,7 @@ export function createSimulation(preparation: MatchSetup, initialData: InitialCo
         if (health === 0) {
           emittedEvents.push({ ...time, type: 'destruction', entityId: ship.id, sourceId, cause });
           enemies = enemies.filter(e => e.id !== ship.id);
+          hullIndex.remove(ship.id);
           if (ship.archetype !== 'player' && playerCredit) {
             score += c.rules.pointsPerPlayerEnemyDestruction;
             emittedEvents.push({ ...time, type: 'score', enemyId: ship.id, points: c.rules.pointsPerPlayerEnemyDestruction, totalScore: score });
@@ -105,7 +120,7 @@ export function createSimulation(preparation: MatchSetup, initialData: InitialCo
         const elapsed = Math.min(c.timing.fixedStepMs, ball.remainingLifetimeMs);
         const distance = ball.speedUnitsPerSecond * elapsed / 1000;
         const displacement = { x: Math.cos(ball.headingRadians) * distance, y: Math.sin(ball.headingRadians) * distance };
-        let hitTime = sweepSolid(ball.position, displacement, ball.radiusUnits, c), target: ShipSnapshot | undefined;
+        let hitTime = sweepSolid(ball.position, displacement, ball.radiusUnits, c, terrain), target: ShipSnapshot | undefined;
         const candidates = ball.faction === 'player' ? enemies : player.health > 0 ? [player] : [];
         for (const ship of [...candidates].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)) {
           const t = sweepCircle(ball.position, displacement, ship.position, ball.radiusUnits + c.ships[ship.archetype].hullRadiusUnits);
@@ -131,7 +146,7 @@ export function createSimulation(preparation: MatchSetup, initialData: InitialCo
       }
       let autoSailEnabled = player.health > 0 && (input.toggleAutoSailPressed ? !currentSnapshot.autoSailEnabled : currentSnapshot.autoSailEnabled);
       const distance = autoSailEnabled || input.movementRequested ? c.ships.player.forwardSpeedUnitsPerSecond * dt : 0;
-      const position = moveHull(player.position, { x: Math.cos(heading) * distance, y: Math.sin(heading) * distance }, c);
+      const position = moveHull(player.position, { x: Math.cos(heading) * distance, y: Math.sin(heading) * distance }, c, c.ships.player.hullRadiusUnits, terrain);
       const contact = (enemy: ShipSnapshot) => {
         const alive=enemies.find(e=>e.id===enemy.id);
         if(player.health>0 && alive?.archetype==='chaser') {
@@ -139,21 +154,27 @@ export function createSimulation(preparation: MatchSetup, initialData: InitialCo
           damage(alive,alive.health,alive.id,'contact',false);
         }
       };
-      const movedPlayer=player.health > 0 ? constrainHull(player,{...player,headingRadians:heading,position},enemies,c,contact) : player;
+      const movedPlayer=player.health > 0 ? constrainHull(player,{...player,headingRadians:heading,position},enemies,c,contact,terrain) : player;
       player={...movedPlayer,health:player.health};
+      hullIndex.update(player);
+      const maximumRadius = Math.max(...Object.values(c.ships).map(s => s.hullRadiusUnits));
       for(const enemy of [...enemies].sort((a,b)=>a.id < b.id ? -1 : a.id > b.id ? 1 : 0)) {
         if(player.health<=0)break;
-        if(!enemies.some(e=>e.id===enemy.id))continue;
-        const proposed=autonomous?behavior.move(enemy,player,enemies,activeTimeMs):enemy;
-        const constrained=constrainHull(enemy,proposed,[player,...enemies.filter(e=>e.id!==enemy.id)],c,other=>{if(other.id===player.id)contact(enemy);});
-        if(enemies.some(e=>e.id===enemy.id))enemies=enemies.map(e=>e.id===enemy.id?constrained:e);
+        if(!hullIndex.has(enemy.id))continue;
+        const radius = c.ships[enemy.archetype].hullRadiusUnits;
+        const nearby = hullIndex.near(enemy.position, radius + maximumRadius + c.navigation.waypointSpacingUnits, enemy.id).filter(s => s.id !== player.id);
+        const proposed=autonomous?behavior.move(enemy,player,nearby,activeTimeMs):enemy;
+        const travel = Math.hypot(proposed.position.xUnits - enemy.position.xUnits, proposed.position.yUnits - enemy.position.yUnits);
+        const neighbors = hullIndex.near(enemy.position, radius + maximumRadius + travel, enemy.id);
+        const constrained=neighbors.length ? constrainHull(enemy,proposed,neighbors,c,other=>{if(other.id===player.id)contact(enemy);},terrain) : proposed;
+        if(hullIndex.has(enemy.id)) { const index = enemies.findIndex(e => e.id === enemy.id); enemies[index] = constrained; hullIndex.update(constrained); }
       }
-      if(player.health>0)enemies=separateHulls(player,enemies,c);
+      if(player.health>0)enemies=separateHulls(player,enemies,c,terrain);
       const reason = player.health <= 0 ? 'player_destroyed' : activeTimeMs + TIME_EPSILON_MS >= c.options.sessionDurationMs ? 'time_expired' : undefined;
       if (reason) autoSailEnabled = false;
       for (const weapon of PLAYER_WEAPONS) {
         if (!reason && input.fire[weapon] && activeTimeMs + TIME_EPSILON_MS >= deadlines[weapon]) {
-          const emitted = emitWeapon(player, weapon, c, nextId);
+          const emitted = emitWeapon(player, weapon, c, nextId, terrain);
           if (emitted.length > 0 && emitted[0]) {
             projectiles.push(...emitted);
             emittedEvents.push({
@@ -171,7 +192,7 @@ export function createSimulation(preparation: MatchSetup, initialData: InitialCo
       let reservations=currentSnapshot.reservations;
       if(autonomous && !reason) {
         for(const enemy of enemies)if(behavior.canFire(enemy,player,activeTimeMs)) {
-          const emitted=emitWeapon(enemy,'shooter',c,nextId);
+          const emitted=emitWeapon(enemy,'shooter',c,nextId,terrain);
           if(emitted.length && emitted[0]){
             projectiles.push(...emitted);
             behavior.recordShot(enemy,activeTimeMs);
@@ -206,6 +227,7 @@ export function createSimulation(preparation: MatchSetup, initialData: InitialCo
         cooldownsMs: { front: cooldown('front'), port: cooldown('port'), starboard: cooldown('starboard') },
       };
       cachedFrozenSnapshot = null;
+      terrain.endStep();
       return currentSnapshot;
     },
   };

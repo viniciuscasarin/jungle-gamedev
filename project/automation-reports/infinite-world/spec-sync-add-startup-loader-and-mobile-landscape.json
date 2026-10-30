@@ -1,0 +1,114 @@
+{
+  "change": "add-startup-loader-and-mobile-landscape",
+  "verified": true,
+  "capabilities": [
+    {
+      "capability": "application-shell",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Tela inicial mínima acessível"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Tela inicial preta com identidade e progresso"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Frases temáticas durante a espera"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Erro inicial independente de assets"
+        }
+      ]
+    },
+    {
+      "capability": "arena-rendering",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Mundo completo sem distorção"
+        }
+      ]
+    },
+    {
+      "capability": "asset-loading",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Carregamento compartilhado recuperável"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Recursos decorativos DOM independentes da arena"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Preparação inicial dos recursos usados"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Progresso real e conclusão verificável"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Transferência antecipada de áudio sem reprodução"
+        }
+      ]
+    },
+    {
+      "capability": "mobile-orientation",
+      "new": true,
+      "operations": [
+        {
+          "kind": "ADDED",
+          "requirement": "Orientação obrigatória na experiência mobile"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Bloqueio nativo com alternativa funcional"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Pausa e retomada seguras por orientação"
+        },
+        {
+          "kind": "ADDED",
+          "requirement": "Prioridade visual e ciclo de vida da proteção"
+        }
+      ]
+    },
+    {
+      "capability": "responsive-hud",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Hierarquia do HUD touch"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Alvos touch e áreas seguras"
+        }
+      ]
+    },
+    {
+      "capability": "touch-input",
+      "new": false,
+      "operations": [
+        {
+          "kind": "MODIFIED",
+          "requirement": "Seleção e troca segura do modo"
+        },
+        {
+          "kind": "MODIFIED",
+          "requirement": "Limpeza por contexto e ciclo de vida"
+        }
+      ]
+    }
+  ]
+}

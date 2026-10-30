@@ -8,13 +8,13 @@ Fornecer uma fonte tipada e rastreável de parâmetros de jogo, permitindo captu
 
 ### Requirement: Valores iniciais centralizados e versionados
 
-A configuração SHALL representar valores iniciais do GDD v0.2 com unidades explícitas e versões de mapa e balanceamento. A calibração de armas e combate SHALL ser governada por identificador estável de versão de balanceamento, preservando a coerência dos parâmetros autoritativos. A geometria sólida refinada SHALL substituir envelopes e atualizar a versão do mapa. Limites das opções SHALL ter fonte única. Parâmetros derivados SHALL ser calculados a partir dos valores autoritativos.
+A configuração SHALL centralizar opções e parâmetros autoritativos com unidades explícitas, versões de mapa, gerador e balanceamento. O mundo padrão SHALL ser procedural sem dimensões finitas; seu descritor SHALL capturar catálogo, layouts, espaçamentos e parâmetros de navegação e spawn. Limites das opções SHALL ter fonte única e parâmetros derivados SHALL usar valores autoritativos.
 
 #### Scenario: Configuração padrão
 - **WHEN** um consumidor solicita os valores iniciais
-- **THEN** recebe sessão de 120 segundos, intervalo de spawn de 3 segundos, mapa de 960 por 540 unidades e versões identificáveis
-- **AND** os parâmetros de movimento, armas, inimigos, spawn e controles correspondem às propostas documentadas no GDD sob versão identificável de balanceamento
-- **AND** a versão do mapa distingue a geometria sólida refinada dos envelopes da fundação
+- **THEN** recebe sessão de 120 segundos, intervalo de spawn de 3 segundos e descritor de mundo infinito versionado
+- **AND** preserva velocidades, giro, saúde, armas e regras de pontuação atuais; o tempo continua configurável de 60 a 180 segundos
+- **AND** os perfis iniciais de layout têm alvos de 160, 280 e 440 unidades, com tolerância explícita e separação mínima validada
 
 #### Scenario: Alcance derivado
 - **WHEN** um consumidor calcula o alcance máximo de um projétil
@@ -65,13 +65,13 @@ O contrato de preparação de partida SHALL conter configuração e seed em camp
 
 ### Requirement: Geometria sólida de ilhas compartilhada
 
-A configuração SHALL fornecer duas ilhas identificadas com posição, dimensões e polígonos convexos ou peças sólidas em unidades lógicas, serializáveis e profundamente imutáveis. SHALL distinguir litoral sólido de envelope e decoração, sem paths de asset ou dependência de plataforma. Render e consumidores futuros SHALL usar essa mesma geometria de gameplay.
+A configuração SHALL fornecer catálogo e regras de composição de ilhas em dados serializáveis e profundamente imutáveis, sem paths de asset ou dependência de plataforma. As instâncias geradas SHALL fornecer ID, modelo, posição assinada, dimensões e polígonos sólidos convexos. Render, colisão, navegação e spawn SHALL compartilhar esses mesmos contornos, distinguindo litoral, envelope e decoração.
 
 #### Scenario: Mapa refinado
-- **WHEN** um consumidor lê a configuração padrão
-- **THEN** encontra ilhas northwest e southeast dentro das regiões propostas pelo GDD, mantendo o centro e rotas de água ao redor
-- **AND** a documentação registra coordenadas, convenção dos polígonos e tolerância de alinhamento ao litoral visível
-- **AND** o formato pode ser usado em testes sem DOM ou renderer
+- **WHEN** um consumidor prepara um mundo procedural
+- **THEN** obtém modelos predefinidos e regras versionadas em vez de duas posições fixas de ilhas
+- **AND** a documentação registra unidades, convenção dos polígonos e tolerância de alinhamento ao litoral visível
+- **AND** catálogo e geração podem ser usados sem DOM ou renderer
 
 #### Scenario: Canto arredondado e água
 - **WHEN** são comparados o envelope de uma ilha, suas peças sólidas e o litoral composto
@@ -81,6 +81,11 @@ A configuração SHALL fornecer duas ilhas identificadas com posição, dimensõ
 #### Scenario: Snapshot de vértices
 - **WHEN** a origem é alterada depois de capturar um snapshot ou o consumidor tenta modificar vértices capturados
 - **THEN** a geometria do snapshot permanece inalterada, inclusive coleções e coordenadas aninhadas
+
+#### Scenario: Validação assinada e parâmetros inválidos
+- **WHEN** são validados dados procedurais com coordenadas negativas ou com catálogo, espaçamento ou tamanho de região inválidos
+- **THEN** coordenadas assinadas finitas são aceitas e parâmetros incompatíveis com os cascos ou layouts são rejeitados antes de iniciar a partida
+- **AND** dimensões, velocidades, raios e durações continuam sujeitos às suas restrições positivas
 
 ### Requirement: Geometria de projétil centralizada
 
@@ -94,14 +99,28 @@ Raio de colisão da bala e folga de emissão SHALL estar na configuração tipad
 
 ### Requirement: Chave canônica da configuração de gameplay
 
-A configuração SHALL possuir chave determinística derivada da representação canônica de todos os parâmetros de gameplay, incluindo opções, geometria, tuning e versões de mapa e balanceamento. A versão de balanceamento SHALL compor a representação canônica sem alterar a derivação. A chave SHALL excluir seed, identidade, tamanho de exibição e áudio/acessibilidade. Ordem de propriedades não SHALL alterar a chave; ordem de listas semanticamente relevantes SHALL ser preservada.
+A configuração SHALL possuir chave determinística derivada de todos os parâmetros de gameplay, incluindo opções, catálogo, layouts, espaçamentos, tuning e versões. SHALL excluir seed, identidade, regiões materializadas, caches, tamanho de exibição e áudio/acessibilidade. Ordem de propriedades SHALL não alterar a chave; ordem de listas semanticamente relevantes SHALL ser preservada. Configurações históricas SHALL conservar sua representação canônica original.
 
 #### Scenario: Equivalência e distinção
 - **WHEN** configurações equivalentes têm propriedades em ordens diferentes ou mudam somente seed e identidade externas
 - **THEN** produzem a mesma chave
-- **AND** alterar sessão, spawn, geometria, arma, regra, tuning de navegação ou versão produz chave diferente
+- **AND** alterar sessão, spawn, geometria, layouts, espaçamento, arma, regra, tuning de navegação ou versão produz chave diferente
 
 #### Scenario: Resultado histórico autoconsistente
 - **WHEN** uma configuração completa persistida é validada para recuperar Last Result
-- **THEN** sua chave é conferida contra os próprios dados históricos
+- **THEN** sua chave é conferida contra os próprios dados históricos, inclusive nos mapas finitos existentes
 - **AND** defaults atuais não substituem tuning ou geometria históricos válidos
+
+#### Scenario: Exploração sem crescimento da configuração
+- **WHEN** o player visita e descarrega muitas regiões na mesma partida
+- **THEN** configuração, chave e seed capturadas permanecem iguais e o resultado conserva o descritor do gerador
+- **AND** o payload persistido não contém uma lista crescente de regiões visitadas
+
+### Requirement: Compatibilidade dos resultados de mapas finitos
+
+Resultados válidos produzidos com os mapas finitos existentes SHALL continuar legíveis em Last Result, histórico, ranking e outbox. A validação SHALL identificar a representação histórica sem completá-la com novos defaults nem reclassificar o resultado como mundo procedural.
+
+#### Scenario: Atualização com dados locais existentes
+- **WHEN** o jogo atualizado lê resultado ou envio pendente com configuração finita válida e chave correspondente
+- **THEN** preserva os dados e o fluxo de leitura ou envio, sem apagar armazenamento por diferença de formato
+- **AND** partidas novas usam a configuração procedural atual com agrupamento de ranking distinto pela chave de gameplay

@@ -1,3 +1,6 @@
+import { HISTORICAL_FINITE_CONFIG } from './historicalFiniteConfig';
+import { isProceduralWorld } from './config';
+import { validateProceduralWorld } from '../simulation/world/validate';
 import { DEFAULT_CONFIG, createGameConfig } from './config';
 import type { GameConfig, GameOptions } from './config';
 import { immutableCopy } from './immutable';
@@ -9,18 +12,18 @@ const finite = (value: unknown): value is number => typeof value === 'number' &&
 const requireValid: (condition: unknown) => asserts condition = condition => { if (!condition) throw new RangeError('Invalid configuration data.'); };
 
 /** Validate every required leaf, without filling missing historical fields from defaults. */
-function shape(value: unknown, example: unknown, path = ''): void {
+function shape(value: unknown, example: unknown, path = '', signedCoordinates = false): void {
   if (Array.isArray(example)) {
     requireValid(Array.isArray(value));
-    for (const item of value) shape(item, example[0], `${path}[]`);
+    for (const item of value) shape(item, example[0], `${path}[]`, signedCoordinates);
   } else if (isRecord(example)) {
     requireValid(isRecord(value));
     requireValid(Object.keys(value).length === Object.keys(example).length);
-    for (const [key, child] of Object.entries(example)) { requireValid(Object.hasOwn(value, key)); shape(value[key], child, `${path}.${key}`); }
+    for (const [key, child] of Object.entries(example)) { requireValid(Object.hasOwn(value, key)); shape(value[key], child, `${path}.${key}`, signedCoordinates); }
   } else if (typeof example === 'number') {
     requireValid(finite(value));
-    // Headings are signed; all other numeric gameplay data is nonnegative.
-    if (!path.endsWith('headingRadians')) requireValid(value >= 0);
+    // Finite history keeps its original schema; procedural world points are signed.
+    if (!path.endsWith('headingRadians') && !(signedCoordinates && (path.endsWith('xUnits') || path.endsWith('yUnits')))) requireValid(value >= 0);
     if (example > 0 && !path.endsWith('headingRadians') && !path.includes('solidOutline') && !path.includes('.origin.') && !path.includes('.playerStart.')) requireValid(value > 0);
   } else if (typeof example === 'string') requireValid(isText(value));
   else if (typeof example === 'boolean') requireValid(typeof value === 'boolean');
@@ -33,7 +36,9 @@ export function validateOptions(value: unknown): GameOptions {
 }
 
 export function validateConfiguration(value: unknown): GameConfig {
-  shape(value, DEFAULT_CONFIG);
+  requireValid(isRecord(value) && isRecord(value.world));
+  const procedural = value.world.kind === 'procedural';
+  shape(value, procedural ? DEFAULT_CONFIG : HISTORICAL_FINITE_CONFIG, '', procedural);
   const c = value as GameConfig;
   validateOptions(c.options);
   requireValid(c.timing.fixedStepMs === 1000 / 60 && Number.isSafeInteger(c.timing.maxCatchUpStepsPerFrame));
@@ -44,9 +49,14 @@ export function validateConfiguration(value: unknown): GameConfig {
   requireValid(!c.rules.friendlyFire && !c.rules.piercing && !c.rules.splashDamage && !c.rules.shorelineDamage && !c.rules.projectileCollisions && c.rules.damageProtectionMs === 0);
   requireValid(!c.controls.initialAutoSail && c.weapons.playerInitiallyReady && c.shooter.firstShotWaitsFullCooldown && c.spawn.firstSpawnWaitsFullInterval && !c.spawn.accumulateBacklog);
   for (const n of [c.navigation.endpointConnections, c.navigation.separationIterations, c.director.candidateAttempts, c.rules.pointsPerPlayerEnemyDestruction, c.rules.pointsPerChaserContactDestruction]) requireValid(Number.isSafeInteger(n));
-  requireValid(new Set(c.world.islands.map(i => i.id)).size === c.world.islands.length);
-  for (const island of c.world.islands) {
-    requireValid(island.origin.xUnits + island.widthUnits <= c.world.widthUnits && island.origin.yUnits + island.heightUnits <= c.world.heightUnits);
+  const world = c.world;
+  if (isProceduralWorld(world)) {
+    requireValid('maximumPlayerDistanceUnits' in c.spawn && c.spawn.maximumPlayerDistanceUnits > c.spawn.minimumPlayerDistanceUnits);
+    validateProceduralWorld(world, Object.values(c.ships), c.navigation.clearanceUnits);
+  } else {
+  requireValid(new Set(world.islands.map(i => i.id)).size === world.islands.length);
+  for (const island of world.islands) {
+    requireValid(island.origin.xUnits + island.widthUnits <= world.widthUnits && island.origin.yUnits + island.heightUnits <= world.heightUnits);
     const outline = island.solidOutline;
     requireValid(outline.length >= 3);
     let area = 0;
@@ -59,8 +69,10 @@ export function validateConfiguration(value: unknown): GameConfig {
     }
     requireValid(area > 1e-7);
   }
-  for (const ship of Object.values(c.ships)) requireValid(ship.hullRadiusUnits * 2 < Math.min(c.world.widthUnits, c.world.heightUnits));
-  requireValid(hullIsValid(c.world.playerStart, c));
+  for (const ship of Object.values(c.ships)) requireValid(ship.hullRadiusUnits * 2 < Math.min(world.widthUnits, world.heightUnits));
+  requireValid(world.islands.every(i => i.origin.xUnits >= 0 && i.origin.yUnits >= 0));
+  requireValid(hullIsValid(world.playerStart, c));
+  }
   return immutableCopy(c);
 }
 
