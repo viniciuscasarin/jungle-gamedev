@@ -1,0 +1,29 @@
+
+Running 22 tests using 1 worker
+
+(node:13244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:6:3 › Battle feedback, audio and accessibility http://127.0.0.1:5183 › unlocks audio on user gesture, toggles mute in HUD and synchronizes with Options (6.2s)
+  ok  2 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:56:3 › Battle feedback, audio and accessibility http://127.0.0.1:5183 › live region announces pause and resume events politely without frame spam (4.2s)
+  ok  3 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:76:3 › Battle feedback, audio and accessibility http://127.0.0.1:5183 › confines keyboard focus in modal dialog with focus trap and restores focus (3.9s)
+  ok  4 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:110:3 › Battle feedback, audio and accessibility http://127.0.0.1:5183 › respects prefers-reduced-motion media query (3.5s)
+  ok  5 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:6:3 › Battle feedback, audio and accessibility http://127.0.0.1:4183 › unlocks audio on user gesture, toggles mute in HUD and synchronizes with Options (5.1s)
+  ok  6 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:56:3 › Battle feedback, audio and accessibility http://127.0.0.1:4183 › live region announces pause and resume events politely without frame spam (3.8s)
+  ok  7 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:76:3 › Battle feedback, audio and accessibility http://127.0.0.1:4183 › confines keyboard focus in modal dialog with focus trap and restores focus (3.5s)
+  ok  8 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:110:3 › Battle feedback, audio and accessibility http://127.0.0.1:4183 › respects prefers-reduced-motion media query (2.9s)
+  ok  9 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by touch preserves game, description and accessible announcements http://127.0.0.1:5183 (40.3s)
+  ok 10 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by Enter preserves game, description and accessible announcements http://127.0.0.1:5183 (9.8s)
+  ok 11 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by Space preserves game, description and accessible announcements http://127.0.0.1:5183 (9.4s)
+  ok 12 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with normal http://127.0.0.1:5183 (13.6s)
+  ok 13 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with getter-error http://127.0.0.1:5183 (13.8s)
+  ok 14 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with write-error http://127.0.0.1:5183 (14.4s)
+  ok 15 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:200:3 › score and critical-health announcements remain exposed with tips closed http://127.0.0.1:5183 (21.0s)
+  ok 16 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by touch preserves game, description and accessible announcements http://127.0.0.1:4183 (40.3s)
+  ok 17 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by Enter preserves game, description and accessible announcements http://127.0.0.1:4183 (4.1s)
+  ok 18 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by Space preserves game, description and accessible announcements http://127.0.0.1:4183 (4.2s)
+  ok 19 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with normal http://127.0.0.1:4183 (7.1s)
+  ok 20 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with getter-error http://127.0.0.1:4183 (6.6s)
+  ok 21 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with write-error http://127.0.0.1:4183 (6.7s)
+  ok 22 [desktop-chrome] › tests\e2e\battle-feedback.spec.ts:200:3 › score and critical-health announcements remain exposed with tips closed http://127.0.0.1:4183 (13.7s)
+
+  22 passed (4.1m)

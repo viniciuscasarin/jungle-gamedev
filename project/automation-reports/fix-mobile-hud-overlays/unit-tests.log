@@ -1,0 +1,29 @@
+
+> pirate-battle@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 C:/Users/Vinicius/Dev/repos/challenges/jungle-gamedev
+
+(node:16184) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9892) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10272) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22468) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  36 passed (36)
+      Tests  403 passed (403)
+   Start at  15:25:58
+   Duration  66.51s (tests 78%, import 21%, transform 1%)
+
+    Isolate  36 workers spawned · ~149ms startup each (spawn + environment, per file)
+             at least ~5.22s faster with isolate: false — reuses workers across files instead of one per file
+
+npm notice
+npm notice New major version of npm available! 11.20.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

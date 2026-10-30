@@ -12,14 +12,16 @@ export function observeArenaResize(host: HTMLElement, resize: () => void): () =>
   try {
     observer.observe(host);
     host.parentElement?.querySelectorAll('[data-hud-band]').forEach(band => observer.observe(band, {box: 'border-box'}));
-    window.addEventListener('resize', resize); arm();
+    window.addEventListener('resize', resize); host.addEventListener('arena-hud-layout', resize); arm();
   } catch (error) {
     observer.disconnect(); window.removeEventListener('resize', resize);
+    host.removeEventListener('arena-hud-layout', resize);
     query?.removeEventListener('change', densityChanged); throw error;
   }
   return () => {
     if (stopped) return;
     stopped = true; observer.disconnect(); window.removeEventListener('resize', resize);
+    host.removeEventListener('arena-hud-layout', resize);
     query?.removeEventListener('change', densityChanged);
   };
 }

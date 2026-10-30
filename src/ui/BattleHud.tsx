@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { CSSProperties } from 'react';
 import { ASSET_MANIFEST } from '../render/assetManifest';
 import type { ArenaStatus } from '../render/pixiPreview';
+import { touchGuidePreference } from './touchGuidePreference';
 
 const skills = [
   { key: 'Q', control: 'front', name: 'Front cannon', icon: 'frontReference' },
@@ -29,9 +31,17 @@ export interface BattleHudProps {
   readonly onToggleMute?: () => void;
   readonly pause: () => void;
   readonly menu: () => void;
+  readonly focusArena?: () => void;
 }
 
-export function BattleHud({ status, soundMuted = false, onToggleMute, pause, menu }: BattleHudProps) {
+export function BattleHud({ status, soundMuted = false, onToggleMute, pause, menu, focusArena }: BattleHudProps) {
+  const [dismissed, setDismissed] = useState(() => touchGuidePreference.read());
+  const instructions = status.mode === 'touch' ? 'Drag joypad to steer and sail · Hold skills to fire' : 'Mouse to steer · Q front · W port · E starboard · R to sail';
+  const dismiss = (button: HTMLButtonElement) => {
+    const restore = document.activeElement === button;
+    touchGuidePreference.dismiss(); setDismissed(true);
+    if (restore) focusArena?.();
+  };
   // Live region single-trigger edge detection
   const [announcement, setAnnouncement] = useState('');
   const prevScore = useRef(status.score);
@@ -74,6 +84,7 @@ export function BattleHud({ status, soundMuted = false, onToggleMute, pause, men
 
   return (
     <>
+      <p id="sailing-instructions" className="sr-only">{instructions} · Auto-sail {status.autoSail ? 'On' : 'Off'}{status.paused ? ' · Paused' : ''}</p>
       <header className="battle-top" data-hud-band="top">
         {status.mode === 'touch' && <Health status={status} />}
         <div className="top-line">
@@ -100,16 +111,10 @@ export function BattleHud({ status, soundMuted = false, onToggleMute, pause, men
         </div>
       </header>
       <div className="battle-bottom" data-hud-band="bottom">
-        <div
-          id="sailing-instructions"
-          className="control-guide"
-          role="status"
-          aria-live="polite"
-          data-testid="battle-live-region"
-        >
-          {status.mode === 'touch' ? 'Drag joypad to steer and sail · Hold skills to fire' : 'Mouse to steer · Q front · W port · E starboard · R to sail'} · Auto-sail {status.autoSail ? 'On' : 'Off'}{status.paused ? ' · Paused' : ''}
-          {announcement && <span className="sr-only"> · {announcement}</span>}
-        </div>
+        {(status.mode === 'desktop' || !dismissed) && <div className="control-guide">
+          <span>{instructions} · Auto-sail {status.autoSail ? 'On' : 'Off'}{status.paused ? ' · Paused' : ''}</span>
+          {status.mode === 'touch' && <button type="button" className="dismiss-control-tips" aria-label="Dismiss control tips" onClick={event => dismiss(event.currentTarget)}><span aria-hidden="true">×</span></button>}
+        </div>}
         <div className="battle-control-row">
           {status.mode === 'touch' && (
             <div className="joypad" data-control="joypad" role="group" aria-label="Sailing joypad">
@@ -143,6 +148,14 @@ export function BattleHud({ status, soundMuted = false, onToggleMute, pause, men
         </div>
         {status.mode === 'desktop' && <Health status={status} />}
       </div>
+      <BattleAnnouncement message={announcement} />
     </>
   );
+}
+
+// Portal keeps announcements outside the paused HUD's inert/aria-hidden subtree.
+function BattleAnnouncement({ message }: { message: string }) {
+  const region = <div className="sr-only" role="status" aria-live="polite" aria-atomic="true" data-testid="battle-live-region">{message}</div>;
+  const target = typeof document !== 'undefined' ? document.getElementById('battle-announcements') : null;
+  return target ? createPortal(region, target) : region;
 }

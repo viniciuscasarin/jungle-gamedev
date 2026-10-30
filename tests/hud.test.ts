@@ -84,6 +84,10 @@ describe('BattleHud component accessibility', () => {
 
     expect(html).toContain('role="group"');
     expect(html).toContain('aria-label="Sailing joypad"');
+    expect(html).toContain('id="sailing-instructions" class="sr-only"');
+    expect(html).toContain('aria-label="Dismiss control tips"');
+    expect(html).toMatch(/role="status" aria-live="polite" aria-atomic="true" data-testid="battle-live-region"><\/div>/);
+    expect(html.match(/id="sailing-instructions"/g)).toHaveLength(1);
   });
 });
 

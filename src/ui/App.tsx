@@ -16,6 +16,9 @@ import type { SimulationEvent } from '../simulation/contracts';
 import { preparePlay } from './sessionBoundary';
 import { Options } from './Options';
 import { BattleHud } from './BattleHud';
+import { observeHostingBadge } from './hostingBadge';
+import type { BadgeOccupancy } from './hostingBadge';
+import type { CSSProperties } from 'react';
 import { Dialog } from './Dialog';
 import { Result } from './screens/Result';
 import { MainMenu } from './screens/MainMenu';
@@ -71,6 +74,11 @@ function Arena({
     state: 'playing',
   });
   const controls = useRef({ pause: () => {}, resume: () => {} });
+  const [badge, setBadge] = useState<BadgeOccupancy | null>(null);
+  useEffect(() => observeHostingBadge(setBadge), []);
+  useLayoutEffect(() => {
+    host.current?.dispatchEvent(new Event('arena-hud-layout'));
+  }, [badge, navigation.mode]);
   const [confirm, setConfirm] = useState(false);
   const { blocked } = useSyncExternalStore(orientation.subscribe, orientation.getSnapshot);
   const navigationPaused = useRef(false);
@@ -159,11 +167,12 @@ function Arena({
   };
 
   return <>
-    <main className="arena-screen" data-state={state} data-input-mode={navigation.mode} data-match-id={run.preparation.matchId} inert={outcome !== null} aria-hidden={outcome !== null}>
+    <main className="arena-screen" data-state={state} data-input-mode={navigation.mode} data-hosting-badge={badge ? 'present' : 'absent'} style={{ '--badge-rise': badge ? `${window.innerHeight - badge.top + 8}px` : '0px', '--badge-left': badge ? `${badge.left - 8}px` : '100vw' } as CSSProperties} data-match-id={run.preparation.matchId} inert={outcome !== null} aria-hidden={outcome !== null}>
       <div className="arena-host" ref={host} role="region" aria-label="Sailing controls" aria-describedby="sailing-instructions" tabIndex={state === 'ready' && !navigation.paused ? 0 : -1} style={{ visibility: state === 'ready' ? 'visible' : 'hidden' }} inert={navigation.paused || outcome !== null} aria-hidden={navigation.paused || outcome !== null} />
       <div className="battle-hud" style={{ visibility: state === 'ready' ? 'visible' : 'hidden' }} inert={state !== 'ready' || navigation.paused || outcome !== null} aria-hidden={state !== 'ready' || navigation.paused || outcome !== null}>
-        <BattleHud status={navigation} soundMuted={soundMuted} onToggleMute={onToggleMute} pause={pauseGame} menu={menu} />
+        <BattleHud status={navigation} soundMuted={soundMuted} onToggleMute={onToggleMute} pause={pauseGame} menu={menu} focusArena={() => { const element = host.current; if (element && !element.closest('[inert]') && !orientation.getSnapshot().blocked && !confirm) element.focus(); }} />
       </div>
+      <div id="battle-announcements" aria-hidden={blocked || outcome !== null || state !== 'ready'} />
       {state !== 'ready' && <>
         <header className="arena-top"><h1 ref={status} tabIndex={-1}>{state === 'failed' ? 'Loading failed' : 'Loading'}</h1></header>
         <div className="arena-message" role="status" aria-live="polite">{state === 'loading' ? <p>Preparing the ships and islands…</p> : <><p>Assets or graphics could not be loaded. Please try again.</p><button onClick={onRetry}>Retry</button></>}</div>

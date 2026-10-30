@@ -1,0 +1,17 @@
+
+Running 8 tests using 1 worker
+
+(node:12360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop-chrome] › tests\e2e\arena.spec.ts:680:3 › hosting badge late geometry, footer and simultaneous input http://127.0.0.1:5183 (8.1s)
+  ok 2 [desktop-chrome] › tests\e2e\arena.spec.ts:680:3 › hosting badge initial geometry, footer and simultaneous input http://127.0.0.1:5183 (7.9s)
+  ok 3 [desktop-chrome] › tests\e2e\arena.spec.ts:680:3 › hosting badge late geometry, footer and simultaneous input http://127.0.0.1:4183 (7.2s)
+  ok 4 [desktop-chrome] › tests\e2e\arena.spec.ts:680:3 › hosting badge initial geometry, footer and simultaneous input http://127.0.0.1:4183 (7.0s)
+(node:12184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [mobile-chrome] › tests\e2e\arena.spec.ts:680:3 › hosting badge late geometry, footer and simultaneous input http://127.0.0.1:5183 (8.5s)
+  ok 6 [mobile-chrome] › tests\e2e\arena.spec.ts:680:3 › hosting badge initial geometry, footer and simultaneous input http://127.0.0.1:5183 (7.8s)
+  ok 7 [mobile-chrome] › tests\e2e\arena.spec.ts:680:3 › hosting badge late geometry, footer and simultaneous input http://127.0.0.1:4183 (7.7s)
+  ok 8 [mobile-chrome] › tests\e2e\arena.spec.ts:680:3 › hosting badge initial geometry, footer and simultaneous input http://127.0.0.1:4183 (8.3s)
+
+  8 passed (1.1m)

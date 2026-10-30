@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:13700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:6:3 › Battle feedback, audio and accessibility http://127.0.0.1:5183 › unlocks audio on user gesture, toggles mute in HUD and synchronizes with Options (4.9s)
+  ok 2 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:56:3 › Battle feedback, audio and accessibility http://127.0.0.1:5183 › live region announces pause and resume events politely without frame spam (3.9s)
+  ok 3 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:76:3 › Battle feedback, audio and accessibility http://127.0.0.1:5183 › confines keyboard focus in modal dialog with focus trap and restores focus (3.9s)
+  ok 4 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:110:3 › Battle feedback, audio and accessibility http://127.0.0.1:5183 › respects prefers-reduced-motion media query (3.2s)
+  ok 5 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:6:3 › Battle feedback, audio and accessibility http://127.0.0.1:4183 › unlocks audio on user gesture, toggles mute in HUD and synchronizes with Options (3.7s)
+  ok 6 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:56:3 › Battle feedback, audio and accessibility http://127.0.0.1:4183 › live region announces pause and resume events politely without frame spam (2.6s)
+  ok 7 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:76:3 › Battle feedback, audio and accessibility http://127.0.0.1:4183 › confines keyboard focus in modal dialog with focus trap and restores focus (2.8s)
+  ok 8 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:110:3 › Battle feedback, audio and accessibility http://127.0.0.1:4183 › respects prefers-reduced-motion media query (2.6s)
+
+  8 passed (28.8s)

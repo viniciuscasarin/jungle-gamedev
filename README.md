@@ -436,3 +436,19 @@ Navegue além de 0–960/0–540, inclusive em coordenadas negativas. Regiões p
 geometry=1 e window.__arenaDiagnostics() oferecem posição assinada, região, câmera e contadores de terreno/grafos/sprites, somente leitura. Caches mantêm recursos necessários mais oito ociosos; sair libera recursos da partida. Entidades ocultas continuam combate. Resultados/envios pendentes finitos continuam legíveis sob as chaves originais; novas partidas usam configuração procedural e opções atuais de 60–180s (padrão 120s).
 
 Hipóteses de calibração: região 1280, margens 80, pares designados 160/280/440 com tolerância 1, disco inicial livre 160 e spawns 240–520 do player. Medições, benchmarks e aceitação ficam em project/automation-reports/infinite-world. Não foram acrescentados assets ou dependências.
+
+## HUD mobile, dica e badge de hospedagem
+
+Em landscape touch, o joypad fica à esquerda e as skills Q/W/E/R à direita. A dica `Drag joypad to steer and sail · Hold skills to fire` fica na base útil, com quebra de linha, respeitando safe areas. Seu X, `Dismiss control tips`, fecha somente a dica e retorna o foco à arena disponível. A descrição dos comandos e os anúncios discretos de saúde crítica, dez segundos restantes, pontuação e pausa/retomada continuam acessíveis.
+
+O fechamento dura a sessão da aba, incluindo novas partidas, pausa, rotação, troca de modo e reload, usando exclusivamente `pirate-battle.touch-guide-dismissed.v1` em `sessionStorage`. Sem preferência válida, a dica aparece. Se o acesso ou a escrita falhar, a preferência permanece na memória entre partidas enquanto a página estiver carregada; um reload pode reapresentar a dica. O guia desktop continua disponível.
+
+Quando a badge recolhida Powered by Netlify está visível, as skills sobem acima do retângulo externo do iframe, com separação mínima de 8 CSS px; em landscape compacto, ficam em uma linha. A largura da dica termina antes da badge. O canvas continua integral e a câmera acompanha as bandas medidas do HUD. Sem badge, inclusive em dev/preview, a reserva exclusiva é zero. O desktop não aplica essa reserva.
+
+`iframe#nl-badge-frame` e seu recorte vazio inicial são uma integração observada no script público em 30/10/2026, não uma API oficial estável do Netlify. O adaptador observa presença, dimensões e estilo externo, sem acessar conteúdo do iframe. A garantia cobre a badge recolhida; o popover expandido não faz parte da garantia de combate simultâneo.
+
+Roteiro de verificação:
+
+1. Execute `npx playwright test tests/e2e/arena.spec.ts tests/e2e/battle-feedback.spec.ts tests/e2e/orientation.spec.ts` após `npm run build`. Os cenários novos percorrem dev e preview, 568×320 e 844×390, safe areas CSS controladas, dica aberta/fechada, presença inicial/tardia, resize, mudança de posição e remoção. A fixture insere um iframe local de 216×92 px, sem carregar o script ou conteúdo remoto do Netlify. As medições verificam hitboxes de 48×48 px, `elementFromPoint`, enquadramento e navegação com disparo simultâneo.
+2. Inspecione as screenshots em `project/automation-reports/fix-mobile-hud-overlays`. Emulação Chromium e insets CSS não comprovam comportamento em aparelho físico ou leitor de tela real.
+3. Para inspecionar a integração publicada, abra a URL de produção e confira no DevTools a identidade, o retângulo e o estado recolhido do iframe após sua prontidão. Essa inspeção é distinta da fixture local e não publica esta correção. Caso o provedor mude o iframe, revise o adaptador e a fixture.

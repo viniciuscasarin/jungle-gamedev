@@ -1,0 +1,584 @@
+[
+  {
+    "width": 568,
+    "height": 320,
+    "state": "open",
+    "geometry": {
+      "badge": {
+        "x": 352,
+        "y": 228,
+        "width": 216,
+        "height": 92,
+        "top": 228,
+        "right": 568,
+        "bottom": 320,
+        "left": 352
+      },
+      "guide": {
+        "x": 104,
+        "y": 251,
+        "width": 240,
+        "height": 52,
+        "top": 251,
+        "right": 344,
+        "bottom": 303,
+        "left": 104
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 568,
+        "height": 320,
+        "top": 0,
+        "right": 568,
+        "bottom": 320,
+        "left": 0
+      },
+      "top": {
+        "x": 0,
+        "y": 0,
+        "width": 568,
+        "height": 101,
+        "top": 0,
+        "right": 568,
+        "bottom": 101,
+        "left": 0
+      },
+      "bottom": {
+        "x": 0,
+        "y": 168,
+        "width": 568,
+        "height": 152,
+        "top": 168,
+        "right": 568,
+        "bottom": 320,
+        "left": 0
+      },
+      "insets": {
+        "top": 101,
+        "bottom": 152,
+        "left": 5,
+        "right": 6
+      },
+      "viewport": {
+        "renderable": true,
+        "scale": 0.5925925925925926,
+        "availableWidth": 557,
+        "availableHeight": 67,
+        "offsetX": -0.9444444444444571,
+        "offsetY": -25.5
+      },
+      "controls": [
+        {
+          "name": "Dismiss control tips",
+          "rect": {
+            "x": 292,
+            "y": 253,
+            "width": 48,
+            "height": 48,
+            "top": 253,
+            "right": 340,
+            "bottom": 301,
+            "left": 292
+          },
+          "reachable": true
+        },
+        {
+          "name": "Sailing joypad",
+          "rect": {
+            "x": 8,
+            "y": 215,
+            "width": 88,
+            "height": 88,
+            "top": 215,
+            "right": 96,
+            "bottom": 303,
+            "left": 8
+          },
+          "reachable": true
+        },
+        {
+          "name": "Front cannon Q: Ready",
+          "rect": {
+            "x": 340,
+            "y": 168,
+            "width": 52,
+            "height": 52,
+            "top": 168,
+            "right": 392,
+            "bottom": 220,
+            "left": 340
+          },
+          "reachable": true
+        },
+        {
+          "name": "Port broadside W: Ready",
+          "rect": {
+            "x": 396,
+            "y": 168,
+            "width": 52,
+            "height": 52,
+            "top": 168,
+            "right": 448,
+            "bottom": 220,
+            "left": 396
+          },
+          "reachable": true
+        },
+        {
+          "name": "Starboard broadside E: Ready",
+          "rect": {
+            "x": 452,
+            "y": 168,
+            "width": 52,
+            "height": 52,
+            "top": 168,
+            "right": 504,
+            "bottom": 220,
+            "left": 452
+          },
+          "reachable": true
+        },
+        {
+          "name": "Auto-sail R: Off",
+          "rect": {
+            "x": 508,
+            "y": 168,
+            "width": 52,
+            "height": 52,
+            "top": 168,
+            "right": 560,
+            "bottom": 220,
+            "left": 508
+          },
+          "reachable": true
+        }
+      ]
+    }
+  },
+  {
+    "width": 568,
+    "height": 320,
+    "state": "closed",
+    "geometry": {
+      "badge": {
+        "x": 352,
+        "y": 228,
+        "width": 216,
+        "height": 92,
+        "top": 228,
+        "right": 568,
+        "bottom": 320,
+        "left": 352
+      },
+      "guide": null,
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 568,
+        "height": 320,
+        "top": 0,
+        "right": 568,
+        "bottom": 320,
+        "left": 0
+      },
+      "top": {
+        "x": 0,
+        "y": 0,
+        "width": 568,
+        "height": 101,
+        "top": 0,
+        "right": 568,
+        "bottom": 101,
+        "left": 0
+      },
+      "bottom": {
+        "x": 0,
+        "y": 168,
+        "width": 568,
+        "height": 152,
+        "top": 168,
+        "right": 568,
+        "bottom": 320,
+        "left": 0
+      },
+      "insets": {
+        "top": 101,
+        "bottom": 152,
+        "left": 5,
+        "right": 6
+      },
+      "viewport": {
+        "renderable": true,
+        "scale": 0.5925925925925926,
+        "availableWidth": 557,
+        "availableHeight": 67,
+        "offsetX": -0.9444444444444571,
+        "offsetY": -25.5
+      },
+      "controls": [
+        {
+          "name": "Sailing joypad",
+          "rect": {
+            "x": 8,
+            "y": 215,
+            "width": 88,
+            "height": 88,
+            "top": 215,
+            "right": 96,
+            "bottom": 303,
+            "left": 8
+          },
+          "reachable": true
+        },
+        {
+          "name": "Front cannon Q: Ready",
+          "rect": {
+            "x": 340,
+            "y": 168,
+            "width": 52,
+            "height": 52,
+            "top": 168,
+            "right": 392,
+            "bottom": 220,
+            "left": 340
+          },
+          "reachable": true
+        },
+        {
+          "name": "Port broadside W: Ready",
+          "rect": {
+            "x": 396,
+            "y": 168,
+            "width": 52,
+            "height": 52,
+            "top": 168,
+            "right": 448,
+            "bottom": 220,
+            "left": 396
+          },
+          "reachable": true
+        },
+        {
+          "name": "Starboard broadside E: Ready",
+          "rect": {
+            "x": 452,
+            "y": 168,
+            "width": 52,
+            "height": 52,
+            "top": 168,
+            "right": 504,
+            "bottom": 220,
+            "left": 452
+          },
+          "reachable": true
+        },
+        {
+          "name": "Auto-sail R: Off",
+          "rect": {
+            "x": 508,
+            "y": 168,
+            "width": 52,
+            "height": 52,
+            "top": 168,
+            "right": 560,
+            "bottom": 220,
+            "left": 508
+          },
+          "reachable": true
+        }
+      ]
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "state": "open",
+    "geometry": {
+      "badge": {
+        "x": 628,
+        "y": 298,
+        "width": 216,
+        "height": 92,
+        "top": 298,
+        "right": 844,
+        "bottom": 390,
+        "left": 628
+      },
+      "guide": {
+        "x": 104,
+        "y": 321,
+        "width": 516,
+        "height": 52,
+        "top": 321,
+        "right": 620,
+        "bottom": 373,
+        "left": 104
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "top": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 101,
+        "top": 0,
+        "right": 844,
+        "bottom": 101,
+        "left": 0
+      },
+      "bottom": {
+        "x": 0,
+        "y": 238,
+        "width": 844,
+        "height": 152,
+        "top": 238,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "insets": {
+        "top": 101,
+        "bottom": 152,
+        "left": 5,
+        "right": 6
+      },
+      "viewport": {
+        "renderable": true,
+        "scale": 0.8791666666666667,
+        "availableWidth": 833,
+        "availableHeight": 137,
+        "offsetX": -0.5,
+        "offsetY": -67.875
+      },
+      "controls": [
+        {
+          "name": "Dismiss control tips",
+          "rect": {
+            "x": 429.1875,
+            "y": 323,
+            "width": 48,
+            "height": 48,
+            "top": 323,
+            "right": 477.1875,
+            "bottom": 371,
+            "left": 429.1875
+          },
+          "reachable": true
+        },
+        {
+          "name": "Sailing joypad",
+          "rect": {
+            "x": 8,
+            "y": 285,
+            "width": 88,
+            "height": 88,
+            "top": 285,
+            "right": 96,
+            "bottom": 373,
+            "left": 8
+          },
+          "reachable": true
+        },
+        {
+          "name": "Front cannon Q: Ready",
+          "rect": {
+            "x": 616,
+            "y": 238,
+            "width": 52,
+            "height": 52,
+            "top": 238,
+            "right": 668,
+            "bottom": 290,
+            "left": 616
+          },
+          "reachable": true
+        },
+        {
+          "name": "Port broadside W: Ready",
+          "rect": {
+            "x": 672,
+            "y": 238,
+            "width": 52,
+            "height": 52,
+            "top": 238,
+            "right": 724,
+            "bottom": 290,
+            "left": 672
+          },
+          "reachable": true
+        },
+        {
+          "name": "Starboard broadside E: Ready",
+          "rect": {
+            "x": 728,
+            "y": 238,
+            "width": 52,
+            "height": 52,
+            "top": 238,
+            "right": 780,
+            "bottom": 290,
+            "left": 728
+          },
+          "reachable": true
+        },
+        {
+          "name": "Auto-sail R: Off",
+          "rect": {
+            "x": 784,
+            "y": 238,
+            "width": 52,
+            "height": 52,
+            "top": 238,
+            "right": 836,
+            "bottom": 290,
+            "left": 784
+          },
+          "reachable": true
+        }
+      ]
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "state": "closed",
+    "geometry": {
+      "badge": {
+        "x": 628,
+        "y": 298,
+        "width": 216,
+        "height": 92,
+        "top": 298,
+        "right": 844,
+        "bottom": 390,
+        "left": 628
+      },
+      "guide": null,
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "top": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 101,
+        "top": 0,
+        "right": 844,
+        "bottom": 101,
+        "left": 0
+      },
+      "bottom": {
+        "x": 0,
+        "y": 238,
+        "width": 844,
+        "height": 152,
+        "top": 238,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "insets": {
+        "top": 101,
+        "bottom": 152,
+        "left": 5,
+        "right": 6
+      },
+      "viewport": {
+        "renderable": true,
+        "scale": 0.8791666666666667,
+        "availableWidth": 833,
+        "availableHeight": 137,
+        "offsetX": -0.5,
+        "offsetY": -67.875
+      },
+      "controls": [
+        {
+          "name": "Sailing joypad",
+          "rect": {
+            "x": 8,
+            "y": 285,
+            "width": 88,
+            "height": 88,
+            "top": 285,
+            "right": 96,
+            "bottom": 373,
+            "left": 8
+          },
+          "reachable": true
+        },
+        {
+          "name": "Front cannon Q: Ready",
+          "rect": {
+            "x": 616,
+            "y": 238,
+            "width": 52,
+            "height": 52,
+            "top": 238,
+            "right": 668,
+            "bottom": 290,
+            "left": 616
+          },
+          "reachable": true
+        },
+        {
+          "name": "Port broadside W: Ready",
+          "rect": {
+            "x": 672,
+            "y": 238,
+            "width": 52,
+            "height": 52,
+            "top": 238,
+            "right": 724,
+            "bottom": 290,
+            "left": 672
+          },
+          "reachable": true
+        },
+        {
+          "name": "Starboard broadside E: Ready",
+          "rect": {
+            "x": 728,
+            "y": 238,
+            "width": 52,
+            "height": 52,
+            "top": 238,
+            "right": 780,
+            "bottom": 290,
+            "left": 728
+          },
+          "reachable": true
+        },
+        {
+          "name": "Auto-sail R: Off",
+          "rect": {
+            "x": 784,
+            "y": 238,
+            "width": 52,
+            "height": 52,
+            "top": 238,
+            "right": 836,
+            "bottom": 290,
+            "left": 784
+          },
+          "reachable": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,21 @@
+
+Running 14 tests using 1 worker
+
+(node:18552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by touch preserves game, description and accessible announcements http://127.0.0.1:5183 (49.1s)
+  ok  2 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by Enter preserves game, description and accessible announcements http://127.0.0.1:5183 (11.3s)
+  ok  3 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by Space preserves game, description and accessible announcements http://127.0.0.1:5183 (10.9s)
+  ok  4 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with normal http://127.0.0.1:5183 (15.8s)
+  ok  5 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with getter-error http://127.0.0.1:5183 (17.4s)
+  ok  6 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with write-error http://127.0.0.1:5183 (18.2s)
+  ok  7 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:200:3 › score and critical-health announcements remain exposed with tips closed http://127.0.0.1:5183 (22.0s)
+  ok  8 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by touch preserves game, description and accessible announcements http://127.0.0.1:4183 (47.0s)
+  ok  9 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by Enter preserves game, description and accessible announcements http://127.0.0.1:4183 (6.2s)
+  ok 10 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:148:66 › dismiss tips by Space preserves game, description and accessible announcements http://127.0.0.1:4183 (6.4s)
+  ok 11 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with normal http://127.0.0.1:4183 (9.4s)
+  ok 12 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with getter-error http://127.0.0.1:4183 (8.4s)
+  ok 13 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:173:77 › dismissed session survives remount, modes, pause, rotation and reload with write-error http://127.0.0.1:4183 (8.9s)
+  ok 14 [mobile-chrome] › tests\e2e\battle-feedback.spec.ts:200:3 › score and critical-health announcements remain exposed with tips closed http://127.0.0.1:4183 (16.7s)
+
+  14 passed (4.2m)

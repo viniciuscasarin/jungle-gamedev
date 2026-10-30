@@ -20,6 +20,14 @@ export const test = base.extend<{ primaryPointer: void }>({
 });
 export { expect };
 
+/** Let native worker registration settle before advancing a frozen startup clock. */
+export async function waitForMockWorker(page: Page) {
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+    if (!navigator.serviceWorker.controller) await new Promise<void>(resolve => navigator.serviceWorker.addEventListener('controllerchange', () => resolve(), { once: true }));
+  });
+}
+
 export async function settleStartup(page: Page) {
   // Tests that freeze time before navigation must let resource preparation settle.
   for (let n = 0; n < 100 && !await page.getByRole('button', { name: 'Play', exact: true }).isVisible(); n++) await page.clock.runFor(100);

@@ -499,3 +499,44 @@ button.skill:active:not(:disabled) { background-image: url('../../assets/png/def
   [data-input-mode=touch] button.skill { width: 52px; height: 52px; grid-template-rows: 28px 16px; background-size: 44px 44px; }
   [data-input-mode=touch] .skill img { width: 28px; height: 28px; }
 }
+
+/* Independent touch groups: only the skills rise above the hosting badge. */
+[data-input-mode=touch] .battle-bottom {
+  --joy-size: 112px;
+  --skills-width: 124px;
+  --edge-left: max(8px, var(--safe-left));
+  --edge-right: max(8px, var(--safe-right));
+  display: grid;
+  grid-template-columns: var(--joy-size) minmax(0, 1fr) var(--skills-width);
+  align-items: end;
+  column-gap: 8px;
+  padding-top: 0;
+  padding-bottom: calc(8px + var(--safe-bottom));
+}
+[data-input-mode=touch] .battle-control-row { display: contents; }
+[data-input-mode=touch] .joypad { grid-column: 1; grid-row: 1; }
+[data-input-mode=touch] .skills {
+  grid-column: 3; grid-row: 1;
+  margin-bottom: max(0px, calc(var(--badge-rise) - 8px - var(--safe-bottom)));
+}
+[data-input-mode=touch] .control-guide {
+  position: absolute;
+  left: calc(var(--edge-left) + var(--joy-size) + 8px);
+  right: max(calc(var(--edge-right) + var(--skills-width) + 8px), calc(100% - var(--badge-left)));
+  bottom: calc(8px + var(--safe-bottom));
+  width: auto; margin: 0; padding: 2px 4px 2px 8px;
+  display: flex; align-items: center; gap: 4px;
+  overflow-wrap: anywhere;
+}
+[data-input-mode=touch][data-hosting-badge=present] .control-guide { right: max(var(--edge-right), calc(100% - var(--badge-left))); }
+button.dismiss-control-tips {
+  width: 48px; height: 48px; min-width: 48px; min-height: 48px;
+  aspect-ratio: auto; padding: 0; border: 1px solid #b1d4ce;
+  border-radius: 8px; background: #174757; color: #fff3ce;
+  font-size: 1.5rem;
+}
+@media (max-height: 400px) {
+  [data-input-mode=touch] .battle-bottom { --joy-size: 88px; --skills-width: 108px; }
+  [data-input-mode=touch][data-hosting-badge=present] .battle-bottom { --skills-width: 220px; }
+  [data-input-mode=touch][data-hosting-badge=present] .skills { grid-template-columns: repeat(4, 52px); }
+}

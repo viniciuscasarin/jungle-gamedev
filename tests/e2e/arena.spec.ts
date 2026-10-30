@@ -1,7 +1,8 @@
 import { shipIsVisible } from '../../src/render/healthBars';
 import { generateRegion } from '../../src/simulation/world/generator';
 import type { GameConfig, ProceduralGameConfig } from '../../src/domain/config';
-import { test, expect, playableSize, playableLayout, settleStartup } from './test';
+import { test, expect, playableSize, playableLayout, settleStartup, APP_ORIGINS, waitForMockWorker } from './test';
+import { hostingBadge, initialHostingBadge } from './helpers/hostingBadge';
 import type { Page, TestInfo, CDPSession } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -10,7 +11,7 @@ interface Audit { captures: Map<number,Element>; observers: Set<object>; resize:
 type NavigationSnapshot = SimulationSnapshot;
 interface Diagnostics { applications: number; resources: number; subscriptions: number; inputListeners: number; navigation: { snapshot: NavigationSnapshot; telegraphGraphics:number; dynamicSprites:number; sources: { direction: { kind: string; x: number; y: number } | null }; camera: { minX:number;minY:number;maxX:number;maxY:number }; target: { xUnits: number; yUnits: number } | null } | null; cache: { leases: number; textures: number; pending: boolean; closed: boolean } }
 declare global { interface Window { __arenaAudit: Audit; __arenaDiagnostics(scope?: 'performance'): Diagnostics } }
-const evidence = 'project/automation-reports/infinite-world/arena-evidence';
+const evidence = process.env.PLAYWRIGHT_ARENA_EVIDENCE ?? 'project/automation-reports/infinite-world/arena-evidence';
 async function screenshot(page: Page, info: TestInfo, label: string) {
   await mkdir(evidence,{recursive:true});
   const file=path.resolve(evidence,`${info.project.name}-${label}.png`);
@@ -22,7 +23,7 @@ async function counts(page: Page) {
 async function settled(page: Page, frames=0) { await expect.poll(async()=> (await counts(page)).frames).toBe(frames); }
 async function arena(page: Page, checkFrames=true) {
   await expect(page.getByRole('heading',{name:'Arena',exact:true})).toBeVisible();
-  await expect(page.getByRole('status')).toContainText('Auto-sail Off');
+  await expect(page.locator('#sailing-instructions')).toContainText('Auto-sail Off');
   await expect(page.locator('canvas')).toHaveCount(1);if(checkFrames)await settled(page,1);
 }
 async function menu(page: Page) {
@@ -90,7 +91,7 @@ test('keyboard menu/loading/arena/menu and five Strict Mode cycles reuse texture
     const mounted=await counts(page);
     expect(mounted.nativeInput).toBeGreaterThanOrEqual(initial.nativeInput+7);
     if(cycles.length)expect(mounted.nativeInput).toBe(cycles[0]!.mounted.nativeInput);
-    expect(mounted).toMatchObject({applications:1,resources:1,subscriptions:1,canvases:1,observers:2,resize:2,density:2,frames:1,cache:{leases:1,pending:false}});
+    expect(mounted).toMatchObject({applications:1,resources:1,subscriptions:1,canvases:1,observers:2,resize:3,density:2,frames:1,cache:{leases:1,pending:false}});
     await expect(page.locator('.arena-host')).toHaveAttribute('data-ticker-started','false');
     await menu(page);await expect(page.getByRole('button',{name:'Play',exact:true})).toBeFocused();await settled(page);
     const unmounted=await counts(page);
@@ -110,9 +111,11 @@ async function pointWorld(page: Page, x: number, y: number) {
   }, { x, y });
   await page.mouse.move(point.x, point.y);
 }
-async function clockArena(page: Page, query = '?geometry=1') {
+async function clockArena(page: Page, query = '?geometry=1', origin = '') {
   await page.clock.install({time:new Date('2026-10-27T12:00:00Z')}); await page.clock.pauseAt(new Date('2026-10-27T12:00:01Z'));
-  await page.goto(`/${query}`); await settleStartup(page); await page.getByRole('button', { name: 'Play', exact: true }).click();
+  await page.goto(`${origin}/${query}`);
+  if (origin) await waitForMockWorker(page);
+  await settleStartup(page); await page.getByRole('button', { name: 'Play', exact: true }).click();
   for (let n = 0; n < 30 && await page.locator('.arena-screen').getAttribute('data-state') !== 'ready'; n++) await page.clock.runFor(100);
   await arena(page,false);
   // Asset/graphics completion is asynchronous relative to the controlled clock.
@@ -603,6 +606,7 @@ async function hudGeometry(page:Page,width:number,height:number) {
     return {scrollWidth:document.documentElement.scrollWidth,scrollHeight:document.documentElement.scrollHeight,viewport:JSON.parse(host.dataset.viewport!),insets:JSON.parse(host.dataset.insets!),top:box(document.querySelector('[data-hud-band=top]')!),bottom:box(document.querySelector('[data-hud-band=bottom]')!),controls:[...document.querySelectorAll('.skill,.joypad,.pause-control,.menu-control')].map(box)};
   });
   expect(result.scrollWidth).toBe(width);expect(result.scrollHeight).toBe(height);expect(result.viewport.renderable).toBe(true);
+  expect(await page.locator('canvas').boundingBox()).toEqual({ x: 0, y: 0, width, height });
   expect(result.viewport.scale).toBe(Math.max(width/960,height/540));
   const player=(await observe(page)).snapshot.player.position;
   expect(result.viewport.offsetX+player.xUnits*result.viewport.scale).toBeCloseTo(result.insets.left+(width-result.insets.left-result.insets.right)/2,5);
@@ -671,6 +675,90 @@ test('native contacts are cleared across five Pause Menu Play cycles and active-
 
 
 
+
+for (const origin of APP_ORIGINS) for (const initial of [false, true]) {
+  test(`hosting badge ${initial ? 'initial' : 'late'} geometry, footer and simultaneous input ${origin}`, async ({ page, context }, info) => {
+    if (initial) await initialHostingBadge(page);
+    await page.setViewportSize({ width: 844, height: 390 });
+    await clockArena(page, '?combatScenario=empty&geometry=1', origin);
+    const session = await context.newCDPSession(page);
+    await useTouch(page, session);
+    const match = await page.locator('.arena-screen').getAttribute('data-match-id');
+    const measurements = [];
+    for (const [width, height] of [[568, 320], [844, 390]]) {
+      await page.setViewportSize({ width: width!, height: height! });
+      await page.locator('.arena-screen').evaluate(element => {
+        const style = (element as HTMLElement).style;
+        for (const [side, inset] of [['top', 7], ['right', 6], ['bottom', 9], ['left', 5]]) style.setProperty(`--safe-${side}`, `${inset}px`);
+      });
+      for (const action of ['remove', 'insert', 'resize', 'move', 'remove'] as const) {
+        const beforeLayout = (await observe(page)).snapshot;
+        await hostingBadge(page, action); await page.clock.runFor(50);
+        const logical = (await observe(page)).snapshot;
+        expect(logical).toMatchObject({ player: beforeLayout.player, score: beforeLayout.score, cooldownsMs: beforeLayout.cooldownsMs, autoSailEnabled: beforeLayout.autoSailEnabled, state: beforeLayout.state });
+        const geometry = await hudGeometry(page, width!, height!);
+        const positions = await page.evaluate(() => {
+          const box = (element: Element) => { const r = element.getBoundingClientRect(); return { left: r.left, top: r.top, right: r.right, bottom: r.bottom, width: r.width, height: r.height }; };
+          const controls = [...document.querySelectorAll('.joypad,.skill,.dismiss-control-tips')];
+          const badge = document.querySelector('#nl-badge-frame');
+          return { badge: badge ? box(badge) : null, guide: box(document.querySelector('.control-guide')!), groups: [...document.querySelectorAll('.joypad,.skills')].map(box), controls: controls.map(box), reachable: controls.map(element => { const r = element.getBoundingClientRect(); return element.contains(document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2)); }) };
+        });
+        for (const control of positions.controls) {
+          expect(control.width).toBeGreaterThanOrEqual(48); expect(control.height).toBeGreaterThanOrEqual(48);
+          expect(control.left).toBeGreaterThanOrEqual(5); expect(control.right).toBeLessThanOrEqual(width! - 6);
+          expect(control.top).toBeGreaterThanOrEqual(geometry.top.bottom); expect(control.bottom).toBeLessThanOrEqual(height! - 9);
+          if (positions.badge) {
+            const badge = positions.badge;
+            expect(control.right <= badge.left - 8 || control.bottom <= badge.top - 8 || control.left >= badge.right + 8 || control.top >= badge.bottom + 8).toBe(true);
+          }
+        }
+        const all = [...positions.groups, positions.guide];
+        for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) {
+          const a = all[i]!, b = all[j]!;
+          expect(a.right <= b.left || b.right <= a.left || a.bottom <= b.top || b.bottom <= a.top).toBe(true);
+        }
+        expect(positions.reachable.every(Boolean)).toBe(true);
+        expect(height! - 9 - positions.guide.bottom).toBeGreaterThanOrEqual(0);
+        expect(height! - 9 - positions.guide.bottom).toBeLessThanOrEqual(12);
+        expect(geometry.insets.bottom).toBeCloseTo(height! - geometry.bottom.top);
+        expect(await page.locator('.arena-screen').getAttribute('data-match-id')).toBe(match);
+        await expect(page.locator('.arena-screen')).toHaveAttribute('data-input-mode', 'touch');
+        if (!positions.badge) expect(await page.locator('.arena-screen').evaluate(element => (element as HTMLElement).style.getPropertyValue('--badge-rise'))).toBe('0px');
+        expect((await observe(page)).snapshot).toEqual(logical);
+        measurements.push({ width, height, action, geometry, positions });
+        if (action === 'insert') await page.screenshot({ path: `project/automation-reports/fix-mobile-hud-overlays/${info.project.name}-${origin.slice(-4)}-${initial}-${width}-open.png` });
+      }
+    }
+    await hostingBadge(page); await page.clock.runFor(50);
+    const joy = await center(page, '.joypad', 1); joy.x += 26;
+    const q = await center(page, '[data-control=front]', 2), before = (await observe(page)).snapshot;
+    await touch(session, 'touchStart', [joy, q]); await page.clock.runFor(80);
+    const active = (await observe(page)).snapshot;
+    expect(active.player.position).not.toEqual(before.player.position); expect(active.projectiles.length).toBeGreaterThan(0);
+    await touch(session, 'touchEnd', []);
+    await page.getByRole('button', { name: 'Dismiss control tips' }).tap(); await page.clock.runFor(40);
+    await expect(page.locator('.control-guide')).toHaveCount(0);
+    await hudGeometry(page, 844, 390);
+    await page.screenshot({ path: `project/automation-reports/fix-mobile-hud-overlays/${info.project.name}-${origin.slice(-4)}-${initial}-closed.png` });
+    await page.setViewportSize({ width: 568, height: 320 }); await page.clock.runFor(50);
+    await expect.poll(async () => {
+      await page.clock.runFor(20);
+      return page.locator('.arena-screen').evaluate(element => Number.parseFloat((element as HTMLElement).style.getPropertyValue('--badge-rise')) - (innerHeight - document.querySelector('#nl-badge-frame')!.getBoundingClientRect().top + 8));
+    }).toBe(0);
+    await hudGeometry(page, 568, 320);
+    const closedHits = await page.locator('.joypad,.skill').evaluateAll(elements => elements.map(element => { const r = element.getBoundingClientRect(), hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return { control: element.getAttribute('data-control'), rect: r.toJSON(), reachable: element.contains(hit), hit: hit?.outerHTML.slice(0, 180), badgeRise: document.querySelector<HTMLElement>('.arena-screen')!.style.getPropertyValue('--badge-rise') }; }));
+    expect(closedHits.filter(control => !control.reachable)).toEqual([]);
+    await page.screenshot({ path: `project/automation-reports/fix-mobile-hud-overlays/${info.project.name}-${origin.slice(-4)}-${initial}-568-closed.png` });
+    await page.setViewportSize({ width: 844, height: 390 }); await page.clock.runFor(50);
+    await page.mouse.move(400, 180); await page.clock.runFor(40);
+    const desktop = await page.locator('.skills').boundingBox();
+    await hostingBadge(page, 'remove'); await page.clock.runFor(40);
+    expect(await page.locator('.skills').boundingBox()).toEqual(desktop);
+    await expect(page.locator('.control-guide')).toContainText('Mouse to steer');
+    await info.attach('badge-layout-measurements', { body: JSON.stringify(measurements, null, 2), contentType: 'application/json' });
+    await session.detach(); await menu(page);
+  });
+}
 
 async function ensureBlurSignal(page: Page) {
   const state = (await observe(page)).snapshot.state;
